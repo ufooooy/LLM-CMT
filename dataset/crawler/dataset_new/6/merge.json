@@ -1,0 +1,40 @@
+[
+    {
+        "abstract": "Use of weak encryption algorithm",
+        "files": [
+            "file1.java",
+            "file2.java"
+        ],
+        "detail": "The system uses DES, which is considered weak."
+    },
+    {
+        "abstract": "Use of weak encryption algorithm",
+        "files": [
+            "file3.java"
+        ],
+        "detail": "DES encryption is used, which is no longer considered secure."
+    },
+    {
+        "abstract": "Hardcoded cryptographic keys",
+        "files": [
+            "file4.java"
+        ],
+        "detail": "Cryptographic keys are hardcoded, which could lead to security vulnerabilities."
+    },
+    {
+        "abstract": "Use of weak encryption algorithm",
+        "files": [
+            "file1.java",
+            "file2.java",
+            "file3.java"
+        ],
+        "detail": "DES encryption is used across multiple files, which is considered weak and insecure."
+    },
+    {
+        "abstract": "Hardcoded cryptographic keys",
+        "files": [
+            "file4.java"
+        ],
+        "detail": "Cryptographic keys are hardcoded in the code, posing a security risk."
+    }
+]

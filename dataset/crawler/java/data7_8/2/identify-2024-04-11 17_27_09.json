@@ -1,0 +1,278 @@
+[
+    {
+        "abstract": "Insecure HMAC signing algorithm usage",
+        "files": [
+            "874FeishuHookCallback.java"
+        ],
+        "detail": "The method 'sign' in '874FeishuHookCallback.java' uses 'HmacSHA256' with a direct string-to-byte conversion of the secret key, which might not ensure a secure and consistent byte representation across different platforms and configurations. It's recommended to use a more secure key derivation function to generate a key from a password or passphrase."
+    },
+    {
+        "abstract": "Improper error handling in cryptographic operations",
+        "files": [
+            "874DingtalkHookCallback.java",
+            "874FeishuHookCallback.java"
+        ],
+        "detail": "Both '874DingtalkHookCallback.java' and '874FeishuHookCallback.java' throw a generic RuntimeException in case of cryptographic operation failures (NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException). This approach to error handling could lead to uninformative error messages and potentially mask the underlying cause of the error. It's recommended to handle cryptographic exceptions explicitly and provide more context or take corrective measures specific to the cause of the exception."
+    },
+    {
+        "abstract": "RSA decryption without OAEP padding",
+        "files": [
+            "874RsaUtil.java"
+        ],
+        "detail": "The 'decrypt' method in '874RsaUtil.java' uses RSA decryption with 'Cipher.getInstance(\"RSA\")' which defaults to 'RSA/ECB/PKCS1Padding'. For new applications, it's recommended to use OAEP padding ('RSA/ECB/OAEPWithSHA-256AndMGF1Padding') because PKCS#1 v1.5 padding (used in 'PKCS1Padding') is vulnerable to padding oracle attacks."
+    },
+    {
+        "abstract": "Insecure usage of SecureRandom with a predictable seed",
+        "files": [
+            "782KeyPairGeneratorUtil.java"
+        ],
+        "detail": "Initializing SecureRandom with a predictable seed (password.getBytes()) compromises the randomness and security of the generated keys. SecureRandom should be allowed to self-initialize or be seeded with truly random data."
+    },
+    {
+        "abstract": "Insecure RSA encryption mode",
+        "files": [
+            "782KeyPairGeneratorUtil.java"
+        ],
+        "detail": "Cipher.getInstance(\"RSA\") is used without specifying a padding scheme, defaulting to 'RSA/ECB/PKCS1Padding' which is vulnerable to padding oracle attacks. It is recommended to use 'RSA/ECB/OAEPWithSHA-256AndMGF1Padding' for better security."
+    },
+    {
+        "abstract": "Insecure usage of SecureRandom with a derived seed",
+        "files": [
+            "782PBKDF2KeyPairGeneratorUtil.java"
+        ],
+        "detail": "Using a derived key from PBKDF2 as a seed for SecureRandom may compromise the randomness due to the deterministic nature of the seed. It's recommended to use SecureRandom without manually setting the seed for cryptographic operations."
+    },
+    {
+        "abstract": "Deprecated SecureRandom algorithm",
+        "files": [
+            "782PBKDF2KeyPairGeneratorUtil.java"
+        ],
+        "detail": "SecureRandom.getInstance(\"SHA1PRNG\") relies on a SHA1-based PRNG, which is considered less secure than newer algorithms. It's recommended to use SecureRandom without specifying the algorithm to allow the platform to choose the most secure available option."
+    },
+    {
+        "abstract": "Insecure RSA key size",
+        "files": [
+            "762RSAUtil.java",
+            "460RsaBytesEncryptor.java",
+            "414RSA.java"
+        ],
+        "detail": "The RSA key size is set to 512 bits in the getKeyPair method, which is considered insecure. Modern standards recommend a minimum key size of 2048 bits for RSA to ensure data security.;The RSA encryption uses a key size of 1024 bits, which is considered insecure by current standards. Modern applications should use a minimum key size of 2048 bits to ensure data security against brute-force attacks.;The RSA key size is set to 2048 bits, which might not be sufficient for certain high-security applications. As per NIST recommendations, a key size of at least 3072 bits is recommended for RSA to ensure security beyond 2030."
+    },
+    {
+        "abstract": "Insecure cryptographic algorithm",
+        "files": [
+            "762RSAUtil.java"
+        ],
+        "detail": "The SIGN_ALGORITHM is set to 'MD5withRSA', which uses MD5 for message digest. MD5 is considered cryptographically broken and unsuitable for further use. A more secure hashing algorithm like SHA-256 or SHA-3 should be used."
+    },
+    {
+        "abstract": "Hardcoded cryptographic key",
+        "files": [
+            "565RsaUtil.java",
+            "762RSAUtil.java"
+        ],
+        "detail": "Both files contain methods that directly use strings as keys for encryption and decryption without any key management solution. This practice can lead to security vulnerabilities as the keys can be easily extracted from the source code."
+    },
+    {
+        "abstract": "Lack of secure random number generator",
+        "files": [
+            "762RSAUtil.java"
+        ],
+        "detail": "The getKeyPair method uses SecureRandom with a seed derived from a string, which might not provide a sufficiently unpredictable seed for cryptographic operations. It's recommended to use SecureRandom without a seed or with a securely generated seed."
+    },
+    {
+        "abstract": "Insecure usage of Cipher.getInstance() without specifying the encryption mode and padding",
+        "files": [
+            "461Tools.java",
+            "565AesUtil.java"
+        ],
+        "detail": "The Cipher.getInstance() method is called with 'AES' only, which relies on the provider-specific default values for the block mode and padding scheme. This can lead to ECB mode being used, which is insecure for most applications due to its deterministic nature and lack of error propagation. It is recommended to explicitly specify the encryption mode and padding, such as 'AES/CBC/PKCS5Padding'."
+    },
+    {
+        "abstract": "Use of a weak key generation method",
+        "files": [
+            "565AesUtil.java"
+        ],
+        "detail": "The generateKey() method uses a Random instance for key generation, which is not cryptographically secure. This can lead to the generation of keys that are predictable or have insufficient entropy. It is recommended to use SecureRandom for key generation in cryptographic applications."
+    },
+    {
+        "abstract": "Hardcoded encryption key or using key of insufficient length",
+        "files": [
+            "565AesUtil.java"
+        ],
+        "detail": "The checkContentAndKey() method enforces a key length of exactly 16 characters. This approach can encourage the use of hardcoded keys or keys of insufficient length, which can compromise the security of the encryption. It is recommended to derive keys using a secure key derivation function (KDF) and to support keys of adequate length for the chosen encryption algorithm."
+    },
+    {
+        "abstract": "Insecure or missing initialization vector (IV) for CBC mode encryption",
+        "files": [
+            "565AesUtil.java"
+        ],
+        "detail": "The encryptByCBC() and decryptByCBC() methods use an IV that is passed as a parameter, which could lead to the use of insecure IVs (e.g., predictable or reused IVs). For CBC mode, it is crucial to use a secure, unpredictable IV for each encryption operation. It is recommended to generate a new, random IV using a cryptographically secure random number generator for each encryption operation."
+    },
+    {
+        "abstract": "Insecure key size for AES encryption",
+        "files": [
+            "460EncryptAlgorithm.java"
+        ],
+        "detail": "The AES encryption uses a key size of 256 bits, which requires the installation of the Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files for older Java versions. Without this, the key size may be restricted to 128 bits, leading to potentially weaker cryptographic strength."
+    },
+    {
+        "abstract": "Insecure Random Number Generator (RNG) algorithm",
+        "files": [
+            "460EncryptAlgorithm.java"
+        ],
+        "detail": "The AES encryption method in '460EncryptAlgorithm.java' utilizes 'SHA1PRNG' for key generation, which is not a secure choice. 'SHA1PRNG' is considered less secure and predictable compared to newer algorithms like 'NativePRNG' or 'SHA1PRNGStrong'."
+    },
+    {
+        "abstract": "Hardcoded encryption key",
+        "files": [
+            "460Cmcc4ABytesEncryptor.java"
+        ],
+        "detail": "The encryption key is derived directly from a provided string without any form of dynamic generation or secure storage. This practice exposes the key to potential extraction from the codebase, violating the principle of key confidentiality."
+    },
+    {
+        "abstract": "Insecure Initialization Vector (IV) usage",
+        "files": [
+            "460Cmcc4ABytesEncryptor.java"
+        ],
+        "detail": "The Initialization Vector (IV) for AES encryption in CBC mode is hardcoded to 'a1b2c3d4e5f6g7h8'. Using a static IV undermines the security of the encryption scheme by making it vulnerable to certain types of cryptographic attacks, such as replay attacks, because identical plaintexts will always result in identical ciphertexts for the first block."
+    },
+    {
+        "abstract": "Improper error handling",
+        "files": [
+            "460Cmcc4ABytesEncryptor.java",
+            "421AES256Transcoder.java"
+        ],
+        "detail": "The error handling in the encryption and decryption process catches broad exceptions and rethrows them as either IllegalArgumentException or IllegalStateException without proper mitigation strategies or secure logging. This could potentially leak sensitive information about the cryptographic process or underlying data.;AES256Transcoder throws generic exceptions (EncodingException, DecodingException) upon encryption or decryption failures. This approach might leak sensitive information about the cryptographic process and should be replaced with more specific error handling that does not reveal details about the underlying cryptographic mechanisms."
+    },
+    {
+        "abstract": "Use of non-singleton OkHttpClient",
+        "files": [
+            "460DingTalkUtil.java"
+        ],
+        "detail": "The OkHttpClient instance is created anew for each use rather than being a singleton. This misuse doesn't directly relate to cryptography but can lead to resource inefficiencies and potential Denial of Service (DoS) if the server runs out of memory (OOM), indirectly affecting the security of the application."
+    },
+    {
+        "abstract": "Insecure Random Number Generator",
+        "files": [
+            "460AesBytesEncryptor.java"
+        ],
+        "detail": "The use of 'SHA1PRNG' for SecureRandom may not be secure in all contexts. It's recommended to use a more secure random number generator or rely on the default implementation without specifying the algorithm."
+    },
+    {
+        "abstract": "Weak Encryption Mode",
+        "files": [
+            "460BasePropertiesEnv.java",
+            "460BlowFishZeroPaddingBytesEncryptor.java"
+        ],
+        "detail": "The use of 'ECB' mode in encryption is generally considered insecure because it does not provide serious message confidentiality. Patterns in the plaintext may be visible in the ciphertext, making it susceptible to various attacks."
+    },
+    {
+        "abstract": "No Padding in Encryption",
+        "files": [
+            "460BlowFishZeroPaddingBytesEncryptor.java"
+        ],
+        "detail": "The use of 'NoPadding' in encryption can lead to issues if the input plaintext does not match the block size of the cipher. It may also make the encryption weaker by making pattern analysis easier for attackers."
+    },
+    {
+        "abstract": "Hardcoded Encryption Key",
+        "files": [
+            "460BasePropertiesEnv.java"
+        ],
+        "detail": "The approach to handling encryption keys within the application could lead to security risks if the keys are not managed securely. The code snippet suggests a potential misuse by not adequately protecting the encryption key."
+    },
+    {
+        "abstract": "Improper Error Handling",
+        "files": [
+            "460BlowFishZeroPaddingBytesEncryptor.java"
+        ],
+        "detail": "Catching generic exceptions and rethrowing a RuntimeException with the root cause message can potentially leak sensitive information about the encryption algorithm or its configuration."
+    },
+    {
+        "abstract": "Missing Validation",
+        "files": [
+            "460BlowFishZeroPaddingBytesEncryptor.java"
+        ],
+        "detail": "The constructor of 'BlowFishZeroPaddingBytesEncryptor' does not correctly validate the 'password' parameter, potentially leading to a NullPointerException."
+    },
+    {
+        "abstract": "Hardcoded encryption algorithm",
+        "files": [
+            "420TokenServiceImpl.java",
+            "421AES256Transcoder.java"
+        ],
+        "detail": "Both TokenServiceImpl and AES256Transcoder classes use hardcoded encryption algorithms ('HS256' for JWT and 'AES/CBC/PKCS5Padding' for AES). This practice limits the flexibility to change algorithms and modes, potentially affecting adaptability to future cryptographic standards and vulnerabilities."
+    },
+    {
+        "abstract": "Insufficient secret key length validation",
+        "files": [
+            "421AES256Transcoder.java"
+        ],
+        "detail": "AES256Transcoder validates the secret key length to be at least 32 bytes for AES-256 encryption. However, it does not ensure the strength or quality of the key itself, potentially allowing weak keys that do not fully utilize AES-256's security capabilities."
+    },
+    {
+        "abstract": "Use of ECB mode in RSA encryption",
+        "files": [
+            "414RSA.java"
+        ],
+        "detail": "The RSA encryption uses 'RSA/ECB/PKCS1Padding' mode. While ECB (Electronic Codebook) mode is not inherently insecure with RSA as it is with symmetric key algorithms, specifying ECB mode for RSA is misleading and unnecessary since RSA encryption of a single block does not use a mode of operation like block ciphers do."
+    },
+    {
+        "abstract": "Use of DES encryption algorithm",
+        "files": [
+            "414DES.java"
+        ],
+        "detail": "The DES encryption algorithm is used, which is considered insecure due to its short key length. Modern applications should use AES with a key size of at least 128 bits for secure encryption."
+    },
+    {
+        "abstract": "Insecure MAC algorithm specification",
+        "files": [
+            "414HmacSHA256.java"
+        ],
+        "detail": "The MAC algorithm is specified as 'HmacSha256' which is incorrect. The correct algorithm name is 'HmacSHA256'. Using incorrect algorithm names can lead to NoSuchAlgorithmException errors."
+    },
+    {
+        "abstract": "Insufficient key size for JWT signing",
+        "files": [
+            "414Jwt.java"
+        ],
+        "detail": "The JWT signing process uses a key derived from a provided string without ensuring a sufficient key size. For HMACSHA256, the key should be at least 256 bits (32 bytes) to prevent brute-force attacks."
+    },
+    {
+        "abstract": "Use of ECB mode in AES encryption",
+        "files": [
+            "219UnobfuscatedTestClass.java"
+        ],
+        "detail": "The AES encryption uses ECB mode by default when not explicitly specifying the cipher mode and padding. ECB mode is not recommended for use in cryptographic protocols because it does not provide serious message confidentiality, and it might expose data patterns to an attacker."
+    },
+    {
+        "abstract": "Insecure random number generation",
+        "files": [
+            "414AES.java"
+        ],
+        "detail": "The method 'randomIv()' uses 'java.util.Random' for generating IVs for cryptographic operations, which is not secure. A secure random number generator (RNG) should be used for cryptographic purposes, such as 'java.security.SecureRandom', to ensure that the IVs are unpredictable."
+    },
+    {
+        "abstract": "Hardcoded cryptographic key size",
+        "files": [
+            "414AES.java"
+        ],
+        "detail": "The AES class constructor that does not take parameters defaults to a 256-bit key size. While 256-bit AES keys are strong, hardcoding the key size can limit flexibility and future changes, especially in contexts where different key sizes might be required or where cryptographic agility is desired."
+    },
+    {
+        "abstract": "Use of insecure AES encryption mode (ECB)",
+        "files": [
+            "219ObfuscatedTestClass.java",
+            "219OpaqueConditionClazz.java"
+        ],
+        "detail": "The AES encryption is performed using ECB mode, which is considered insecure for data that spans more than one block because identical plaintext blocks are encrypted to identical ciphertext blocks. This can reveal patterns in the plaintext, compromising confidentiality."
+    },
+    {
+        "abstract": "Insufficient AES key size",
+        "files": [
+            "219ObfuscatedTestClass.java",
+            "219OpaqueConditionClazz.java"
+        ],
+        "detail": "The AES key size is hardcoded to 128 bits. While 128-bit keys are considered secure under current computational capabilities, for applications requiring long-term security or handling highly sensitive data, a larger key size such as 192 or 256 bits is recommended to enhance security and protect against future advancements in cryptanalysis."
+    }
+]

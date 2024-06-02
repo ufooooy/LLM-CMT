@@ -1,0 +1,82 @@
+[
+    {
+        "abstract": "Weak encryption key derivation from password",
+        "files": [
+            "503encrypt_dsm.py"
+        ],
+        "detail": "The key derivation process uses a static, hard-coded salt and a low iteration count (1000) for PBKDF2, which does not adhere to best practices for secure password-based key derivation. Using a static salt compromises the uniqueness of derived keys across different installations or uses of the application, making it easier for attackers to perform precomputed attacks. The low iteration count reduces the computational effort needed for brute-force attacks. Modern recommendations suggest using a unique, cryptographically random salt for each key derivation operation and a higher iteration count to increase the computational cost for attackers."
+    },
+    {
+        "abstract": "Hard-coded cryptographic key",
+        "files": [
+            "503encrypt_dsm.py"
+        ],
+        "detail": "The password used for key derivation is hard-coded ('pass'). This practice severely undermines the security of the encryption scheme as it makes the encryption key predictable and susceptible to brute-force attacks. Hard-coded keys are easily discoverable through basic reverse engineering techniques. Secure key management practices recommend generating cryptographic keys dynamically and securely storing them using appropriate key storage mechanisms."
+    },
+    {
+        "abstract": "Insecure encryption mode",
+        "files": [
+            "503encrypt_dsm.py"
+        ],
+        "detail": "The AES encryption uses CBC mode without any mechanism for integrity verification, such as HMAC (Hash-based Message Authentication Code) or an AEAD (Authenticated Encryption with Associated Data) mode like GCM (Galois/Counter Mode). While CBC mode itself is not inherently insecure, its proper use requires secure management of Initialization Vectors (IVs) and the addition of integrity checks to prevent padding oracle attacks. The absence of integrity verification mechanisms exposes the encrypted data to potential tampering and decryption through chosen-ciphertext attacks."
+    },
+    {
+        "abstract": "Hardcoded cryptographic keys",
+        "files": [
+            "351obf.py",
+            "376channel4.py",
+            "376channel5.py"
+        ],
+        "detail": "The use of hardcoded cryptographic keys within the source code can compromise the security of the encryption scheme as it makes the key easily accessible to an attacker who analyzes the code."
+    },
+    {
+        "abstract": "Insecure randomness for cryptographic operations",
+        "files": [
+            "351obf.py"
+        ],
+        "detail": "The use of `os.urandom(random.randint(10, 20))` for generating a key derivation function's salt or any cryptographic operation can lead to insufficient entropy for cryptographic purposes, making the cryptographic operation less secure."
+    },
+    {
+        "abstract": "Static Initialization Vector (IV)",
+        "files": [
+            "376channel4.py"
+        ],
+        "detail": "The use of a static IV in cryptographic operations, as seen in the decryption function, can compromise the security of encrypted data by making it easier for attackers to deduce patterns or perform certain types of cryptographic attacks."
+    },
+    {
+        "abstract": "Insecure cryptographic mode",
+        "files": [
+            "376channel4.py",
+            "376channel5.py"
+        ],
+        "detail": "The use of AES in CBC mode without proper integrity checks (e.g., HMAC) can make the encryption susceptible to padding oracle attacks, compromising the confidentiality and integrity of the encrypted data."
+    },
+    {
+        "abstract": "Improper error handling in cryptographic operations",
+        "files": [
+            "376channel4.py"
+        ],
+        "detail": "Catching a broad exception (e.g., `Exception as e`) during cryptographic operations without properly handling the specific cryptographic error can obscure the source of errors, making debugging and security auditing more difficult."
+    },
+    {
+        "abstract": "Use of weak hash functions",
+        "files": [
+            "376channel5.py"
+        ],
+        "detail": "The use of SHA-256 in HMAC for signature generation is not inherently weak but considering the advancements in computational power, moving towards more secure hash functions like SHA-384 or SHA-512 is recommended for future-proofing."
+    },
+    {
+        "abstract": "Insecure Randomness for Key Generation",
+        "files": [
+            "183crypto.py"
+        ],
+        "detail": "The method 'gen_key' in '183crypto.py' uses 'random.choices' for generating AES keys, which is not cryptographically secure. This violates the principle of using a cryptographically secure pseudorandom number generator (CSPRNG) for key generation, as recommended by international standards such as NIST."
+    },
+    {
+        "abstract": "Static Initialization Vector (IV) in AES CTR mode",
+        "files": [
+            "183crypto.py"
+        ],
+        "detail": "The 'encrypt' and 'decrypt' methods in '183crypto.py' use AES in CTR mode without explicitly specifying an initialization vector (IV), leading to the use of a static IV. Reusing an IV in CTR mode compromises the confidentiality of encrypted data, as it allows attackers to derive information about the plaintext when the same key-IV pair is reused."
+    }
+]

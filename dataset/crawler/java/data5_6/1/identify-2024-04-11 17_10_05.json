@@ -1,0 +1,58 @@
+[
+    {
+        "abstract": "Use of ECB mode for encryption",
+        "files": [
+            "3397Navicat11Cipher.java"
+        ],
+        "detail": "The use of ECB mode in encryption is identified as a misuse because it does not provide serious message confidentiality. In ECB mode, identical plaintext blocks are encrypted into identical ciphertext blocks; thus, it does not sufficiently hide data patterns. This mode of operation is not recommended for use in cryptographic protocols at all."
+    },
+    {
+        "abstract": "Insecure key derivation from a fixed string",
+        "files": [
+            "3397Navicat11Cipher.java"
+        ],
+        "detail": "The key derivation process uses a fixed string ('3DC5CA39') and SHA-1 for hashing, which does not ensure a secure key derivation process. SHA-1 is considered weak due to vulnerabilities that allow for collision attacks. Moreover, deriving keys from fixed, predictable strings without a proper key derivation function (KDF) does not provide sufficient entropy and makes the key susceptible to brute-force attacks."
+    },
+    {
+        "abstract": "Hardcoded encryption key and IV",
+        "files": [
+            "3397Navicat12Cipher.java"
+        ],
+        "detail": "The encryption key and IV are hardcoded within the code ('libcckeylibcckey' for the key and 'libcciv libcciv ' for the IV), which is a security risk. Hardcoded keys and IVs can be easily extracted by an attacker, compromising the encryption's security. It is recommended to securely generate and manage keys and IVs, ensuring they are not predictable or accessible."
+    },
+    {
+        "abstract": "Use of reflection to access private constructor of MacAlgorithm",
+        "files": [
+            "652AuthorizationInterceptor.java"
+        ],
+        "detail": "The use of reflection to instantiate a MacAlgorithm object by accessing its private constructor is a misuse. This approach bypasses the intended access control of the MacAlgorithm class, potentially leading to the use of insecure or non-recommended algorithms and configurations. It is advisable to use public APIs in a manner consistent with their intended usage to ensure security."
+    },
+    {
+        "abstract": "Insecure usage of static secret key",
+        "files": [
+            "3397DefaultValueEncryptor.java"
+        ],
+        "detail": "The static secret key defined in LOCAL_KEY_CACHE is insecure because it is hard-coded within the application. This makes the encryption predictable and vulnerable to attacks. A secure approach would involve dynamically generating secret keys and securely managing them, for example, by using a secure key management system."
+    },
+    {
+        "abstract": "Weak encryption algorithm",
+        "files": [
+            "3397DesUtil.java"
+        ],
+        "detail": "The DES encryption algorithm is used, which is considered weak and insecure due to its short key length. Modern applications should use stronger algorithms such as AES with a key size of at least 128 bits."
+    },
+    {
+        "abstract": "Insecure Random Number Generation",
+        "files": [
+            "3397DesUtil.java"
+        ],
+        "detail": "The usage of SHA1PRNG for SecureRandom may not provide a sufficiently secure random number generation, depending on the context. It's recommended to use the default SecureRandom implementation without specifying SHA1PRNG unless there's a specific requirement for that algorithm."
+    },
+    {
+        "abstract": "Hard-coded IV (Initialization Vector)",
+        "files": [
+            "3397DesUtil.java"
+        ],
+        "detail": "The Initialization Vector (IV) is hard-coded, which makes the encryption scheme less secure. IVs should be randomly generated and unique for each encryption operation to ensure the security of the cryptographic scheme."
+    }
+]

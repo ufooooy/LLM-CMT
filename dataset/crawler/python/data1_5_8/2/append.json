@@ -1,0 +1,18 @@
+[
+    {
+        "abstract": "Insecure Padding Method for AES and insecure padding mechanism",
+        "explanation": "This misuse involves the application of insecure padding methods, such as PKCS#7 without proper validation or custom padding mechanisms that may be predictable, in AES encryption processes. Such practices expose cryptographic operations to padding oracle attacks, where an attacker can decipher encrypted messages or infer information about the original plaintext by exploiting the padding validation process."
+    },
+    {
+        "abstract": "Files containing sensitive information are created with insecure permissions",
+        "explanation": "Creating files that contain sensitive cryptographic keys and certificates with permissions that are too permissive can lead to unauthorized access or modification. This misuse compromises the confidentiality and integrity of sensitive data by potentially allowing attackers to gain access to or alter cryptographic materials."
+    },
+    {
+        "abstract": "Lack of proper padding validation and improper Initialization Vector (IV) use",
+        "explanation": "This misuse involves the lack of proper padding validation in decryption functions and the use of a static, zeroed-out IV for CBC mode encryption. Such practices can severely compromise the security of the cryptographic scheme by making it vulnerable to padding oracle attacks and reducing the unpredictability of the encryption process, respectively."
+    },
+    {
+        "abstract": "Insecure cryptographic key sizes and use of SHA-1 in token generation",
+        "explanation": "Employing RSA key sizes of 2048 bits, while currently secure, poses a risk for future security as larger sizes are recommended to ensure long-term protection. Additionally, the potential misuse of SHA-1 in token generation, despite SHA-256 being used, raises concerns due to SHA-1's vulnerabilities to collision attacks, which could compromise the integrity and authenticity of the tokens."
+    }
+]

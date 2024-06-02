@@ -1,0 +1,194 @@
+[
+    {
+        "abstract": "Insecure mnemonic strength",
+        "files": [
+            "1977mnemonic.py",
+            "1977fix_devices_and_wallets.py"
+        ],
+        "detail": "The function generate_mnemonic() defaults to a strength of 256 bits, which, while secure, may not be supported or necessary for all applications. The misuse lies in not providing a clear rationale or flexibility for using lower strengths, such as 128 bits, which is also considered secure and results in a shorter mnemonic. This could lead to unnecessary complexity or resource use in constrained environments. The choice of mnemonic strength should be based on the application's security requirements, considering factors such as the expected lifetime of the secret and the capabilities of potential attackers.;The function `create_hot_wallet_device` generates a mnemonic with a strength of 128 bits. According to modern security standards, including recommendations by NIST, a minimum strength of 256 bits is recommended to ensure adequate security against brute-force attacks."
+    },
+    {
+        "abstract": "Lack of input validation for mnemonic language",
+        "files": [
+            "1977mnemonic.py"
+        ],
+        "detail": "The function initialize_mnemonic() does not validate the provided language_code against a comprehensive list of supported languages by the underlying library. This could lead to unexpected behavior or errors if an unsupported language code is passed. Proper input validation should be implemented to ensure that only supported language codes are processed, and clear error messages are provided for unsupported languages."
+    },
+    {
+        "abstract": "Hardcoded sensitive information",
+        "files": [
+            "1977fix_testnet.py",
+            "1977fix_keys_and_seeds.py"
+        ],
+        "detail": "The code snippet contains hardcoded credentials for accessing a bitcoin testnet node. Hardcoding sensitive information, such as usernames and passwords, violates security best practices and can lead to unauthorized access if the code is exposed.;The test fixtures `mnemonic_ghost_machine`, `mnemonic_keen_join`, and `mnemonic_hold_accident` use hardcoded mnemonics. Hardcoding sensitive information, especially in a public or shared codebase, can lead to security vulnerabilities and should be avoided. Instead, sensitive data should be securely generated and stored."
+    },
+    {
+        "abstract": "Insecure usage of cryptographic keys",
+        "files": [
+            "1977genericdata_manager.py"
+        ],
+        "detail": "The GenericDataManager class uses a Fernet key for encryption without ensuring the security of the key itself. The encryption key is passed as a parameter and might be exposed or mishandled, leading to potential cryptographic weaknesses. Best practices recommend securely generating, storing, and managing cryptographic keys to prevent unauthorized access and ensure the confidentiality and integrity of encrypted data."
+    },
+    {
+        "abstract": "Lack of entropy source specification",
+        "files": [
+            "1977fix_keys_and_seeds.py"
+        ],
+        "detail": "The mnemonic generation does not specify the entropy source. Cryptographically secure pseudorandom number generators (CSPRNGs) should be explicitly used for generating mnemonics to ensure the randomness is sufficient for security purposes."
+    },
+    {
+        "abstract": "Insecure handling of private keys",
+        "files": [
+            "1977device.py"
+        ],
+        "detail": "The method 'set_blinding_key' in '1977device.py' attempts to parse the blinding key from a string without ensuring the string's format or content is secure. This could lead to the exposure of sensitive key material if the input is not properly validated or if the key material is not handled securely in memory."
+    },
+    {
+        "abstract": "Lack of cryptographic operation validation",
+        "files": [
+            "1977electrum.py"
+        ],
+        "detail": "The 'create_psbts' method in '1977electrum.py' modifies the PSBT (Partially Signed Bitcoin Transaction) by removing 'non_witness_utxo' fields for QR code generation without ensuring the integrity and authenticity of the PSBT before and after modification. This could lead to transaction manipulation if the PSBT is tampered with by an attacker."
+    },
+    {
+        "abstract": "Use of insecure or weak cryptographic algorithm",
+        "files": [
+            "1977descriptor.py"
+        ],
+        "detail": "The code snippet uses a custom method for generating a checksum (DescriptorChecksum function) which does not align with any known secure cryptographic hash function standards. This could potentially lead to weak data integrity checks or vulnerabilities. It is recommended to use a secure, well-vetted cryptographic hash function like SHA-256."
+    },
+    {
+        "abstract": "Lack of cryptographic operation result validation",
+        "files": [
+            "1977descriptor.py"
+        ],
+        "detail": "The code does not perform any explicit validation on the results of cryptographic operations, such as checking the validity of derived public keys in the derive_pubkey function. This could lead to the use of invalid keys without detection, potentially compromising the security of the system."
+    },
+    {
+        "abstract": "Insecure Padding Method",
+        "files": [
+            "193encryption.py"
+        ],
+        "detail": "The custom padding method used in the AES encryption process can be vulnerable to padding oracle attacks. It's recommended to use a secure padding standard like PKCS#7."
+    },
+    {
+        "abstract": "Insecure Password Storage",
+        "files": [
+            "1977auth.py"
+        ],
+        "detail": "The system hashes passwords without using a salt, making it susceptible to rainbow table attacks. It's recommended to use a salted hash mechanism for storing passwords securely."
+    },
+    {
+        "abstract": "Lack of Effective Rate Limiting",
+        "files": [
+            "1977auth.py"
+        ],
+        "detail": "While a rate limiting mechanism is present, its implementation may not effectively prevent brute-force attacks on sensitive endpoints. Enhancing this mechanism to provide more robust protection against rapid, automated attempts is recommended."
+    },
+    {
+        "abstract": "Use of SHA-1 hash function",
+        "files": [
+            "188sign_cryptography.py"
+        ],
+        "detail": "The use of SHA-1 as a hashing function in cryptographic operations is considered insecure due to its vulnerability to collision attacks. Modern security standards recommend using SHA-256 or higher for secure hashing."
+    },
+    {
+        "abstract": "Use of PKCS#1 v1.5 padding for RSA signing",
+        "files": [
+            "188sign_cryptography.py"
+        ],
+        "detail": "PKCS#1 v1.5 padding for RSA signing is susceptible to Bleichenbacher's attack, which is a padding oracle attack. It is recommended to use PSS padding (RSA-PSS) as it provides a stronger security guarantee."
+    },
+    {
+        "abstract": "Insecure number of PBKDF2 iterations",
+        "files": [
+            "12426file_keyring.py"
+        ],
+        "detail": "The number of iterations used in PBKDF2 (100,000) may not be sufficient for long-term security. NIST recommends at least 10,000 iterations as of 2016, but this number should be increased periodically to outpace advancements in hardware."
+    },
+    {
+        "abstract": "Use of static salt in encryption",
+        "files": [
+            "12426file_keyring.py"
+        ],
+        "detail": "The use of a static salt in the encryption process can lead to vulnerabilities such as making it easier for attackers to use rainbow tables to crack the encryption. Salts should be unique and randomly generated for each encryption operation."
+    },
+    {
+        "abstract": "Insecure RSA key size",
+        "files": [
+            "188keygen.py",
+            "1093provider.py"
+        ],
+        "detail": "The RSA key size used (2048 bits) may not be sufficient for long-term security. NIST recommends using at least 3072 bits for RSA keys to be secure beyond 2030.;The RSA key generation uses a key size that may not meet the minimum security recommendations. The `key_size` is fetched from a configuration setting (`settings.SIGNING_KEY_SIZE`), and if this size is below 2048 bits, it would not be considered secure against modern cryptanalytic techniques. RSA keys should be at least 2048 bits to ensure security."
+    },
+    {
+        "abstract": "Lack of error handling in private key loading",
+        "files": [
+            "188keygen.py"
+        ],
+        "detail": "The function 'encode_pubkey' loads a private key without proper error handling for incorrect formats or read errors, which could lead to unhandled exceptions and potentially expose sensitive information."
+    },
+    {
+        "abstract": "Insecure key generation",
+        "files": [
+            "12426create_ssl.py"
+        ],
+        "detail": "The RSA keys are generated with a modulus size of 2048 bits. According to NIST Special Publication 800-57 Part 1 Rev. 5, RSA keys should be at least 3072 bits to be considered secure until 2030."
+    },
+    {
+        "abstract": "Insecure cryptographic operation",
+        "files": [
+            "12426create_ssl.py"
+        ],
+        "detail": "The certificate validity period extends to the year 2100. This long validity period for certificates increases the risk of key compromise and misuse over time. Best practices recommend shorter certificate lifetimes, such as 1-2 years, to mitigate the risk of key exposure and to encourage regular key rotation."
+    },
+    {
+        "abstract": "Insecure storage of sensitive information",
+        "files": [
+            "12426create_ssl.py"
+        ],
+        "detail": "The private keys are stored without encryption. This poses a risk of exposure of the private key. Best practices recommend encrypting sensitive information, including private keys, using a strong encryption algorithm and securely managing the encryption keys."
+    },
+    {
+        "abstract": "Use of default or hard-coded cryptographic keys",
+        "files": [
+            "12426dump_keyring.py"
+        ],
+        "detail": "The script uses a default passphrase if no master passphrase is set. Using default or hard-coded passphrases significantly reduces the security of cryptographic operations as it makes brute-force attacks much easier."
+    },
+    {
+        "abstract": "Weak cryptographic key size",
+        "files": [
+            "117weak_key.py"
+        ],
+        "detail": "The implementation allows for RSA, DSA, and ECDSA keys with sizes less than 2048 bits for RSA and DSA, and less than 224 bits for ECDSA. Modern standards recommend a minimum of 2048 bits for RSA and DSA, and 224 bits for ECDSA to ensure adequate security against brute-force attacks."
+    },
+    {
+        "abstract": "Vulnerable to ROCA attack",
+        "files": [
+            "117weak_key.py"
+        ],
+        "detail": "The code checks for RSA keys that are vulnerable to the ROCA attack. RSA keys generated by vulnerable Infineon TPMs can be factored in practical time, leading to private key recovery. It's crucial to replace any detected vulnerable keys to mitigate the risk of private key compromise."
+    },
+    {
+        "abstract": "Weak DSA/ECDSA signature validation",
+        "files": [
+            "117weak_key.py"
+        ],
+        "detail": "The implementation checks for DSA 'r' values that occur more than once, which can lead to private key recovery. However, this approach might not cover all aspects of weak signature validation, such as ignoring the 's' value or not considering ECDSA specifics. A more comprehensive validation against weak signatures is recommended."
+    },
+    {
+        "abstract": "Insecure SSL/TLS version support",
+        "files": [
+            "120pyopenssl.py"
+        ],
+        "detail": "The code supports SSLv3 and TLS versions 1.0, 1.1, and 1.2 through PyOpenSSL. SSLv3 is considered insecure and deprecated. The use of TLS 1.0 and 1.1 is also discouraged in favor of TLS 1.2 and 1.3 due to known vulnerabilities and weaknesses."
+    },
+    {
+        "abstract": "Disabling SSL/TLS certificate verification",
+        "files": [
+            "1046cdd.py"
+        ],
+        "detail": "The code snippet disables SSL/TLS certificate verification by setting `ssl._create_default_https_context = ssl._create_unverified_context`. This undermines the SSL/TLS security, making the HTTPS connection susceptible to man-in-the-middle (MITM) attacks, as it will not verify the authenticity of the server's SSL/TLS certificate."
+    }
+]

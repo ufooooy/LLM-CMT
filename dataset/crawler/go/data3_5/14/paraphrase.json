@@ -1,0 +1,30 @@
+[
+    {
+        "abstract": "Insecure Hash Function Usage",
+        "explanation": "The misuse involves employing SHA-256 and SHA-1 hash functions for operations requiring high security, such as hashing sensitive information, integrity checks, passphrase derivation, and digest verification. These algorithms are deemed insecure for these purposes due to their vulnerability to collision attacks, which could compromise data integrity and security. The recommendation is to use more secure hashing algorithms like SHA-384, SHA-512, or even stronger ones. For password storage or secure passphrase derivation, employing algorithms like Argon2, PBKDF2, or bcrypt is advised because they incorporate key stretching and salting mechanisms, enhancing security against brute-force attacks and ensuring the safety of sensitive data."
+    },
+    {
+        "abstract": "Insecure TLS Version Configuration",
+        "explanation": "This misuse involves configuring TLS (Transport Layer Security) to allow versions that are no longer considered secure, such as TLS 1.0, or not explicitly disabling these older versions while allowing TLS 1.2 or higher. This configuration can expose applications to downgrade attacks, where an attacker forces a connection to use a less secure version of TLS, potentially compromising the data's confidentiality and integrity. Best practices include explicitly setting the minimum allowed TLS version to TLS 1.2 or higher, preferably TLS 1.3, to leverage the latest security enhancements and protect against known vulnerabilities in older TLS versions."
+    },
+    {
+        "abstract": "Insecure gRPC Connection Setup",
+        "explanation": "The misuse in this context refers to setting up gRPC (Google Remote Procedure Call) client connections with an option that allows 'insecure' connections, based on a boolean flag. This configuration can lead to man-in-the-middle attacks in production environments if the insecure option is mistakenly enabled, as it would not encrypt data in transit. It is crucial to always use secure connections in production code to ensure the confidentiality and integrity of the data being transmitted."
+    },
+    {
+        "abstract": "Insecure Random Number Generation and Processing",
+        "explanation": "This misuse involves correctly using `crypto/rand` for generating cryptographically secure random numbers but then processing these numbers in a way that reduces their entropy, making the output potentially predictable. High entropy is essential for ensuring the unpredictability of random numbers, which is crucial for security purposes such as cryptographic key generation, nonce generation, etc. It is important to maintain the full entropy of the original random bytes throughout processing to ensure the security of the cryptographic operations."
+    },
+    {
+        "abstract": "InsecureSkipVerify and Insecure Use of SHA-1",
+        "explanation": "This misuse includes two significant issues: disabling certificate verification with `InsecureSkipVerify: true` and using SHA-1 for hashing. Disabling certificate verification makes the connection vulnerable to man-in-the-middle attacks, as it no longer verifies if the server's certificate is valid and trusted. Using SHA-1 for hashing, especially in security-sensitive contexts like computing WebSocket accept keys, is vulnerable to collision attacks, making it an insecure choice. Both practices significantly compromise the security of the connection and data integrity."
+    },
+    {
+        "abstract": "Improper Error Handling and Lack of Input Validation",
+        "explanation": "This misuse involves two critical programming oversights: improper error handling, particularly in key decoding scenarios, and the lack of input validation before attempting to decode and decrypt data. These issues can lead to undefined behavior, use of incorrect key material, or exploitation of security vulnerabilities if the input is maliciously crafted. Proper error handling and rigorous input validation are essential to ensure the security and stability of cryptographic operations and to protect against potential attacks."
+    },
+    {
+        "abstract": "Use of ECB Mode for Symmetric Encryption",
+        "explanation": "Employing ECB (Electronic Codebook) mode for symmetric encryption is considered a misuse due to its inherent security weaknesses. ECB mode encrypts identical plaintext blocks into identical ciphertext blocks, failing to obscure data patterns. This characteristic makes it unsuitable for most encryption needs as it does not provide serious message confidentiality. Alternatives like CBC (Cipher Block Chaining), CTR (Counter), or GCM (Galois/Counter Mode) modes are recommended for their ability to hide patterns and provide stronger security guarantees."
+    }
+]

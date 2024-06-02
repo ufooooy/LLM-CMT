@@ -1,0 +1,64 @@
+[
+    {
+        "abstract": "Insecure TLS/SSL Configuration and Version Usage",
+        "files": [
+            "3871tlsinspect.go",
+            "3871sender.go",
+            "3871mitm.go",
+            "3871mitm_config.go",
+            "3871subdomain_search.go",
+            "3871tcp.go",
+            "3871socket.go",
+            "3871quake360.go",
+            "3871mitm_transparent_ssl.go"
+        ],
+        "detail": "Multiple instances of insecure TLS/SSL configurations were found, including the allowance of deprecated TLS versions (1.0, SSL 3.0) and the disabling of certificate verification (InsecureSkipVerify: true). These practices expose the application to various attacks, such as POODLE and man-in-the-middle attacks. It is recommended to use TLS 1.2 or higher and ensure certificate verification is enabled."
+    },
+    {
+        "abstract": "Use of Weak Cryptographic Algorithms and Insecure Key Handling",
+        "files": [
+            "3871safebags.go",
+            "3871rc4.go",
+            "3871rfb.go",
+            "3871rc2.go"
+        ],
+        "detail": "The use of weak cryptographic algorithms (Triple DES, RC4, DES, RC2) and insecure key handling practices were identified. These algorithms are vulnerable to various attacks due to their inherent weaknesses, such as short key lengths and known vulnerabilities. Modern cryptographic applications should use stronger algorithms like AES and ensure secure key management practices."
+    },
+    {
+        "abstract": "Insecure Cryptographic Hash Function Usage",
+        "files": [
+            "3871twofa.go",
+            "3871scanfp.go",
+            "3871result.go",
+            "3871prf.go",
+            "3871pbkdf.go",
+            "3871mac.go",
+            "3871mitm.go",
+            "3871model.go"
+        ],
+        "detail": "The codebase uses weak hash functions (SHA-1, MD5) in various components, which are vulnerable to collision attacks and considered cryptographically broken. It is recommended to use stronger hash functions such as SHA-256 or SHA-3 for ensuring data integrity and security."
+    },
+    {
+        "abstract": "Insecure Key Generation and Management",
+        "files": [
+            "3871sm2_test.go",
+            "3871robot.go",
+            "3871ssh.go",
+            "3871ssh_client.go"
+        ],
+        "detail": "Issues with insecure key generation and management were found, including the use of insecure random number generators, hardcoded cryptographic keys, and weak passwords for brute force authentication attempts. Secure practices require the use of high-entropy keys and secure random number generators."
+    },
+    {
+        "abstract": "Improper Handling and Configuration in Cryptographic Operations",
+        "files": [
+            "3871sm2.go",
+            "3871tcp_serve.go",
+            "3871tls_test.go",
+            "3871sign.go",
+            "3871pkcs1.go",
+            "3871pkcs8.go",
+            "3871nuclei.go"
+        ],
+        "detail": "Various cryptographic operations are improperly handled or configured, including unprotected private key export, lack of client certificate validation, insecure generation of self-signed certificates, and hardcoded elliptic curve OIDs. Proper handling and secure configuration practices are essential for maintaining the security of cryptographic operations."
+    }
+]

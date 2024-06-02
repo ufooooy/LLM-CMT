@@ -1,0 +1,83 @@
+### 1. Key Management Misuses
+#### 1.1 Hardcoded Keys and Sensitive Information
+- **Hardcoding Sensitive Information**
+- **Use of hard-coded cryptographic algorithm**
+- **Use of Hard-Coded Cryptographic Keys**
+#### 1.2 Insecure Key Generation and Management
+- **Insecure RSA key generation and handling**
+- **Insecure Key Encoding**
+- **Insecure primality testing and key management**
+- **Insufficient key size for Blowfish encryption**
+- **Insecure Key Generation from String**
+- **Insufficient key length and insecure key management**
+- **Insecure key length and generation method**
+- **Key and error handling issues**
+### 2. Encryption and Decryption Misuses
+#### 2.1 Insecure Use of Encryption Algorithms and Modes
+- **Use of a static IV in AES CBC mode encryption**
+- **Use of Static Nonces in Encryption**
+- **Use of weak encryption algorithms and modes (RC2, RC4, DES, ECB mode)**
+- **Insecure mode of operation for AES**
+- **Use of weak encryption algorithm**
+#### 2.2 Inadequate Encryption Practices
+- **Insufficient security practices in encryption**
+- **Insecure Nonce Reuse**
+### 3. Protocol and Configuration Misuses
+#### 3.1 Insecure Protocol Use
+- **Use of outdated TLS protocol versions and lack of certificate validation**
+- **Use of insecure protocols and practices (HTTP, disabling certificate verification)**
+#### 3.2 Insecure Configuration
+- **Insecure TLS configuration due to InsecureSkipVerify being set incorrectly**
+### 4. Cryptographic Operation Misuses
+#### 4.1 Inadequate Handling and Validation
+- **Improper Error Handling, Thread Safety, and Validation Issues**
+- **Inadequate error handling in cryptographic operations**
+- **Inadequate handling of cryptographic operations and sensitive data**
+- **Lack of error handling in cryptographic operations**
+- **Key and error handling issues**
+#### 4.2 Insufficient Security Measures
+- **Insecure cryptographic practices (hardcoded IV, insufficient key/salt length, insecure random number generation)**
+- **Lack of integrity and authenticity checks**
+- **Lack of integrity checks for Blowfish encryption**
+### 5. Password and Salt Misuses
+#### 5.1 Insecure Password Practices
+- **Insecure Password Handling**
+- **Insufficient password complexity and length**
+#### 5.2 Salt Misuses
+- **Use of Static Salts in Key Derivation**
+- **Insufficient Salt Length**
+### 6. Miscellaneous Misuses
+- **Use of weak hash functions (SHA-1, MD4, MD5)**
+- **Use of insecure cryptographic parameters (RSA key size, DSA key size, Blowfish key length)**
+- **Insufficient iterations count for PBKDF2**
+- **Improper use of cryptography API and insecure practices**
+- **Insecure use of randomness source**
+- **Inadequate validation of ASN.1 structure lengths and use of weak cryptographic hash functions**
+- **Potential integer overflow and memory allocation failure not properly handled**
+- **Improper cleanup of cryptographic operations and insecure Object Identifier (OID) creation**
+- **Use of weak hash function MD5**: This misuse, found in 'Login.java', 'User.java', and 'Payment.java', involves using MD5 for hashing both passwords and sensitive payment information. The vulnerability of MD5 to brute-force and collision attacks endangers the confidentiality and integrity of both passwords and payment data. Attackers could potentially decrypt the hashed passwords or manipulate payment information, leading to unauthorized access and financial fraud.
+- **Insecure and Improper Public Key Retrieval Handling**: The misuse identified involves the functions `X509_PUBKEY_get` and `X509_get0_pubkey` which are critical for retrieving public keys in cryptographic operations. The core issue stems from inadequate validation and error handling when dealing with public keys, particularly from malformed Subject Public Key Info (SPKI) structures or certificates. This can lead to a range of security risks, including but not limited to, the undermining of the integrity and authenticity of public keys. The recommendation to mitigate such risks involves the adoption of secure alternatives for public key retrieval and the implementation of robust error handling procedures to ensure the validity and trustworthiness of the public keys being used.
+- **Insecure Handling of Serial Numbers and Scheme Validation**: This misuse highlights two specific issues: the improper handling of serial numbers in `X509_print_ex`, which fails to adequately consider negative values as required by RFC 5280, and the insufficient scheme validation in `ossl_store_register_loader_int` that does not fully comply with RFC 3986. These shortcomings can lead to security vulnerabilities and inconsistencies, potentially undermining the security of cryptographic operations. To mitigate these risks, it is crucial to adhere strictly to relevant standards, ensuring that serial numbers and scheme validations are handled in a secure and compliant manner.
+
+### 7. Memory and Buffer Misuses
+#### 7.1 Insecure Memory Management
+- **Improper memory handling and validation issues in cryptographic operations**
+- **Use of insecure memory allocation and lack of error handling after allocation:**
+- **Memory handling issues**
+- **Insecure buffer size management and improper error handling:**
+- **Potential memory leak and lack of input validation:**
+#### 7.2 Inadequate Buffer and Input Validation
+- **Improper validation in ASN1 operations and potential buffer overflow:**
+- **Inadequate validation of string types and potential encoding issues:**
+- **Insecure time validation and UTF-8 validation error handling:**
+- **Lack of input validation**
+### 8. Algorithm and Operation Misuses
+#### 8.1 Insecure Random Number Generation
+- **Insecure random number generation**
+#### 8.2 Inadequate Padding and Scheme Misuses
+- **Inadequate padding schemes and insecure padding scheme used for RSA encryption**
+#### 8.3 Deprecated or Non-Constant Time Operations
+- **Use of deprecated or non-constant time operations**
+#### 8.4 ASN.1 and Encoding Misuses
+- **Use of ASN1_ANY type may lead to parsing ambiguities**
+- **Improper comparison function for GENERAL_NAME**

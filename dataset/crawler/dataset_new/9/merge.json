@@ -1,0 +1,75 @@
+[
+    {
+        "abstract": "Use of weak or insecure cryptographic algorithms and digest algorithms",
+        "files": [
+            "189ssl_init.c",
+            "189sm2_sign.c",
+            "189spkac.c",
+            "189sha1_one.c"
+        ],
+        "detail": "The code includes calls for weak cryptographic algorithms and digest algorithms such as DES, RC4, MD5, SHA-1, and allows for insecure digest algorithms in signature processes. Modern applications should use stronger algorithms like AES, SHA-256, or higher."
+    },
+    {
+        "abstract": "Hardcoded cryptographic elements",
+        "files": [
+            "189sslspeed.c",
+            "189spkac.c"
+        ],
+        "detail": "The code contains hardcoded cryptographic keys and algorithms, which can lead to key disclosure and reduces flexibility in using secure algorithms."
+    },
+    {
+        "abstract": "Insecure random number generation",
+        "files": [
+            "189sm2_crypt.c",
+            "189rsa_ssl.c",
+            "189rsa_oaep.c",
+            "189rsa_pk1.c"
+        ],
+        "detail": "The security of cryptographic operations is compromised due to the use of insecure random number generation methods, potentially leading to predictable random numbers."
+    },
+    {
+        "abstract": "Inadequate padding schemes and insecure padding scheme used for RSA encryption",
+        "files": [
+            "189rsa_x931.c",
+            "189rsa_saos.c"
+        ],
+        "detail": "The use of inadequate or insecure padding schemes for RSA encryption can compromise data confidentiality and security."
+    },
+    {
+        "abstract": "Improper error handling",
+        "files": [
+            "189rsa_ssl.c",
+            "189rsa_x931.c",
+            "189rsa_oaep.c",
+            "189rsa_pk1.c"
+        ],
+        "detail": "Lack of proper error handling in cryptographic operations can lead to incorrect error codes being propagated and potential security vulnerabilities."
+    },
+    {
+        "abstract": "Memory handling issues",
+        "files": [
+            "189sm2_crypt.c",
+            "189rsa_mp.c",
+            "189rsa_prn.c",
+            "189rsa_pss.c",
+            "189rsa_saos.c"
+        ],
+        "detail": "Issues related to memory not being securely cleared, improper memory allocation, and insecure memory allocation for sensitive data can lead to exposure of sensitive information."
+    },
+    {
+        "abstract": "Lack of input validation",
+        "files": [
+            "189sm2_pmeth.c",
+            "189scrypt.c"
+        ],
+        "detail": "Missing validation of input parameters and lack of input validation for scrypt parameters can lead to undefined behavior or weaken the security of cryptographic operations."
+    },
+    {
+        "abstract": "Use of deprecated or non-constant time operations",
+        "files": [
+            "189rsa_pss.c",
+            "189rsa_lib.c"
+        ],
+        "detail": "The use of deprecated padding modes and non-constant time operations for sensitive data can lead to vulnerabilities in digital signatures and potential timing attacks."
+    }
+]

@@ -1,0 +1,79 @@
+[
+    {
+        "abstract": "Insecure Randomness for Key Generation",
+        "files": [
+            "830obf.py",
+            "830main.py",
+            "1049test_vault.py"
+        ],
+        "detail": "The use of Python's random module and os.urandom for cryptographic key generation does not ensure cryptographically secure randomness. It's crucial to use a CSPRNG for key generation to ensure the unpredictability of keys."
+    },
+    {
+        "abstract": "Use of ECB Mode for Encryption",
+        "files": [
+            "830obf.py",
+            "495crypto_aes.py",
+            "434base_downloader_m3u8.py",
+            "233encrypt.py",
+            "237ws_overseas_future.py"
+        ],
+        "detail": "The use of ECB mode for AES encryption across various files is insecure due to its deterministic nature and the lack of diffusion, making it vulnerable to certain types of attacks. It's recommended to use more secure modes like CBC, CTR, or GCM."
+    },
+    {
+        "abstract": "Hardcoded Encryption Key",
+        "files": [
+            "830ransomware.py",
+            "495crypto_aes.py",
+            "304des.py",
+            "335hls.py",
+            "237ws_overseas_future.py",
+            "2536credential_refresh.py",
+            "1838GetGpt.py"
+        ],
+        "detail": "Hardcoding encryption keys within the source code is insecure as it makes the encryption trivial to break if the source code is accessible. Keys should be securely managed and stored outside of the source code."
+    },
+    {
+        "abstract": "Insecure Padding Scheme",
+        "files": [
+            "495crypto_aes.py",
+            "377auth_manager.py"
+        ],
+        "detail": "The use of custom ZeroPadding and OAEP with SHA-1 for padding in block cipher modes can be insecure, potentially leading to padding oracle attacks. It's recommended to use secure padding schemes and stronger hashing algorithms like SHA-256 or SHA-3."
+    },
+    {
+        "abstract": "Improper Error Handling in Cryptographic Operations",
+        "files": [
+            "495crypto_aes.py",
+            "304des.py",
+            "1838GptTalkRu.py"
+        ],
+        "detail": "Printing error messages directly to the console for unsupported modes and padding, and returning unencrypted data in case of exceptions, could lead to information leakage. Proper error handling is essential to manage exceptions and maintain security."
+    },
+    {
+        "abstract": "Insecure RSA Key Size",
+        "files": [
+            "377test_teeu.py",
+            "304des.py"
+        ],
+        "detail": "The use of RSA keys of 1024 and 2048 bits might not be sufficient for long-term security. Modern standards recommend using at least 3072 bits for RSA keys to ensure adequate security."
+    },
+    {
+        "abstract": "Insecure Encryption Mode",
+        "files": [
+            "377pyu.py",
+            "335hls.py",
+            "233encrypt.py",
+            "237ws_overseas_future.py"
+        ],
+        "detail": "The misuse of AES encryption modes, including the reuse of nonces in GCM mode and improper IV management in CBC mode, compromises the confidentiality and integrity of encrypted messages. Unique, unpredictable IVs and nonces are essential for each encryption operation."
+    },
+    {
+        "abstract": "Insecure Key Generation",
+        "files": [
+            "237ws_overseas_stock.py",
+            "1049test_vault.py",
+            "233encrypt.py"
+        ],
+        "detail": "The key generation process does not ensure secure and random key generation, potentially leading to weak encryption. Using a CSPRNG and adhering to best practices for key length, such as using at least a 256-bit key for AES, is recommended."
+    }
+]

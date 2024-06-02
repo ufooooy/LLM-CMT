@@ -1,0 +1,18 @@
+[
+    {
+        "abstract": "No cryptographic API misuse",
+        "files": [
+            "574updates_test.go",
+            "594certs_test.go",
+            "574updates.go",
+            "574session.go",
+            "574report_test.go",
+            "574mtasts_test.go",
+            "574integration_test.go",
+            "574mobileconfig.go",
+            "574db.go",
+            "574gather_test.go"
+        ],
+        "detail": "Upon thorough analysis, no additional cryptographic API misuse was identified in the provided code beyond the insecure TLS configuration already noted. The implementation adheres to best practices and guidelines for secure cryptographic operations in other respects.;Aside from the lack of public key pinning, no further cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations in other respects.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The testing procedures implemented adhere to best practices and guidelines for secure cryptographic operations, focusing on validating the functionality of cryptographic methods without introducing security vulnerabilities.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no direct cryptographic API misuse was identified in the provided code snippets 574tlsinfo.go and 574tlsrecv.go. The implementation adheres to best practices and guidelines for secure cryptographic operations, with the exception of the lack of validation against weak cipher suites, which is more of a reporting issue than a misuse of cryptographic APIs.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no additional cryptographic API misuse was identified in the provided code beyond the use of weak hash functions. The implementation adheres to best practices and guidelines for secure cryptographic operations where applicable.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations."
+    }
+]

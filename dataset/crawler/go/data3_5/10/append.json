@@ -1,0 +1,14 @@
+[
+    {
+        "abstract": "Inadequate handling of cryptographic elements",
+        "explanation": "This misuse includes several issues such as the lack of authentication for encrypted packets, improper certificate validation and error handling, the use of panic for error handling in cryptographic operations, and insecure random number generator usage. These practices can compromise the security of cryptographic implementations by making them vulnerable to various attacks, including impersonation, data tampering, and denial of service. Implementing proper authentication, validation, error handling, and using cryptographically secure pseudorandom number generators are essential steps for maintaining robust security."
+    },
+    {
+        "abstract": "Certificate management issues",
+        "explanation": "The misuse involves hardcoded certificate validity periods, the absence of certificate revocation mechanisms, and insecure permissions on private key files. These issues can lead to operational problems and security vulnerabilities, such as the use of expired or revoked certificates and unauthorized access to private keys. Addressing these issues by making validity periods configurable, implementing revocation mechanisms, and securing permissions on private key files is vital for ensuring the security and reliability of certificate management."
+    },
+    {
+        "abstract": "FIPS mode restrictions",
+        "explanation": "FIPS mode imposes restrictions on the use of cryptographic algorithms and TLS versions, potentially limiting the adoption of more secure or efficient options not recognized by FIPS standards. While compliance with FIPS is important for certain regulatory environments, it is crucial to be aware of these limitations and their potential impact on security. Evaluating the security implications of these restrictions and considering alternatives within the FIPS framework can help in maintaining a secure and compliant cryptographic posture."
+    }
+]

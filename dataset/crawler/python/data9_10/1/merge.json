@@ -1,0 +1,54 @@
+[
+    {
+        "abstract": "Insecure AES mode of operation",
+        "files": [
+            "701ofp_mtk_decrypt.py",
+            "701ofp_qc_decrypt.py",
+            "701ozipdecrypt.py",
+            "149ymicp.py"
+        ],
+        "detail": "AES encryption using ECB mode is insecure due to identical plaintext blocks being encrypted into identical ciphertext blocks, failing to hide data patterns. Recommended to use more secure modes like CBC, CFB, or GCM for better security."
+    },
+    {
+        "abstract": "Hardcoded cryptographic keys",
+        "files": [
+            "701ozipdecrypt.py",
+            "323crypto_keys.py",
+            "3306gpp_password.py"
+        ],
+        "detail": "Hardcoding AES keys in source code exposes them to unauthorized access, undermining encryption security. Keys should be dynamically generated and securely managed outside the application code."
+    },
+    {
+        "abstract": "Lack of data integrity verification",
+        "files": [
+            "701ofp_qc_decrypt.py",
+            "701ozipdecrypt.py",
+            "414crypto.py",
+            "635eth_coder.py"
+        ],
+        "detail": "Decryption routines lack integrity verification, risking undetected data tampering. Use authenticated encryption modes like GCM or implement integrity checks with HMAC for confidentiality and integrity protection."
+    },
+    {
+        "abstract": "Insecure randomness",
+        "files": [
+            "149ymicp.py",
+            "3306firefox.py"
+        ],
+        "detail": "Non-cryptographically secure random number generators compromise security. Use CSPRNG for generating unique identifiers and security-sensitive applications."
+    },
+    {
+        "abstract": "Insecure key generation and management",
+        "files": [
+            "323crypto_keys.py",
+            "323main.py",
+            "323test_crypto_controller_from_env.py",
+            "323us_manager_dummy.py",
+            "323us_manager_sync_mock.py",
+            "323base.py",
+            "140encrypted_string.py",
+            "149ymicp.py",
+            "250config.py"
+        ],
+        "detail": "Using insecure methods for key generation and lacking secure key management exposes cryptographic operations to risks. Employ cryptographically secure RNGs and secure storage solutions for key management."
+    }
+]

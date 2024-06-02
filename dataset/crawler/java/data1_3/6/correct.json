@@ -1,0 +1,20 @@
+[
+    {
+        "abstract": "No cryptographic API misuse",
+        "files": [
+            "57743DESParity.java",
+            "57743Des3DkCrypto.java",
+            "57743DEREncodedKeyValueResolver.java",
+            "57743CTR.java",
+            "57743CryptoPermissions.java",
+            "57743CryptoPolicyFallback.java",
+            "57743CRSACipher.java",
+            "57743CipherWithWrappingSpi.java",
+            "57743ConstructKeys.java",
+            "57743CipherSignNotSupported.java",
+            "57743CipherNCFuncTest.java",
+            "57743CipherContextRef.java"
+        ],
+        "detail": "Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations, specifically ensuring DES and DESede keys are parity adjusted.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations, specifically in ensuring that key material is cleared from memory when no longer in use.;Upon thorough analysis, no additional cryptographic API misuse was identified in the provided code beyond the ones already listed. The implementation adheres to best practices and guidelines for secure cryptographic operations to the extent covered by the analysis.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation is a test case designed to verify the behavior of the cryptographic policy fallback mechanism.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations."
+    }
+]

@@ -1,0 +1,51 @@
+[
+    {
+        "abstract": "Insecure key sizes and lengths across various algorithms",
+        "files": [
+            "57743NONEwithRSA.java",
+            "57743NegativeLength.java",
+            "57743KeyWrapping.java",
+            "57743KeyWrap.java",
+            "57743KeySizeTest.java"
+        ],
+        "detail": "Multiple instances of insecure key sizes and lengths were identified, including RSA, DSA, Diffie-Hellman, ECDH, and symmetric keys. Modern standards recommend minimum key sizes of 2048 bits for RSA and DSA, and at least 224 bits for ECDH to ensure adequate security."
+    },
+    {
+        "abstract": "Insecure algorithms and padding schemes",
+        "files": [
+            "57743NativeRSACipher.java",
+            "57743MacClone.java",
+            "57743KeyImpl.java",
+            "57743KeyProtector.java"
+        ],
+        "detail": "The use of DES, RC4, PBEWithMD5AndTripleDES, and RSA/ECB/PKCS1PADDING is highlighted as insecure. These algorithms and padding schemes are vulnerable to various attacks, including brute-force and padding oracle attacks."
+    },
+    {
+        "abstract": "Improper handling and configuration in cryptographic operations",
+        "files": [
+            "57743KeyWrapper.java",
+            "57743KeyUpdate.java",
+            "57743KeySelectors.java",
+            "57743KeyProtector.java",
+            "57743KeyGeneratorCore.java"
+        ],
+        "detail": "Issues such as lack of input validation, insecure parameter specifications, and misuse of cryptographic modes were identified. This includes the misuse of GCM mode without specifying an IV and insecure iteration counts and salts for PBE."
+    },
+    {
+        "abstract": "Hardcoded and insecure key management practices",
+        "files": [
+            "57743MacClone.java",
+            "57743NegativeTest.java",
+            "57743KeySelectors.java"
+        ],
+        "detail": "The risks associated with hardcoded cryptographic keys, manipulation of encoded key representations, and insecure key generation methods were noted. These practices can compromise the security of cryptographic operations."
+    },
+    {
+        "abstract": "Insecure signature and MAC algorithm usage",
+        "files": [
+            "57743NONEwithRSA.java",
+            "57743MacClone.java"
+        ],
+        "detail": "The use of NONEwithRSA without hashing and insecure MAC algorithm usage, such as HmacMD5, exposes data to potential attacks and undermines integrity protection."
+    }
+]

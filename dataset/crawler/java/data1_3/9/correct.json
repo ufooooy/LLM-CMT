@@ -1,0 +1,25 @@
+[
+    {
+        "abstract": "No cryptographic API misuse",
+        "files": [
+            "57743NISTWrapKAT.java",
+            "57743NativeCipherWithJavaPadding.java",
+            "57743MGF1ParameterSpec.java",
+            "57743module-info.java",
+            "57743MacSameTest.java",
+            "57743MacSpi.java",
+            "57743MacKAT.java",
+            "57743MacOutputStream.java",
+            "57743LargeByteBufferTest.java",
+            "57743KeyUtil.java",
+            "57743KeySpecTest.java",
+            "57743KeyRep.java",
+            "57743KeyResolverSpi.java",
+            "57743KeyInfoReferenceResolver.java",
+            "57743KeyGeneratorSpi.java",
+            "57743KerberosKey.java",
+            "57743KeyAgreementSpi.java"
+        ],
+        "detail": "Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The module descriptor does not directly involve cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations."
+    }
+]

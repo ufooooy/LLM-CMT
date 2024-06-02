@@ -1,0 +1,75 @@
+### 1. Breach of Confidentiality
+#### 1.1 Hardcoded Sensitive Data
+- **Use of hard-coded cryptographic algorithm**
+- **Use of Hard-Coded Cryptographic Keys**
+- **Hardcoding Sensitive Information**
+#### 1.2 Insecure Encryption Practices
+- **Use of Static Nonces in Encryption**
+- **Use of weak hash function MD5**
+- **Insufficient security practices in encryption**
+- **Use of weak encryption algorithm**
+- **Insecure Nonce Reuse**
+- **Use of a static IV in AES CBC mode encryption**
+- **Insufficient key size and lack of integrity checks for Blowfish encryption**
+- **Insecure use of randomness source and insecure mode of operation for AES**
+- **Use of weak encryption algorithms and modes (RC2, RC4, DES, ECB mode)**
+### 2. Breach of Integrity
+#### 2.1 Insecure Cryptographic Operations
+- **Insecure primality testing and key management**
+- **Inadequate validation of ASN.1 structure lengths and use of weak cryptographic hash functions**
+- **Lack of integrity and authenticity checks**
+- **Use of hard-coded cryptographic algorithm and potential misuse of ASN1_TYPE_set1 function**
+- **Use of weak hash functions (SHA-1, MD4, MD5)**
+- **Insecure RSA key generation and handling**
+### 3. Breach of Availability
+#### 3.1 Insufficient Error Handling
+- **Insecure buffer size management and improper error handling**
+- **Improper Error Handling, Thread Safety, and Validation Issues**
+- **Inadequate error handling in cryptographic operations and use of insecure or deprecated functions**
+- **Lack of error handling in cryptographic operations**
+- **Improper error handling and potential memory leak in ASN1 operations**
+### 4. Breach of Authentication
+#### 4.1 Insecure TLS Configuration
+- **Use of outdated TLS protocol versions and lack of certificate validation**
+- **Insecure and Improper Public Key Retrieval Handling**
+- **Insecure TLS configuration due to InsecureSkipVerify being set incorrectly**
+### 5. Breach of Non-repudiation
+#### 5.1 Inadequate Key Management
+- **Key and error handling issues**
+### 6. General Security Misconfigurations
+#### 6.1 Insecure Cryptographic Parameters and Practices
+- **Insufficient key length and insecure key management**
+- **Improper use of cryptography API and insecure practices**
+- **Inadequate padding schemes and insecure padding scheme used for RSA encryption**
+- **Insecure random number generation**
+- **Insecure Key Generation from String**
+- **Use of insecure cryptographic parameters (RSA key size, DSA key size, Blowfish key length)**
+- **Insecure Key Encoding**
+- **Insecure cryptographic practices (hardcoded IV, insufficient key/salt length, insecure random number generation)**
+#### 6.2 Inadequate Password and Key Derivation Practices
+- **Insecure key length and generation method**
+- **Insufficient password complexity and length**
+- **Inadequate handling of cryptographic operations and sensitive data**
+- **Use of Static Salts in Key Derivation**
+- **Insecure Password Handling**
+- **Insufficient Salt Length**
+- **Insufficient iterations count for PBKDF2**
+#### 6.3 Use of Insecure Protocols and Practices
+- **Use of deprecated or non-constant time operations**
+- **Use of insecure protocols and practices (HTTP, disabling certificate verification)**
+#### 6.4 Inadequate Memory and Error Handling Practices
+- **Use of ASN1_ANY type may lead to parsing ambiguities**
+- **Insecure Handling of Serial Numbers and Scheme Validation**
+- **Lack of memory zeroization and improper error handling in signature operations**
+- **Insecure time validation and UTF-8 validation error handling**
+- **Improper memory handling and validation issues in cryptographic operations**
+- **Potential memory leak and lack of input validation**
+- **Improper comparison function for GENERAL_NAME**
+- **Use of insecure memory allocation and lack of error handling after allocation**
+- **Improper error handling in ASN1 object operations and insecure encoding**
+- **Improper cleanup of cryptographic operations and insecure Object Identifier (OID) creation**
+- **Inadequate validation of string types and potential encoding issues**
+- **Lack of input validation**
+- **Potential integer overflow and memory allocation failure not properly handled**
+- **Improper validation in ASN1 operations and potential buffer overflow**
+- **Memory handling issues**

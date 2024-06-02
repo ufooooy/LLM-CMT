@@ -1,0 +1,80 @@
+[
+    {
+        "abstract": "Use of weak cryptographic hash function MD5",
+        "files": [
+            "189x509_cmp.c"
+        ],
+        "detail": "The code uses MD5, a weak hash function, in functions X509_issuer_and_serial_hash and X509_issuer_name_hash_old. MD5 is vulnerable to collision attacks and should not be used in security-critical applications. It is recommended to use stronger hash functions like SHA-256 or SHA-3."
+    },
+    {
+        "abstract": "Insecure memory handling in cryptographic operations",
+        "files": [
+            "189x509spki.c"
+        ],
+        "detail": "The functions NETSCAPE_SPKI_b64_decode and NETSCAPE_SPKI_b64_encode in 189x509spki.c allocate memory for cryptographic operations using OPENSSL_malloc without ensuring secure memory handling practices, such as zeroing memory before freeing it. This could potentially lead to sensitive information leakage."
+    },
+    {
+        "abstract": "Lack of input validation for public key operations",
+        "files": [
+            "189x509rset.c",
+            "189x509spki.c"
+        ],
+        "detail": "The functions X509_REQ_set_pubkey and NETSCAPE_SPKI_set_pubkey do not perform adequate validation on the input EVP_PKEY objects. This could lead to undefined behavior or security vulnerabilities if the input is not as expected."
+    },
+    {
+        "abstract": "Use of deprecated or weak cryptographic algorithms",
+        "files": [
+            "189x509type.c"
+        ],
+        "detail": "The function X509_certificate_type in 189x509type.c checks for various cryptographic algorithms to determine the certificate type. Some of these algorithms, such as RSA without PSS padding (EVP_PKEY_RSA) and DSA (EVP_PKEY_DSA), are considered weak or deprecated for certain applications according to modern cryptographic standards."
+    },
+    {
+        "abstract": "Inclusion of weak or broken cryptographic algorithms",
+        "files": [
+            "189version.c"
+        ],
+        "detail": "The code conditionally compiles support for cryptographic algorithms such as MD2, RC4, DES, IDEA, and Blowfish. These algorithms are considered weak or broken and their inclusion could compromise the security of cryptographic operations if they are used in contexts requiring strong cryptography."
+    },
+    {
+        "abstract": "Use of SHA-1 hash function",
+        "files": [
+            "189v3_skey.c"
+        ],
+        "detail": "The SHA-1 hash function is used to generate a digest for the subject key identifier. SHA-1 is considered weak due to vulnerabilities that allow for collision attacks. Modern applications should use stronger hash functions like SHA-256 or SHA-3."
+    },
+    {
+        "abstract": "Improper validation of object identifiers",
+        "files": [
+            "189v3_pmaps.c"
+        ],
+        "detail": "The code fails to properly validate object identifiers before using them, which could lead to the creation of invalid policy mappings. This misuse breaches the principle of data validation in cryptographic operations, potentially allowing for the introduction of policies that are not correctly identified or enforced. Specifically, the `v2i_POLICY_MAPPINGS` function does not adequately verify that the object identifiers (OIDs) provided are valid before creating a new `POLICY_MAPPING` object with them. This could result in the use of undefined or incorrect OIDs, undermining the integrity and the intended control of the policy mappings."
+    },
+    {
+        "abstract": "Potential misuse of memory allocation for cryptographic structures without proper error handling",
+        "files": [
+            "189v3_info.c"
+        ],
+        "detail": "The code snippet from '189v3_info.c' demonstrates instances where memory is allocated for cryptographic structures (e.g., AUTHORITY_INFO_ACCESS, ACCESS_DESCRIPTION) without proper error handling or validation of the allocation success. This could lead to undefined behavior or security vulnerabilities if the memory allocation fails and the error is not handled appropriately."
+    },
+    {
+        "abstract": "Use of ASN1_ANY type may lead to parsing ambiguities",
+        "files": [
+            "189v3_genn.c"
+        ],
+        "detail": "The use of ASN1_ANY type for the value field in the OTHERNAME structure may lead to parsing ambiguities and potential security vulnerabilities. It is recommended to use more specific ASN.1 types that accurately represent the expected data structure to ensure unambiguous parsing and validation."
+    },
+    {
+        "abstract": "Improper comparison function for GENERAL_NAME",
+        "files": [
+            "189v3_genn.c"
+        ],
+        "detail": "The comparison function GENERAL_NAME_cmp does not properly handle all possible types contained within the GENERAL_NAME structure, potentially leading to incorrect comparisons. This could affect the security of applications relying on these comparisons for critical operations, such as certificate validation or access control decisions."
+    },
+    {
+        "abstract": "Improper validation of input leading to potential misuse",
+        "files": [
+            "189v3_akey.c"
+        ],
+        "detail": "The function 'v2i_AUTHORITY_KEYID' in '189v3_akey.c' does not properly validate the presence of the 'issuer_cert' in the 'X509V3_CTX' context before proceeding with its logic. This oversight could lead to null pointer dereferences or incorrect processing when the context is not properly initialized with an issuer certificate. This misuse violates the principle of secure input validation and can lead to undefined behavior or security vulnerabilities."
+    }
+]

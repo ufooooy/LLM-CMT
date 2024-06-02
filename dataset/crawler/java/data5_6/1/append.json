@@ -1,0 +1,10 @@
+[
+    {
+        "abstract": "Use of reflection to bypass access control",
+        "explanation": "The misuse involving the use of reflection to access a private constructor of MacAlgorithm bypasses intended access controls, potentially leading to insecure configurations. This practice can expose cryptographic systems to vulnerabilities by allowing unauthorized access to sensitive operations or configurations. It is recommended to adhere to the intended use of public APIs and avoid manipulating access controls through reflection, ensuring that cryptographic components are used securely and as designed."
+    },
+    {
+        "abstract": "Insecure Random Number Generation",
+        "explanation": "The use of SHA1PRNG for SecureRandom may compromise the security of random number generation, making it less secure than its default implementation. Secure random numbers are crucial for cryptographic operations, such as key generation and nonce creation, to ensure unpredictability and resistance against attacks. It is advisable to rely on the default, well-vetted implementations of SecureRandom unless there is a specific, justified requirement for using SHA1PRNG, ensuring the cryptographic strength of the random numbers generated."
+    }
+]

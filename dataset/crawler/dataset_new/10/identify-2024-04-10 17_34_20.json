@@ -1,0 +1,129 @@
+[
+    {
+        "abstract": "Insecure Public Key Retrieval",
+        "files": [
+            "189t_spki.c"
+        ],
+        "detail": "The function `X509_PUBKEY_get` is used to retrieve the public key from an SPKI structure. This function can potentially lead to security vulnerabilities if the public key is not properly validated or if the SPKI structure is malformed. It is recommended to use more secure alternatives that ensure the integrity and authenticity of the public key."
+    },
+    {
+        "abstract": "Insecure Serial Number Handling",
+        "files": [
+            "189t_x509.c"
+        ],
+        "detail": "The handling of the serial number in `X509_print_ex` does not properly consider the possibility of negative serial numbers, which can lead to security vulnerabilities. According to RFC 5280, serial numbers must be positive. This implementation could potentially allow an attacker to craft a certificate with a negative serial number that might be improperly handled by some systems."
+    },
+    {
+        "abstract": "Lack of Error Handling in Public Key Retrieval",
+        "files": [
+            "189t_x509.c"
+        ],
+        "detail": "The function `X509_get0_pubkey` is used without proper error handling. If the function fails to retrieve the public key (e.g., due to a malformed certificate), the error is not handled appropriately, potentially leading to a null pointer dereference or other undefined behavior."
+    },
+    {
+        "abstract": "Use of insecure memory management function",
+        "files": [
+            "189t_pkey.c"
+        ],
+        "detail": "The function `OPENSSL_malloc` and `OPENSSL_clear_free` in `189t_pkey.c` are used for memory management of sensitive information. While these functions are specific to OpenSSL and designed to reduce risks of leaking sensitive information, the misuse lies in not ensuring that the memory is securely erased in all error paths, potentially leaving sensitive information like private keys in memory. This could lead to sensitive data being recoverable by an attacker with access to the memory dump. It's recommended to use `OPENSSL_cleanse` or similar functions to securely erase sensitive information before freeing memory, even in error conditions."
+    },
+    {
+        "abstract": "Insecure Random Number Generation",
+        "files": [
+            "189tls_srp.c"
+        ],
+        "detail": "The use of RAND_priv_bytes() for generating secret values such as 'b' in the function SSL_srp_server_param_with_username and 'rnd' in SRP_Calc_A_param may not provide a secure random number generation depending on the underlying implementation and the entropy source. According to NIST SP 800-90A, secure random number generation should use approved algorithms and entropy sources to ensure cryptographic strength."
+    },
+    {
+        "abstract": "Memory not securely cleared",
+        "files": [
+            "189tls_srp.c",
+            "189txt_db.c"
+        ],
+        "detail": "The code snippets use OPENSSL_cleanse() and memset() to clear sensitive information from memory. However, the use of memset() is not guaranteed to be secure because compilers might optimize out these calls when they appear to not affect subsequent computations. It is recommended to use OPENSSL_cleanse() or a similar secure memory clearing function that is guaranteed not to be optimized out."
+    },
+    {
+        "abstract": "Potential for NULL pointer dereference",
+        "files": [
+            "189tls_srp.c"
+        ],
+        "detail": "The functions SSL_CTX_SRP_CTX_free, SSL_SRP_CTX_free, and SSL_SRP_CTX_init do not consistently check for NULL pointers before dereferencing. This could lead to a NULL pointer dereference if the functions are called with a NULL argument. It is recommended to always validate pointer arguments before dereferencing to prevent potential crashes."
+    },
+    {
+        "abstract": "Use of insecure hash function for PRF",
+        "files": [
+            "189tls1_prf.c"
+        ],
+        "detail": "The code uses MD5 and SHA-1 as part of the TLS PRF (Pseudo-Random Function). Both MD5 and SHA-1 are considered cryptographically broken and vulnerable to collision attacks. Modern applications should use stronger hash functions like SHA-256 or SHA-3 for cryptographic operations to ensure data integrity and security."
+    },
+    {
+        "abstract": "Improper use of thread synchronization mechanisms",
+        "files": [
+            "189threads_none.c"
+        ],
+        "detail": "The code snippet uses a simplistic and incorrect approach to thread synchronization by using a single unsigned int variable as a lock. This does not provide any actual locking mechanism and can lead to race conditions when accessed by multiple threads simultaneously. Proper thread synchronization mechanisms provided by the operating system or the C library should be used instead."
+    },
+    {
+        "abstract": "Improper use of reference counting for thread safety",
+        "files": [
+            "189tasn_utl.c"
+        ],
+        "detail": "The function 'asn1_do_lock' in '189tasn_utl.c' manipulates reference counts and thread locks directly, which can lead to thread safety issues if not handled correctly. Direct manipulation of reference counts and locks without proper atomic operations or error handling can lead to race conditions, memory leaks, or deadlocks. The OpenSSL library provides thread-safe reference counting utilities that should be used instead to ensure thread safety. This misuse breaches the principle of secure memory management and thread safety."
+    },
+    {
+        "abstract": "Insecure SSL/TLS version specified",
+        "files": [
+            "189s_time.c"
+        ],
+        "detail": "The code snippet explicitly allows the use of SSLv3, which is considered insecure and deprecated. Using SSLv3 can expose the application to various security vulnerabilities, including POODLE (Padding Oracle On Downgraded Legacy Encryption)."
+    },
+    {
+        "abstract": "Weak key derivation and insufficient key length",
+        "files": [
+            "189str2key.c"
+        ],
+        "detail": "The DES_string_to_key function uses a custom method for deriving a key from a given string, which does not involve a secure key derivation function (KDF) such as PBKDF2, bcrypt, or scrypt. This can lead to weak keys that are susceptible to brute-force attacks. Additionally, the DES algorithm itself uses a 56-bit key, which is considered insufficient by modern standards (NIST recommends a minimum of 112 bits for symmetric keys)."
+    },
+    {
+        "abstract": "Use of insecure DES encryption algorithm",
+        "files": [
+            "189str2key.c"
+        ],
+        "detail": "The DES_string_to_key and DES_string_to_2keys functions utilize the DES encryption algorithm, which is no longer considered secure due to its 56-bit key size. Modern applications should use stronger algorithms such as AES with a minimum key size of 128 bits."
+    },
+    {
+        "abstract": "Scheme validation does not fully adhere to RFC 3986",
+        "files": [
+            "189store_register.c"
+        ],
+        "detail": "The scheme validation in 'ossl_store_register_loader_int' function does not fully adhere to RFC 3986, which may allow for schemes that are not fully compliant. This could potentially lead to inconsistencies or security vulnerabilities when handling URIs."
+    },
+    {
+        "abstract": "Missing NULL checks for function pointers in OSSL_STORE_LOADER",
+        "files": [
+            "189store_register.c"
+        ],
+        "detail": "The 'OSSL_STORE_LOADER_new' function does not perform NULL checks on the function pointers for 'ctrl', 'expect', 'find', 'load', 'eof', 'error', and 'close' functions. This could lead to undefined behavior if any of these pointers are invoked without being properly set."
+    },
+    {
+        "abstract": "Potential memory leak on error paths",
+        "files": [
+            "189store_register.c"
+        ],
+        "detail": "In 'OSSL_STORE_LOADER_new', if an error occurs after memory allocation (e.g., if the scheme is NULL), the allocated memory is not freed before returning NULL. This could lead to a memory leak in case of error conditions."
+    },
+    {
+        "abstract": "Improper error handling and potential memory leak",
+        "files": [
+            "189stack.c"
+        ],
+        "detail": "In the function OPENSSL_sk_deep_copy, if OPENSSL_malloc fails, the function goes to 'err' label and calls OPENSSL_sk_free which attempts to free the stack. However, since the allocation for the stack's data field has not been performed yet (it's set to NULL), this does not address the memory allocated for the stack itself, leading to a potential memory leak. Proper error handling should ensure that all allocated resources are freed appropriately to avoid memory leaks."
+    },
+    {
+        "abstract": "Lack of input validation",
+        "files": [
+            "189storeutl.c"
+        ],
+        "detail": "The function storeutl_main does not perform sufficient input validation on the command-line arguments before processing them, which could lead to undefined behavior or security vulnerabilities if the application processes malicious or malformed inputs. Specifically, there's no validation for the correctness of the URI passed to the OSSL_STORE_open function, nor is there validation for the digest algorithm passed to OSSL_STORE_SEARCH_by_key_fingerprint. Ensuring that inputs are valid before they are used is crucial for maintaining the security and stability of the application."
+    }
+]

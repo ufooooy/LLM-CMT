@@ -1,0 +1,61 @@
+### 1. Key Management Misuses
+#### 1.1 Hardcoded Keys and Sensitive Information
+- **Use of Hard-Coded Cryptographic Keys**
+- **Hardcoding Sensitive Information**
+- **Use of hard-coded cryptographic algorithm**
+#### 1.2 Insecure Key Generation and Management
+- **Insufficient key size for Blowfish encryption**
+- **Insufficient key length and insecure key management**
+- **Key and error handling issues**
+- **Insecure Key Generation from String**
+- **Insecure Key Encoding**
+- **Insecure key length and generation method**
+### 2. Encryption and Decryption Misuses
+#### 2.1 Insecure Use of Encryption Algorithms and Modes
+- **Use of weak encryption algorithms and modes (RC2, RC4, DES, ECB mode)**
+- **Insecure mode of operation for AES**
+- **Use of Static Nonces in Encryption**
+- **Use of a static IV in AES CBC mode encryption**
+#### 2.2 Inadequate Encryption Practices
+- **Insecure Nonce Reuse**
+- **Insufficient security practices in encryption**
+### 3. Protocol and Configuration Misuses
+#### 3.1 Insecure Protocol Use
+- **Use of outdated TLS protocol versions and lack of certificate validation**
+- **Use of insecure protocols and practices (HTTP, disabling certificate verification)**
+#### 3.2 Insecure Configuration
+- **Insecure TLS configuration due to InsecureSkipVerify being set incorrectly**
+### 4. Cryptographic Operation Misuses
+#### 4.1 Inadequate Handling and Validation
+- **Inadequate error handling in cryptographic operations**
+- **Key and error handling issues**
+- **Lack of error handling in cryptographic operations**
+#### 4.2 Insufficient Security Measures
+- **Lack of integrity checks for Blowfish encryption**
+- **Insecure cryptographic practices (hardcoded IV, insufficient key/salt length, insecure random number generation)**
+- **Lack of integrity and authenticity checks**
+### 5. Password and Salt Misuses
+#### 5.1 Insecure Password Practices
+- **Insufficient password complexity and length**
+- **Insecure Password Handling**
+#### 5.2 Salt Misuses
+- **Insufficient Salt Length**
+- **Use of Static Salts in Key Derivation**
+### 6. Miscellaneous Misuses
+- **Use of weak hash functions (SHA-1, MD4, MD5)**
+- **Use of insecure cryptographic parameters (RSA key size, DSA key size, Blowfish key length)**
+- **Insufficient iterations count for PBKDF2**
+- **Improper use of cryptography API and insecure practices**
+- **Insecure use of randomness source**: Using an insecure source of randomness can lead to predictable cryptographic operations.
+- **Inadequate validation of ASN.1 structure lengths and use of weak cryptographic hash functions**: Not validating ASN.1 structure lengths and allowing the use of any hash function without enforcing strong ones can compromise the security of cryptographic operations.
+- **Potential integer overflow and memory allocation failure not properly handled**: Potential integer overflow in ASN1_BIT_STRING_set_bit and improper error handling after memory allocation failures can lead to security vulnerabilities.
+- **Improper cleanup of cryptographic operations and insecure Object Identifier (OID) creation**: Not properly cleaning up after cryptographic operations and creating OIDs without proper validation can lead to vulnerabilities.
+### 7. Memory and Buffer Misuses
+#### 7.1 Insecure Memory Management
+- **Insecure buffer size management and improper error handling:**
+- **Potential memory leak and lack of input validation:**
+- **Use of insecure memory allocation and lack of error handling after allocation:**
+#### 7.2 Inadequate Buffer and Input Validation
+- **Improper validation in ASN1 operations and potential buffer overflow:**
+- **Inadequate validation of string types and potential encoding issues:**
+- **Insecure time validation and UTF-8 validation error handling:**

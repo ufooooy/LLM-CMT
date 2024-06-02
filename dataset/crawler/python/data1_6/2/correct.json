@@ -1,0 +1,14 @@
+[
+    {
+        "abstract": "No cryptographic API misuse",
+        "files": [
+            "242__init__.py",
+            "242pyopenssl.py",
+            "225solotool.py",
+            "208solc_select.py",
+            "191stop_desktop.py",
+            "191update_desktop_schedule.py"
+        ],
+        "detail": "Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no additional cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no additional cryptographic API misuse was identified in the provided code beyond the deprecated and insecure SSL/TLS protocol version already mentioned. The implementation adheres to best practices and guidelines for secure cryptographic operations for the most part.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations."
+    }
+]

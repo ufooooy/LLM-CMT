@@ -1,0 +1,79 @@
+[
+    {
+        "abstract": "Insecure Randomness",
+        "files": [
+            "888crypto.py",
+            "286cdm.py",
+            "1350account.py",
+            "423main.py",
+            "3903crypto.py"
+        ],
+        "detail": "The misuse of randomness functions across various files compromises the security of cryptographic operations. This includes the manipulation of `secrets.token_bytes`, use of `Cryptodome.Random.random.choice`, and `randbytes_nosec` for key/IV generation, and the use of the 'random' module for generating a request ID, which are not cryptographically secure. Secure randomness is crucial for unpredictability in cryptographic operations."
+    },
+    {
+        "abstract": "Weak Hash Function",
+        "files": [
+            "943keyutil.py",
+            "309db15.py",
+            "309db12.py",
+            "309db14.py"
+        ],
+        "detail": "MD5 is used for generating fingerprints and file hashes, which is cryptographically broken and vulnerable to hash collisions. It's recommended to use more secure hash functions like SHA-256."
+    },
+    {
+        "abstract": "Insecure Cipher Mode",
+        "files": [
+            "888crypto.py",
+            "286cdm.py",
+            "1926asciiart.py",
+            "207browsers.py",
+            "1350account.py",
+            "1350websocket.py"
+        ],
+        "detail": "The use of AES in ECB mode and CBC mode without proper IV management across several files does not provide serious message confidentiality and is susceptible to various attacks. It's recommended to use more secure modes like GCM."
+    },
+    {
+        "abstract": "Insecure Key Generation and Management",
+        "files": [
+            "888crypto.py",
+            "423main.py",
+            "5079secrets.py",
+            "3306modules_utils.py",
+            "1926asciiart.py",
+            "207browsers.py",
+            "1350account.py"
+        ],
+        "detail": "Issues include hardcoded AES keys and IVs, insecure key generation methods, and lack of key strength enforcement. Best practices recommend using secure random number generators with sufficient entropy and securely managing keys."
+    },
+    {
+        "abstract": "Improper Error Handling in Cryptographic Operations",
+        "files": [
+            "3306modules_utils.py",
+            "309db15.py",
+            "309utils.py",
+            "309db14.py"
+        ],
+        "detail": "Cryptographic operations such as decryption and MAC verification failures are not handled properly, potentially allowing the application to continue in an insecure state. Explicit handling and logging of cryptographic exceptions are recommended."
+    },
+    {
+        "abstract": "Insecure Usage of Cryptographic Libraries and Modes",
+        "files": [
+            "309waguess.py",
+            "309wadecrypt.py",
+            "1350_api.py",
+            "1262certs.py",
+            "1262test_certs.py",
+            "1262http_client.py"
+        ],
+        "detail": "This includes the use of deprecated libraries, insecure padding schemes, and insufficient key lengths. Recommendations include using up-to-date libraries, secure padding like OAEP for RSA, and key sizes of at least 3072 bits for RSA."
+    },
+    {
+        "abstract": "Insecure SSL/TLS Practices",
+        "files": [
+            "1262certs.py",
+            "1262http_client.py",
+            "1262test_certs.py"
+        ],
+        "detail": "The use of self-signed certificates, no certificate revocation checking, and allowing insecure SSL/TLS versions introduce risks such as man-in-the-middle attacks. Using certificates from trusted CAs and enforcing secure protocols are recommended."
+    }
+]

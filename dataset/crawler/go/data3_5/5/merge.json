@@ -1,0 +1,70 @@
+[
+    {
+        "abstract": "Insecure Random Number Generator (RNG) and its usage",
+        "files": [
+            "175ceremony_application_test.go",
+            "175bloom_test.go",
+            "1708ipv6.go"
+        ],
+        "detail": "The use of 'crypto/rand' is secure for cryptographic operations, but the usage context should be reviewed. The use of 'math/rand' for generating parts of ULA compromises security due to predictability."
+    },
+    {
+        "abstract": "Insecure curve and elliptic curve operations",
+        "files": [
+            "175bls12381g2curve.go",
+            "175bls12381g1curve.go"
+        ],
+        "detail": "Custom elliptic curve parameters and operations without explicit validation may lead to vulnerabilities. It's crucial to use well-reviewed parameters and ensure operations adhere to mathematical properties."
+    },
+    {
+        "abstract": "Insecure TLS configuration due to InsecureSkipVerify",
+        "files": [
+            "1708tlsverify_test.go",
+            "1708storage.go",
+            "169telegram.go",
+            "169discord.go",
+            "169notifiarr.go",
+            "1708external_server.go"
+        ],
+        "detail": "Disabling certificate verification makes connections vulnerable to man-in-the-middle attacks. This should be avoided outside of test environments."
+    },
+    {
+        "abstract": "Insecure RSA key sizes and misuse",
+        "files": [
+            "1708tlscerts.go",
+            "167rsa.go"
+        ],
+        "detail": "RSA keys with sizes less than 2048 bits are insecure. While 2048 bits is currently secure, using larger key sizes like 3072 or 4096 bits is recommended."
+    },
+    {
+        "abstract": "Certificate validation issues",
+        "files": [
+            "1708tlsverify.go",
+            "1708ldap.go"
+        ],
+        "detail": "Omitting certificate revocation checking and insufficient server certificate validation could lead to security risks by accepting revoked or invalid certificates."
+    },
+    {
+        "abstract": "Insecure use of hashing algorithms",
+        "files": [
+            "175ceremony.go",
+            "1708basicauth.go",
+            "167md5.go"
+        ],
+        "detail": "Using SHA-3 without specifying security level, SHA-1 for password hashing, and MD5 for string hashing are practices that could lead to vulnerabilities due to insufficient security strength."
+    },
+    {
+        "abstract": "Insecure gRPC connection",
+        "files": [
+            "1708external.go"
+        ],
+        "detail": "Utilizing insecure gRPC connections without TLS configuration exposes data to potential eavesdropping or tampering."
+    },
+    {
+        "abstract": "Use of PKCS#1 v1.5 padding for RSA encryption",
+        "files": [
+            "167rsa.go"
+        ],
+        "detail": "PKCS#1 v1.5 padding is vulnerable to padding oracle attacks. OAEP padding is recommended for better security."
+    }
+]

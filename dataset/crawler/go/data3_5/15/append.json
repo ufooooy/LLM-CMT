@@ -1,0 +1,6 @@
+[
+    {
+        "abstract": "Insecure SSH Host Key Verification",
+        "explanation": "This misuse involves the SSH client configuration being set to ignore the verification of the host's SSH key by using 'ssh.InsecureIgnoreHostKey()'. This configuration makes the SSH connection susceptible to man-in-the-middle attacks, where an attacker could intercept the connection by masquerading as the intended host, thus compromising the confidentiality and integrity of the data being transferred."
+    }
+]

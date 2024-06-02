@@ -1,0 +1,38 @@
+[
+    {
+        "abstract": "Insecure algorithm specification",
+        "files": [
+            "7946EncryptionUtils.java",
+            "972HmacSHA1Signer.java"
+        ],
+        "detail": "The use of 'ECDSA_USING_P384_CURVE_AND_SHA384' for JWT signature verification may not meet modern security standards. Consider using stronger algorithms like ECDSA with P-256 and SHA-256 or better.;The use of 'HmacSHA1' is considered insecure for cryptographic operations due to its vulnerability to collision attacks. It is recommended to use 'HmacSHA256' or stronger algorithms for signing."
+    },
+    {
+        "abstract": "Insecure randomness source for IV generation",
+        "files": [
+            "7946EncryptionUtils.java"
+        ],
+        "detail": "The method 'createCipher' uses a derived IV from the secret key for AES encryption in GCM mode, which can compromise security. IVs should be unpredictable and unique for each encryption operation. Use 'SecureRandom' to generate IVs."
+    },
+    {
+        "abstract": "Incorrect exception handling",
+        "files": [
+            "972HmacSHA1Signer.java"
+        ],
+        "detail": "Catching 'NoSuchAlgorithmException', 'UnsupportedEncodingException', and 'InvalidKeyException' and re-throwing them as 'IllegalArgumentException' can obscure the root cause of cryptographic failures, making debugging and security auditing more difficult."
+    },
+    {
+        "abstract": "Misuse of encoding function for cryptographic keys",
+        "files": [
+            "972HmacSHA1Signer.java"
+        ],
+        "detail": "Using 'getBytes(ENCODING)' directly on the secret key to obtain its byte representation can lead to issues if the platform's default charset is not compatible or if the key contains characters outside the ASCII range. It is safer to use a proper encoding or key format."
+    },
+    {
+        "abstract": "Deprecated cryptographic operation",
+        "files": [
+            "7946EncryptionUtils.java"
+        ],
+        "detail": "The code snippet includes a workaround to enable 'secp384r1' curve which is deprecated. Using deprecated cryptographic standards can expose the application to vulnerabilities and should be avoided. Consider using recommended curves and algorithms."
+    }
+]

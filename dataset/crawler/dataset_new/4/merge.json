@@ -1,0 +1,38 @@
+[
+    {
+        "abstract": "Weak encryption algorithm used",
+        "files": [
+            "file1.py"
+        ],
+        "detail": "DES is used, which is considered weak."
+    },
+    {
+        "abstract": "Use of weak encryption",
+        "files": [
+            "file2.py"
+        ],
+        "detail": "Data encryption with DES, which is not secure."
+    },
+    {
+        "abstract": "Insecure random number generator",
+        "files": [
+            "file3.py"
+        ],
+        "detail": "Random numbers are generated using a predictable source."
+    },
+    {
+        "abstract": "Weak encryption algorithm used",
+        "files": [
+            "file1.py",
+            "file2.py"
+        ],
+        "detail": "DES is used for data encryption, which is considered weak and not secure."
+    },
+    {
+        "abstract": "Insecure random number generator",
+        "files": [
+            "file3.py"
+        ],
+        "detail": "Random numbers are generated using a predictable source."
+    }
+]

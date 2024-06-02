@@ -1,0 +1,82 @@
+[
+    {
+        "abstract": "Use of weak or broken cryptographic algorithms",
+        "files": [
+            "57743PBEInvalidParamsTest.java",
+            "57743PBEParametersTest.java",
+            "57743PBEKeysAlgorithmNames.java",
+            "PBEInvalidParamsTest.java"
+        ],
+        "detail": "The code includes usage of weak or deprecated cryptographic algorithms such as PBEWithMD5AndDES, PBEWithSHA1AndDESede, MD5, SHA-1, DES, and DESede (Triple DES). These algorithms are considered weak due to vulnerabilities to collision attacks for MD5 and SHA-1, and brute-force attacks for DES."
+    },
+    {
+        "abstract": "Inappropriate error handling for cryptographic operations",
+        "files": [
+            "57743PBEInvalidParamsTest.java",
+            "57743PBECipherWrapper.java"
+        ],
+        "detail": "The code improperly handles errors for cryptographic operations, either by throwing a generic Exception or by not properly distinguishing between different types of cryptographic failures, which could obscure underlying issues and potentially leak information about the cryptographic context."
+    },
+    {
+        "abstract": "Hardcoded cryptographic key material",
+        "files": [
+            "57743PBEInvalidParamsTest.java",
+            "57743PaddingTest.java"
+        ],
+        "detail": "The code uses hardcoded passwords or keys within the source code for generating a PBEKeySpec and cryptographic keys, leading to security vulnerabilities as it makes the cryptographic scheme susceptible to source code disclosure attacks."
+    },
+    {
+        "abstract": "Insecure handling and generation of cryptographic parameters",
+        "files": [
+            "57743PBEInvalidParamsTest.java",
+            "57743PBES2Core.java",
+            "57743PBEKeysAlgorithmNames.java",
+            "57743Padding.java"
+        ],
+        "detail": "The code uses fixed or hardcoded initialization vectors (IVs), salts, and insecure iteration counts for cryptographic operations. Using non-random or constant IVs and salts can compromise security, making schemes more vulnerable to attacks such as dictionary attacks. The iteration count for PBKDF2 and PBE is also considered too low in some instances."
+    },
+    {
+        "abstract": "Insecure algorithm usage and limited cryptographic flexibility",
+        "files": [
+            "57743PBES2Core.java",
+            "57743PBEKeyFactory.java",
+            "57743P11SecretKeyFactory.java",
+            "57743P11KeyGenerator.java",
+            "57743NTLM.java"
+        ],
+        "detail": "The code is tightly coupled with insecure algorithms like AES with limited key derivation options, supports weak algorithms like DES, DESede, MD4, and MD5, and lacks flexibility to adapt to future security requirements or different security policies."
+    },
+    {
+        "abstract": "Insecure cryptographic practices and protocol support",
+        "files": [
+            "57743P11TlsRsaPremasterSecretGenerator.java",
+            "57743P11TlsKeyMaterialGenerator.java",
+            "57743P11TlsMasterSecretGenerator.java",
+            "57743P11TlsPrfGenerator.java",
+            "57743P11KeyPairGenerator.java"
+        ],
+        "detail": "The code includes support for insecure protocols like SSLv3, uses insecure minimum key sizes, and relies on NSS-specific mechanisms, which could affect interoperability and security. It also lacks explicit support for modern TLS versions."
+    },
+    {
+        "abstract": "Inadequate handling of cryptographic keys and data",
+        "files": [
+            "57743PBEKeyCleanupTest.java",
+            "57743P11KeyAgreement.java",
+            "57743NullKey.java",
+            "57743NullKeySealedObject.java",
+            "57743NullCipher.java",
+            "57743NullCipherSpi.java"
+        ],
+        "detail": "The code attempts to clear key material from memory using unreliable methods, includes fallbacks to potentially insecure providers, and uses NullCipher which does not provide any encryption, leading to potential security risks."
+    },
+    {
+        "abstract": "Use of insecure cryptographic hash functions and padding schemes",
+        "files": [
+            "57743P11Digest.java",
+            "57743OAEPParameters.java",
+            "57743OAEPParameterSpec.java",
+            "57743Padding.java"
+        ],
+        "detail": "The code supports cryptographically broken hash functions like MD2, MD5, and uses weak message digest algorithms in OAEP padding. It also employs inadequate padding schemes that may lead to vulnerabilities such as padding oracle attacks."
+    }
+]

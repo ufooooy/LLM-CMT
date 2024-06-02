@@ -1,0 +1,134 @@
+[
+    {
+        "abstract": "Insecure TLS configuration",
+        "files": [
+            "594endpoint.go",
+            "574starttls_test.go",
+            "574sendmail.go",
+            "574examples_test.go"
+        ],
+        "detail": "The MTLS function in 594endpoint.go allows for a potentially insecure TLS configuration by accepting a *tls.Config parameter without enforcing secure defaults. Specifically, it does not ensure that minimum versions of TLS protocols are set, nor does it enforce the use of secure cipher suites. This could lead to the use of deprecated and vulnerable protocols or ciphers, violating the principle of secure default configurations and potentially exposing communications to interception or manipulation.;The TLS configuration in the test cases uses 'InsecureSkipVerify: true', which disables TLS/SSL certificate verification. This makes the connection vulnerable to man-in-the-middle attacks by accepting any certificate presented by the server, regardless of its validity.;The TLS configuration in the sendmail implementation allows for skipping TLS verification (TLSSkip) and potentially using insecure STARTTLS (TLSRequiredStartTLS without proper validation). This can expose the connection to Man-in-the-Middle (MitM) attacks. Applications should enforce verified TLS connections, especially for sensitive operations like authentication and data transmission.;The code snippet demonstrates an insecure TLS configuration by setting `tlsVerifyPKIX` to true without explicitly configuring the TLS client to verify the server's hostname against the server's certificate. This can lead to man-in-the-middle attacks because the client may accept a connection with a server that has a valid certificate but is not the intended server. To mitigate this issue, ensure that the TLS client is configured to verify the server's hostname. This can typically be done by setting the `ServerName` in the `tls.Config` struct to the expected hostname of the server."
+    },
+    {
+        "abstract": "Lack of public key pinning",
+        "files": [
+            "594frontend.go"
+        ],
+        "detail": "The server configuration in 594frontend.go loads an RSA public key from a file for JWT validation without implementing public key pinning. This omission makes the application susceptible to man-in-the-middle attacks where an attacker could present a fraudulent certificate, leading to the acceptance of invalid JWTs if the attacker can also compromise the certificate authority or the communication channel to obtain a valid certificate. Implementing public key pinning helps mitigate such risks by ensuring that the application only trusts a specific public key or set of keys, rather than any key signed by a trusted certificate authority."
+    },
+    {
+        "abstract": "Insecure RSA key size",
+        "files": [
+            "594certs.go"
+        ],
+        "detail": "The RSA key size used in the generateLeafCert function is set to 4096 bits. While this is generally considered secure at the moment, the key size should be chosen based on current best practices and recommendations to ensure future-proof security. The NIST recommends a minimum of 2048 bits for RSA keys, with larger sizes such as 3072 or 4096 bits recommended for higher security levels or longer-term validity. However, the fixed choice of 4096 bits may not be suitable for all use cases, especially where performance or compatibility concerns exist. It's advisable to allow flexibility in key size selection based on the specific security requirements of the application."
+    },
+    {
+        "abstract": "Hardcoded certificate validity period",
+        "files": [
+            "594certs.go"
+        ],
+        "detail": "The certificate validity period is hardcoded to one year in the generateLeafCert function. This approach does not account for different use cases that may require shorter or longer validity periods. A fixed one-year validity may not align with best practices for certificate lifetimes, which have been trending towards shorter periods to enhance security by requiring more frequent renewals. It's recommended to parameterize the validity period to accommodate varying security policies and to encourage the use of shorter lifetimes where appropriate."
+    },
+    {
+        "abstract": "Lack of certificate revocation mechanism",
+        "files": [
+            "594certs.go"
+        ],
+        "detail": "The provided code does not implement or mention any mechanism for certificate revocation. In a real-world scenario, the ability to revoke certificates is crucial for maintaining the security of a PKI system, especially when a private key is compromised or a certificate is no longer needed. Without a revocation mechanism, such as CRL (Certificate Revocation List) or OCSP (Online Certificate Status Protocol), there is no way to invalidate a certificate before its expiration, potentially leaving systems vulnerable to misuse."
+    },
+    {
+        "abstract": "Weak hash algorithm usage",
+        "files": [
+            "574txt.go"
+        ],
+        "detail": "The code allows for 'sha1' to be used as a hash algorithm for DKIM signatures. SHA-1 is considered weak and vulnerable to collision attacks as per recent cryptographic standards and recommendations. It's advisable to enforce stronger hash algorithms like SHA-256 or SHA-3."
+    },
+    {
+        "abstract": "Insecure public key length",
+        "files": [
+            "574txt_test.go"
+        ],
+        "detail": "The test case 'test(\"v=DKIM1; k=ed25519; p=HbawiMnQXTCopHTkR0jlKQ==\", nil, true, errRecordBadPublicKey)' suggests that an Ed25519 public key with incorrect length is considered a misuse. However, the actual misuse is not directly in the test but implies that the main code does not enforce or check for the correct key length for Ed25519, which should be 32 bytes."
+    },
+    {
+        "abstract": "Insecure TLS version support",
+        "files": [
+            "574submit.go"
+        ],
+        "detail": "The code snippet from 574submit.go supports TLS versions 1.0 and 1.1, which are considered insecure and deprecated. Modern best practices recommend exclusively using TLS 1.2 or higher to ensure secure encryption standards."
+    },
+    {
+        "abstract": "STARTTLS downgrade attack vulnerability",
+        "files": [
+            "574submit.go"
+        ],
+        "detail": "The implementation in 574submit.go allows for STARTTLS to be optionally used (controlled by the 'NoSTARTTLS' configuration), which can make the connection vulnerable to downgrade attacks. It's recommended to enforce STARTTLS or direct TLS connections to prevent active attackers from downgrading or stripping TLS protections."
+    },
+    {
+        "abstract": "Insecure TLS cipher suite reporting",
+        "files": [
+            "574tlsinfo.go",
+            "574tlsrecv.go"
+        ],
+        "detail": "The functions TLSInfo and TLSReceivedComment in 574tlsinfo.go and 574tlsrecv.go, respectively, report on the TLS cipher suite used for a connection without any validation against known weak cipher suites. While not a direct misuse, it lacks the consideration of cipher suite security, potentially misleading about the security posture of the connection."
+    },
+    {
+        "abstract": "Lack of certificate validation configuration mention",
+        "files": [
+            "574submit.go"
+        ],
+        "detail": "The code in 574submit.go configures TLS connections with an option to skip certificate validation (`STARTTLSInsecureSkipVerify`). Skipping certificate validation is a critical security vulnerability that exposes the connection to man-in-the-middle attacks. Even though it's configurable, offering this as an option without strong warnings or safeguards can lead to insecure deployments."
+    },
+    {
+        "abstract": "Insufficient HMAC output truncation",
+        "files": [
+            "574subjectpass.go"
+        ],
+        "detail": "The HMAC output is truncated to 12 bytes in the 'Generate' function. While HMAC outputs are generally considered secure when truncated, the truncation to 12 bytes (96 bits) might not provide sufficient security margin against brute-force attacks, depending on the application's threat model and the sensitivity of the protected data."
+    },
+    {
+        "abstract": "Use of weak hash functions MD5 and SHA-1",
+        "files": [
+            "574sasl.go",
+            "574scram_test.go"
+        ],
+        "detail": "MD5 and SHA-1 are used in clientCRAMMD5 and NewClientSCRAMSHA1 functions, respectively. Both MD5 and SHA-1 are considered cryptographically weak due to vulnerabilities that allow for collision attacks. Modern applications should use stronger hash functions like SHA-256 or SHA-3."
+    },
+    {
+        "abstract": "Hardcoded credentials for authentication",
+        "files": [
+            "574sendmail.go"
+        ],
+        "detail": "The sendmail configuration includes hardcoded credentials for SMTP authentication. Storing credentials in source code or configuration files can lead to security vulnerabilities if the files are not properly secured or if the information is exposed. It's recommended to use secure storage solutions or environment variables for sensitive information."
+    },
+    {
+        "abstract": "Insecure Randomness",
+        "files": [
+            "574refresh_test.go",
+            "574msgid.go"
+        ],
+        "detail": "The use of `ed25519.NewKeyFromSeed(make([]byte, ed25519.SeedSize))` with a zeroed seed for generating a private key is insecure. This approach does not provide cryptographic randomness, making the generated keys predictable and vulnerable to attacks.;The function cryptorand.Read in 574msgid.go does not check for errors which might result in incomplete randomness if an error occurs during the read operation. Proper error handling is essential to ensure the generated randomness meets the security requirements."
+    },
+    {
+        "abstract": "Weak Hashing Algorithm",
+        "files": [
+            "574rejects.go"
+        ],
+        "detail": "The use of SHA-256 in `rejectPresent` for message identification may not meet future security requirements. While SHA-256 is currently considered secure, evolving standards and increasing computational power may render it insufficient for long-term security. Transitioning to a more robust algorithm such as SHA-384 or SHA-512 is recommended to ensure future-proof security."
+    },
+    {
+        "abstract": "Insecure Random Number Generator",
+        "files": [
+            "574rand.go"
+        ],
+        "detail": "The NewPseudoRand function seeds math/rand's PRNG with a value derived from crypto/rand, but math/rand is not cryptographically secure. This misuse could lead to predictable random values that compromise the security of the application."
+    },
+    {
+        "abstract": "Static AES Key and IV",
+        "files": [
+            "574recvid.go"
+        ],
+        "detail": "The ReceivedIDInit function initializes an AES cipher with a static key and IV. Using static keys and IVs in cryptographic algorithms can lead to vulnerabilities such as replay attacks, where an attacker can reuse intercepted messages, and potentially decrypt or forge messages."
+    }
+]

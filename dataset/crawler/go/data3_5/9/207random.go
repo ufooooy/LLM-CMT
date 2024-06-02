@@ -1,0 +1,113 @@
+package random
+
+import (
+	"crypto/rand"
+	"math/big"
+)
+
+var (
+	letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+	hex     = []rune("0123456789abcdef")
+	digits  = []rune("0123456789")
+)
+
+// RandIntRange generates an `int` between [min,max).
+func RandIntRange(min, max int) int {
+	rangeMax := big.NewInt(int64(max) - int64(min))
+	n, err := rand.Int(rand.Reader, rangeMax)
+	if err != nil {
+		panic(err)
+	}
+
+	return int(n.Int64() + int64(min))
+}
+
+// RandPositiveInt generates a non-negative crypto-random number in the half-open interval [0,max).
+func RandPositiveInt(max int) int {
+	n, err := rand.Int(rand.Reader, big.NewInt(int64(max)))
+	if err != nil {
+		panic(err)
+	}
+
+	return int(n.Int64())
+}
+
+// RandLetters generates a random alpha string of length n.
+func RandLetters(n int) string {
+	runeSlice := make([]rune, n)
+	for i := range runeSlice {
+		runeSlice[i] = letters[RandPositiveInt(len(letters))]
+	}
+
+	return string(runeSlice)
+}
+
+// RandLetters generates a random alpha string with no bad chars of length n.
+// This will return an empty string if the caller badchars all "letters".
+func RandLettersNoBadChars(n int, badchars []rune) string {
+	// rebuild the letters slice without the bad chars. O(n^2) implementation
+	// not really sure it is worthwhile to get more fancy :shrug:
+	var nobad []rune
+	for _, letter := range letters {
+		found := false
+		for _, char := range badchars {
+			if char == letter {
+				found = true
+			}
+		}
+		if !found {
+			nobad = append(nobad, letter)
+		}
+	}
+
+	if len(nobad) == 0 {
+		return ""
+	}
+
+	runeSlice := make([]rune, n)
+	for i := range runeSlice {
+		runeSlice[i] = nobad[RandPositiveInt(len(nobad))]
+	}
+
+	return string(runeSlice)
+}
+
+// RandLettersRange generates a random alpha string of length [min,max).
+func RandLettersRange(min, max int) string {
+	return RandLetters(RandIntRange(min, max-1))
+}
+
+func RandHex(n int) string {
+	runeSlice := make([]rune, n)
+	for i := range runeSlice {
+		runeSlice[i] = hex[RandPositiveInt(len(hex))]
+	}
+
+	return string(runeSlice)
+}
+
+// RandHexRange generates a random hex string of length [min,max).
+func RandHexRange(min, max int) string {
+	return RandHex(RandIntRange(min, max-1))
+}
+
+func RandDigits(n int) string {
+	runeSlice := make([]rune, n)
+	for i := range runeSlice {
+		runeSlice[i] = digits[RandPositiveInt(len(digits))]
+	}
+
+	// keep assigning a new digit until the first one isn't 0'
+	if len(runeSlice) > 0 {
+		for runeSlice[0] == '0' {
+			runeSlice[0] = digits[RandPositiveInt(len(digits))]
+		}
+	}
+
+	return string(runeSlice)
+}
+
+// RandDigitsRange generates a random numeric string of length [min,max).
+func RandDigitsRange(min, max int) string {
+	return RandDigits(RandIntRange(min, max))
+}

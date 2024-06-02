@@ -1,0 +1,14 @@
+[
+    {
+        "abstract": "Insecure key exchange, encryption practices, and hardcoded credentials",
+        "explanation": "This misuse highlights several insecure cryptographic practices, including the use of RSA key agreement mechanisms and elliptic curves without proper security considerations, insecure padding or initialization vector (IV) handling, and the inclusion of hardcoded credentials within the codebase. These practices expose the application to a range of cryptographic attacks, such as padding oracle attacks, which exploit insecure padding methods to decrypt data, and risks associated with hardcoded credentials, such as unauthorized access if these credentials are discovered. The misuse compromises key security principles like confidentiality, integrity, and authentication by making it easier for attackers to intercept or fabricate messages and gain unauthorized access."
+    },
+    {
+        "abstract": "Lack of proper security practices in cryptographic operations",
+        "explanation": "This misuse is characterized by a disregard for essential security practices in cryptographic operations, such as failing to validate certificates, improper error handling, and not implementing certificate pinning. Without certificate validation, an application might accept a connection secured by an invalid or malicious certificate, leading to man-in-the-middle attacks. Improper error handling can leak information about the cryptographic process, and the absence of certificate pinning removes an important layer of security that ensures an application communicates only with the intended server. These oversights can lead to breaches in confidentiality and integrity by allowing attackers to intercept or manipulate secure communications."
+    },
+    {
+        "abstract": "Use of bcrypt with default cost and insecure random number generation",
+        "explanation": "This misuse involves using the bcrypt hashing function with its default cost parameter and employing insecure practices for generating random numbers. The default cost parameter in bcrypt may not provide sufficient security against brute-force attacks, especially as hardware capabilities improve. Insecure random number generation can lead to predictable outcomes, undermining the security of cryptographic operations that rely on unpredictability, such as the generation of salts for hashes. This misuse affects the security property of confidentiality by making it easier for attackers to guess or compute the original values from the hashes."
+    }
+]

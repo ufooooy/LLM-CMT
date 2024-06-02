@@ -1,0 +1,102 @@
+[
+    {
+        "abstract": "Insecure Hash Function Usage",
+        "files": [
+            "574bloom.go",
+            "506hash_test.go",
+            "260policy.go"
+        ],
+        "detail": "The use of BLAKE2b-256, MD4, MD5, SHA-1, and SHA-256 hash functions in various contexts may not meet security requirements for resistance against attacks. SHA-3 or stronger hash functions are recommended for security-critical contexts. While SHA-256 is secure for many applications, it's not suitable for password hashing where bcrypt, Argon2, or PBKDF2 are preferred."
+    },
+    {
+        "abstract": "TLS Configuration Issues",
+        "files": [
+            "574cmds.go",
+            "325messageClient.go",
+            "325modService.go",
+            "289web.go",
+            "235client.go",
+            "235protocol.go",
+            "173stream_writer.go",
+            "284gotlsimpl.go"
+        ],
+        "detail": "TLS configurations across several files disable certificate verification or support deprecated TLS versions, making connections vulnerable to man-in-the-middle attacks. Enforcing TLS 1.2 or higher and enabling certificate verification are recommended practices."
+    },
+    {
+        "abstract": "Plaintext Password Transmission",
+        "files": [
+            "574cmds.go"
+        ],
+        "detail": "The `AuthenticatePlain` function transmits passwords in plaintext, posing a risk if the connection is not secured by TLS. Using stronger authentication mechanisms or ensuring TLS protection is recommended."
+    },
+    {
+        "abstract": "Insecure SSH Configuration",
+        "files": [
+            "289ssh.go",
+            "289route.go"
+        ],
+        "detail": "SSH configurations use insecure host key verification and weak key exchange and cipher algorithms. It's recommended to verify server host keys against a known list and use stronger algorithms like curve25519 or AES-GCM."
+    },
+    {
+        "abstract": "Insecure Randomness",
+        "files": [
+            "325shareApi.go",
+            "325manager.go",
+            "284mock_collector.go",
+            "235protocol.go"
+        ],
+        "detail": "Misuses in random number generation include not checking errors from generators or using non-cryptographically secure generators for security-sensitive operations. Using `crypto/rand` and handling errors properly are recommended."
+    },
+    {
+        "abstract": "Insecure Password Hashing and Key Generation",
+        "files": [
+            "574admin_test.go",
+            "193userregisterlogic.go",
+            "289cert.go"
+        ],
+        "detail": "Using bcrypt with default cost or weak key generation methods may not offer sufficient protection. Evaluating bcrypt cost for balance between security and performance, and using recommended secure key sizes are advised."
+    },
+    {
+        "abstract": "Insecure Cipher Suites and Algorithms",
+        "files": [
+            "284gotlsimpl.go",
+            "235protocol.go"
+        ],
+        "detail": "Support for weak cipher suites and algorithms like RC4, 3DES, and TLS_RSA_WITH_RC4_128_SHA is identified. Using secure cipher suites and modern algorithms is recommended for ensuring confidentiality and integrity."
+    },
+    {
+        "abstract": "Hardcoded Sensitive Information",
+        "files": [
+            "1753usage.go"
+        ],
+        "detail": "Hardcoding sensitive information like tokens within the code can lead to security vulnerabilities. Using environment variables or secure vaults for storing sensitive information is recommended."
+    },
+    {
+        "abstract": "Insecure Usage of JWT Signing Method",
+        "files": [
+            "193userloginlogic.go"
+        ],
+        "detail": "Signing JWT tokens with HS256 and a weak secret key source can be insecure. Ensuring a strong, sufficiently complex secret key or using asymmetric algorithms like RS256 is recommended."
+    },
+    {
+        "abstract": "Insecure Retrieval of Public Keys",
+        "files": [
+            "260auth.go"
+        ],
+        "detail": "Retrieving Firebase public keys over an unsecured HTTP connection exposes the application to man-in-the-middle attacks. Retrieval over HTTPS is recommended to ensure key integrity and confidentiality."
+    },
+    {
+        "abstract": "Lack of Input Validation for Dynamic Policy Evaluation",
+        "files": [
+            "260policy.go"
+        ],
+        "detail": "Executing arbitrary expressions based on user input without validation can lead to injection vulnerabilities. Implementing strict input validation and sanitization is recommended to mitigate risks."
+    },
+    {
+        "abstract": "Short Certificate Validity Period",
+        "files": [
+            "173remote_tls_test.go"
+        ],
+        "detail": "Using short-lived TLS certificates can lead to management difficulties and service interruptions. A longer validity period, balanced with security and manageability, is recommended for production environments."
+    }
+]

@@ -1,0 +1,6 @@
+[
+    {
+        "abstract": "Use of weak hash function MD5",
+        "explanation": "This misuse, found in 'Login.java', 'User.java', and 'Payment.java', involves using MD5 for hashing both passwords and sensitive payment information. The vulnerability of MD5 to brute-force and collision attacks endangers the confidentiality and integrity of both passwords and payment data. Attackers could potentially decrypt the hashed passwords or manipulate payment information, leading to unauthorized access and financial fraud."
+    }
+]

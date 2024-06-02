@@ -1,0 +1,6 @@
+[
+    {
+        "abstract": "Hardcoded cryptographic keys and insecure padding methods",
+        "explanation": "The use of hardcoded cryptographic keys and non-standard padding methods introduces vulnerabilities such as key disclosure and padding oracle attacks. Hardcoding keys in the source code makes them easily discoverable to attackers, while non-standard padding methods can be exploited to decrypt messages or execute arbitrary code, severely compromising system security."
+    }
+]

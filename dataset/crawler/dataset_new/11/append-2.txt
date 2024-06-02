@@ -1,0 +1,102 @@
+### 1. Key Management Misuses
+#### 1.1 Hardcoded Keys and Sensitive Information
+- **Use of Hard-Coded Cryptographic Keys**
+- **Hardcoding Sensitive Information**
+- **Insecure key length and generation method**
+- **Use of hard-coded cryptographic algorithm**
+    - **Potential misuse of ASN1_TYPE_set1 function**
+
+#### 1.2 Insecure Key Generation and Management
+- **Insecure Key Generation from String**
+- **Insecure Key Encoding**
+- **Insufficient key length and insecure key management**
+- **Insecure RSA key generation and handling**
+- **Insecure primality testing and key management**: The concerns raised include the use of an insecure number of checks for primality testing, which can result in the selection of weak prime numbers, compromising the security of cryptographic operations. The use of deprecated RSA decryption functions with fixed padding and hardcoded error handling can lead to vulnerabilities that attackers could exploit. Insecure memory handling in key management and lack of input validation can further expose sensitive information to unauthorized access.
+
+### 2. Encryption and Decryption Misuses
+#### 2.1 Insecure Use of Nonces and IVs
+- **Use of Static Nonces in Encryption**
+- **Insecure Nonce Reuse**
+- **Use of a static IV in AES CBC mode encryption**
+- **Insecure mode of operation for AES**
+    - **Insecure use of randomness source**
+
+#### 2.2 Use of Weak Encryption Algorithms and Modes
+- **Use of weak encryption algorithms and modes (RC2, RC4, DES, ECB mode)**
+- **Insufficient key size and lack of integrity checks for Blowfish encryption**
+- **Use of weak encryption algorithm**
+
+### 3. Cryptographic Protocol Misuses
+#### 3.1 Insecure Protocol Configurations
+- **Use of outdated TLS protocol versions and lack of certificate validation**
+- **Insecure TLS configuration due to InsecureSkipVerify being set incorrectly**
+
+#### 3.2 Use of Insecure Protocols and Practices
+- **Use of insecure protocols and practices (HTTP, disabling certificate verification)**
+
+### 4. Cryptographic Operation Misuses
+#### 4.1 Inadequate Security Practices in Cryptographic Operations
+- **Insecure cryptographic practices (hardcoded IV, insufficient key/salt length, insecure random number generation)**
+- **Insufficient security practices in encryption**
+- **Improper use of cryptography API and insecure practices**
+- **Insecure use of randomness source**
+- **Insecure random number generation**
+- **Inadequate handling of cryptographic operations and sensitive data**: This misuse highlights several issues, including insecure random number generation, which can lead to predictable outcomes that attackers could exploit. Lack of error handling in cryptographic operations can result in unhandled exceptions or leaks of sensitive information. Insecure handling of sensitive data, use of deprecated functions, insufficient file permissions, and potential misuse of password handling can all lead to unauthorized access or disclosure of sensitive information.
+
+#### 4.2 Lack of Proper Error and Exception Handling
+- **Lack of error handling in cryptographic operations**
+- **Key and error handling issues**
+- **Insecure buffer size management and improper error handling**
+- **Improper error handling and potential memory leak in ASN1 operations**
+- **Inadequate error handling in cryptographic operations and use of insecure or deprecated functions**
+
+### 5. Integrity and Authenticity Misuses
+- **Lack of integrity and authenticity checks**
+- **Use of weak hash function MD5**
+
+### 6. Password and Salt Misuses
+#### 6.1 Insecure Handling of Passwords
+- **Insecure Password Handling**
+- **Insufficient password complexity and length**
+
+#### 6.2 Inadequate Use of Salts
+- **Use of Static Salts in Key Derivation**
+- **Insufficient Salt Length**
+
+### 7. Inadequate Security Configurations
+- **Use of insecure cryptographic parameters (RSA key size, DSA key size, Blowfish key length)**
+- **Use of weak hash functions (SHA-1, MD4, MD5)**
+- **Insufficient iterations count for PBKDF2**
+- **Inadequate validation of ASN.1 structure lengths and use of weak cryptographic hash functions**
+
+### 8. Memory Management Misuses
+#### 8.1 Insecure Memory Handling and Leaks
+- **Potential memory leak and lack of input validation**
+- **Lack of memory zeroization and improper error handling in signature operations**
+- **Use of insecure memory allocation and lack of error handling after allocation**
+- **Improper cleanup of cryptographic operations and insecure Object Identifier (OID) creation**
+- **Memory handling issues**
+
+#### 8.2 Buffer Overflows and Validation Issues
+- **Improper validation in ASN1 operations and potential buffer overflow**
+- **Inadequate validation of string types and potential encoding issues**
+- **Potential integer overflow and memory allocation failure not properly handled**
+
+### 9. Validation and Encoding Misuses
+#### 9.1 Inadequate Input and Output Validation
+- **Insecure time validation and UTF-8 validation error handling**
+- **Improper error handling in ASN1 object operations and insecure encoding**
+- **Lack of input validation**
+
+### 10. Cryptographic Algorithm and Operation Misuses
+#### 10.1 Use of Deprecated or Vulnerable Cryptographic Functions
+- **Use of deprecated or non-constant time operations**
+- **Inadequate padding schemes and insecure padding scheme used for RSA encryption**
+
+#### 10.2 Improper Handling and Validation in Cryptographic Operations
+- **Insecure and Improper Public Key Retrieval Handling**
+- **Improper Error Handling, Thread Safety, and Validation Issues**
+- **Insecure Handling of Serial Numbers and Scheme Validation**
+- **Improper memory handling and validation issues in cryptographic operations**
+- **Use of ASN1_ANY type may lead to parsing ambiguities**
+- **Improper comparison function for GENERAL_NAME**

@@ -1,0 +1,168 @@
+[
+    {
+        "abstract": "Insecure Randomness",
+        "files": [
+            "991util.go"
+        ],
+        "detail": "The function MaskString uses crypto/rand for generating a key, which is secure, but then reduces the security by using the key to select characters from a predefined pattern. This could potentially lead to predictable outcomes if the pattern or the usage of the randomness is not sufficiently complex or is improperly applied, thus not providing a strong guarantee of randomness in the context of security-sensitive operations."
+    },
+    {
+        "abstract": "Inadequate Error Handling",
+        "files": [
+            "991util.go"
+        ],
+        "detail": "The function MaskString uses panic for error handling when rand.Read fails. This approach to error handling can terminate the program unexpectedly and may not be suitable for all applications, especially those requiring high reliability or those that should gracefully handle errors without crashing."
+    },
+    {
+        "abstract": "Use of SHA-256 for Non-Cryptographic Purposes",
+        "files": [
+            "991util.go"
+        ],
+        "detail": "The function GetCacheKey uses SHA-256 hashing for generating a cache key. While SHA-256 is a secure cryptographic hash function, its use here does not directly relate to security or cryptographic operations but rather to ensure uniqueness or consistency of data. This is not a misuse per se but is important to classify correctly the purpose and security implications of using cryptographic functions."
+    },
+    {
+        "abstract": "Insecure usage of RSA key generation",
+        "files": [
+            "664webhook_test.go"
+        ],
+        "detail": "The RSA keys are generated with a fixed key size of 2048 bits, which may not be sufficient for future-proof security. The NIST recommends a minimum key size of 3072 bits for RSA keys to be secure beyond 2030."
+    },
+    {
+        "abstract": "Insecure Random Number Generation",
+        "files": [
+            "664webhook_test.go"
+        ],
+        "detail": "The usage of 'rand.Reader' from the 'crypto/rand' package for generating serial numbers and RSA keys is secure and adheres to best practices for cryptographic operations."
+    },
+    {
+        "abstract": "Insecure TLS Configuration",
+        "files": [
+            "664webhook_test.go"
+        ],
+        "detail": "The TLS configuration in the test server setup does not enforce a minimum TLS version or configure cipher suites, potentially allowing connections using insecure protocols and ciphers."
+    },
+    {
+        "abstract": "Insecure SSH Host Key Verification",
+        "files": [
+            "766meta.go",
+            "489connector.go"
+        ],
+        "detail": "The SSH client configuration uses 'ssh.InsecureIgnoreHostKey()', which disables host key verification. This makes the SSH connection vulnerable to man-in-the-middle attacks.;The SSH client configuration in '489connector.go' uses 'ssh.InsecureIgnoreHostKey()', which disables SSH host key verification. This makes the SSH connection vulnerable to Man-in-the-Middle (MITM) attacks."
+    },
+    {
+        "abstract": "Use of weak password-based authentication for SSH",
+        "files": [
+            "766meta.go"
+        ],
+        "detail": "The code supports password-based authentication for SSH, which is less secure than key-based authentication. Passwords can be brute-forced or leaked, whereas keys, especially when protected by a passphrase, offer a higher security level."
+    },
+    {
+        "abstract": "Use of weak cryptographic hash function MD5",
+        "files": [
+            "657sum.go",
+            "664resource.go"
+        ],
+        "detail": "MD5 is used for hashing operations in these files. MD5 is considered cryptographically broken and unsuitable for further use because it is vulnerable to hash collisions. Its use in security-sensitive contexts can lead to vulnerabilities."
+    },
+    {
+        "abstract": "Use of weak cryptographic hash function SHA-1",
+        "files": [
+            "657sum.go"
+        ],
+        "detail": "SHA-1 is used for hashing operations in this file. SHA-1 is considered weak due to vulnerabilities that allow for collision attacks. It is recommended to use stronger hash functions such as SHA-256 or SHA-3 for improved security."
+    },
+    {
+        "abstract": "Use of Weak Hash Function (MD5)",
+        "files": [
+            "530hash.go"
+        ],
+        "detail": "The 'MD5Hash' and 'MD5HashByte' functions in '530hash.go' use the MD5 hashing algorithm, which is considered cryptographically broken and unsuitable for further use. MD5 is vulnerable to collision attacks."
+    },
+    {
+        "abstract": "Insecure Encryption Key Derivation",
+        "files": [
+            "489spot.go"
+        ],
+        "detail": "The 'deriveKey' function in '489spot.go' uses Argon2 with a fixed time cost, memory cost, and parallelism factor. While Argon2 is a strong key derivation function, the security of the derived key can be compromised if the parameters are not properly chosen based on the specific hardware capabilities to resist brute-force attacks."
+    },
+    {
+        "abstract": "Insecure Random Salt Generation",
+        "files": [
+            "489spot.go"
+        ],
+        "detail": "The 'encrypt' function in '489spot.go' generates a random salt using 'io.ReadFull(rand.Reader, salt)'. While this method is generally secure, ensuring the use of a cryptographically secure pseudorandom number generator (CSPRNG) is crucial for the security of the salt. The misuse here is more about ensuring that 'rand.Reader' is indeed a CSPRNG in the context of the Go language and its standard library."
+    },
+    {
+        "abstract": "Insecure Storage of Encryption Key",
+        "files": [
+            "489spot.go"
+        ],
+        "detail": "The encryption key used in '489spot.go' is stored directly within the application code or configuration, making it susceptible to being compromised. Secure key management practices, such as using hardware security modules (HSMs) or secure key vaults, are recommended."
+    },
+    {
+        "abstract": "Weak password hashing algorithm",
+        "files": [
+            "440db_Integration_test.go",
+            "440user.go"
+        ],
+        "detail": "The bcrypt hashing algorithm is used with its default cost. While bcrypt is a secure hashing algorithm, using it with the default cost might not provide sufficient protection against brute-force attacks, especially as hardware capabilities improve. It is recommended to evaluate the cost factor periodically and adjust it according to the current hardware capabilities to ensure the hashed passwords remain protected against brute-force attacks."
+    },
+    {
+        "abstract": "Insecure JWT signing method",
+        "files": [
+            "440user.go"
+        ],
+        "detail": "The JWT tokens are signed using the HS256 algorithm with a secret key. While HS256 is a secure algorithm when used with a strong secret, the security of the JWT token relies on the secrecy and strength of the secret key. It is recommended to use a strong, randomly generated secret key that is at least 256 bits long. Additionally, consider using asymmetric signing algorithms like RS256, where the private key used for signing the token is not exposed to potential compromise."
+    },
+    {
+        "abstract": "Insecure Hash Function for Obfuscation",
+        "files": [
+            "432timezone.go"
+        ],
+        "detail": "The Obfuscate function in 432timezone.go uses SHA-256 for obfuscating strings, which is a cryptographic hash function not suitable for obfuscation or password hashing purposes due to its fast computation properties making it vulnerable to brute-force attacks. A more secure approach would be to use a key derivation function such as PBKDF2, bcrypt, or Argon2."
+    },
+    {
+        "abstract": "TLS Configuration Allows Insecure Protocols",
+        "files": [
+            "432transports.go"
+        ],
+        "detail": "The createH3Transport function in 432transports.go does not explicitly set the MinVersion field of the tls.Config struct. This omission allows the client to negotiate TLS connections using older, less secure versions of the TLS protocol, such as TLS 1.0 and 1.1, which are vulnerable to numerous attacks. It is recommended to set the MinVersion field to tls.VersionTLS12 or higher to enforce the use of secure TLS versions."
+    },
+    {
+        "abstract": "Insecure TLS configuration",
+        "files": [
+            "432pulp.go",
+            "4133sse_event_source.go"
+        ],
+        "detail": "The TLS configuration allows for renegotiation which can be insecure and is deprecated in many contexts. Specifically, the 'Renegotiation' field is set to 'tls.RenegotiateFreelyAsClient', which could expose the application to man-in-the-middle attacks during the renegotiation process.;The TLS configuration in the HTTP client setup disables certificate verification by setting 'InsecureSkipVerify: true'. This makes the client susceptible to man-in-the-middle attacks by accepting any certificate presented by the server, regardless of its validity."
+    },
+    {
+        "abstract": "Weak cryptographic operation",
+        "files": [
+            "432response.go"
+        ],
+        "detail": "The use of RSA without OAEP padding for signature generation and verification is considered less secure than using OAEP. The 'CreateSignature' function uses 'privateKey.Sign' without specifying a padding scheme, which defaults to PKCS#1 v1.5. This could make the cryptographic operation vulnerable to certain attacks, such as Bleichenbacher's attack."
+    },
+    {
+        "abstract": "Insecure use of RSA key pair generation",
+        "files": [
+            "432helper_test.go",
+            "432keypair.go"
+        ],
+        "detail": "The RSA key pair is generated with a key size of 2048 bits. According to NIST Special Publication 800-57 Part 1 Rev. 5, RSA keys should be at least 3072 bits long to ensure security beyond 2030. Using RSA keys shorter than 3072 bits could potentially expose cryptographic operations to brute-force attacks."
+    },
+    {
+        "abstract": "Use of weak hash function MD5",
+        "files": [
+            "432crypto.go"
+        ],
+        "detail": "The MD5 hashing algorithm is used to create a key hash. MD5 is considered cryptographically broken and unsuitable for further use because it is vulnerable to hash collisions. This misuse breaches the security property of collision resistance, which is crucial for ensuring that the encrypted data cannot be tampered with by generating two inputs producing the same hash output."
+    },
+    {
+        "abstract": "Insecure randomness source for cryptographic operations",
+        "files": [
+            "432authentication.go"
+        ],
+        "detail": "The use of `crypto/rand` for generating a proof key pair in the OAuth2 implementation is secure and adheres to best practices for cryptographic operations, ensuring that the generated keys are unpredictable and secure against attacks that rely on guessing or predicting the keys."
+    }
+]

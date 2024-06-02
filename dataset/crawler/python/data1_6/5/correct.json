@@ -1,0 +1,16 @@
+[
+    {
+        "abstract": "No cryptographic API misuse",
+        "files": [
+            "902signing_certificate.py",
+            "902certificate.py",
+            "845conftest.py",
+            "791client.py",
+            "791mocks.py",
+            "72517test_password_store.py",
+            "72517utils.py",
+            "72517test_certs.py"
+        ],
+        "detail": "Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code snippets `72517test_password_store.py` and `72517utils.py`. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations."
+    }
+]

@@ -1,0 +1,140 @@
+[
+    {
+        "abstract": "Insecure Random Number Generator (RNG)",
+        "files": [
+            "175ceremony_application_test.go"
+        ],
+        "detail": "The use of `rand.Reader` from the `crypto/rand` package as a source of randomness for cryptographic operations is secure and recommended. Therefore, no misuse in the context of RNG is identified in the provided code snippets."
+    },
+    {
+        "abstract": "Insecure curve parameters",
+        "files": [
+            "175bls12381g2curve.go"
+        ],
+        "detail": "The custom initialization of elliptic curve parameters in 'bls12381g2InitAll' function may lead to the use of insecure curve parameters. It is recommended to use well-reviewed parameters and curves that are widely recognized and tested."
+    },
+    {
+        "abstract": "Use of SHA-3 for signature verification without specifying security level",
+        "files": [
+            "175ceremony.go"
+        ],
+        "detail": "The 'VerifySignature' method in 'CeremonyTranscriptShare' uses SHA-3 (sha3.New256()) for hashing without specifying the security level. While SHA-3 is considered secure, the context of its use should dictate the appropriate security level, such as SHA3-256 or SHA3-512, to mitigate potential vulnerabilities."
+    },
+    {
+        "abstract": "Misuse of crypto.Hash(0) in signing operation",
+        "files": [
+            "175ceremony.go"
+        ],
+        "detail": "The 'SignWithProverKey' method in both 'CeremonyLobbyJoin' and 'CeremonyTranscriptShare' uses 'crypto.Hash(0)' as the argument for the 'Sign' method, which indicates an intention to bypass hash function usage. This practice can lead to confusion and potential misuse, as cryptographic signing should explicitly specify the hash function to ensure the integrity and non-repudiation of the data being signed."
+    },
+    {
+        "abstract": "Potential misuse of elliptic curve operations",
+        "files": [
+            "175bls12381g2curve.go",
+            "175bls12381g1curve.go"
+        ],
+        "detail": "The implementation of elliptic curve operations such as 'Add', 'Double', 'ScalarMult', and 'ScalarBaseMult' in 'Bls12381G2Curve' does not explicitly check for points being on the curve in every operation. This could potentially lead to vulnerabilities if the points are not validated elsewhere.;The implementation of elliptic curve operations in 'Bls12381G1Curve' may not directly misuse cryptographic APIs, but the correctness and security of custom implementations such as 'IsOnCurve', 'Add', 'Double', 'ScalarMult', and 'ScalarBaseMult' depend on adhering to the mathematical properties of the BLS12-381 curve. It is crucial to ensure these operations are implemented correctly to prevent vulnerabilities. Additionally, the method 'Hash' for hashing to curve does not specify the security properties it ensures, such as resistance to second pre-image attacks, which is essential for certain cryptographic applications."
+    },
+    {
+        "abstract": "Insecure Random Number Generator",
+        "files": [
+            "175bloom_test.go",
+            "1708ipv6.go"
+        ],
+        "detail": "The use of 'crypto/rand' for generating keys in 'BenchmarkBloomFilter' function may not be misuse per se, as 'crypto/rand' is a secure source of randomness. However, the context of its usage should be carefully reviewed to ensure that the generated random numbers are used in a secure manner, especially in cryptographic operations where predictability could lead to vulnerabilities.;The usage of math/rand for generating a part of the ULA (Unique Local Address) in the function generateLocalSecret potentially compromises the uniqueness and security of the generated addresses due to the predictability of math/rand. Secure cryptographic operations should rely on cryptographically secure pseudorandom number generators (CSPRNGs), such as crypto/rand, to ensure unpredictability in generated values."
+    },
+    {
+        "abstract": "Insecure TLS configuration due to InsecureSkipVerify",
+        "files": [
+            "1708tlsverify_test.go"
+        ],
+        "detail": "Setting InsecureSkipVerify to true disables certificate verification, which makes the TLS connection vulnerable to man-in-the-middle attacks. This should only be used in test environments."
+    },
+    {
+        "abstract": "Insecure key size for RSA keys",
+        "files": [
+            "1708tlscerts.go"
+        ],
+        "detail": "The function NewTLSKey allows for the generation of RSA keys with a size parameter. However, RSA keys with sizes less than 2048 bits are considered insecure by current standards, including recommendations from NIST. The code does not enforce a minimum key size for RSA keys, potentially allowing the creation of insecure keys."
+    },
+    {
+        "abstract": "Lack of certificate revocation checking",
+        "files": [
+            "1708tlsverify.go"
+        ],
+        "detail": "The VerifyCertificateChainOnly function sets up certificate chain verification without enabling any form of certificate revocation checking, such as CRL (Certificate Revocation List) or OCSP (Online Certificate Status Protocol). This omission means that certificates that have been revoked could still be considered valid by this verification process, leading to potential security risks."
+    },
+    {
+        "abstract": "Insecure TLS configuration",
+        "files": [
+            "1708storage.go",
+            "169telegram.go",
+            "169discord.go",
+            "169notifiarr.go"
+        ],
+        "detail": "The TLS configuration allows for 'InsecureSkipVerify' to be set to true, which disables certificate verification. This makes the connection vulnerable to man-in-the-middle attacks.;The code disables TLS certificate verification (`InsecureSkipVerify: true`) when sending HTTP requests. This makes the application vulnerable to man-in-the-middle attacks, as it will not verify the server's SSL certificate. Always verifying the server's certificate is crucial for maintaining the confidentiality and integrity of the data in transit.;The TLS configuration for HTTP clients in both discord and notifiarr notification systems disables certificate verification by setting InsecureSkipVerify to true. This makes the client susceptible to man-in-the-middle attacks as it will not verify the server's SSL certificate."
+    },
+    {
+        "abstract": "Weak random number generator",
+        "files": [
+            "1708psk.go"
+        ],
+        "detail": "The 'GeneratePSKWithLength' function uses 'rand.Read', which relies on a cryptographically secure pseudorandom number generator. However, the subsequent reduction of the random byte to a character from 'ValidPSKChars' using modulo might introduce bias, depending on the size of 'ValidPSKChars', potentially weakening the randomness of the PSK."
+    },
+    {
+        "abstract": "Insecure error handling in signature verification",
+        "files": [
+            "1708psk.go"
+        ],
+        "detail": "The 'verifyWithHash' and 'verifyDeterministicWithHash' functions return a generic 'ErrInvalidSignature' error without providing an option to securely log or handle the specific cause of the error, which could aid in debugging without exposing sensitive information."
+    },
+    {
+        "abstract": "Insufficient Validation of LDAP Server Certificate",
+        "files": [
+            "1708ldap.go"
+        ],
+        "detail": "The LDAP connection setup in the function dial does not enforce strict server certificate validation when establishing a TLS connection to the LDAP server. This could allow man-in-the-middle attacks if an attacker can intercept the connection and present a self-signed or otherwise invalid certificate. To mitigate this risk, the TLS configuration should include verification of the server's certificate against a list of trusted CAs and hostname verification should be enabled."
+    },
+    {
+        "abstract": "Insecure gRPC connection",
+        "files": [
+            "1708external.go"
+        ],
+        "detail": "The code snippet from '1708external.go' utilizes insecure gRPC connections when the TLS configuration is not provided or explicitly set to insecure. This can lead to Man-In-The-Middle (MITM) attacks where an attacker can eavesdrop or tamper with the data being transmitted."
+    },
+    {
+        "abstract": "TLS configuration with InsecureSkipVerify enabled",
+        "files": [
+            "1708external_server.go"
+        ],
+        "detail": "The 'TLSSkipVerify' option in '1708external_server.go' allows connections to proceed without verifying the server's certificate against the list of trusted CAs. This undermines the TLS protection by accepting potentially untrusted certificates, making it vulnerable to MITM attacks."
+    },
+    {
+        "abstract": "Use of SHA-1 for password hashing",
+        "files": [
+            "1708basicauth.go"
+        ],
+        "detail": "The code uses SHA-1 for hashing passwords, which is considered cryptographically weak and vulnerable to collision attacks. Modern security standards recommend using stronger hashing algorithms such as SHA-256 or bcrypt (already used for some passwords in the code) for password hashing to ensure better security against brute-force attacks."
+    },
+    {
+        "abstract": "Use of MD5 hashing algorithm",
+        "files": [
+            "167md5.go"
+        ],
+        "detail": "The MD5 hashing algorithm is used for hashing strings. MD5 is considered cryptographically broken and unsuitable for further use because it is vulnerable to hash collisions. Its use in any security critical system or protocol is strongly discouraged."
+    },
+    {
+        "abstract": "Insecure RSA key size",
+        "files": [
+            "167rsa.go"
+        ],
+        "detail": "The RSA key size of 2048 bits is used for generating RSA keys. While 2048 bits is currently considered secure, the use of larger key sizes such as 3072 or 4096 bits is recommended for future-proof security, according to NIST guidelines."
+    },
+    {
+        "abstract": "Use of PKCS#1 v1.5 padding for RSA encryption",
+        "files": [
+            "167rsa.go"
+        ],
+        "detail": "The RSA encryption uses PKCS#1 v1.5 padding (in the EncryptRSA function). This padding scheme is known to be vulnerable to padding oracle attacks. It is recommended to use OAEP padding with RSA encryption for better security."
+    }
+]

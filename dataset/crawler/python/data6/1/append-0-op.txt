@@ -1,0 +1,216 @@
+### 1. Key Management Issues
+#### 1.1 Hardcoded Secrets
+- **Use of Hard-Coded Cryptographic Keys**
+- **Hardcoded Credentials**
+- **Hardcoded encryption key derivation parameters**
+- **Hardcoded Certificate**
+- **Hardcoded Poly1305 key and Improper Initialization Vector (IV) setup for ChaCha20**
+- **Use of hard-coded cryptographic algorithm**
+- **Hardcoded cryptographic keys and insecure padding methods**
+- **Use of a hardcoded mnemonic for generating cryptographic keys**
+- **Key and Error Handling Issues**
+- **Hardcoding Sensitive Information**
+#### 1.2 Insecure Key Generation and Management
+- **Inadequate validation of 'length' parameter and Use of weak cryptographic key length**
+- **Insecure RSA key generation and handling**
+- **Insecure Password Hashing and Key Generation**
+- **Insecure random number generation for key generation**
+- **Insecure Key Exchange and Encryption Practices**
+- **Insecure Private Key Storage and Handling**
+- **Insufficient key size for Blowfish encryption**
+- **Insecure Usage and Management of Encryption Keys**
+- **Insecure host key generation and Incorrect ECDSA key generation**
+- **Unsupported private key type handling and potential insecure key deserialization**
+- **Private keys stored without encryption and disabling certificate verification**
+- **Insecure Key Generation and Management**
+- **Lack of error handling for key generation failure and Insecure seeding of cryptographic operations**
+- **Insufficient key length and insecure key management**
+- **Insecure RSA key size**
+- **Insecure Handling of Private Keys**
+- **Insecure Storage of Encryption Keys**
+- **Use of Uninitialized or Potentially Compromised Private Key and Insecure handling of cryptographic keys**
+- **Insecure Key Generation from String**
+- **Insecure Key Encoding**
+- **Improper validation and handling of cryptographic elements**
+- **Insecure key derivation practices**
+- **Insecure key length and generation method**
+- **Insecure key generation and weak cryptographic algorithm usage**
+### 2. Inadequate Cryptographic Practices
+#### 2.1 Insecure Use of Cryptographic Parameters
+- **Use of Static Salts in Key Derivation**
+- **Insecure randomness source for key generation**
+- **Use of insecure cryptographic parameters (RSA key size, DSA key size, Blowfish key length)**
+- **Insecure random number generation and hardcoded key length in cryptographic operations**
+- **Insecure cryptographic practices (hardcoded IV, insufficient key/salt length, insecure random number generation)**
+- **Use of bcrypt with default cost and insecure random number generation**
+- **Insecure Random Number Generation for cryptographic operations**
+- **Insecure Randomness for Initialization Vector (IV)**
+- **Use of insecure random number generator**
+- **Insufficient randomness and insecure file permissions**
+- **Insecure randomness and static cryptographic values**
+- **Insecure randomness and improper error handling in cryptographic operations**
+- **Insecure Random Number Generation and Processing**
+- **Lack of Encryption Key and IV Management**
+- **Insecure cryptographic key sizes and use of SHA-1 in token generation**
+- **Insufficient Salt Length**
+- **Insecure usage of SHA-256 for sensitive data without a salt and insecure nonce size for AES-GCM**
+- **Lack of proper padding validation and improper Initialization Vector (IV) use**
+- **Inadequate IV handling for AES GCM, Lack of authentication tag verification before decryption with AES GCM, and Potential misuse of EVP_EncryptInit_ex and EVP_DecryptInit_ex**
+#### 2.2 Insecure Cryptographic Operations
+- **Weak hash function usage and insecure padding in encryption**
+- **Insecure mode of operation for AES**
+- **Use of a static IV in AES CBC mode encryption**
+- **Use of weak encryption algorithm**
+- **Insecure tweak calculation in XTS mode encryption**
+- **Improper handling of encryption and decryption lengths**
+- **Improper Use of Cryptographic Hash and Static Elements in Cryptography**
+- **Insecure Nonce Reuse**
+- **Insufficient security practices in encryption**
+- **Improper Verification of Cryptographic Signature**
+- **Improper error handling and insecure padding schemes**
+- **Use of Static Nonces in Encryption**
+- **Insecure usage of symmetric encryption and insecure encryption mode**
+- **Cryptographic operation weaknesses in key management and encryption modes**
+- **Inadequate cryptographic practices**
+- **Insecure Padding Method for AES and insecure padding mechanism**
+- **Insecure Data Compression before Encryption**
+- **Use of ECB Mode for Symmetric Encryption**
+### 3. Cryptographic Algorithm and Protocol Misuses
+#### 3.1 Use of Weak or Outdated Algorithms
+- **Insecure hash algorithm usage and lack of input validation**
+- **Insecure Hashing Operation and Insecure Hash Function Usage**
+- **Use of weak hash function MD5**
+- **Insecure cryptographic key and algorithm practices**
+- **Use of weak hash function and insecure cryptographic practices**
+- **InsecureSkipVerify and Insecure Use of SHA-1**
+- **Insecure Hash Function Usage**
+- **Deprecated cryptographic functions and insecure direct use of hashing**
+- **Use of weak cryptographic functions and insecure cipher**
+- **Use of weak hash functions (SHA-1, MD4, MD5)**
+- **Use of weak encryption algorithms and modes (RC2, RC4, DES, ECB mode)**
+- **Insecure Password Handling and Transmission**
+- **Lack of cryptographic agility and hardcoded cryptographic primitives**
+- **Use of weak cryptographic hash functions**
+#### 3.2 Insecure Protocol Configuration and Use
+- **Insecure Protocol and Prime Size in Cryptographic Operations**
+- **Use of outdated TLS protocol versions and lack of certificate validation**
+- **Lack of public key pinning and certificate management issues**
+- **Insecure handling of JWTs, including not specifying an algorithm and disabling signature verification**
+- **Lack of Padding Scheme Specification for RSA Signature Verification**
+- **Insecure SSH Configuration**
+- **Weak Password Hashing Scheme and Insecure SSL/TLS Protocol Versions**
+- **Certificate management issues**
+- **Use of insecure protocols and practices (HTTP, disabling certificate verification)**
+- **Insecure TLS configuration due to InsecureSkipVerify being set incorrectly**
+- **Insecure Generation and Handling of JWT Tokens**
+- **Lack of certificate and hostname validation**
+- **Insecure Compression Mechanism and Insecure TLS version specified**
+- **Short Certificate Validity Period**
+- **Insecure SSL/TLS version or cipher suite**
+- **Insecure gRPC connection**
+- **Lack of secure token handling and insecure transmission of sensitive information**
+- **Lack of proper validation and secure configuration in JWT and TLS usage**
+- **Insecure use of JWT without validation and lack of proper error handling for cryptographic operations**
+- **Insecure SSH Host Key Verification**
+### 4. Insufficient Security Controls
+#### 4.1 Lack of Proper Error and Exception Handling
+- **Insecure time validation and UTF-8 validation error handling**
+- **Lack of Proper Security Practices in Cryptographic Operations**
+- **Potential Misuse of Signature Function, Lack of Input Validation, and Improper Error Handling**
+- **Insecure buffer size management and improper error handling**
+- **Lack of error handling in cryptographic operations**
+- **Insecure Transmission of Sensitive Data and Improper Error Handling in Cryptographic Operation**
+- **Inadequate handling of cryptographic elements**
+- **Improper Error Handling in Encryption Routine**
+- **Inadequate error handling in cryptographic operations and use of insecure or deprecated functions**
+- **Memory leak on error paths**
+- **Inadequate handling of cryptographic operations and sensitive data**
+- **Improper Error Handling and Lack of Input Validation**
+- **Improper error handling and potential data leakage**
+- **Lack of security best practices in encryption and decryption**
+- **Improper error handling**
+- **Incorrect or inadequate testing leading to potential cryptographic vulnerabilities**
+- **Inadequate error handling in public key decoding**
+#### 4.2 Insufficient Data Protection Measures
+- **Insecure Handling and Comparison of Secret Data**
+- **Use of SHA-256 for non-cryptographic purposes**
+- **Lack of integrity and authenticity checks**
+- **Insufficient iterations count for PBKDF2**
+- **Insufficient password complexity and length**
+- **Insecure password handling and insufficient key derivation parameters**
+- **Lack of integrity checks for Blowfish encryption**
+#### 4.3 Improper Use of Cryptography APIs and Practices
+- **Improper Handling and Configuration in Cryptographic Operations**
+- **Lack of OpenSSL initialization and memory handling best practices**
+- **Unsafe handling of sensitive data and credentials**
+- **Improper use of cryptography API and insecure practices**
+- **Insecure Password Handling**
+- **Insecure cryptographic practices in content hashing and encryption**
+- **Potential misuse of cryptographic functions and insecure implementations**
+- **Insecure use of randomness source**
+- **Insecure and Improper Public Key Retrieval Handling**
+#### 4.4 Inadequate Error Handling and Insecure Input Values
+- **Inadequate error handling and insecure input values in cryptographic operations**
+- **Insecure Encoding Method**
+### 5. Memory Management and Validation Issues
+#### 5.1 Insecure Memory Management
+- **Use of deprecated OpenSSL functions and potential memory leak in OpenSSL lock initialization**
+- **Potential memory leak and lack of input validation**
+- **Use of insecure memory allocation and lack of error handling after allocation**
+- **Potential memory leak in X509_PUBKEY_set**
+- **Memory handling issues**
+- **Sensitive information not securely managed**
+- **Lack of memory zeroization and improper error handling in signature operations**
+- **Memory allocation failure handling**
+#### 5.2 Inadequate Input and ASN.1 Validation
+- **Inadequate validation of string types and potential encoding issues**
+- **Lack of input validation**
+- **Improper validation and secure configuration in JWT and TLS usage**
+- **Potential integer overflow and memory allocation failure not properly handled**
+- **Improper validation in ASN1 operations and potential buffer overflow**
+- **Inadequate validation of ASN.1 structure lengths and use of weak cryptographic hash functions**
+- **Potential buffer overflow in X509_NAME_oneline**
+- **Use of non-standard data type for alignment**
+#### 5.3 Improper Error Handling and Cleanup
+- **Improper error handling in ASN1 object operations and insecure encoding**
+- **Improper memory handling and validation issues in cryptographic operations**
+- **Improper cleanup of cryptographic operations and insecure Object Identifier (OID) creation**
+- **Improper Error Handling, Thread Safety, and Validation Issues**
+- **Improper error handling and potential memory leak in ASN1 operations**
+- **Use of hard-coded cryptographic algorithm and potential misuse of ASN1_TYPE_set1 function**
+### 6. Cryptographic Standards and Compliance Issues
+#### 6.1 Inadequate Padding Schemes
+- **Inadequate padding schemes and insecure padding scheme used for RSA encryption**
+#### 6.2 Insecure Primality Testing and Key Management
+- **Insecure primality testing and key management**
+#### 6.3 Use of Deprecated or Non-Constant Time Operations
+- **FIPS mode restrictions**
+- **Use of deprecated or non-constant time operations**
+- **Improper use of ENGINE API**
+#### 6.4 Parsing Ambiguities and Comparison Issues
+- **Improper comparison function for GENERAL_NAME**
+- **Use of ASN1_ANY type may lead to parsing ambiguities**
+#### 6.5 Handling of Serial Numbers and Scheme Validation
+- **Insecure Data Integrity and Encryption Practices**
+- **Insecure Cryptographic Practices**
+- **Use of a fixed time period in certificate validity**
+- **Insecure Handling of Serial Numbers and Scheme Validation**
+#### 6.6 ECDSA Key Management and Validation
+- **Use of Uninitialized Memory in ECDSA Signature Generation**
+- **Misuse of cryptographic hash functions and insecure randomness**
+- **ECDSA Key Size Validation Missing**
+- **Lack of error checking after memory allocation and insecure padding scheme in RSA PSS**
+### 7. Transmission and Storage Security Issues
+#### 7.1 Insecure Transmission of Sensitive Information
+- **Insecure transmission and handling of sensitive information**
+- **Insecure usage of encryption tokens**
+#### 7.2 Insecure Network Protocols and Configurations
+- **Files containing sensitive information are created with insecure permissions**
+- **Insecure handling and generation of secrets**
+- **Insecure Random Number Generator (RNG) and its usage**
+- **Insecure gRPC and WebSocket connections**
+- **Insecure cryptographic practices in content hashing and encryption**
+- **Insecure Serialization Method**
+- **Use of insecure hash functions in smart contracts**
+- **Insecure or deprecated cryptographic library usage**
+- **Insecure curve and elliptic curve operations**

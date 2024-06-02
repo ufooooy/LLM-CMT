@@ -1,0 +1,69 @@
+[
+    {
+        "abstract": "Insecure Random Number Generation for cryptographic operations",
+        "files": [
+            "175multiply.go",
+            "175fp_test.go",
+            "175matrix.go",
+            "175kos_test.go"
+        ],
+        "detail": "The misuse of 'math/rand' for generating values in cryptographic operations compromises security, while the use of 'crypto/rand' is secure and adheres to best practices. It's crucial to ensure unpredictability in cryptographic contexts by using cryptographically secure pseudorandom number generators (CSPRNGs), such as 'crypto/rand'. Proper error handling is also essential to avoid using incomplete or predictable values due to read errors."
+    },
+    {
+        "abstract": "Improper Verification of Cryptographic Signature",
+        "files": [
+            "175message_handler.go"
+        ],
+        "detail": "The method `handleCeremonyPeerListAnnounce` improperly verifies cryptographic signatures by directly checking if the `peer.ID` matches the public key without ensuring the integrity and authenticity of the message content itself, potentially allowing an attacker to spoof messages."
+    },
+    {
+        "abstract": "Lack of Error Handling and Insufficient Validation in Cryptographic Operations",
+        "files": [
+            "175message_handler.go",
+            "175inmem.go",
+            "175handshake.go",
+            "175file.go",
+            "175kzg_inclusion_prover.go"
+        ],
+        "detail": "Several cryptographic operations across various files lack proper error handling and input validation, which can lead to undefined behavior or security vulnerabilities, such as accepting invalid messages or public keys, and processing malformed or unexpected input."
+    },
+    {
+        "abstract": "Use of Potentially Weak or Insecure Cryptographic Algorithms and Parameters",
+        "files": [
+            "175message_handler.go",
+            "175listener_test.go",
+            "175key.go",
+            "175keys.go",
+            "175key_test.go",
+            "175inmem.go",
+            "175generators.go",
+            "175handshake.go"
+        ],
+        "detail": "The use of Ed448, RSA with 2048 bits, elliptic.P256(), and SHA-256 may not meet the necessary security levels for all applications, especially considering future advancements in computing power and potential quantum attacks. Regularly reviewing and updating cryptographic algorithms and key sizes is recommended."
+    },
+    {
+        "abstract": "Insecure Handling and Comparison of Secret Data",
+        "files": [
+            "175lib_test.go",
+            "175lib.go"
+        ],
+        "detail": "The use of a fixed 32-byte array filled with zeros for key generation and the misuse of 'subtle.ConstantTimeCompare' for comparing secret keys to a zero array demonstrate a misunderstanding of secure cryptographic operations and constant-time operations' requirements."
+    },
+    {
+        "abstract": "Improper Use of Cryptographic Hash and Static Elements in Cryptography",
+        "files": [
+            "175kzg_inclusion_prover.go",
+            "175hash.go",
+            "175handshake.go"
+        ],
+        "detail": "The security of hashing processes depends on the appropriate use of the hash function, including output length and domain separation techniques. Additionally, the use of static elements in signatures without proper context-specific strings may not fully mitigate the risk of key misuse."
+    },
+    {
+        "abstract": "Insecure Randomness Source and Encryption Mode",
+        "files": [
+            "175file.go",
+            "175ext_test.go"
+        ],
+        "detail": "While 'crypto/rand' is used as a secure source of randomness for key generation, the encryption method in '175file.go' uses AES-GCM without proper nonce management, risking nonce reuse and compromising data confidentiality and authenticity."
+    }
+]

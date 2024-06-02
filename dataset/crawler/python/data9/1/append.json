@@ -1,0 +1,14 @@
+[
+    {
+        "abstract": "Insecure random number generation and nonce management",
+        "explanation": "The misuse includes the employment of non-cryptographically secure random number generators and improper nonce management in AEAD (Authenticated Encryption with Associated Data) ciphers. This compromises the security of cryptographic operations by making the generated values predictable and potentially leading to nonce reuse, which can completely undermine the security guarantees of the encryption scheme. Ensuring the use of cryptographically secure random number generators and managing nonces to guarantee their uniqueness for each encryption operation are essential practices for maintaining the confidentiality and integrity of encrypted data."
+    },
+    {
+        "abstract": "Insecure padding and encryption modes",
+        "explanation": "The misuse involves the use of insecure padding modes, such as PKCS7 without integrity checks, and insecure block cipher modes like CBC without proper integrity verification. These practices can make the system vulnerable to padding oracle attacks and other forms of cryptographic attacks, compromising the confidentiality and integrity of the data. Adopting authenticated encryption modes like GCM or CCM, which provide both confidentiality and integrity protection, is recommended to mitigate these risks and enhance the security of the cryptographic operations."
+    },
+    {
+        "abstract": "Incorrect key length validation for Fernet encryption",
+        "explanation": "This misuse pertains to the incorrect validation of encryption key lengths for Fernet encryption, leading to the potential generation of invalid keys. Fernet encryption requires keys to be 32 bytes in length after encoding, and incorrect validation can violate key management principles, resulting in cryptographic operation errors. Ensuring correct key length validation is essential for maintaining the security and integrity of the encryption process, preventing errors, and safeguarding against potential vulnerabilities."
+    }
+]

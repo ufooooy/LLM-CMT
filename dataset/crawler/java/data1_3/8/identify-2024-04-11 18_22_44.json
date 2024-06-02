@@ -1,0 +1,312 @@
+[
+    {
+        "abstract": "Inappropriate IV Length for GCM",
+        "files": [
+            "57743GCMParameterSpecTest.java"
+        ],
+        "detail": "The code tests IV lengths that are not 96 bits. According to NIST SP 800-38D, GCM mode encryption should use an IV of 96 bits to avoid additional hashing operations, which can affect both performance and security."
+    },
+    {
+        "abstract": "Insecure Tag Length for GCM",
+        "files": [
+            "57743GCMParameterSpecTest.java"
+        ],
+        "detail": "The code tests tag lengths less than 128 bits (120, 112, 104, 96 bits). NIST SP 800-38D recommends a minimum tag length of 128 bits for GCM mode to ensure adequate security against forgery attacks. Shorter tag lengths compromise the security level of the cryptographic operation."
+    },
+    {
+        "abstract": "Potential Misuse in IV Generation",
+        "files": [
+            "57743GCMParameterSpecTest.java"
+        ],
+        "detail": "The code uses a helper method for IV generation without ensuring the use of a cryptographically secure random number generator. Secure IV generation is crucial for the security of GCM mode operations, as predictable IVs can lead to security vulnerabilities."
+    },
+    {
+        "abstract": "Use of a hardcoded key-derivation algorithm name",
+        "files": [
+            "57743KAKeyDerivation.java"
+        ],
+        "detail": "The class KAKeyDerivation uses a hardcoded algorithm name for key agreement, which could lead to the use of weak or deprecated algorithms if not properly managed or updated."
+    },
+    {
+        "abstract": "Lack of algorithm agility",
+        "files": [
+            "57743KAKeyDerivation.java"
+        ],
+        "detail": "The algorithm name for key derivation is fixed at instantiation, lacking the flexibility to change based on security policy updates or recommendations."
+    },
+    {
+        "abstract": "Reflection used for accessing private methods",
+        "files": [
+            "57743KerberosAesSha2.java"
+        ],
+        "detail": "The use of reflection to access private methods stringToKey and deriveKey can be considered insecure, especially if the access control is not properly managed."
+    },
+    {
+        "abstract": "Hardcoded key length check for AES 256-bit keys",
+        "files": [
+            "57743KerberosAesSha2.java"
+        ],
+        "detail": "The code checks if AES 256-bit keys are allowed by the environment, which could lead to cryptographic API misuse if the environment does not support AES 256-bit due to policy restrictions."
+    },
+    {
+        "abstract": "Use of hardcoded IV for encryption",
+        "files": [
+            "57743KerberosAesSha2.java"
+        ],
+        "detail": "The encryption method enc uses a static IV (zeroed array), which can lead to vulnerabilities, especially in modes of operation where IV uniqueness is crucial."
+    },
+    {
+        "abstract": "Use of insecure cryptographic algorithm",
+        "files": [
+            "57743JNICheck.java",
+            "57743JsseJce.java"
+        ],
+        "detail": "The code snippet uses 'AES' without specifying an operation mode or padding scheme in 'Cipher.getInstance(\"AES\", \"SunPKCS11-Solaris\")'. This can lead to vulnerabilities such as padding oracle attacks. It is recommended to use AES in a secure mode of operation, such as GCM, and with an explicit padding scheme if applicable.;The code snippet includes references to insecure or weak cryptographic algorithms such as 'DES/CBC/NoPadding' and 'RC4'. DES is considered insecure due to its short key length, and RC4 is vulnerable to several attacks and should not be used. It is recommended to use more secure alternatives such as AES in GCM mode for encryption needs."
+    },
+    {
+        "abstract": "Hardcoded cryptographic parameters",
+        "files": [
+            "57743JsseJce.java"
+        ],
+        "detail": "The code snippet contains hardcoded cryptographic parameters, such as 'RSA/ECB/PKCS1Padding' for RSA encryption. While not inherently a misuse, hardcoding parameters can lead to inflexible implementations that might not be easily updatable to more secure configurations. It is recommended to design systems that allow cryptographic parameters to be configurable based on current security standards."
+    },
+    {
+        "abstract": "Lack of secure random number generation",
+        "files": [
+            "57743JsseJce.java"
+        ],
+        "detail": "The method 'getSecureRandom()' attempts to instantiate a 'SecureRandom' instance potentially with a provider that may not offer a secure implementation. In FIPS mode, if the 'PKCS11' algorithm is not supported by the crypto provider, the method iterates through available services without ensuring they meet security requirements. It is crucial to ensure that 'SecureRandom' instances are securely generated to prevent predictability in cryptographic operations."
+    },
+    {
+        "abstract": "Use of weak cryptographic algorithms",
+        "files": [
+            "57743IsSunMSCAPIAvailable.java"
+        ],
+        "detail": "The code snippet uses MD5withRSA and MD2withRSA for signature verification, which are considered weak cryptographic algorithms. MD5 and MD2 are prone to collision attacks, and their use in cryptographic protocols is discouraged."
+    },
+    {
+        "abstract": "Use of insecure padding scheme",
+        "files": [
+            "57743ISO10126Padding.java"
+        ],
+        "detail": "The code implements ISO 10126 padding, which is considered insecure and deprecated. ISO 10126 padding includes random bytes followed by a byte indicating the length of the padding, but it was withdrawn and is no longer considered secure for cryptographic operations. Modern cryptographic standards recommend using padding schemes like PKCS#7. The use of ISO 10126 padding may lead to vulnerabilities in cryptographic operations that rely on this padding scheme."
+    },
+    {
+        "abstract": "Use of Weak Hash Function (MD5)",
+        "files": [
+            "57743IntegrityHmac.java"
+        ],
+        "detail": "The IntegrityHmacMD5 class implements HMAC with MD5, which is a weak hash function vulnerable to collision attacks. MD5 should not be used in any capacity for secure applications."
+    },
+    {
+        "abstract": "Inadequate HMAC Output Length Validation",
+        "files": [
+            "57743IntegrityHmac.java"
+        ],
+        "detail": "The HMACOutputLength class does not ensure that the specified output length is appropriate for the hash function used in the HMAC. This could lead to configurations that weaken the security of the HMAC, for example, by allowing shorter outputs that are more susceptible to collision attacks."
+    },
+    {
+        "abstract": "Insecure Random Number Generation",
+        "files": [
+            "57743HotSpotCryptoSubstitutionTest.java"
+        ],
+        "detail": "The use of a static, predictable seed in SecureRandom compromises the randomness and predictability of cryptographic operations. Specifically, initializing SecureRandom with a fixed seed value 'byte[] seed = {0x4, 0x7, 0x1, 0x1};' undermines the security of cryptographic keys generated using this instance."
+    },
+    {
+        "abstract": "Weak Encryption Algorithm",
+        "files": [
+            "57743HotSpotCryptoSubstitutionTest.java"
+        ],
+        "detail": "The use of DESede (Triple DES) is considered weak due to its effective key size and susceptibility to certain attacks. Modern applications should use stronger algorithms such as AES with key sizes of at least 128 bits."
+    },
+    {
+        "abstract": "Improper Use of Cryptographic Cipher",
+        "files": [
+            "57743InOutBuffers.java"
+        ],
+        "detail": "Using the same ByteBuffer instance for both input and output in Cipher operations (e.g., 'c.update(b, b);' and 'c.doFinal(b, b);') is not allowed and throws IllegalArgumentException. This misuse can lead to confusion and errors in cryptographic data processing."
+    },
+    {
+        "abstract": "Use of Insecure Cipher Algorithm",
+        "files": [
+            "57743InOutBuffers.java"
+        ],
+        "detail": "The RC4 encryption algorithm is considered insecure due to vulnerabilities and weaknesses identified over time. It is recommended to use more secure alternatives such as AES for encryption needs."
+    },
+    {
+        "abstract": "Use of SHA-1 algorithm",
+        "files": [
+            "57743HmacSHA1.java"
+        ],
+        "detail": "The use of SHA-1 (Secure Hash Algorithm 1) in cryptographic operations is considered insecure due to vulnerabilities that allow for collision attacks. Modern security standards recommend using stronger hash functions such as SHA-256 or SHA-3 for cryptographic signatures, message integrity, and other security features."
+    },
+    {
+        "abstract": "Insecure default key size",
+        "files": [
+            "57743HmacSHA1KeyGenerator.java"
+        ],
+        "detail": "The default key size of 64 bytes (512 bits) for HMAC-SHA1 may not be sufficient for all security requirements. While HMAC-SHA1 does not have the same vulnerabilities as SHA-1 alone, key size plays a crucial role in the overall security of the HMAC operation. It is recommended to allow for larger key sizes or to explicitly set a key size that matches the security requirements of the application."
+    },
+    {
+        "abstract": "Use of weak hashing algorithm (SHA-1)",
+        "files": [
+            "57743HmacPBESHA1.java",
+            "57743HmacPKCS12PBECore.java"
+        ],
+        "detail": "The use of SHA-1 as a hashing algorithm is considered weak due to vulnerabilities that allow for collision attacks. Modern applications should use stronger hashing algorithms such as SHA-256 or SHA-3 to ensure data integrity and security."
+    },
+    {
+        "abstract": "Inadequate salt length in PBEParameterSpec",
+        "files": [
+            "57743HmacSaltLengths.java"
+        ],
+        "detail": "The code attempts to use salts of various lengths, including 4-byte salts, for password-based encryption (PBE). However, salts shorter than 8 bytes are considered insecure and susceptible to dictionary attacks. The code correctly identifies this as an issue and throws an exception for short salts, aligning with best practices that recommend a minimum salt length of 8 bytes."
+    },
+    {
+        "abstract": "Hardcoded password in source code",
+        "files": [
+            "57743HmacPBESHA1.java",
+            "57743HmacSaltLengths.java"
+        ],
+        "detail": "The presence of hardcoded passwords within the source code is a security risk, as it exposes sensitive information to anyone with access to the code. Passwords should be securely managed and stored, preferably outside of the source code, and retrieved dynamically at runtime."
+    },
+    {
+        "abstract": "Use of insecure cryptographic algorithm MD5",
+        "files": [
+            "57743HmacMD5.java",
+            "57743HmacMD5KeyGenerator.java"
+        ],
+        "detail": "The MD5 hashing algorithm is used, which is considered cryptographically broken and unsuitable for further use. Its vulnerabilities to collision attacks compromise the integrity and authenticity guarantees that HMAC is supposed to provide."
+    },
+    {
+        "abstract": "Insecure key size for HMAC-MD5",
+        "files": [
+            "57743HmacMD5KeyGenerator.java"
+        ],
+        "detail": "The default key size is set to 64 bytes (512 bits) for HMAC-MD5, which exceeds the MD5 hash output size of 128 bits. This does not directly weaken the cryptographic strength but is unnecessary and could lead to misunderstandings about the security level provided."
+    },
+    {
+        "abstract": "Insecure use of cryptographic algorithm",
+        "files": [
+            "57743HKDF.java"
+        ],
+        "detail": "The HKDF implementation does not enforce a minimum key length for the input keying material or the derived keys. This could potentially allow the use of weak keys, violating the principle of using strong keys for cryptographic operations."
+    },
+    {
+        "abstract": "Insecure cryptographic operation due to lack of input validation",
+        "files": [
+            "57743HmacCore.java"
+        ],
+        "detail": "The HmacCore class does not perform explicit validation on the size of the input key. If a key larger than the block size is used without being hashed down to an appropriate size, it could lead to vulnerabilities. While the code attempts to address keys larger than the block length by hashing them, it does not account for keys that are too short, potentially allowing weak keys to be used."
+    },
+    {
+        "abstract": "Potential for information leakage in HMAC implementation",
+        "files": [
+            "57743HmacCore.java"
+        ],
+        "detail": "The engineDoFinal method in HmacCore may not securely clear temporary arrays or sensitive data after use. This could potentially allow sensitive data, such as the HMAC key or intermediate state, to remain in memory longer than necessary, increasing the risk of information leakage."
+    },
+    {
+        "abstract": "Use of weak cryptographic algorithm",
+        "files": [
+            "57743HandshakeContext.java",
+            "57743GetAlgName.java",
+            "57743FlushBug.java"
+        ],
+        "detail": "The code snippet includes functionality for SSL/TLS handshake processes, where it allows for the negotiation of cipher suites and protocol versions between client and server. A potential misuse is the inclusion or allowance of weak cryptographic algorithms or protocols, such as SSL 2.0 (SSL20Hello), which is known to be insecure. The method 'getActiveProtocols' checks for enabled protocols, including SSL 2.0, which should not be used due to its vulnerabilities. Modern applications should enforce stronger protocols like TLS 1.2 or TLS 1.3 to ensure secure communication.;The use of 'PBEWithMD5AndDES' and 'PBEWithSHA1AndDESede' in 57743GetAlgName.java is considered insecure due to the use of weak hashing (MD5) and encryption (DES, DESede) algorithms. MD5 is vulnerable to collision attacks, and DES/DESede (Triple DES) is considered deprecated due to its insufficient key size and potential vulnerabilities to brute-force attacks.;The DES algorithm is used for encryption, which is considered weak and vulnerable to brute-force attacks due to its short key length. Modern applications should use stronger algorithms like AES."
+    },
+    {
+        "abstract": "Use of weak cryptographic algorithm (PBEWithMD5AndDES)",
+        "files": [
+            "57743GetKeySpecException.java",
+            "57743GetKeySpecException2.java",
+            "57743GetKeySpecInvalidEncoding.java"
+        ],
+        "detail": "The use of PBEWithMD5AndDES as a cryptographic algorithm is insecure. MD5 is a weak hash function susceptible to collision attacks, and DES is vulnerable to brute-force attacks due to its short key length. Modern applications should use stronger algorithms, such as AES for encryption and SHA-256 or higher for hashing."
+    },
+    {
+        "abstract": "Improper error handling leading to potential leakage of sensitive information",
+        "files": [
+            "57743GetKeySpecException.java"
+        ],
+        "detail": "The code catches generic exceptions and does not properly handle specific cryptographic exceptions that could provide insights into why a cryptographic operation failed. This could lead to improper error handling and potentially leak information about the cryptographic context or data."
+    },
+    {
+        "abstract": "Use of a static, predictable salt in PBEParameterSpec",
+        "files": [
+            "57743GetKeySpecException.java",
+            "57743GetKeySpecInvalidEncoding.java"
+        ],
+        "detail": "The use of a static, predictable salt in PBEParameterSpec is insecure. Salts should be randomly generated and unique for each encryption operation to prevent attacks such as rainbow table attacks. The code uses a fixed salt (e.g., new byte[8] in GetKeySpecInvalidEncoding.java), which does not adhere to best practices for salt generation."
+    },
+    {
+        "abstract": "Insufficient iteration count in PBEParameterSpec",
+        "files": [
+            "57743GetKeySpecInvalidEncoding.java"
+        ],
+        "detail": "The iteration count specified in PBEParameterSpec (e.g., 6 in GetKeySpecInvalidEncoding.java) is insufficient for modern security standards. A higher iteration count (at least 10,000) is recommended to increase the cost of brute-force attacks."
+    },
+    {
+        "abstract": "Hardcoded cryptographic key",
+        "files": [
+            "57743GetKeySpecException2.java"
+        ],
+        "detail": "The code contains a hardcoded cryptographic key within the MyPBEKey class. Hardcoding keys in source code is insecure and can lead to key disclosure. Keys should be securely managed and stored outside the source code, using secure storage mechanisms."
+    },
+    {
+        "abstract": "Cipher initialized in an incorrect mode for decryption",
+        "files": [
+            "57743GetKeySpecException2.java"
+        ],
+        "detail": "The Cipher object is initialized in WRAP_MODE and UNWRAP_MODE, which are not appropriate for decryption operations required by EncryptedPrivateKeyInfo.getKeySpec. This misuse could lead to runtime errors or incorrect decryption results."
+    },
+    {
+        "abstract": "Decrypted bytes not encoded correctly per PKCS#8 standard",
+        "files": [
+            "57743GetKeySpecInvalidEncoding.java"
+        ],
+        "detail": "The code attempts to process decrypted bytes that are not encoded correctly according to the PKCS#8 standard. This misuse could lead to InvalidKeySpecException being thrown, indicating that the decrypted key material cannot be correctly parsed as a PKCS8EncodedKeySpec."
+    },
+    {
+        "abstract": "Insufficient iteration count and weak salt for PBE",
+        "files": [
+            "57743GetKeySpec.java"
+        ],
+        "detail": "The PBEKeySpec in 57743GetKeySpec.java uses a static, potentially predictable salt ('new byte[8]') and a low iteration count (1024). Modern standards recommend a unique, cryptographically random salt for each PBE operation and a higher iteration count (at least 10,000) to mitigate brute-force and rainbow table attacks."
+    },
+    {
+        "abstract": "Inappropriate IV length for GCM mode",
+        "files": [
+            "GCMParameterSpecTest.java"
+        ],
+        "detail": "The test cases include IV lengths that are not 96 bits (12 bytes), which is the recommended size for GCM mode to ensure unique IVs for each encryption operation and to prevent nonce reuse vulnerabilities. Using IVs of inappropriate lengths can compromise the security properties of GCM mode."
+    },
+    {
+        "abstract": "Unsupported tag length for GCM mode",
+        "files": [
+            "GCMParameterSpecTest.java"
+        ],
+        "detail": "The GCMParameterSpecTest.java file tests GCM mode encryption with tag lengths that include values not supported by all cryptographic service providers or that may not meet security requirements for certain applications. The NIST SP 800-38D recommends a minimum tag length of 96 bits (12 bytes) for most applications of GCM to provide adequate security."
+    },
+    {
+        "abstract": "Inadequate GCM tag length",
+        "files": [
+            "57743GCMLargeDataKAT.java"
+        ],
+        "detail": "The GCMParameterSpec is initialized with a tag length of 128 bits (16 bytes), which is the recommended minimum size. However, the misuse context is not directly evident without further context on security requirements. This entry might be considered overly cautious if 128 bits meet the security requirements of the application."
+    },
+    {
+        "abstract": "Hardcoded cryptographic keys",
+        "files": [
+            "57743GCMLargeDataKAT.java"
+        ],
+        "detail": "The cryptographic key is hardcoded within the source code, which poses a security risk as it could be extracted by an attacker. Keys should be securely generated and managed, for instance, by using a secure key management system."
+    },
+    {
+        "abstract": "Static Initialization Vector (IV)",
+        "files": [
+            "57743GCMLargeDataKAT.java"
+        ],
+        "detail": "The Initialization Vector (IV) for GCM mode is statically defined, which undermines the security of the encryption scheme. IVs should be unpredictable and unique for each encryption operation to ensure the security properties of GCM mode are met."
+    }
+]

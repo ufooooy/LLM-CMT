@@ -1,0 +1,30 @@
+[
+    {
+        "abstract": "Insecure Random Number Generation",
+        "files": [
+            "8608random_seed.c"
+        ],
+        "detail": "The function 'get_generic_seed' in '8608random_seed.c' uses clock-based time measurements to generate a seed for random number generation. This approach is predictable and can be exploited by attackers to predict the seed, especially in environments where the clock can be manipulated or where the execution patterns are predictable. Secure random number generation should rely on cryptographic-grade sources of randomness."
+    },
+    {
+        "abstract": "Improper Error Handling in Encryption Routine",
+        "files": [
+            "90102aes-encrypt.c"
+        ],
+        "detail": "The AES encryption function 'image_aes_encrypt' in '90102aes-encrypt.c' does not properly handle errors that may occur during the encryption process. Specifically, if 'EVP_EncryptInit_ex', 'EVP_EncryptUpdate', or 'EVP_EncryptFinal_ex' fail, the function prints an error message but does not securely erase the allocated buffer that may contain partially encrypted data before freeing it. This could potentially lead to sensitive information leakage."
+    },
+    {
+        "abstract": "ECDSA Key Size Validation Missing",
+        "files": [
+            "90102ecdsa-libcrypto.c"
+        ],
+        "detail": "The function 'prepare_ctx' in '90102ecdsa-libcrypto.c' reads an ECDSA key from a file and checks if the key size matches the expected size. However, it does not validate whether the key size is appropriate for the desired security level. Using ECDSA keys of insufficient size can lead to weaker cryptographic strength and potential vulnerabilities."
+    },
+    {
+        "abstract": "Use of Uninitialized Memory in ECDSA Signature Generation",
+        "files": [
+            "90102ecdsa-libcrypto.c"
+        ],
+        "detail": "In '90102ecdsa-libcrypto.c', the function 'do_sign' generates an ECDSA signature without ensuring that the memory allocated for storing the hash ('ctx->hash') is initialized before use. This could potentially lead to generating signatures based on uninitialized memory, affecting the integrity and security of the cryptographic operation."
+    }
+]

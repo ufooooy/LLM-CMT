@@ -1,0 +1,62 @@
+[
+    {
+        "abstract": "Use of insecure cryptographic algorithms (DES, Triple DES) and insecure modes (ECB)",
+        "files": [
+            "57743DESSecretKeySpec.java",
+            "57743DesMacCksumType.java",
+            "57743DesMacKCksumType.java",
+            "57743DESKeyFactory.java",
+            "57743DESKeyGenerator.java",
+            "57743DESKeySpec.java",
+            "57743DESCipher.java",
+            "57743Des.java",
+            "57743DesAPITest.java",
+            "57743DESedeKeySpec.java",
+            "57743DESedeKey.java",
+            "57743DESedeKeyFactory.java",
+            "57743DESedeKeyGenerator.java",
+            "57743DESedeCipher.java",
+            "57743DESCipherWrapper.java",
+            "57743CipherStreamClose.java",
+            "57743DecryptWithoutParameters.java",
+            "57743CipherKAT.java"
+        ],
+        "detail": "The use of DES and Triple DES (DESede) is identified as insecure due to their short key lengths and susceptibility to brute-force attacks. Additionally, the use of ECB mode does not provide serious message confidentiality. Modern applications should use stronger algorithms like AES with secure modes of operation."
+    },
+    {
+        "abstract": "Hardcoded cryptographic keys and insecure key management practices",
+        "files": [
+            "57743DESSecretKeySpec.java",
+            "57743DesAPITest.java"
+        ],
+        "detail": "Hardcoded cryptographic keys within the source code expose the keys to anyone with access, making the encryption easily defeatable. Keys should be securely managed and stored, ideally using a secure key management system."
+    },
+    {
+        "abstract": "Weak key generation, lack of key validation, and use of weak or semi-weak keys",
+        "files": [
+            "57743DESKeyGenerator.java",
+            "57743DESKeySpec.java",
+            "57743DESedeKeyGenerator.java",
+            "57743DESedeKey.java"
+        ],
+        "detail": "The code does not implement secure key generation mechanisms and lacks proper validation for weak or semi-weak keys. Secure cryptographic implementations should generate keys dynamically using cryptographically secure methods and validate keys to ensure their strength."
+    },
+    {
+        "abstract": "Insecure padding schemes and potential for padding oracle attacks",
+        "files": [
+            "57743DESCipher.java",
+            "57743DESedeCipher.java"
+        ],
+        "detail": "The use of PKCS5Padding and ISO10126Padding is vulnerable to padding oracle attacks. It is recommended to use authenticated encryption modes like GCM that do not require padding."
+    },
+    {
+        "abstract": "Improper error handling and potential data exposure",
+        "files": [
+            "57743DESedeKeyFactory.java",
+            "57743DESedeKeyGenerator.java",
+            "57743CipherInputStream.java",
+            "57743CipherOutputStream.java"
+        ],
+        "detail": "Error handling in encryption/decryption processes may leak information about the key generation process or the internal state of the application, potentially aiding attackers. Proper error handling is crucial to ensure the security and integrity of cryptographic operations."
+    }
+]

@@ -1,0 +1,10 @@
+[
+    {
+        "abstract": "Insecure HMAC signing algorithm usage",
+        "explanation": "The misuse involves the 'sign' method in '874FeishuHookCallback.java', which employs 'HmacSHA256' for HMAC signing. The issue arises from converting a secret key directly from a string to bytes, potentially leading to an insecure and inconsistent byte representation across different platforms. This practice undermines the security of the HMAC signing process, as the integrity and authenticity of the messages could be compromised on platforms where the byte representation of the secret key differs. A more secure approach would involve using a key derivation function to generate a consistent and secure key from a password or passphrase, enhancing the overall security of the HMAC signing process."
+    },
+    {
+        "abstract": "Use of non-singleton OkHttpClient",
+        "explanation": "Creating a new instance of OkHttpClient for each use can lead to resource inefficiencies and potential Denial of Service (DoS) attacks if the server runs out of memory (OOM). This practice indirectly affects the security of the application by making it more susceptible to resource exhaustion attacks. Using a singleton pattern for OkHttpClient instances can mitigate these risks by ensuring efficient resource utilization and enhancing the overall security posture of the application."
+    }
+]

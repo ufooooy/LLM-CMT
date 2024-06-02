@@ -1,0 +1,40 @@
+[
+    {
+        "abstract": "Use of weak encryption algorithm",
+        "files": [
+            "login.java",
+            "user.java"
+        ],
+        "detail": "The system uses DES, which is considered weak and vulnerable to attacks."
+    },
+    {
+        "abstract": "Use of weak encryption algorithm",
+        "files": [
+            "payment.java"
+        ],
+        "detail": "DES encryption is used, exposing sensitive payment information to potential security threats."
+    },
+    {
+        "abstract": "Insecure random number generation",
+        "files": [
+            "session.java"
+        ],
+        "detail": "java.util.Random is used for generating session IDs, which is predictable and not secure."
+    },
+    {
+        "abstract": "Use of weak encryption algorithm",
+        "files": [
+            "login.java",
+            "user.java",
+            "payment.java"
+        ],
+        "detail": "DES encryption is used in multiple parts of the system (login, user management, and payment processing), making it vulnerable to security threats."
+    },
+    {
+        "abstract": "Insecure random number generation",
+        "files": [
+            "session.java"
+        ],
+        "detail": "java.util.Random is used for generating session IDs, which is predictable and not secure."
+    }
+]

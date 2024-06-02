@@ -1,0 +1,18 @@
+[
+    {
+        "abstract": "Inadequate padding schemes and insecure padding scheme used for RSA encryption",
+        "explanation": "The misuse involves employing inadequate or insecure padding schemes in RSA encryption, which can lead to vulnerabilities such as padding oracle attacks. Proper padding is crucial for ensuring data confidentiality and security in encryption schemes. Insecure padding can compromise the encryption's effectiveness, potentially allowing attackers to decrypt or forge messages."
+    },
+    {
+        "abstract": "Memory handling issues",
+        "explanation": "The misuse includes not securely clearing memory, improper memory allocation, and insecure handling of memory for sensitive data. These issues can lead to the exposure of sensitive information, such as cryptographic keys or plaintext data, either through memory leaks or by making it easier for attackers to access or infer the data stored in memory."
+    },
+    {
+        "abstract": "Lack of input validation",
+        "explanation": "This misuse involves the absence of proper validation for input parameters, including those for scrypt parameters, which can lead to undefined behavior or weaken the security of cryptographic operations. Without adequate input validation, an attacker could provide malformed or unexpected inputs to disrupt operations or exploit vulnerabilities for malicious purposes."
+    },
+    {
+        "abstract": "Use of deprecated or non-constant time operations",
+        "explanation": "The misuse includes using deprecated padding modes and non-constant time operations for handling sensitive data. Deprecated algorithms and modes may contain known vulnerabilities, and non-constant time operations can lead to timing attacks, where an attacker can infer sensitive information based on the time taken to perform cryptographic operations. This misuse can compromise the security of digital signatures and other cryptographic mechanisms."
+    }
+]

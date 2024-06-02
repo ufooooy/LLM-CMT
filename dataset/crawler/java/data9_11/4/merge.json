@@ -1,0 +1,57 @@
+[
+    {
+        "abstract": "Insecure RSA encryption due to insufficient key sizes",
+        "files": [
+            "762RSAUtil.java",
+            "460RsaBytesEncryptor.java"
+        ],
+        "detail": "The RSA encryption uses key sizes of 512 and 1024 bits, both considered insecure by modern standards. A minimum key size of 2048 bits is recommended for RSA to ensure data security against brute force attacks."
+    },
+    {
+        "abstract": "Use of insecure encryption modes",
+        "files": [
+            "663MonitorAccessService.java",
+            "460BlowFishZeroPaddingBytesEncryptor.java"
+        ],
+        "detail": "The use of ECB mode in AES and Blowfish encryption does not provide serious message confidentiality and is vulnerable to various attacks. A mode like CBC or GCM with a unique IV for each encryption is recommended."
+    },
+    {
+        "abstract": "Insecure use of SHA1PRNG for randomness",
+        "files": [
+            "663CipherUtils.java",
+            "460EncryptAlgorithm.java"
+        ],
+        "detail": "The use of SHA1PRNG for generating encryption keys or SecureRandom may not be secure or sufficient for cryptographic operations, leading to predictable keys. A more secure and unpredictable source of randomness is recommended."
+    },
+    {
+        "abstract": "Risks associated with hard-coded cryptographic values",
+        "files": [
+            "663CipherUtils.java",
+            "460Cmcc4ABytesEncryptor.java",
+            "460EncryptAlgorithm.java"
+        ],
+        "detail": "The use of hard-coded encryption seeds or keys can severely compromise security by making it easier for an attacker to guess or brute-force the key. Avoid using predictable key derivation from static values."
+    },
+    {
+        "abstract": "Misuse of IVs in cryptographic operations",
+        "files": [
+            "663AesUtil.java",
+            "460Cmcc4ABytesEncryptor.java"
+        ],
+        "detail": "The use of a static, hard-coded IV in CBC mode encryption with AES and a fixed IV in AES encryption can compromise the security of the cryptographic scheme by making it vulnerable to certain types of attacks, such as watermarking attacks."
+    },
+    {
+        "abstract": "Weak signature algorithm",
+        "files": [
+            "762RSAUtil.java"
+        ],
+        "detail": "The use of MD5withRSA as the signature algorithm is insecure. MD5 is known to be vulnerable to collision attacks, which undermines the security of the digital signatures. It is recommended to use SHA-256 or stronger hashing algorithms with RSA."
+    },
+    {
+        "abstract": "Insufficient key size validation",
+        "files": [
+            "460EncryptAlgorithm.java"
+        ],
+        "detail": "The code does not validate if the provided key size is supported or strong enough for the AES algorithm, potentially allowing weak keys that compromise security."
+    }
+]

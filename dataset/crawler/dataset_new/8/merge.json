@@ -1,0 +1,57 @@
+[
+    {
+        "abstract": "Insecure RSA key generation and handling",
+        "files": [
+            "189rsa_gen.c",
+            "189rsa_depr.c",
+            "189rsa_chk.c",
+            "189rsa.c"
+        ],
+        "detail": "Issues include insecure minimum RSA key size, insufficient validation of prime number generation, lack of error handling for key generation failures, potential for weak random prime generation, insecure handling of RSA components in memory, use of deprecated RSA key generation function, and lack of RSA key size validation. Recommendations include enforcing a secure minimum key size of at least 2048 bits, ensuring strong randomness and prime quality, comprehensive error handling, and avoiding deprecated functions."
+    },
+    {
+        "abstract": "Insecure use of encryption algorithms and schemes",
+        "files": [
+            "189rsautl.c",
+            "189rc4_enc.c",
+            "189rc4_skey.c",
+            "189rc2_cbc.c",
+            "189rc2_ecb.c",
+            "189rc2_skey.c",
+            "189rc2cfb64.c",
+            "189rc2ofb64.c",
+            "189rand_key.c",
+            "189p_enc.c"
+        ],
+        "detail": "Misuses include insecure padding schemes, use of deprecated and weak encryption algorithms like RC4, RC2, and DES, and hardcoded key material. Recommendations include using RSA_PKCS1_OAEP_PADDING for RSA encryption, migrating to stronger ciphers like AES, and avoiding hardcoded keys."
+    },
+    {
+        "abstract": "Inadequate handling of cryptographic operations and sensitive data",
+        "files": [
+            "189rc2_cbc.c",
+            "189rc2_ecb.c",
+            "189rand_win.c",
+            "189rand.c",
+            "189rand_egd.c",
+            "189p_verify.c",
+            "189randfile.c",
+            "189p_seal.c",
+            "189p_sign.c",
+            "189pmeth_gn.c",
+            "189poly1305_ameth.c",
+            "189poly1305_pmeth.c",
+            "189pmeth_fn.c",
+            "189pkcs8.c"
+        ],
+        "detail": "Issues include insecure random number generation, lack of error handling in cryptographic operations, insecure handling of sensitive data, use of deprecated functions, insufficient file permissions, and potential misuse of password handling. Recommendations include using modern APIs for random number generation, proper error handling, secure memory management for sensitive data, and secure password management practices."
+    },
+    {
+        "abstract": "Insecure primality testing and key management",
+        "files": [
+            "189prime.c",
+            "189p_dec.c",
+            "189pkcs8.c"
+        ],
+        "detail": "Concerns include insecure number of checks for primality testing, use of deprecated RSA decryption function with fixed padding, hardcoded error handling, insecure memory handling in key management, and lack of input validation. Recommendations include adhering to FIPS 186-4 standard for primality testing, migrating to more secure padding schemes like OAEP, and implementing secure key management practices."
+    }
+]

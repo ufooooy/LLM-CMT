@@ -1,0 +1,6 @@
+[
+    {
+        "abstract": "Insecure handling of JWTs, including not specifying an algorithm and disabling signature verification",
+        "explanation": "The misuse involves insecure practices in handling JSON Web Tokens (JWTs), particularly not specifying the 'algorithms' parameter during the decoding process and setting 'verify_signature' to False. This can lead to severe security vulnerabilities, such as allowing attackers to manipulate the token or bypass signature verification entirely, potentially leading to unauthorized access. Specifying the algorithm explicitly prevents attackers from exploiting the server's flexibility in processing JWTs with different algorithms, including none, which could lead to signature stripping attacks. Disabling signature verification removes a critical security layer that ensures the token's integrity and authenticity, exposing the system to various attacks where an attacker could forge a valid token."
+    }
+]

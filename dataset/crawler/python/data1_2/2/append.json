@@ -1,0 +1,10 @@
+[
+    {
+        "abstract": "Insecure Private Key Storage and Handling",
+        "explanation": "The misuse involves insecure handling and storage of private keys across various instances, as highlighted by the lack of secure file permissions, the absence of encryption at rest, and the storage of keys in plaintext. This approach significantly undermines cryptographic security by exposing private keys to unauthorized access. The core issues stem from neglecting fundamental security practices for sensitive cryptographic material, which could lead to the compromise of the entire cryptographic system by allowing attackers to decrypt or sign data as if they were the legitimate key holder."
+    },
+    {
+        "abstract": "Insecure Generation and Handling of JWT Tokens",
+        "explanation": "This misuse highlights issues in the generation and handling of JWT tokens, including not securely setting the 'exp' claim and failing to verify the security of the secret key. Such practices can lead to the use of weak keys and tokens remaining valid for longer than intended, potentially allowing unauthorized access to protected resources. The misuse undermines the security of token-based authentication systems by making it easier for attackers to forge or reuse tokens."
+    }
+]

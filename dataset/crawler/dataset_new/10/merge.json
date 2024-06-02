@@ -1,0 +1,47 @@
+[
+    {
+        "abstract": "Insecure and Improper Public Key Retrieval Handling",
+        "files": [
+            "189t_spki.c",
+            "189t_x509.c"
+        ],
+        "detail": "The functions `X509_PUBKEY_get` and `X509_get0_pubkey` are used to retrieve public keys but can lead to vulnerabilities if not properly validated or if error handling is not implemented. Malformed SPKI structures or certificates can result in security risks. It's recommended to use secure alternatives and proper error handling to ensure the integrity and authenticity of public keys."
+    },
+    {
+        "abstract": "Insecure Memory Management and Data Handling",
+        "files": [
+            "189t_pkey.c",
+            "189tls_srp.c",
+            "189txt_db.c"
+        ],
+        "detail": "The misuse of `OPENSSL_malloc`, `OPENSSL_clear_free`, and `memset` for managing sensitive information can leave data recoverable in memory. `OPENSSL_cleanse` or similar functions should be used to securely erase sensitive information, even in error conditions, to prevent data leakage."
+    },
+    {
+        "abstract": "Use of Cryptographically Weak Algorithms and Insufficient Key Length",
+        "files": [
+            "189tls1_prf.c",
+            "189str2key.c"
+        ],
+        "detail": "The use of MD5, SHA-1, and DES encryption algorithms, which are considered cryptographically weak due to vulnerabilities or insufficient key length, poses security risks. Modern applications should use stronger hash functions like SHA-256 or SHA-3 and encryption algorithms like AES with a minimum key size of 128 bits."
+    },
+    {
+        "abstract": "Improper Error Handling, Thread Safety, and Validation Issues",
+        "files": [
+            "189threads_none.c",
+            "189tasn_utl.c",
+            "189s_time.c",
+            "189store_register.c",
+            "189stack.c",
+            "189storeutl.c"
+        ],
+        "detail": "Various misuses related to error handling, thread safety, and input validation, including improper use of thread synchronization mechanisms, direct manipulation of reference counts and locks, allowing insecure SSL/TLS versions, missing NULL checks, potential memory leaks on error paths, and insufficient input validation. These issues can lead to race conditions, memory leaks, deadlocks, undefined behavior, or security vulnerabilities. Proper mechanisms and validations should be employed to ensure application security and stability."
+    },
+    {
+        "abstract": "Insecure Handling of Serial Numbers and Scheme Validation",
+        "files": [
+            "189t_x509.c",
+            "189store_register.c"
+        ],
+        "detail": "The handling of serial numbers in `X509_print_ex` does not properly consider negative values, contrary to RFC 5280 requirements, potentially leading to security vulnerabilities. Additionally, scheme validation in `ossl_store_register_loader_int` does not fully adhere to RFC 3986, which may allow non-compliant schemes, potentially leading to inconsistencies or security vulnerabilities."
+    }
+]

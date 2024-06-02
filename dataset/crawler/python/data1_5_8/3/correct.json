@@ -1,0 +1,11 @@
+[
+    {
+        "abstract": "No cryptographic API misuse",
+        "files": [
+            "795test_misc.py",
+            "795session.py",
+            "747private_key.py"
+        ],
+        "detail": "Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code `795session.py`. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations."
+    }
+]

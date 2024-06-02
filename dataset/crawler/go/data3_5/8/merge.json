@@ -1,0 +1,41 @@
+[
+    {
+        "abstract": "Insecure Randomness in Cryptographic Operations",
+        "files": [
+            "175range_batch_prover.go",
+            "175peer.go",
+            "175ping.go",
+            "175pedersen.go",
+            "175pairings_test.go",
+            "175ot_test.go",
+            "175noncegen.go"
+        ],
+        "detail": "The use of `crypto/rand` is recommended for secure randomness. However, issues such as not checking error values, using `math/rand` in cryptographic contexts, and insufficient randomness for key generation highlight the need for careful implementation to ensure the security of cryptographic operations."
+    },
+    {
+        "abstract": "Insufficient Randomness in Cryptographic Operations",
+        "files": [
+            "175psk_conn_test.go",
+            "175proof_enc.go"
+        ],
+        "detail": "The use of static or predictable values for cryptographic operations, such as pre-shared keys and nonces, compromises security. Ensuring sufficient randomness and uniqueness is crucial for the integrity of cryptographic protocols."
+    },
+    {
+        "abstract": "Insecure Cryptographic Practices in Implementation",
+        "files": [
+            "175psk_conn.go",
+            "175public_channel.go",
+            "175prover_lookup.go",
+            "175peer_test.go"
+        ],
+        "detail": "The implementation of cryptographic operations requires careful selection of primitives, ensuring message authenticity, and adhering to modern standards for hash functions and key sizes to prevent vulnerabilities."
+    },
+    {
+        "abstract": "Insecure Protocol and Prime Size in Cryptographic Operations",
+        "files": [
+            "175muxer_test.go",
+            "175primes.go"
+        ],
+        "detail": "The inclusion of insecure transport options and the allowance for generating primes with sizes below modern security standards can severely compromise the security of cryptographic operations."
+    }
+]

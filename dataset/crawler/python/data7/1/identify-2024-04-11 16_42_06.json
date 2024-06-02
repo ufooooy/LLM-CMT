@@ -1,0 +1,52 @@
+[
+    {
+        "abstract": "Insecure Randomness",
+        "files": [
+            "258session.py"
+        ],
+        "detail": "The use of Crypto.Random.get_random_bytes for generating session identifiers may not provide cryptographically secure randomness in all contexts. It's crucial for session identifiers to be generated using a cryptographically secure pseudorandom number generator (CSPRNG) to prevent predictability or entropy issues."
+    },
+    {
+        "abstract": "Insecure Padding Scheme",
+        "files": [
+            "258key.py"
+        ],
+        "detail": "The use of Padding.unpad in the from_key_container method without specifying a padding scheme explicitly relies on the default padding scheme, which may not be secure for all contexts. It's recommended to explicitly define a secure padding scheme, such as PKCS7, to ensure the integrity and security of the padding process."
+    },
+    {
+        "abstract": "Weak Cryptographic Hash Function",
+        "files": [
+            "258remotecdm.py"
+        ],
+        "detail": "The use of SHA1 in the get_service_certificate method is considered insecure due to vulnerabilities that allow for collision attacks. It's recommended to use a more secure hash function, such as SHA-256 or SHA-3, to ensure the integrity and security of the data being hashed."
+    },
+    {
+        "abstract": "Insecure Signature Verification",
+        "files": [
+            "258remotecdm.py"
+        ],
+        "detail": "The use of pss.new without specifying the mask generation function (MGF) and salt length in the get_service_certificate method may lead to insecure signature verification. It's recommended to explicitly specify these parameters, using a secure hash function for the MGF and an appropriate salt length, to ensure the security of the signature verification process."
+    },
+    {
+        "abstract": "Use of a fixed nonce for ChaCha20-Poly1305 encryption",
+        "files": [
+            "1059proxy.py",
+            "1059safe.py"
+        ],
+        "detail": "Using a fixed nonce for ChaCha20-Poly1305 encryption compromises the security of encrypted messages, making them vulnerable to various attacks. Nonces should be unique and never reused with the same key, as per cryptographic best practices and standards."
+    },
+    {
+        "abstract": "Insecure key derivation method",
+        "files": [
+            "1059safe.py"
+        ],
+        "detail": "The method 'sha256_32bytes' derives a key from a given input by hashing it and truncating the result to 32 bytes. This approach does not use a secure key derivation function (KDF) and lacks salting, making it susceptible to brute-force attacks and not compliant with best practices for cryptographic key derivation."
+    },
+    {
+        "abstract": "Inadequate RSA encryption padding",
+        "files": [
+            "1059safe.py"
+        ],
+        "detail": "The RSA encryption uses OAEP with SHA-256 for padding, which is secure under current standards. However, the misuse context is not applicable here as the implementation follows best practices for RSA encryption padding. This entry is to correct a potential misunderstanding; no misuse is identified in this context."
+    }
+]

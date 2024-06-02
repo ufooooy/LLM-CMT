@@ -1,0 +1,18 @@
+[
+    {
+        "abstract": "Insecure Random Number Generation and Processing",
+        "explanation": "This misuse involves correctly using `crypto/rand` for generating cryptographically secure random numbers but then processing these numbers in a way that reduces their entropy, making the output potentially predictable. High entropy is essential for ensuring the unpredictability of random numbers, which is crucial for security purposes such as cryptographic key generation, nonce generation, etc. It is important to maintain the full entropy of the original random bytes throughout processing to ensure the security of the cryptographic operations."
+    },
+    {
+        "abstract": "InsecureSkipVerify and Insecure Use of SHA-1",
+        "explanation": "This misuse includes two significant issues: disabling certificate verification with `InsecureSkipVerify: true` and using SHA-1 for hashing. Disabling certificate verification makes the connection vulnerable to man-in-the-middle attacks, as it no longer verifies if the server's certificate is valid and trusted. Using SHA-1 for hashing, especially in security-sensitive contexts like computing WebSocket accept keys, is vulnerable to collision attacks, making it an insecure choice. Both practices significantly compromise the security of the connection and data integrity."
+    },
+    {
+        "abstract": "Improper Error Handling and Lack of Input Validation",
+        "explanation": "This misuse involves two critical programming oversights: improper error handling, particularly in key decoding scenarios, and the lack of input validation before attempting to decode and decrypt data. These issues can lead to undefined behavior, use of incorrect key material, or exploitation of security vulnerabilities if the input is maliciously crafted. Proper error handling and rigorous input validation are essential to ensure the security and stability of cryptographic operations and to protect against potential attacks."
+    },
+    {
+        "abstract": "Use of ECB Mode for Symmetric Encryption",
+        "explanation": "Employing ECB (Electronic Codebook) mode for symmetric encryption is considered a misuse due to its inherent security weaknesses. ECB mode encrypts identical plaintext blocks into identical ciphertext blocks, failing to obscure data patterns. This characteristic makes it unsuitable for most encryption needs as it does not provide serious message confidentiality. Alternatives like CBC (Cipher Block Chaining), CTR (Counter), or GCM (Galois/Counter Mode) modes are recommended for their ability to hide patterns and provide stronger security guarantees."
+    }
+]

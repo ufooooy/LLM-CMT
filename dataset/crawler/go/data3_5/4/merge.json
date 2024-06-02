@@ -1,0 +1,65 @@
+[
+    {
+        "abstract": "Insecure handling and generation of secrets",
+        "files": [
+            "16737service.go"
+        ],
+        "detail": "Secrets, including JWT secrets, are generated within application logic and stored in files, potentially leading to insecure handling. Best practices recommend using dedicated secret management systems. Additionally, file permissions (`0600`) are used, but may not protect sensitive data in insecure environments."
+    },
+    {
+        "abstract": "Inadequate error handling in critical operations",
+        "files": [
+            "16737service.go"
+        ],
+        "detail": "Critical operations, particularly around configuration and secret handling, lack proper error handling, which could expose sensitive information or lead to misconfiguration."
+    },
+    {
+        "abstract": "Insecure cryptographic practices",
+        "files": [
+            "167hash.go",
+            "16737span_channel_out.go",
+            "16737trie.go",
+            "16737l2_batcher.go",
+            "16737signature.go",
+            "16737signer.go",
+            "16737secrets.go",
+            "16737server.go",
+            "16737random.go",
+            "1627keystorage_test.go",
+            "16737l2_runtime.go",
+            "16737eth_client_test.go",
+            "16737cmd.go",
+            "16737discovery.go",
+            "16737client.go",
+            "16737blobs.go",
+            "16737calldata_source_test.go",
+            "1632main.go",
+            "166node_func.go",
+            "16737account_proof.go"
+        ],
+        "detail": "Various misuses include insecure hash function usage (SHA-256 without salt, MD5), insecure randomness sources (`math/rand`), lack of input validation, hardcoded cryptographic values, and improper error handling. Recommendations include using secure hash functions like SHA-3 or BLAKE2, cryptographically secure RNG (`crypto/rand`), and rigorous input validation."
+    },
+    {
+        "abstract": "Insecure key management and cryptographic operations",
+        "files": [
+            "16737signature.go",
+            "16737signer.go",
+            "16737secrets.go",
+            "16737cmd.go",
+            "1627mnemonic_test.go",
+            "1627receipt_test.go",
+            "1627mnemonic.go",
+            "1627ed25519.go"
+        ],
+        "detail": "Issues include insecure handling of private keys, lack of proper validation or error handling in cryptographic operations, use of hard-coded, weak mnemonics for key generation, and misuse of ed25519 keys for encryption. Secure key management practices and proper cryptographic operation validation are recommended."
+    },
+    {
+        "abstract": "Lack of cryptographic agility and insecure algorithm usage",
+        "files": [
+            "16737account_proof.go",
+            "1627tree.go",
+            "1627x25519.go"
+        ],
+        "detail": "Direct use of specific cryptographic primitives without flexibility for updates (lack of cryptographic agility), use of broken hash functions (MD5), and deterministic nonce generation for encryption highlight the need for systems designed with cryptographic agility and secure algorithm usage."
+    }
+]

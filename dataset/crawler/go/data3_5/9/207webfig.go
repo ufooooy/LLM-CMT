@@ -1,0 +1,320 @@
+// `webfig.go` implements encryption negotiation and authentication against
+// the web interface (webfig) of RouterOS v6.45+.
+package mikrotik
+
+import (
+	"bytes"
+	"crypto/rand"
+	"crypto/rc4"
+	"crypto/sha1"
+	"encoding/binary"
+	"fmt"
+	"io"
+	"mime/multipart"
+	"net/http"
+	"net/textproto"
+	"net/url"
+	"strings"
+
+	"github.com/vulncheck-oss/go-exploit/output"
+	"github.com/vulncheck-oss/go-exploit/protocol"
+	"golang.org/x/crypto/curve25519"
+	"golang.org/x/text/encoding/charmap"
+)
+
+// WebfigSession tracks the crypto for a given "session" which is associated
+// with an ID. A sequence number must also be tracked.
+type WebfigSession struct {
+	ID  uint32
+	Seq int
+	Rx  *rc4.Cipher
+	Tx  *rc4.Cipher
+}
+
+// Reverse the provided slice and return it back to the caller.
+func reverseSlice(slice []byte) []byte {
+	copied := make([]byte, len(slice))
+	copy(copied, slice)
+
+	for i := 0; i < len(copied)/2; i++ {
+		j := len(copied) - 1 - i
+		copied[i], copied[j] = copied[j], copied[i]
+	}
+
+	return copied
+}
+
+// converts binary data into the expected latin-1 format. 0 is replaced by 0xc480.
+func webEncode(data []byte) string {
+	decoder := charmap.ISO8859_1.NewDecoder()
+	decodedData, _ := decoder.Bytes(data)
+	convertedData := bytes.ReplaceAll(decodedData, []byte{0}, []byte{0xc4, 0x80})
+
+	return string(convertedData)
+}
+
+// converts the latin-1ish data back to binary. 0xc480 is replaced by 0.
+func webDecode(data string) string {
+	decodedData := bytes.ReplaceAll([]byte(data), []byte{0xC4, 0x80}, []byte{0x00})
+	latin1Encoder := charmap.ISO8859_1.NewEncoder()
+	decodedData, _ = latin1Encoder.Bytes(decodedData)
+
+	return string(decodedData)
+}
+
+// Generate a key pair suitable for Curve25519 crypto.
+// return privatekey, publickey.
+func generateKeyPair() ([]byte, []byte) {
+	// generate a private key using random data
+	privateKey := make([]byte, 32)
+	_, _ = rand.Read(privateKey)
+
+	// MikroTik uses Curve25515 Donna, so tweak the key appropriately
+	privateKey[0] &= 248
+	privateKey[31] &= 127
+	privateKey[31] |= 64
+
+	// Requiring the reversing of crypto materials is something I noted
+	// back in 2019:
+	// https://github.com/tenable/routeros/blob/c5d42403135e7d826fbddd85b788401b0f40d90d/common/jsproxy_session.cpp#L316
+	// I really don't know why. Margin did the same in their python impl, so
+	// it can't be wrong, right?
+	publicKey, _ := curve25519.X25519(reverseSlice(privateKey), curve25519.Basepoint)
+
+	return privateKey, publicKey
+}
+
+func generateSharedKey(privateKey []byte, publicKey []byte) []byte {
+	sharedKey, _ := curve25519.X25519(reverseSlice(privateKey), reverseSlice(publicKey))
+
+	return reverseSlice(sharedKey)
+}
+
+// Sends the provided public key as the first step to encryption negotiation.
+// The function receives back a payload that it pushes through webDecode.
+func sendPublicKey(webfigURL string, publicKey []byte) (string, bool) {
+	payload := []byte{}
+	payload = append(payload, []byte(strings.Repeat("\x00", 8))...)
+	payload = append(payload, reverseSlice(publicKey)...)
+	resp, body, ok := protocol.HTTPSendAndRecv("POST", webfigURL, webEncode(payload))
+	if !ok {
+		output.PrintfFrameworkError("Failed to send the public key to %s", webfigURL)
+
+		return "", false
+	}
+
+	if resp.StatusCode != 200 {
+		output.PrintfFrameworkError("Unexpected status code (%d) when sending the public key ", resp.StatusCode)
+
+		return "", false
+	}
+
+	return webDecode(body), true
+}
+
+// Initializes the rc4 send/recv states using the negotiated shared key. The
+// key is addtionally pushed through MSChapv2 key generation logic.
+//
+// At the end, the rc4 engines are ready to be used for communication.
+func initRC4(session *WebfigSession, sharedKey []byte) {
+	// init the recv side
+	rxKey := string(sharedKey) +
+		strings.Repeat("\x00", 40) +
+		"On the client side, this is the receive key; on the server side, it is the send key." +
+		strings.Repeat("\xf2", 40)
+	rxSha := sha1.Sum([]byte(rxKey))
+	rxFinial := rxSha[:16]
+	session.Rx, _ = rc4.NewCipher(rxFinial)
+
+	// init the send side
+	txKey := string(sharedKey) +
+		strings.Repeat("\x00", 40) +
+		"On the client side, this is the send key; on the server side, it is the receive key." +
+		strings.Repeat("\xf2", 40)
+	txSha := sha1.Sum([]byte(txKey))
+	txFinal := txSha[:16]
+	session.Tx, _ = rc4.NewCipher(txFinal)
+
+	// routers uses rc4 drop 768
+	drop768 := strings.Repeat("\x00", 768)
+	dst := make([]byte, len(drop768))
+	session.Rx.XORKeyStream(dst, []byte(drop768))
+	session.Tx.XORKeyStream(dst, []byte(drop768))
+}
+
+// Negotiates encryption with the remote Webfig described by `webfigURL`. Note that
+// `webfigURL` is generally created like so:
+//
+// webfigURL := protocol.GenerateURL(conf.Rhost, conf.Rport, conf.SSL, "/jsproxy")
+//
+// But we didn't want to introduce a config dependency here.
+func NegotiateEncryption(webfigURL string, session *WebfigSession) bool {
+	clientPrivKey, clientPubKey := generateKeyPair()
+	body, ok := sendPublicKey(webfigURL, clientPubKey)
+	if !ok {
+		return false
+	}
+
+	if len(body) != 40 {
+		output.PrintfFrameworkError("Unexpected public key response size")
+
+		return false
+	}
+
+	// values that will be needed for the remainder of the session
+	session.Seq = 1
+	session.ID = binary.BigEndian.Uint32([]byte(body[0:4]))
+
+	serverPubKey := body[8:]
+	sharedKey := generateSharedKey(clientPrivKey, []byte(serverPubKey))
+	initRC4(session, sharedKey)
+
+	return true
+}
+
+// Provided an M2Message this function will apply the various paddings/headers,
+// encrypt it, and send it to the remote target described by `webfigURL`. The function
+// returns the router's M2Message response.
+func SendEncrypted(webfigURL string, msg *M2Message, session *WebfigSession) (*M2Message, bool) {
+	retMsg := NewM2Message()
+
+	// serialize the m2 and encrypt it. The message requires 8 bytes of padding
+	m2Msg := []byte("M2")
+	m2Msg = append(m2Msg, (msg.Serialize())...)
+	m2Msg = append(m2Msg, []byte(strings.Repeat("\x20", 8))...)
+	encrypted := make([]byte, len(m2Msg))
+	session.Tx.XORKeyStream(encrypted, m2Msg)
+
+	// Create a header for the encrypted message it goes:
+	// [4 bytes ID][4 bytes sequence]
+	idheader := make([]byte, 4)
+	seqheader := make([]byte, 4)
+	binary.BigEndian.PutUint32(idheader, session.ID)
+	binary.BigEndian.PutUint32(seqheader, uint32(session.Seq))
+
+	// sequence can now be incremented
+	session.Seq += len(m2Msg)
+
+	// build the final payload
+	finalMsg := []byte{}
+	finalMsg = append(finalMsg, idheader...)
+	finalMsg = append(finalMsg, seqheader...)
+	finalMsg = append(finalMsg, encrypted...)
+
+	// send the contents to Mikrotik
+	headers := map[string]string{
+		"Content-Type": "msg",
+	}
+	resp, body, ok := protocol.HTTPSendAndRecvWithHeaders("POST", webfigURL, string(finalMsg), headers)
+	if !ok {
+		return retMsg, false
+	}
+	if resp.StatusCode != 200 {
+		return retMsg, false
+	}
+
+	// the first 8 bytes (session, seq id) are not interesting to us
+	body = body[8:]
+
+	// decrypt the payload and strip the padding
+	dst := make([]byte, len(body))
+	session.Rx.XORKeyStream(dst, []byte(body))
+	dst = dst[:len(dst)-8]
+
+	// attempt to parse the decrypted message
+	ok = ParseM2Message(dst, retMsg)
+	if !ok {
+		output.PrintfFrameworkError("Failed to parse M2 message")
+
+		return retMsg, false
+	}
+
+	return retMsg, true
+}
+
+// Given a username and password, this function will authenticate with
+// the remote router.
+func Login(webfigURL string, username string, password string, session *WebfigSession) bool {
+	// create the login M2
+	msg := NewM2Message()
+	msg.AddString(1, []byte(username))
+	msg.AddString(3, []byte(password))
+
+	respMsg, ok := SendEncrypted(webfigURL, msg, session)
+	if !ok {
+		output.PrintfFrameworkStatus("Authentication failed")
+
+		return false
+	}
+
+	if len(respMsg.Strings) != 0 {
+		value, ok := respMsg.Strings[0x15]
+		if ok {
+			output.PrintfFrameworkStatus("Authenticated to a %s", string(value))
+		}
+	}
+
+	return true
+}
+
+// Upload a file via webfig. The expected url is: http[s]://<address>:<port>/jsproxy
+// The file will be written to /rw/disk and be viewable from the Webfig disk menu.
+func FileUpload(webfigURL string, filename string, contents string, session *WebfigSession) bool {
+	orginalName := filename
+
+	filename += strings.Repeat("\x20", 8)
+	encrypted := make([]byte, len(filename))
+	session.Tx.XORKeyStream(encrypted, []byte(filename))
+
+	// track length before we encode it
+	sequence := session.Seq
+	session.Seq += len(encrypted)
+
+	encodedAndEncrypted := webEncode(encrypted)
+
+	// Create a header for the encrypted message it goes:
+	// [4 bytes ID][4 bytes sequence]
+	idheader := make([]byte, 4)
+	seqheader := make([]byte, 4)
+	binary.BigEndian.PutUint32(idheader, session.ID)
+	binary.BigEndian.PutUint32(seqheader, uint32(sequence))
+
+	// build the final payload
+	finalMsg := []byte{}
+	finalMsg = append(finalMsg, idheader...)
+	finalMsg = append(finalMsg, seqheader...)
+	finalMsg = append(finalMsg, encodedAndEncrypted...)
+
+	// write to a multipart field
+	var multipartFile bytes.Buffer
+	writer := multipart.NewWriter(&multipartFile)
+	header := make(textproto.MIMEHeader)
+	header.Set("Content-Disposition", fmt.Sprintf(`form-data; name="file"; filename="%s"`, orginalName))
+	header.Set("Content-Type", "form-data")
+	filedata, _ := writer.CreatePart(header)
+	_, _ = io.Copy(filedata, strings.NewReader(contents))
+	writer.Close()
+
+	// Craft a raw HTTP request
+	req, err := http.NewRequest("POST", webfigURL+"/upload?"+url.QueryEscape(string(finalMsg)), &multipartFile)
+	if err != nil {
+		return false
+	}
+
+	req.Header.Set("Content-Type", writer.FormDataContentType())
+	req.Header.Set("User-Agent", protocol.GlobalUA)
+
+	client := &http.Client{}
+	resp, _, ok := protocol.DoRequest(client, req)
+	if !ok {
+		return false
+	}
+
+	if resp.StatusCode != 200 {
+		output.PrintfFrameworkError("Received an unexpected HTTP status code %d.", resp.StatusCode)
+
+		return false
+	}
+
+	return true
+}

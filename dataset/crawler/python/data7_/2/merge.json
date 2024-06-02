@@ -1,0 +1,48 @@
+[
+    {
+        "abstract": "Insecure handling and validation of JWT tokens",
+        "files": [
+            "1977test_rest.py",
+            "1977resource_jwt.py",
+            "1977test_jwt.py",
+            "1977security.py"
+        ],
+        "detail": "The JWT tokens are managed insecurely across various parts of the application, with issues ranging from not specifying secure cryptographic signing algorithms explicitly, to using a static secret key for validation without proper rotation or entropy. This could lead to vulnerabilities such as the 'none' algorithm attack, algorithm confusion, and brute-force attacks. Best practices recommend explicitly defining secure algorithms like HS256, RS256, or ES256 when encoding/decoding JWT tokens, validating token signatures against a list of trusted algorithms, and considering the use of asymmetric keys for a more robust validation mechanism."
+    },
+    {
+        "abstract": "Insecure storage and handling of sensitive information",
+        "files": [
+            "1977test_managers_user.py",
+            "1977service_encrypted_storage.py"
+        ],
+        "detail": "Sensitive information, including user secrets and encryption keys, is stored or used insecurely. This includes storing 'user_secret' in plaintext and using 'plaintext_user_secret' directly as an encryption key. Best practices recommend encrypting sensitive information before storage, using strong key derivation functions like PBKDF2, bcrypt, or Argon2, and ensuring encryption keys are managed securely."
+    },
+    {
+        "abstract": "Insecure OTP expiry validation",
+        "files": [
+            "1977test_managers_otp.py"
+        ],
+        "detail": "The OTP expiry validation logic allows for the creation and validation of OTPs with past expiry dates, undermining the principle of time-bound access in authentication mechanisms."
+    },
+    {
+        "abstract": "Insecure update of authentication methods",
+        "files": [
+            "1977test_managers_config.py"
+        ],
+        "detail": "The 'update_auth' method allows insecure updates to authentication methods without proper validation, potentially enabling attackers to bypass authentication mechanisms."
+    },
+    {
+        "abstract": "Lack of proper handling for sensitive information",
+        "files": [
+            "1977test_managers_config.py"
+        ],
+        "detail": "Sensitive information handling mechanisms are not securely set by default, with no enforcement for hiding sensitive data, risking unintentional disclosure."
+    },
+    {
+        "abstract": "Weak password hashing without salt",
+        "files": [
+            "1977test_genericdata_storage.py"
+        ],
+        "detail": "Passwords are hashed without using a salt, making the system vulnerable to attacks like rainbow table attacks. It's recommended to use strong hashing algorithms that automatically handle salting."
+    }
+]

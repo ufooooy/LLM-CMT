@@ -1,0 +1,62 @@
+[
+    {
+        "abstract": "Insecure Hash Function Usage",
+        "files": [
+            "396v02.go",
+            "396version.go",
+            "396bytestream.go",
+            "396attestationstate.go",
+            "396artifact_download.go"
+        ],
+        "detail": "The use of SHA-256 and SHA-1 for hashing sensitive information, integrity checks, passphrase derivation, and digest verification is considered insecure for contexts requiring resistance against collision attacks or ensuring data integrity. Modern applications should consider using SHA-384, SHA-512, or stronger hashing algorithms. For password storage or secure passphrase derivation, algorithms like Argon2, PBKDF2, or bcrypt are recommended due to their key stretching and salting mechanisms."
+    },
+    {
+        "abstract": "Insecure TLS Version Configuration",
+        "files": [
+            "396grpc.go",
+            "3871yakit_client.go",
+            "3871websvr.go"
+        ],
+        "detail": "The configuration allows for TLS versions that are considered insecure and deprecated, such as allowing TLS version 1.2 or higher but not explicitly disabling older versions, and specifying TLS version 1.0 as the minimum. This could potentially allow for downgrade attacks and may not leverage the security enhancements available in TLS 1.3 or later versions. Best practices recommend explicitly setting the minimum allowed TLS version to TLS 1.2 or higher."
+    },
+    {
+        "abstract": "Insecure gRPC Connection Setup",
+        "files": [
+            "396grpcconn.go"
+        ],
+        "detail": "The gRPC client connection setup allows for 'insecure' connections based on a boolean flag, which could lead to man-in-the-middle attacks in production environments if the insecure option is mistakenly enabled. Secure connections should always be used in production code."
+    },
+    {
+        "abstract": "Insecure Random Number Generation and Processing",
+        "files": [
+            "396biz.go",
+            "396auth.go",
+            "396auth_delete_account.go",
+            "3871util.go"
+        ],
+        "detail": "While the use of `crypto/rand` adheres to best practices for cryptographic secure random number generation, the subsequent processing reduces the entropy of the output, potentially making it predictable. Ensuring the full entropy of the original random bytes is utilized in a secure manner is crucial."
+    },
+    {
+        "abstract": "InsecureSkipVerify and Insecure Use of SHA-1",
+        "files": [
+            "3871websvr_test.go",
+            "3871ws.go"
+        ],
+        "detail": "Disabling certificate verification with InsecureSkipVerify: true makes the connection vulnerable to man-in-the-middle attacks. Additionally, the use of SHA-1 for hashing, such as in computing WebSocket accept key, is vulnerable to collision attacks and considered insecure."
+    },
+    {
+        "abstract": "Improper Error Handling and Lack of Input Validation",
+        "files": [
+            "3871utils.go",
+            "3871vul_crypto_sm.go"
+        ],
+        "detail": "Improper error handling on key decoding and lack of input validation before attempting to decode and decrypt can lead to undefined behavior, incorrect key material being used, or potential security vulnerabilities if the input is maliciously crafted."
+    },
+    {
+        "abstract": "Use of ECB Mode for Symmetric Encryption",
+        "files": [
+            "3871vul_crypto_sm.go"
+        ],
+        "detail": "ECB mode is known to be insecure for most uses as it does not provide serious message confidentiality. Identical plaintext blocks are encrypted into identical ciphertext blocks; thus, it does not hide data patterns well."
+    }
+]

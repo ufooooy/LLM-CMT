@@ -1,0 +1,22 @@
+[
+    {
+        "abstract": "Insecure SSL/TLS version or cipher suite",
+        "explanation": "The misuse involves not specifying or enforcing the use of secure SSL/TLS versions or strong cipher suites in the code. This oversight can lead to the application using protocols with known vulnerabilities or weak encryption methods. Such a practice compromises the confidentiality and integrity of the data in transit, making it susceptible to interception or decryption by unauthorized parties. Ensuring the use of up-to-date and robust cryptographic protocols and cipher suites is crucial for maintaining secure communications."
+    },
+    {
+        "abstract": "Lack of certificate validation",
+        "explanation": "This misuse occurs when the code explicitly disables SSL certificate verification, making the connection vulnerable to Man-in-the-Middle (MitM) attacks. By setting CURLOPT_SSL_VERIFYPEER and CURLOPT_SSL_VERIFYHOST to values that bypass certificate checks, the application fails to verify if the server's certificate is signed by a trusted Certificate Authority (CA) or if the host name matches the certificate. This breach in security allows an attacker to intercept or manipulate the data exchanged between the client and server, undermining the authenticity and integrity of the communication."
+    },
+    {
+        "abstract": "Hardcoded sensitive information",
+        "explanation": "Hardcoding sensitive information, such as certificates and private keys, directly in the source code is a critical security flaw. This practice exposes sensitive data to anyone who can access the codebase, which could be particularly damaging if the codebase is compromised or publicly accessible. Such exposure can lead to unauthorized access or impersonation attacks, compromising the confidentiality, integrity, and authenticity of the application's communications or data."
+    },
+    {
+        "abstract": "Improper error handling",
+        "explanation": "The code does not adequately handle errors following SSL_CTX_use_certificate and SSL_CTX_use_RSAPrivateKey calls. By merely printing an error message without terminating or significantly altering the execution flow, the application may continue to operate with an improperly configured SSL context. This lack of proper error handling can lead to insecure operations, potentially exposing the application to various attacks or leading to unintended behavior, thereby compromising the security of the application's communications."
+    },
+    {
+        "abstract": "Memory leak on error paths",
+        "explanation": "This misuse involves failing to free allocated resources, such as BIO, RSA, and X509 objects, on all error paths. If the initialization fails partway through, this oversight can lead to memory leaks, which may degrade the performance of the application over time or, in severe cases, result in a denial of service (DoS) by exhausting system resources. Properly managing memory and freeing resources on error paths is essential for maintaining the reliability and security of the application."
+    }
+]

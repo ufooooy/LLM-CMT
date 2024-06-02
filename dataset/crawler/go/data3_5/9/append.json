@@ -1,0 +1,14 @@
+[
+    {
+        "abstract": "Insecure Hash Function Usage",
+        "explanation": "The misuse involves using SHA-256 without salt or iterations for password hashing, and SHA-1 for generating build SHA, both of which are insecure practices. Without salt, SHA-256 hashed passwords are vulnerable to rainbow table attacks, and lacking iterations makes brute-force attacks more feasible. SHA-1 is no longer considered secure due to vulnerabilities that allow for collision attacks, where two different inputs produce the same hash output. This misuse compromises the integrity and confidentiality of sensitive data."
+    },
+    {
+        "abstract": "Insecure Encoding Method",
+        "explanation": "The misuse involves using custom encoding schemes that are not properly handled, potentially leading to predictable or manipulable outputs. In security-sensitive contexts, such vulnerabilities can be exploited to bypass security mechanisms or to inject malicious data. Secure encoding methods are essential to ensure the integrity and confidentiality of data, especially when it is transmitted or stored."
+    },
+    {
+        "abstract": "Insecure Handling of Private Keys",
+        "explanation": "Directly converting bytes to a private key without ensuring the source's security exposes private keys to unauthorized access. Private keys are fundamental to the security of cryptographic systems, and their exposure can compromise the entire system. Secure handling, storage, and generation of private keys are paramount to prevent unauthorized access and ensure the integrity and confidentiality of cryptographic operations."
+    }
+]

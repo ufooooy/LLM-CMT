@@ -1,0 +1,6 @@
+[
+    {
+        "abstract": "Cryptographic operation weaknesses in key management and encryption modes",
+        "explanation": "The identified misuse involves several critical vulnerabilities: the use of hardcoded cryptographic keys, employing a low iteration count in PBKDF2, and using AES in CFB mode with a fixed initialization vector (IV). Hardcoded keys can be easily extracted by attackers, low iteration counts reduce the time needed for brute-force attacks, and fixed IVs compromise the security of encryption schemes. These practices severely weaken the security of cryptographic operations and expose systems to various attacks."
+    }
+]

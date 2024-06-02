@@ -1,0 +1,370 @@
+// Package exploit is the entrypoint for exploits developed with the go-exploit framework.
+//
+// The exploit package invokes command line parsing, handles c2, and calls into the three stages of
+// exploitation (as defined by go-exploit). In order to use this framework, implementing exploits
+// should follow this general template:
+//
+//	package main
+//
+//	import (
+//		"github.com/vulncheck-oss/go-exploit"
+//		"github.com/vulncheck-oss/go-exploit/c2"
+//		"github.com/vulncheck-oss/go-exploit/config"
+//	)
+//
+//	type MyExploit struct{}
+//
+//	func (sploit MyExploit) ValidateTarget(conf *config.Config) bool {
+//		return false
+//	}
+//
+//	func (sploit MyExploit) CheckVersion(conf *config.Config) exploit.VersionCheckType {
+//		return exploit.NotImplemented
+//	}
+//
+//	func (sploit MyExploit) RunExploit(conf *config.Config) bool {
+//		return true
+//	}
+//
+//	func main() {
+//		supportedC2 := []c2.Impl{
+//			c2.SimpleShellServer,
+//			c2.SimpleShellClient,
+//		}
+//		conf := config.New(config.CodeExecution, supportedC2, "My Target", "CVE-2023-1270", 80)
+//
+//		sploit := MyExploit{}
+//		exploit.RunProgram(sploit, conf)
+//	}
+package exploit
+
+import (
+	"crypto/tls"
+	"fmt"
+	"net/http"
+	"sync"
+	"time"
+
+	"github.com/vulncheck-oss/go-exploit/c2"
+	"github.com/vulncheck-oss/go-exploit/cli"
+	"github.com/vulncheck-oss/go-exploit/config"
+	"github.com/vulncheck-oss/go-exploit/output"
+	"github.com/vulncheck-oss/go-exploit/protocol"
+)
+
+// The return type for CheckVersion().
+type VersionCheckType int
+
+const (
+	// The target is not vulnerable.
+	NotVulnerable VersionCheckType = 0
+	// The target is vulnerable.
+	Vulnerable VersionCheckType = 1
+	// Based on incomplete information, the target might be vulnerable.
+	PossiblyVulnerable VersionCheckType = 2
+	// Something went wrong during CheckVersion().
+	Unknown VersionCheckType = 3
+	// CheckVersion() is not implemented.
+	NotImplemented VersionCheckType = 4
+)
+
+// Exploit is the implementing interface for go-exploit exploits. The functions
+// are called in order: ValidateTarget, CheckVersion, RunExploit.
+//
+// # ValidateTarget
+//
+// ValidateTarget is for determining if the target is the type of software the
+// implemented exploit would like to exploit. This is to avoid throwing an exploit
+// at target would never be vulnerable. For example, if an exploit is targeting
+// Confluence, then ValidateTarget might look like the following
+//
+//	func (sploit ConfluenceExploit) ValidateTarget(conf *config.Config) bool {
+//		url := protocol.GenerateURL(conf.Rhost, conf.Rport, conf.SSL, "/")
+//		resp, _, ok := protocol.HTTPSendAndRecv("GET", url, "")
+//		if !ok {
+//			return false
+//		}
+//
+//		if resp.StatusCode != 200 {
+//			output.PrintfError("Received an unexpected HTTP status code: %d", resp.StatusCode)
+//
+//			return false
+//		}
+//		_, ok = resp.Header["X-Confluence-Request-Time"]
+//
+//		return ok
+//	}
+//
+// Above you can see ValidateTarget returns true *only* if it finds the X-Confluence-Request-Time
+// HTTP header. The exploit will not continue on if false is returned. If true is returned then
+// it will move on to the next stage (CheckVersion).
+//
+// # CheckVersion
+//
+// CheckVersion is for determning if the target is an affected version or not. Again, to avoid
+// throwing an exploit at a target that is not vulnerable. CheckVersion is intended to be a
+// non-intrusive version check. That generally means doing things like:
+//
+//   - Extracting the version number from a login page
+//   - Examining the HTTP Last-Modified header
+//   - Looking for new functionality introduce in the patch
+//
+// For example, to check for CVE-2022-30525, you could do something like this.
+//
+//	func (sploit ZyxelExploit) CheckVersion(conf *config.Config) exploit.VersionCheckType {
+//		url := protocol.GenerateURL(conf.Rhost, conf.Rport, conf.SSL, "/")
+//		resp, bodyString, ok := protocol.HTTPSendAndRecv("GET", url, "")
+//		if !ok {
+//			return exploit.Unknown
+//		}
+//
+//		if resp.StatusCode != 200 {
+//			output.PrintfError("Received an unexpected HTTP status code: %d", resp.StatusCode)
+//
+//			return exploit.Unknown
+//		}
+//
+//		if !strings.Contains(bodyString, "zyFunction.js") {
+//			output.PrintError("The HTTP response did not contain an expected JavaScript include")
+//
+//			return exploit.Unknown
+//		}
+//
+//		re := regexp.MustCompile(`src="/ext-js/app/common/zyFunction.js\?v=([0-9]+)"></script>`)
+//		res := re.FindAllStringSubmatch(bodyString, -1)
+//		if len(res) == 0 {
+//			output.PrintError("Could not extract the build date from the target")
+//
+//			return exploit.Unknown
+//		}
+//
+//		output.PrintfStatus("The device has a self-reported firmware publication date of %s", res[0][1])
+//		date64, _ := strconv.ParseInt(res[0][1], 10, 64)
+//		if date64 < 220415000000 {
+//			return exploit.Vulnerable
+//		}
+//
+//		return exploit.NotVulnerable
+//	}
+//
+// Regardless, the goal is to avoid throwing the exploit until you are somewhat sure that it should
+// land. This cannot always be accomplished so the return of exploit.NotImplemented is always on offer,
+// and the attacker can skip this step via configuration if they please.
+//
+// # RunExploit
+//
+// RunExploit should contain the logic for exploiting the target. There is almost no requirement on this
+// function other than the attacker do their thing. The on thing the implementation should do is return
+// false if believe their attack has failed.
+type Exploit interface {
+	ValidateTarget(conf *config.Config) bool
+	CheckVersion(conf *config.Config) VersionCheckType
+	RunExploit(conf *config.Config) bool
+}
+
+var globalWG sync.WaitGroup
+
+// doVerify is a wrapper around the implemented exploit's ValidateTarget() function.
+func doVerify(sploit Exploit, conf *config.Config) bool {
+	output.PrintFrameworkStatus(
+		fmt.Sprintf("Validating %s target", conf.Product), "host", conf.Rhost, "port", conf.Rport)
+	if !sploit.ValidateTarget(conf) {
+		output.PrintFrameworkError(
+			fmt.Sprintf("The target isn't recognized as %s, quitting", conf.Product), "host", conf.Rhost, "port", conf.Rport, "verified", false)
+
+		return false
+	}
+	output.PrintFrameworkSuccess("Target verification succeeded!", "host", conf.Rhost, "port", conf.Rport, "verified", true)
+
+	return true
+}
+
+// doVersionCheck is a wrapper around the implemented exploit's CheckVersion() function.
+func doVersionCheck(sploit Exploit, conf *config.Config) bool {
+	output.PrintFrameworkStatus("Running a version check on the remote target", "host", conf.Rhost, "port", conf.Rport)
+	result := sploit.CheckVersion(conf)
+	switch result {
+	case NotVulnerable:
+		output.PrintFrameworkError("The target appears to be a patched version.", "host", conf.Rhost, "port", conf.Rport, "vulnerable", "no")
+
+		return false
+	case Vulnerable:
+		output.PrintFrameworkSuccess("The target appears to be a vulnerable version!", "host", conf.Rhost, "port", conf.Rport, "vulnerable", "yes")
+	case PossiblyVulnerable:
+		output.PrintFrameworkSuccess("The target *might* be a vulnerable version. Continuing.", "host", conf.Rhost, "port", conf.Rport, "vulnerable", "possibly")
+	case Unknown:
+		output.PrintFrameworkError("The result of the version check returned an unknown state.", "host", conf.Rhost, "port", conf.Rport, "vulnerable", "unknown")
+
+		return false
+	case NotImplemented:
+		output.PrintFrameworkWarn("This exploit has not implemented a version check", "host", conf.Rhost, "port", conf.Rport, "vulnerable", "notimplemented")
+	}
+
+	return true
+}
+
+// Automatically determine if the remote target is using SSL or not. This *does* work
+// even if a proxy is configured. This can be slow when dealing with non-SSL
+// targets that don't respond to the handshake attempt, but it seems a reasonable trade-off.
+// return bool (connected), bool (ssl).
+func determineServerSSL(rhost string, rport int) (bool, bool) {
+	conn, ok := protocol.TCPConnect(rhost, rport)
+	if !ok {
+		return false, false
+	}
+	defer conn.Close()
+
+	tlsConn := tls.Client(conn, &tls.Config{InsecureSkipVerify: true})
+	_ = tlsConn.SetReadDeadline(time.Now().Add(10 * time.Second))
+	err := tlsConn.Handshake()
+
+	return true, err == nil
+}
+
+// Invokes command line parsing based on the type of exploit that was implemented.
+func parseCommandLine(conf *config.Config) bool {
+	switch conf.ExType {
+	case config.CodeExecution:
+		return cli.CodeExecutionCmdLineParse(conf)
+	case config.InformationDisclosure:
+		return cli.InformationDisclosureCmdLineParse(conf)
+	case config.Webshell:
+		return cli.WebShellCmdLineParse(conf)
+	default:
+		output.PrintFrameworkError("Invalid exploit type provided.")
+
+		return false
+	}
+}
+
+func startC2Server(conf *config.Config) bool {
+	if conf.DoExploit && conf.ExType == config.CodeExecution && !conf.ThirdPartyC2Server && conf.Bport == 0 {
+		c2Impl, success := c2.GetInstance(conf.C2Type)
+		if !success || c2Impl == nil {
+			return false
+		}
+
+		success = c2Impl.Init(conf.Lhost, conf.Lport, false)
+		if !success {
+			return false
+		}
+
+		globalWG.Add(1)
+		go func() {
+			defer globalWG.Done()
+			c2Impl.Run(conf.C2Timeout)
+			output.PrintFrameworkStatus("C2 server exited")
+		}()
+	}
+
+	return true
+}
+
+// execute verify, version check, and exploit. Return false if an unrecoverable error occurred.
+func doScan(sploit Exploit, conf *config.Config) bool {
+	// autodetect if the target is using SSL or not
+	if conf.DetermineSSL {
+		connected, sslEnabled := determineServerSSL(conf.Rhost, conf.Rport)
+		if !connected {
+			return true
+		}
+		conf.SSL = sslEnabled
+	}
+
+	if conf.DoVerify {
+		if !doVerify(sploit, conf) {
+			return true
+		}
+	}
+
+	if conf.DoVersionCheck {
+		if !doVersionCheck(sploit, conf) {
+			return true
+		}
+	}
+
+	if conf.DoExploit {
+		// execute exploit attempts on a new thread
+		globalWG.Add(1)
+		go func() {
+			defer globalWG.Done()
+			ok := sploit.RunExploit(conf)
+			if ok {
+				output.PrintFrameworkSuccess("Exploit successfully completed", "exploited", true)
+			} else {
+				output.PrintFrameworkError("Exploit exited with an error", "exploited", false)
+			}
+		}()
+
+		// if the "c2" connects to a bindshell, call init to update the rhost/bport
+		// and then attempt to connect
+		if !conf.ThirdPartyC2Server && conf.Bport != 0 {
+			c2Impl, success := c2.GetInstance(conf.C2Type)
+			if !success || c2Impl == nil {
+				return false
+			}
+
+			success = c2Impl.Init(conf.Rhost, conf.Bport, true)
+			if !success {
+				return false
+			}
+
+			globalWG.Add(1)
+			go func() {
+				defer globalWG.Done()
+				c2Impl.Run(conf.C2Timeout)
+				output.PrintFrameworkStatus("C2 client exited")
+			}()
+		}
+	}
+
+	return true
+}
+
+// Effectively the package main function. Parses configuration, starts command and control,
+// controls which targets are scanned, initiates call down into the exploits implementation
+// and is ultimately responsible for waiting for all c2 and attack threads to finish.
+//
+// This function should be called by the implementing exploit, likely in the main function.
+func RunProgram(sploit Exploit, conf *config.Config) {
+	if !parseCommandLine(conf) {
+		return
+	}
+
+	// disable https cert verification globally
+	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{
+		InsecureSkipVerify: true,
+		// We have no control over the SSL versions supported on the remote target. Be permissive for more targets.
+		MinVersion: tls.VersionSSL30,
+	}
+
+	// if the c2 server is meant to catch responses, initialize and start so it can bind
+	if !startC2Server(conf) {
+		return
+	}
+
+	// loop over all the provided host / port combos
+	for index, host := range conf.RhostsNTuple {
+		// setup the conf for the downstream exploit
+		conf.Rhost = host.Rhost
+		conf.Rport = host.Rport
+		switch host.SSL {
+		case config.SSLDisabled:
+			conf.SSL = false
+			conf.DetermineSSL = false
+		case config.SSLEnabled:
+			conf.SSL = true
+			conf.DetermineSSL = false
+		case config.SSLAutodiscover:
+			conf.SSL = false
+			conf.DetermineSSL = true
+		}
+
+		output.PrintFrameworkStatus("Starting target", "index", index, "host", conf.Rhost,
+			"port", conf.Rport, "ssl", conf.SSL, "ssl auto", conf.DetermineSSL)
+		if !doScan(sploit, conf) {
+			return
+		}
+		globalWG.Wait()
+	}
+}

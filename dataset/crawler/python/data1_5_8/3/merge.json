@@ -1,0 +1,36 @@
+[
+    {
+        "abstract": "Insecure Randomness and Key Generation",
+        "files": [
+            "9157base_model.py",
+            "9157signatures.py",
+            "747ssl_bind.py"
+        ],
+        "detail": "The functions `new_access_code` and `create_key_pair` use insecure randomness sources (`Random.get_random_bytes` and `Random.new().read`) for operations requiring cryptographically secure random numbers. For RSA key generation, a key size of 2048 bits might be considered insecure for future-proof applications, with a recommendation to use at least 3072 bits. It's advised to use secure random number generators like `os.urandom` or `random.SystemRandom` for cryptographic purposes."
+    },
+    {
+        "abstract": "Weak Hashing Function and Use of Cryptographically Broken Hash Functions",
+        "files": [
+            "9157signatures.py",
+            "795misc.py",
+            "795config.py"
+        ],
+        "detail": "The functions `verify_digest` and the use of MD5 and SHA-1 in various contexts (file hash generation, Fernet key generation from a password) are insecure. SHA-256, while supported, is not enforced over SHA-512, which offers stronger security. MD5 and SHA-1 are vulnerable to hash collisions and considered cryptographically broken. It's recommended to enforce stronger hashing algorithms like SHA-512 or SHA-3 series and avoid using MD5 and SHA-1 for cryptographic signatures and key derivations."
+    },
+    {
+        "abstract": "Insecure Usage and Management of Encryption Keys",
+        "files": [
+            "795misc.py",
+            "795search.py",
+            "795config.py"
+        ],
+        "detail": "The `encrypt_string`, `decrypt_string`, and `new_search_query` functions, along with the method for deriving a Fernet key from a password, demonstrate potentially insecure key usage and management practices. This includes the use of a global session key leading to key reuse across sessions, lack of secure key storage or lifecycle management, and insecure key derivation using MD5 and base64 encoding. A more secure approach to key management and derivation, such as using PBKDF2, Argon2, or scrypt, should be adopted."
+    },
+    {
+        "abstract": "Insecure Serialization Method",
+        "files": [
+            "795config.py"
+        ],
+        "detail": "The use of the 'pickle' module for serializing and deserializing preferences is insecure due to its vulnerability to arbitrary code execution with untrusted data. A safer serialization format, such as JSON, should be considered."
+    }
+]

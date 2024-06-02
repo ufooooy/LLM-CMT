@@ -1,0 +1,14 @@
+[
+    {
+        "abstract": "Small salt size for PBKDF2",
+        "explanation": "This misuse concerns the use of an 8-byte salt in PBKDF2, which is below the recommended minimum of 16 bytes (128 bits). A smaller salt size reduces the effectiveness of the salt in mitigating rainbow table attacks, where precomputed tables are used to reverse cryptographic hash functions. The primary security issue is the increased vulnerability to rainbow table attacks, potentially allowing attackers to more easily recover passwords or other sensitive information."
+    },
+    {
+        "abstract": "Insecure key size and usage of weak hashing algorithms in encryption",
+        "explanation": "The key size of 128 bits may not meet the security requirements for certain applications, especially when compared to the recommended 256-bit key size for algorithms like AES, which offers a higher level of security. Additionally, the use of SHA-1 in PBKDF2 ('PBKDF2WithHmacSHA1') is problematic due to its susceptibility to collision attacks. The security concerns here include the potential for insufficient encryption strength and the increased risk of hash collisions, which could compromise data integrity and authentication."
+    },
+    {
+        "abstract": "Misuse of Random class and hardcoded charset in cryptographic operations",
+        "explanation": "The use of java.util.Random for generating cryptographic salts is insecure because it does not provide cryptographically strong randomness, making the generated salts predictable and vulnerable to attacks. Furthermore, hardcoding the charset to 'UTF-8' for converting passwords from char[] to byte[] may limit flexibility and could lead to issues if a different charset is needed for compatibility or security reasons. The main security issues are the predictability of salt values and the inflexibility of charset usage, which could affect the overall security of the cryptographic operation."
+    }
+]

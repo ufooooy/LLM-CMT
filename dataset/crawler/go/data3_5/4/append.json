@@ -1,0 +1,6 @@
+[
+    {
+        "abstract": "Insecure handling and generation of secrets",
+        "explanation": "The misuse involves generating and storing JWT secrets directly within the application logic and on the filesystem, which is a risky practice. Storing secrets in files, especially without robust encryption, exposes them to potential leakage if an attacker gains access to the file system. The use of file permissions (`0600`) attempts to mitigate this risk, but it may not be sufficient in environments where the file system is compromised or if the system is shared with other users who might have elevated privileges. The recommended approach is to use dedicated secret management systems that are designed to securely handle secrets, providing features like encryption in transit and at rest, access control, and audit logs, thereby enhancing the security posture significantly."
+    }
+]

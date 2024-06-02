@@ -1,0 +1,70 @@
+[
+    {
+        "abstract": "Insecure key generation and weak cryptographic algorithm usage",
+        "files": [
+            "72517keys.py",
+            "532tls.py",
+            "72517https.py",
+            "6335Zloader.py",
+            "6335JavaDropper.py",
+            "6335BackOffLoader.py",
+            "6335BackOffPOS.py"
+        ],
+        "detail": "The use of fixed public exponents in RSA key generation, RSA 2048 bits, and ARC4 encryption algorithm are identified as misuses due to potential vulnerabilities and the lack of long-term security against quantum computing advancements. Transitioning to stronger algorithms or key sizes, and avoiding deprecated algorithms like ARC4, is recommended for better security."
+    },
+    {
+        "abstract": "Insecure handling of encryption modes and IVs",
+        "files": [
+            "72517symmetric.py",
+            "6335_jRat.py",
+            "6335Remcos.py",
+            "6335SmokeLoader.py",
+            "6335Strrat.py",
+            "6335JavaDropper.py",
+            "583science_direct.py"
+        ],
+        "detail": "The misuse of AES-GCM without associated data, insecure cipher modes like ECB, and static or insecurely generated IVs can lead to vulnerabilities such as padding oracle attacks. It's crucial to use secure modes like GCM with unique IVs for each encryption operation."
+    },
+    {
+        "abstract": "Insecure cryptographic key management",
+        "files": [
+            "6335unrecom.py",
+            "6335BumbleBee.py",
+            "558IndependentNczDecompressor.py",
+            "6335PredatorPain.py",
+            "6335Strrat.py",
+            "6335NanoCore.py",
+            "6335IcedID.py",
+            "6335AsyncRat.py"
+        ],
+        "detail": "Hardcoded cryptographic keys and insecure key derivation methods expose keys to attackers, compromising encryption security. Secure key management practices, including dynamic generation and secure storage, are recommended."
+    },
+    {
+        "abstract": "Use of deprecated or insecure cryptographic primitives",
+        "files": [
+            "72517deprecated.py",
+            "6335QakBot.py",
+            "6335BitPaymer.py",
+            "6335BumbleBee.py",
+            "6335DoppelPaymer.py"
+        ],
+        "detail": "The use of deprecated hash functions like SHA-1, insecure padding schemes, and weak encryption algorithms such as ARC4 and DES, undermines the integrity and confidentiality of encrypted data. Transitioning to secure hash functions and encryption algorithms is advised."
+    },
+    {
+        "abstract": "Insecure SSL/TLS protocol and certificate handling",
+        "files": [
+            "72517https.py",
+            "6005pyopenssl.py",
+            "6005x509.py"
+        ],
+        "detail": "The use of insecure SSL/TLS protocol versions, short certificate validity periods, and improper certificate validation can lead to vulnerabilities such as MitM attacks. Using secure TLS versions and proper certificate validation mechanisms is essential for secure communications."
+    },
+    {
+        "abstract": "Improper error handling and insecure randomness sources",
+        "files": [
+            "6335TrickBot.py",
+            "583science_direct.py"
+        ],
+        "detail": "Not properly handling cryptographic operation errors and using insecure randomness sources for IV generation can compromise the security of cryptographic operations. Employing secure randomness sources and proper error handling is crucial."
+    }
+]

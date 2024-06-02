@@ -1,0 +1,51 @@
+[
+    {
+        "abstract": "Use of Weak Cryptographic Algorithms",
+        "files": [
+            "49350NTLM.java",
+            "49350KeyImpl.java",
+            "49350KerberosKey.java",
+            "49350EType.java",
+            "49350DesMacCksumType.java",
+            "49350DESKeySpec.java",
+            "49350DESedeKey.java",
+            "49350DESKeyFactory.java",
+            "49350Des.java"
+        ],
+        "detail": "The use of DES and RC4 is discouraged due to inherent vulnerabilities. AES is recommended for modern applications."
+    },
+    {
+        "abstract": "Use of Weak Cryptographic Hash Functions",
+        "files": [
+            "49350NTLM.java",
+            "49350MGF1ParameterSpec.java",
+            "49350HmacMD5KeyGenerator.java"
+        ],
+        "detail": "MD4, MD5, and SHA-1 are vulnerable to collision attacks. Transitioning to SHA-256 or SHA-3 is advised."
+    },
+    {
+        "abstract": "Hardcoded Cryptographic Keys",
+        "files": [
+            "49350NTLM.java",
+            "49350Des.java"
+        ],
+        "detail": "Hardcoded keys pose security risks. Dynamic key generation and management are recommended."
+    },
+    {
+        "abstract": "Inadequate Key Management Practices",
+        "files": [
+            "49350DESedeKey.java",
+            "49350DESKeySpec.java",
+            "49350KerberosKey.java"
+        ],
+        "detail": "Key management policies should ensure key strength, randomness, and secure destruction."
+    },
+    {
+        "abstract": "Insecure Cipher Modes and Padding Schemes",
+        "files": [
+            "49350BlowfishCipher.java",
+            "49350Des.java"
+        ],
+        "detail": "ECB mode and PKCS5Padding are insecure. Secure modes like CBC, CFB, OFB, or GCM with proper padding schemes are recommended."
+    }
+]

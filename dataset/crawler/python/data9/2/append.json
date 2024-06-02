@@ -1,0 +1,6 @@
+[
+    {
+        "abstract": "Use of insecure cryptographic primitives and operations",
+        "explanation": "This misuse involves the incorrect application of cryptographic primitives and insecure operations, highlighting specific issues such as not authenticating additional data with ChaCha20Poly1305 and employing vulnerable padding schemes in RSA encryption. These practices can lead to vulnerabilities, including padding oracle attacks and compromised data integrity. Adhering to secure cryptographic implementation practices and ensuring that cryptographic operations are properly authenticated and securely configured are essential steps to mitigate these risks."
+    }
+]

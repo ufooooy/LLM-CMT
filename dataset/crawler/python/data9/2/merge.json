@@ -1,0 +1,65 @@
+[
+    {
+        "abstract": "Insecure key derivation practices",
+        "files": [
+            "9769file_keyring.py",
+            "805aes.py"
+        ],
+        "detail": "Issues with key derivation functions, including static iteration counts in PBKDF2 and inadequate security properties in custom functions, highlight the need for regular evaluation and the use of modern standards like PBKDF2, scrypt, or Argon2."
+    },
+    {
+        "abstract": "Hardcoded cryptographic keys and materials",
+        "files": [
+            "9769file_keyring.py",
+            "927keep_sync.py",
+            "805cbc.py",
+            "523Encryption.py",
+            "320ApiCrypt.py"
+        ],
+        "detail": "The use of hardcoded keys and cryptographic materials within the code poses significant security risks, including key disclosure. Dynamic generation and secure management practices are recommended."
+    },
+    {
+        "abstract": "Insecure randomness and key generation",
+        "files": [
+            "805key.py",
+            "363crypto.py"
+        ],
+        "detail": "The generation of cryptographic keys or materials using insecure randomness sources or weak methods can compromise security. Secure key generation methods and cryptographically secure PRNGs should be used."
+    },
+    {
+        "abstract": "Improper Initialization Vector (IV) management",
+        "files": [
+            "805key.py",
+            "805cbc.py",
+            "363crypto.py",
+            "523Encryption.py",
+            "320ApiCrypt.py"
+        ],
+        "detail": "Issues with cipher modes and IV management, including the use of predictable IVs and improper handling in CBC mode, underline the importance of unpredictable and unique IVs for each encryption operation."
+    },
+    {
+        "abstract": "Weak hash function usage",
+        "files": [
+            "805key.py",
+            "363crypto.py",
+            "306hash.py"
+        ],
+        "detail": "The use of weak hash functions like SHA-256, MD5, and direct use of Keccak without secure output length considerations, calls for the adoption of stronger hash functions or additional security measures."
+    },
+    {
+        "abstract": "Insecure storage and management of cryptographic materials",
+        "files": [
+            "9769create_ssl.py",
+            "523Encryption.py"
+        ],
+        "detail": "Sensitive data and cryptographic keys stored insecurely, including plaintext storage in memory, expose them to unauthorized access. Encryption before storage or the use of secure storage mechanisms is recommended."
+    },
+    {
+        "abstract": "Use of insecure cryptographic primitives and operations",
+        "files": [
+            "9769file_keyring.py",
+            "320ApiCrypt.py"
+        ],
+        "detail": "The misuse of cryptographic primitives and insecure operations, such as not authenticating additional data with ChaCha20Poly1305 and using vulnerable padding schemes in RSA encryption, necessitates secure implementation practices."
+    }
+]
