@@ -1,6 +1,0 @@
-[
-    {
-        "abstract": "Insecure randomness and hash function usage",
-        "explanation": "This misuse pertains to the insecure implementation of randomness and hash functions, specifically the use of `java.security.SecureRandom` without specifying a secure algorithm and the reliance on weak hash functions like SHA-1 and MD5. Such practices can lead to predictable randomness and compromised data integrity. Adopting a secure implementation of `SecureRandom` and transitioning to stronger hash functions, such as SHA-256 or SHA-3, are recommended to enhance the security of cryptographic operations."
-    }
-]

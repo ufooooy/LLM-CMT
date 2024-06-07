@@ -1,9 +1,0 @@
-[
-    {
-        "abstract": "No cryptographic API misuse",
-        "files": [
-            "447utils.py"
-        ],
-        "detail": "Upon thorough analysis, no cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations.;Upon thorough analysis, no additional cryptographic API misuse was identified in the provided code. The implementation adheres to best practices and guidelines for secure cryptographic operations in other aspects not mentioned above.;Upon thorough analysis, no additional cryptographic API misuse was identified in the provided code beyond what has already been documented. The implementation adheres to best practices and guidelines for secure cryptographic operations in other aspects."
-    }
-]

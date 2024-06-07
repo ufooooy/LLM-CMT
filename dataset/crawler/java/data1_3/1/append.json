@@ -1,6 +1,0 @@
-[
-    {
-        "abstract": "Improper error handling and insecure cipher modes",
-        "explanation": "This misuse includes catching generic Throwable exceptions, which can obscure specific cryptographic errors, making it difficult to handle them appropriately and potentially leading to insecure application states. Additionally, using insecure cipher modes like 'AES/CFB8/NoPadding' and 'Blowfish/CBC/NoPadding' without integrity checks can compromise the security of the encryption. These modes do not provide authentication, making them vulnerable to tampering and replay attacks. It's recommended to use specific exceptions for error handling to ensure cryptographic errors are properly managed and to use authenticated encryption modes that ensure both confidentiality and integrity of the data."
-    }
-]

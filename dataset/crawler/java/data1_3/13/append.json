@@ -1,6 +1,0 @@
-[
-    {
-        "abstract": "Misuse of cryptographic algorithms and modes",
-        "explanation": "This misuse involves incorrect implementations of cryptographic algorithms and modes, including the use of GCM mode without explicit IV management, misuse of AAD in GCM mode, hardcoded algorithms leading to weak encryption, vulnerability to Padding Oracle Attacks in CBC mode, and incorrect parameter specification for ChaCha20 and ChaCha20-Poly1305. Such misuses can result in vulnerabilities like weak encryption, deterministic encryption, and a general misunderstanding of cryptographic operations, undermining the security of the cryptographic scheme."
-    }
-]

@@ -1,6 +1,0 @@
-[
-    {
-        "abstract": "Use of IVs with incorrect lengths in cryptographic operations.",
-        "explanation": "This misuse involves using Initialization Vectors (IVs) of incorrect lengths in cryptographic operations, as seen in files like 'ComplexStaticIV.java' and 'CurrentTimeIV.java'. The primary concern here is that an IV length that does not match the block size required by the cryptographic algorithm, such as AES which typically requires a 16-byte block size, can lead to various issues including implementation errors, reduced security, and even runtime exceptions. The correct length of an IV is critical to the security and proper functioning of the encryption scheme. An IV of incorrect length undermines the encryption's security by potentially exposing it to various cryptographic attacks or by causing the encryption process to fail. Ensuring that the IV length is appropriate for the cryptographic algorithm in use is essential for maintaining the integrity and confidentiality of the encrypted data."
-    }
-]

@@ -1,6 +1,0 @@
-[
-    {
-        "abstract": "Insecure network and SSH configurations",
-        "explanation": "This misuse involves insecure configurations in network and SSH settings, including overly permissive network security group configurations, static IP allocation methods that do not account for security, ignoring SSH host key verification, and hardcoding SSH key passphrases. Such practices can significantly increase the attack surface of networks and SSH connections, making them vulnerable to unauthorized access and man-in-the-middle attacks. Ensuring secure configuration practices, such as using dynamic IP allocation, verifying SSH host keys, and securely managing SSH key passphrases, is vital for protecting against these risks."
-    }
-]

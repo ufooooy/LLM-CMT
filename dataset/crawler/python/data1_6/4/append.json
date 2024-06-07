@@ -1,6 +1,0 @@
-[
-    {
-        "abstract": "Insecure key generation and weak cryptographic algorithm usage",
-        "explanation": "This misuse involves the generation of cryptographic keys using fixed public exponents in RSA and the use of weak cryptographic algorithms such as RSA 2048 bits and ARC4. The fixed public exponents can lead to vulnerabilities, making the cryptographic scheme easier to break, especially with the advent of quantum computing. RSA 2048 bits, while currently considered secure, may not offer long-term security against future advancements in computing power. ARC4 is a deprecated algorithm known for its vulnerabilities and should be avoided. The recommendation is to transition to stronger algorithms or key sizes and to avoid using deprecated algorithms like ARC4 to ensure better security against potential attacks."
-    }
-]

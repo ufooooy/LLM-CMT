@@ -1,6 +1,0 @@
-[
-    {
-        "abstract": "Obfuscation and insecure dynamic selection of cryptographic algorithms",
-        "explanation": "This misuse involves employing obfuscation techniques and dynamic selection mechanisms for cryptographic algorithms within the code, which complicates the process of algorithm selection, thereby affecting code readability, maintainability, and the ease of conducting security audits. Specifically, practices such as dynamically replacing 'SHA-256' with 'MD5' through string manipulation, and determining cryptographic properties or algorithm specifications based on string case transformations, introduce risks of misconfiguration and the inadvertent use of insecure algorithms. Such approaches not only make the codebase more complex and harder to secure but also violate the principles of explicit security and secure default configurations by potentially leading to the selection of weaker cryptographic primitives due to human error or deliberate manipulation."
-    }
-]

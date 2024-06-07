@@ -1,6 +1,0 @@
-[
-    {
-        "abstract": "Insecure algorithm used for JWT signing",
-        "explanation": "The inconsistent use of HMAC algorithms for JWT signing, specifically the use of 'HmacSHA1' over 'HmacSHA256', introduces security vulnerabilities. 'HmacSHA1' is considered less secure due to its susceptibility to collision attacks, which can potentially allow attackers to forge tokens. Ensuring the consistent use of more secure algorithms like 'HmacSHA256' enhances the integrity and authenticity of JWTs, providing better protection against attacks aimed at compromising token security."
-    }
-]
