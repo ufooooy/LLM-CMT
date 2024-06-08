@@ -1,0 +1,205 @@
+[
+  {
+    "abstract": "使用不安全密码算法IDEA",
+    "file": [
+      "BrokenCryptoBBCase5.java"
+    ],
+    "detail": "go()中使用不安全密码算法IDEA"
+  },
+  {
+    "abstract": "使用Random方法生成随机盐",
+    "file": [
+      "UntrustedPRNGCase1.java"
+    ],
+    "detail": ""
+  },
+  {
+    "abstract": "使用SSLSocket方法但未进行主机名验证",
+    "file": [
+      "ImproperSocketManualHostBBCase1.java"
+    ],
+    "detail": ""
+  },
+  {
+    "abstract": "使用HTTP协议",
+    "file": [
+      "HttpProtocolBBCase1.java"
+    ],
+    "detail": ""
+  },
+  {
+    "abstract": "不安全的密钥生成；",
+    "file": [
+      "PredictableCryptoKeyCase1.java"
+    ],
+    "detail": "初始的keyBytes数组是一个硬编码的字节数组，并没有通过任何安全的方式生成密钥;SecretKeySpec使用了不安全的密码算法AES。"
+  },
+  {
+    "abstract": "使用非随机IV的CBC模式加密",
+    "file": [
+      "CredentialInStringCase1.java"
+    ],
+    "detail": "Cipher.getInstance()使用非随机IV的CBC模式加密;"
+  },
+  {
+    "abstract": "使用硬编码密钥",
+    "file": [
+      "PredictablePBEPasswordCase1.java"
+    ],
+    "detail": "PBEKeySpec中使用的密钥defaultKey为常量。"
+  },
+  {
+    "abstract": "使用硬编码密钥",
+    "file": [
+      "PredictablePBEPasswordCase2.java"
+    ],
+    "detail": "PBEKeySpec中使用的密钥defaultKey为常量"
+  },
+  {
+    "abstract": "使用硬编码密钥",
+    "file": [
+      "PredictableKeyStorePasswordCase1.java"
+    ],
+    "detail": "在go方法中，KeyStore使用常量生成加密密钥。"
+  },
+  {
+    "abstract": "信任所有主机名",
+    "file": [
+      "HostNameVerifierCase1.java"
+    ],
+    "detail": "verify方法中并未对主机名进行验证，返回结果永远是true。"
+  },
+  {
+    "abstract": "信任所有证书",
+    "file": [
+      "CertValidationCase1.java"
+    ],
+    "detail": "checkClientTrusted方法中使用默认的证书验证；checkServerTrusted方法是空方法；getAcceptedIssuers方法永远返回null。"
+  },
+  {
+    "abstract": "信任所有证书",
+    "file": [
+      "CertValidationCase2.java"
+    ],
+    "detail": "checkClientTrusted方法、checkServerTrusted方法、getAcceptedIssuers方法是空方法，没有进行证书验证。"
+  },
+  {
+    "abstract": "信任所有证书",
+    "file": [
+      "CertValidationCase3.java"
+    ],
+    "detail": "checkClientTrusted方法、checkServerTrusted方法是空方法，没有进行证书验证。getAcceptedIssuers方法永远返回null。"
+  },
+  {
+    "abstract": "在SecureRandom中使用静态种子",
+    "file": [
+      "PredictableSeedsCase1.java"
+    ],
+    "detail": "setSeed方法中使用的keyBytes是固定值"
+  },
+  {
+    "abstract": "在SecureRandom中使用静态种子",
+    "file": [
+      "PredictableSeedsCase2.java"
+    ],
+    "detail": "setSeed方法中使用的seed是固定值"
+  },
+  {
+    "abstract": "使用非随机IV的CBC模式加密",
+    "file": [
+      "StaticInitializationVectorCase1.java"
+    ],
+    "detail": "go方法中的IV向量ivSpec是由常量生成的。Cipher.getInstance()使用不安全密码算法AES、PKCS5Padding填充模式、非随机IV的CBC模式加密;"
+  },
+  {
+    "abstract": "使用静态盐值",
+    "file": [
+      "StaticSaltsCase1.java"
+    ],
+    "detail": "在key2()中基于口令加密（PBE）使用了常量盐值salt，这是不安全的。"
+  },
+  {
+    "abstract": "使用不安全的ECB模式",
+    "file": [
+      "EcbInSymmCryptoCase1.java"
+    ],
+    "detail": "go()中使用了AES的ECB加密模式，这种模式通常被认为是不安全的，因为它没有足够的随机性。"
+  },
+  {
+    "abstract": "PBE算法迭代次数少于1000次;使用Random方法生成随机盐;",
+    "file": [
+      "LessThan1000IterationPBECase1.java"
+    ],
+    "detail": "key2()中使用了设定的迭代次数count为20，这在实际应用中小于1000的迭代次数可能被认为是较低的安全性设置。key2()中使用Random类生成随机盐通常是不安全的，因为Random类生成的随机数可能不足够随机，易受到预测攻击。"
+  },
+  {
+    "abstract": "使用不安全的DES加密模式PKCS5Padding；使用不安全的ECB模式；",
+    "file": [
+      "BrokenCryptoCase1.java"
+    ],
+    "detail": "go()中使用了使用不安全的DES加密模式PKCS5Padding和ECB加密模式。"
+  },
+  {
+    "abstract": "Blowfish密码算法使用默认加密模式和填充方式",
+    "file": [
+      "BrokenCryptoCase2.java"
+    ],
+    "detail": "go()中使用了默认的加密模式和填充方式"
+  },
+  {
+    "abstract": "使用不安全密码算法RC4",
+    "file": [
+      "BrokenCryptoCase3.java"
+    ],
+    "detail": "go()中使用不安全密码算法RC4"
+  },
+  {
+    "abstract": "使用不安全密码算法RC2",
+    "file": [
+      "BrokenCryptoCase4.java"
+    ],
+    "detail": "go()中使用不安全密码算法RC2"
+  },
+  {
+    "abstract": "",
+    "file": [
+      ".java"
+    ],
+    "detail": ""
+  },
+  {
+    "abstract": "",
+    "file": [
+      ".java"
+    ],
+    "detail": ""
+  },
+  {
+    "abstract": "",
+    "file": [
+      ".java"
+    ],
+    "detail": ""
+  },
+  {
+    "abstract": "",
+    "file": [
+      ".java"
+    ],
+    "detail": ""
+  },
+  {
+    "abstract": "",
+    "file": [
+      ".java"
+    ],
+    "detail": ""
+  },
+  {
+    "abstract": "",
+    "file": [
+      ".java"
+    ],
+    "detail": ""
+  }
+]
