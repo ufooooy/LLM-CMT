@@ -1,15 +1,12 @@
-package CorrectData;
+package dataset1123;
 
 import java.security.*;
-import javax.crypto.*;
 import javax.crypto.spec.PBEParameterSpec;
-import java.security.spec.InvalidKeySpecException;
-import javax.crypto.spec.PBEKeySpec;
 
 public class LessThan1000IterationPBEABPSCase1 {
     public static void main(String[] args) {
         byte[] salt = new byte[32];
-        int choice = 2;
+        int choice = 0;
         int count = 5;
         SecureRandom random = new SecureRandom();
         random.nextBytes(salt);

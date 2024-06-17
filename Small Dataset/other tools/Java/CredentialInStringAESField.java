@@ -54,7 +54,6 @@ class CryptoAES {
 
         SecretKeySpec keySpec = new SecretKeySpec(keyBytes,algo);
         cipher.init(Cipher.ENCRYPT_MODE,keySpec);
-        // cipher.init(Cipher.ENCRYPT_MODE,keySpec,ivSpec);
         return cipher.doFinal(txtBytes);
     }
 }
