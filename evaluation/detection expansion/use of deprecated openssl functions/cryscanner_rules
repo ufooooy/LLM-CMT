@@ -1,0 +1,12 @@
+OBJECTS
+	a: CRYPTO_set_id_callback()
+  	b: CRYPTO_set_locking_callback()
+
+ORDER
+	ab
+
+CONSTRAINTS
+
+FORBIDDEN
+        a
+        b

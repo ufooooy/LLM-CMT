@@ -1,0 +1,25 @@
+{
+    "title": "Insufficient iterations count for PBKDF2.",
+    "explanation": "Using a low number of iterations (1000) in the PBKDF2HMAC key derivation function compromises the security of the derived keys by making them less resistant to brute-force attacks. Current standards, including recommendations from cybersecurity authorities, suggest a minimum of 10,000 iterations to adequately slow down attackers. This misuse makes the key derivation process less secure and more vulnerable to attacks, highlighting the need for adhering to updated security guidelines.",
+    "codes": [
+        "CryptoStaticSaltNLV1.py",
+        "CryptoStaticSaltNLV2.py",
+        "CryptoStaticSaltNMC1.py",
+        "CryptoStaticSaltIVA2.py",
+        "CryptoStaticSaltLV1.py",
+        "CryptoStaticSaltLV2.py",
+        "CryptoStaticSaltHC1.py",
+        "CryptoStaticSaltHC2.py",
+        "CryptoStaticSaltIVA1.py",
+        "CryptoStaticSaltDMC2.py",
+        "CryptoStaticSaltDVA1.py",
+        "CryptoStaticSaltDVA2.py",
+        "CryptoPBE1000NLV1.py",
+        "CryptoPBE1000NMC1.py",
+        "CryptoPBE1000HC1.py",
+        "CryptoPBE1000IVA1.py",
+        "CryptoPBE1000LV1.py",
+        "CryptoPBE1000DMC1.py",
+        "CryptoPBE1000DVA1.py"
+    ]
+}

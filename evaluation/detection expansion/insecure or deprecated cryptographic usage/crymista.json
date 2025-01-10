@@ -1,0 +1,7 @@
+{
+    "title": "Insecure or deprecated cryptographic library usage",
+    "explanation": "The misuse includes falling back to potentially insecure or deprecated cryptographic libraries such as 'pyaes', which could introduce vulnerabilities into cryptographic operations. Using deprecated libraries can expose applications to unpatched security flaws and weak cryptographic algorithms. It is recommended to use actively maintained and widely trusted cryptographic libraries like PyCryptodome to ensure the security and reliability of cryptographic implementations.",
+    "codes": [
+        "106scan-enc.py"
+    ]
+}

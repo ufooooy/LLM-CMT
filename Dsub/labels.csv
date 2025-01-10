@@ -1,0 +1,717 @@
+path,source,language,If_CAM,labels
+Dsub\crawl\C_code\189aes_ecb.c,github,c,1,ECB used
+Dsub\crawl\C_code\189aes_ige.c,github,c,1,Non-stanard mode
+Dsub\crawl\C_code\189asn_mime.c,github,c,1,sha1 used;md5 used
+Dsub\crawl\C_code\189bf_cfb64.c,github,c,1,Blowfish used;CFB without authentication
+Dsub\crawl\C_code\189bf_ecb.c,github,c,1,Blowfish used;ECB used
+Dsub\crawl\C_code\189bf_enc.c,github,c,1,Blowfish used
+Dsub\crawl\C_code\189bf_nbio.c,github,c,1,Blowfish used
+Dsub\crawl\C_code\189bf_ofb64.c,github,c,1,Blowfish used;Insecure mode of operation (OFB)
+Dsub\crawl\C_code\189bf_skey.c,github,c,1,Blowfish used
+Dsub\crawl\C_code\189bio_enc.c,github,c,1,Use of deprecated function
+Dsub\crawl\C_code\189bn_depr.c,github,c,1,Use of deprecated function
+Dsub\crawl\C_code\189bn_dh.c,github,c,1,Use of weak DH group
+Dsub\crawl\C_code\189ciphers.c,github,c,1,Insecure SSL/TLS version used
+Dsub\crawl\C_code\189c_allc.c,github,c,1,DES used;ECB used;RC4 used;RC2 used;Blowfish used;RC5 used;IDEA used;CAST used
+Dsub\crawl\C_code\438transform_aes.c,github,c,1,ECB used
+Dsub\crawl\C_code\438transform_cc20.c,github,c,1,Inadequate Key Derivation Method
+Dsub\crawl\C_code\510asn1_afl.c,github,c,1,Use of deprecated function
+Dsub\crawl\C_code\510asn1_sydr.c,github,c,1,Use of deprecated cryptographic function
+Dsub\crawl\C_code\510bignum_afl.c,github,c,1,Use of BN_mod_exp_simple function
+Dsub\crawl\C_code\510client_afl.c,github,c,1,Insecure SSL/TLS version used;Allow all ciphersuits
+Dsub\crawl\C_code\510client_sydr.c,github,c,1,Insecure SSL/TLS version used;Allow all ciphersuits
+Dsub\crawl\C_code\510fuzz_verify_cert.c,github,c,1,Insecure OpenSSL initialization;;Insufficient certificate validation
+Dsub\crawl\C_code\57048be-secure-openssl.c,github,c,1,Insecure SSL/TLS version used
+Dsub\crawl\C_code\57048cryptohash_openssl.c,github,c,1,MD5 used; SHA1 used
+Dsub\crawl\C_code\57048hmac_openssl.c,github,c,1,MD5 used; SHA1 used
+Dsub\crawl\C_code\57048openssl.c,github,c,1,Blowfish used;ECB used;DES used
+Dsub\crawl\C_code\57048pg_strong_random.c,github,c,1,Insufficient RAND_poll usage for old OpenSSL versions
+Dsub\crawl\C_code\PBKDF2_1000.c,github,c,1,Hardcoded passwords;Iteration lower than 10000 in PBKDF2
+Dsub\crawl\C_code\PBKDF2_Salt.c,github,c,1,Hardcoded passwords;Iteration lower than 10000 in PBKDF2;Insufficient salt length
+Dsub\crawl\C_code\PBKDF2_StaticSalt.c,github,c,1,Static salt;Insufficient salt length;Hardcoded password
+Dsub\crawl\C_code\Random.c,github,c,1,Static seed
+Dsub\crawl\C_code\RC2_ECB.c,github,c,1,Hardcoded key;RC2 used;ECB used;Insufficient key size
+Dsub\crawl\nomisuses\C\189aes_cbc.c,github,c,0,
+Dsub\crawl\nomisuses\C\189aes_misc.c,github,c,0,
+Dsub\crawl\nomisuses\C\189aes_ofb.c,github,c,0,
+Dsub\crawl\nomisuses\C\189aes_x86core.c,github,c,0,
+Dsub\crawl\nomisuses\C\189app_rand.c,github,c,0,
+Dsub\crawl\nomisuses\C\189asn1_par.c,github,c,0,
+Dsub\crawl\nomisuses\C\189asn_moid.c,github,c,0,
+Dsub\crawl\nomisuses\C\189asn_mstbl.c,github,c,0,
+Dsub\crawl\nomisuses\C\189asn_pack.c,github,c,0,
+Dsub\crawl\nomisuses\C\189async.c,github,c,0,
+Dsub\crawl\nomisuses\C\189async_err.c,github,c,0,
+Dsub\crawl\nomisuses\C\189async_wait.c,github,c,0,
+Dsub\crawl\nomisuses\C\189a_d2i_fp.c,github,c,0,
+Dsub\crawl\nomisuses\C\189a_digest.c,github,c,0,
+Dsub\crawl\nomisuses\C\189a_dup.c,github,c,0,
+Dsub\crawl\nomisuses\C\189a_gentm.c,github,c,0,
+Dsub\crawl\nomisuses\C\189a_i2d_fp.c,github,c,0,
+Dsub\crawl\nomisuses\C\189a_int.c,github,c,0,
+Dsub\crawl\nomisuses\C\189a_mbstr.c,github,c,0,
+Dsub\crawl\nomisuses\C\189a_object.c,github,c,0,
+Dsub\crawl\nomisuses\C\189a_octet.c,github,c,0,
+Dsub\crawl\nomisuses\C\189a_print.c,github,c,0,
+Dsub\crawl\nomisuses\C\189a_sign.c,github,c,0,
+Dsub\crawl\nomisuses\C\189a_utctm.c,github,c,0,
+Dsub\crawl\nomisuses\C\189a_utf8.c,github,c,0,
+Dsub\crawl\nomisuses\C\189bio_b64.c,github,c,0,
+Dsub\crawl\nomisuses\C\189bio_err.c,github,c,0,
+Dsub\crawl\nomisuses\C\189bio_lib.c,github,c,0,
+Dsub\crawl\nomisuses\C\189bio_ndef.c,github,c,0,
+Dsub\crawl\nomisuses\C\189bio_ok.c,github,c,0,
+Dsub\crawl\nomisuses\C\189bio_ssl.c,github,c,0,
+Dsub\crawl\nomisuses\C\189blake2b.c,github,c,0,
+Dsub\crawl\nomisuses\C\189bn_asm.c,github,c,0,
+Dsub\crawl\nomisuses\C\189bn_blind.c,github,c,0,
+Dsub\crawl\nomisuses\C\189bn_div.c,github,c,0,
+Dsub\crawl\nomisuses\C\189bn_lib.c,github,c,0,
+Dsub\crawl\nomisuses\C\189bn_print.c,github,c,0,
+Dsub\crawl\nomisuses\C\189bn_rand.c,github,c,0,
+Dsub\crawl\nomisuses\C\189bn_srp.c,github,c,0,
+Dsub\crawl\nomisuses\C\189bn_x931p.c,github,c,0,
+Dsub\crawl\nomisuses\C\189bss_bio.c,github,c,0,
+Dsub\crawl\nomisuses\C\189bss_file.c,github,c,0,
+Dsub\crawl\nomisuses\C\189bss_log.c,github,c,0,
+Dsub\crawl\nomisuses\C\189buffer.c,github,c,0,
+Dsub\crawl\nomisuses\C\189by_dir.c,github,c,0,
+Dsub\crawl\nomisuses\C\189by_file.c,github,c,0,
+Dsub\crawl\nomisuses\C\189b_print.c,github,c,0,
+Dsub\crawl\nomisuses\C\189b_sock2.c,github,c,0,
+Dsub\crawl\nomisuses\C\189ca.c,github,c,0,
+Dsub\crawl\nomisuses\C\189cbc128.c,github,c,0,
+Dsub\crawl\nomisuses\C\189ccm128.c,github,c,0,
+Dsub\crawl\nomisuses\C\189cmeth_lib.c,github,c,0,
+Dsub\crawl\nomisuses\C\189cm_pmeth.c,github,c,0,
+Dsub\crawl\nomisuses\C\189c_zlib.c,github,c,0,
+Dsub\crawl\nomisuses\C\510bignum_sydr.c,github,c,0,
+Dsub\crawl\nomisuses\C\510cms_afl.c,github,c,0,
+Dsub\crawl\nomisuses\C\510cms_sydr.c,github,c,0,
+Dsub\crawl\nomisuses\C\510crl_afl.c,github,c,0,
+Dsub\crawl\nomisuses\C\510crl_sydr.c,github,c,0,
+Dsub\crawl\nomisuses\C\510fuzz_crypto.c,github,c,0,
+Dsub\crawl\nomisuses\C\510x509_afl.c,github,c,0,
+Dsub\crawl\nomisuses\C\510x509_sydr.c,github,c,0,
+Dsub\crawl\nomisuses\C\57048pgp-mpi-openssl.c,github,c,0,
+Dsub\crawl\nomisuses\C\AllTests.c,github,c,0,
+Dsub\crawl\nomisuses\C\compare_tests.c,github,c,0,
+Dsub\crawl\nomisuses\C\parse_hex4.c,github,c,0,
+Dsub\crawl\nomisuses\C\print_array.c,github,c,0,
+Dsub\crawl\nomisuses\C\TestProductionCode.c,github,c,0,
+Dsub\crawl\nomisuses\C\testsample_mock_param.c,github,c,0,
+Dsub\crawl\nomisuses\C\testsample_param.c,github,c,0,
+Dsub\crawl\nomisuses\C\testunity.c,github,c,0,
+Dsub\crawl\nomisuses\C\unity_fixture_TestRunner.c,github,c,0,
+Dsub\crawl\nomisuses\C\unity_setup.c,github,c,0,
+Dsub\crawl\C_code\AES_CBC.cpp,github,cpp,1,Hardcoded key;Insufficient key length;Static IV
+Dsub\crawl\C_code\Blowfish_ECB.cpp,github,cpp,1,Hardcode key;Blowfish used;ECB used
+Dsub\crawl\C_code\CertVerify.cpp,github,cpp,1,Insecure SSL/TLS version used;Insecure certificate verification
+Dsub\crawl\C_code\DES.cpp,github,cpp,1,Hardcode key;DES used;Insufficient key length;ECB used
+Dsub\crawl\C_code\DES_ECB.cpp,github,cpp,1,DES used;ECB used
+Dsub\crawl\C_code\DSA_1024.cpp,github,cpp,1,Insufficient key length
+Dsub\crawl\C_code\Http.cpp,github,cpp,1,HTTP used
+Dsub\crawl\C_code\MD4.cpp,github,cpp,1,MD4 used
+Dsub\crawl\C_code\MD5.cpp,github,cpp,1,MD4 used
+Dsub\crawl\C_code\Prime192v1.cpp,github,cpp,1,Prime192v1 used
+Dsub\crawl\C_code\RC2_CBC.cpp,github,cpp,1,RC2 used;Hardcoded key;Static IV;Insufficient key length;Insufficient IV length
+Dsub\crawl\C_code\RC4.cpp,github,cpp,1,RC4 uesd;Hardcoded key
+Dsub\crawl\C_code\RSA1024.cpp,github,cpp,1,Insufficient key length;Use of deprecated RSA_generate_key function
+Dsub\crawl\C_code\SHA1.cpp,github,cpp,1,SHA1 used;Hardcoded key
+Dsub\crawl\C_code\TLS11.cpp,github,cpp,1,Insecure SSL/TLS version used;Insufficient certificate verification
+Dsub\crawl\Go_code\115routes.go,github,go,1,Insecure certificate verification
+Dsub\crawl\Go_code\115server.go,github,go,1,No salt;HTTP used;Hardcoded credentials;Insecure PBKDF2 iteration count
+Dsub\crawl\Go_code\116gftoken.go,github,go,1,MD5 used
+Dsub\crawl\Go_code\116login.go,github,go,1,MD5 used
+Dsub\crawl\Go_code\116rsa_utils.go,github,go,1,PKCS#1 v1.5 used
+Dsub\crawl\Go_code\116utils.go,github,go,1,MD5 used
+Dsub\crawl\Go_code\120chrome_unix.go,github,go,1,PBKDF2-SHA1 used;Static IV;Insufficient iteration count in PBKDF2;Hardcoded cryptographic secret
+Dsub\crawl\Go_code\120chrome_windows.go,github,go,1,Insecure nonce generation method
+Dsub\crawl\Go_code\120privileges.go,github,go,1,Storing passwords in plain text
+Dsub\crawl\Go_code\120sqlbuilder.go,github,go,1,Hardcoded key
+Dsub\crawl\Go_code\120sqlbuilder_test.go,github,go,1,Storing passwords in plain text
+Dsub\crawl\Go_code\142s3.go,github,go,1,Insecure certificate verification
+Dsub\crawl\Go_code\1452startosis_upload_file_test.go,github,go,1,MD5 used
+Dsub\crawl\Go_code\152translator.go,github,go,1,MD5 used
+Dsub\crawl\Go_code\173main.go,github,go,1,Hardcoded key
+Dsub\crawl\Go_code\173remote.go,github,go,1,Insecure SSL/TLS setting
+Dsub\crawl\Go_code\173remote_tls_test.go,github,go,1,Hardcoded nonce
+Dsub\crawl\Go_code\173stream_writer.go,github,go,1,Insecure SSL/TLS setting;No certificates verification
+Dsub\crawl\Go_code\193userloginlogic.go,github,go,1,Insufficient JWT token security
+Dsub\crawl\Go_code\193userregisterlogic.go,github,go,1,Insecure bcrypt cost parameter
+Dsub\crawl\Go_code\218config.go,github,go,1,Http used
+Dsub\crawl\Go_code\218ed25519_test.go,github,go,1,Hardcoded key
+Dsub\crawl\Go_code\218storage.go,github,go,1,Insecure key storage
+Dsub\crawl\Go_code\228config.go,github,go,1,Hardcoded key;Default mode used;Insufficient key size
+Dsub\crawl\Go_code\235client.go,github,go,1,Insecure SSL/TLS setting
+Dsub\crawl\Go_code\235protocol.go,github,go,1,Insecure SSL/TLS version;Weak cipher suit;No certificate verification
+Dsub\crawl\Go_code\272calico.go,github,go,1,SHA1 used
+Dsub\crawl\Go_code\284gotlsimpl.go,github,go,1,Insecure SSL/TLS version;RC4 used;No certificate verification
+Dsub\crawl\Go_code\284mock_collector.go,github,go,1,No certificate verification;Use of weak random number generator
+Dsub\crawl\Go_code\289cert.go,github,go,1,Insufficient key length
+Dsub\crawl\Go_code\289client.go,github,go,1,HTTP used;Insecure TLS configuration
+Dsub\crawl\Go_code\289ms17010.go,github,go,1,Hardcode key;Predictable IV
+Dsub\crawl\Go_code\289route.go,github,go,1,Insecure host verification;Hardcoded passwords;SHA1 used;Weak cipher
+Dsub\crawl\Go_code\289Runssh.go,github,go,1,Insecure server verification;Storing passwords in plain text
+Dsub\crawl\Go_code\289scanPort.go,github,go,1,Insecure server verification;Insecure SSL/TLS version
+Dsub\crawl\Go_code\289ssh.go,github,go,1,Insecure server verification
+Dsub\crawl\Go_code\289web.go,github,go,1,Insecure host verification;Weak TLS Version Support
+Dsub\crawl\Go_code\302hash.go,github,go,1,MD5 used
+Dsub\crawl\Go_code\325clusterManger.go,github,go,1,HTTP used;Storing passwords in plain text;Transmitting passwords in plain text
+Dsub\crawl\Go_code\325manager.go,github,go,1,Http used
+Dsub\crawl\Go_code\325messageClient.go,github,go,1,HTTP used;Insecure certificates verification;Hardcoded credentials
+Dsub\crawl\Go_code\325modService.go,github,go,1,Insecure certificates verification;Hardcode key;HTTP used
+Dsub\crawl\Go_code\325shareApi.go,github,go,1,HTTP used
+Dsub\crawl\Go_code\352user.go,github,go,1,MD5 used
+Dsub\crawl\Go_code\458gin.go,github,go,1,Default SSL/TLS setting
+Dsub\crawl\Go_code\506blob_test.go,github,go,1,Use of a non-cryptographic hash function for data integrity
+Dsub\crawl\Go_code\506hash_test.go,github,go,1,MD4 used;MD5 used;SHA1 used
+Dsub\crawl\Go_code\507element.go,github,go,1,MD5 used
+Dsub\crawl\Go_code\507form.go,github,go,1,MD5 used
+Dsub\crawl\Go_code\507hash.go,github,go,1,Insecure bcrypt cost parameter
+Dsub\crawl\Go_code\507hex.go,github,go,1,MD5 used
+Dsub\crawl\Go_code\507sioosms.go,github,go,1,Storing passwords in plain text;Transmitting passwords in plain text;MD5 used
+Dsub\crawl\Go_code\646utils.go,github,go,1,SHA1 used;No salt
+Dsub\crawl\Go_code\646vrepo.go,github,go,1,MD5 used;Default mode used;Insecure key generation method
+Dsub\crawl\Go_code\710polyEncrypt.go,github,go,1,RC4 used
+Dsub\crawl\Go_code\720elasticProducer.go,github,go,1,Insecure SSL/TLS setting;Hardcode password;Storing passwords in plain text
+Dsub\crawl\Go_code\937authentication-service.go,github,go,1,Insecure key length;Hardcoded Issue in Token
+Dsub\crawl\Go_code\937mail.go,github,go,1,Insecure SSL/TLS setting;Hardcoded password
+Dsub\crawl\Go_code\Cast5.go,github,go,1,Cast5 used;Hardcoded key;ECB used
+Dsub\crawl\Go_code\DSA_1024.go,github,go,1,Insufficient key length;Use of deprecated DSA_generate_parameters function
+Dsub\crawl\Go_code\TEA.go,github,go,1,TEA used;Hardcoded key;Default mode;Default padding
+Dsub\crawl\Go_code\XTEA.go,github,go,1,XTEA used;Hardcoded key;Default mode
+Dsub\crawl\nomisuses\Go\116utils_test.go,github,go,0,
+Dsub\crawl\nomisuses\Go\120auth.go,github,go,0,
+Dsub\crawl\nomisuses\Go\120config.go,github,go,0,
+Dsub\crawl\nomisuses\Go\120digester.go,github,go,0,
+Dsub\crawl\nomisuses\Go\120executor_test.go,github,go,0,
+Dsub\crawl\nomisuses\Go\120helper.go,github,go,0,
+Dsub\crawl\nomisuses\Go\120privilege.go,github,go,0,
+Dsub\crawl\nomisuses\Go\120query_runner.go,github,go,0,
+Dsub\crawl\nomisuses\Go\137signer.go,github,go,0,
+Dsub\crawl\nomisuses\Go\1452grpc_stream_io_test.go,github,go,0,
+Dsub\crawl\nomisuses\Go\218bls.go,github,go,0,
+Dsub\crawl\nomisuses\Go\218key.go,github,go,0,
+Dsub\crawl\nomisuses\Go\218main.go,github,go,0,
+Dsub\crawl\nomisuses\Go\218plan.go,github,go,0,
+Dsub\crawl\nomisuses\Go\218program_execute.go,github,go,0,
+Dsub\crawl\nomisuses\Go\218public.go,github,go,0,
+Dsub\crawl\nomisuses\Go\218root.go,github,go,0,
+Dsub\crawl\nomisuses\Go\218secp256r1_test.go,github,go,0,
+Dsub\crawl\nomisuses\Go\218signature.go,github,go,0,
+Dsub\crawl\nomisuses\Go\218spam.go,github,go,0,
+Dsub\crawl\nomisuses\Go\218utils.go,github,go,0,
+Dsub\crawl\nomisuses\Go\230account.go,github,go,0,
+Dsub\crawl\nomisuses\Go\230eth.go,github,go,0,
+Dsub\crawl\nomisuses\Go\230hdwallet.go,github,go,0,
+Dsub\crawl\nomisuses\Go\230sampler_filter.go,github,go,0,
+Dsub\crawl\nomisuses\Go\352handler.go,github,go,0,
+Dsub\crawl\nomisuses\Go\506os_unix_test.go,github,go,0,
+Dsub\crawl\nomisuses\Go\506speedtest1_test.go,github,go,0,
+Dsub\crawl\nomisuses\Go\506vfs.go,github,go,0,
+Dsub\crawl\nomisuses\Go\937password.go,github,go,0,
+Dsub\crawl\nomisuses\Go\args.go,github,go,0,
+Dsub\crawl\nomisuses\Go\bash_completionsV2.go,github,go,0,
+Dsub\crawl\nomisuses\Go\bash_completionsV2_test.go,github,go,0,
+Dsub\crawl\nomisuses\Go\cobra_test.go,github,go,0,
+Dsub\crawl\nomisuses\Go\fish_completions_test.go,github,go,0,
+Dsub\crawl\nomisuses\Go\md_docs.go,github,go,0,
+Dsub\crawl\nomisuses\Go\powershell_completions.go,github,go,0,
+Dsub\crawl\nomisuses\Go\shell_completions.go,github,go,0,
+Dsub\crawl\nomisuses\Go\yaml_docs_test.go,github,go,0,
+Dsub\crawl\nomisuses\Go\zsh_completions_test.go,github,go,0,
+Dsub\other tools\cryptogo\Blowfish_ECB.go,cryptogo,go,1,Blowfish used;ECB used;Hardcoded key
+Dsub\other tools\cryptogo\CertVerify.go,cryptogo,go,1,Insecure SSL/TLS setting;Insecure certificate verification
+Dsub\other tools\cryptogo\CertVerify2.go,cryptogo,go,1,Insecure SSL/TLS setting
+Dsub\other tools\cryptogo\CertVerify3.go,cryptogo,go,1,Insecure certificate verification
+Dsub\other tools\cryptogo\des.go,cryptogo,go,1,DES used;Hardcode key;Default mode used;No padding
+Dsub\other tools\cryptogo\HTTP.go,cryptogo,go,1,HTTP used
+Dsub\other tools\cryptogo\md4.go,cryptogo,go,1,MD4 used
+Dsub\other tools\cryptogo\md5.go,cryptogo,go,1,MD5 used
+Dsub\other tools\cryptogo\PBKDF2_1000.go,cryptogo,go,1,Hardcoded password;Static salt used;Insufficient salt length;Iteration lower than 10000 in PBKDF2
+Dsub\other tools\cryptogo\PBKDF2_salt.go,cryptogo,go,1,Hardcoded password;Static salt used;Insufficient salt length;Iteration lower than 10000 in PBKDF2
+Dsub\other tools\cryptogo\RC4.go,cryptogo,go,1,Hardcoded password;RC4 used
+Dsub\other tools\cryptogo\RSA1024_SHA1.go,cryptogo,go,1,Insufficient key length;SHA1 used
+Dsub\other tools\cryptogo\RSA_1024.go,cryptogo,go,1,Insufficient key length;PKCS#1 v1.5 used
+Dsub\other tools\cryptogo\SHA1.go,cryptogo,go,1,SHA1 used
+Dsub\other tools\cryptogo\SHA1_RSA.go,cryptogo,go,1,SHA1 used;Insufficient key length
+Dsub\other tools\cryptogo\StaticSalt_PBKDF2.go,cryptogo,go,1,Static salt used
+Dsub\other tools\cryptogo\TLS10.go,cryptogo,go,1,Insecure SSL/TLS version used
+Dsub\other tools\cryptogo\TLS11.go,cryptogo,go,1,Insecure SSL/TLS version used
+Dsub\crawl\Java_code\1466SignUtil.java,github,java,1,Use of weak hashing algorithm HmacSHA1
+Dsub\crawl\Java_code\178EncryptionServiceTest.java,github,java,1,RSA/ECB/PKCS1Padding used
+Dsub\crawl\Java_code\414RSA.java,github,java,1,RSA/ECB/PKCS1Padding used;Hardcoded key;Predictable IV;Insufficient key length
+Dsub\crawl\Java_code\565AesUtil.java,github,java,1,ECB used;Insufficient key length;Default padding;Insecure random number generation
+Dsub\crawl\Java_code\565HuaweiSigner.java,github,java,1,Insecure key derivation method
+Dsub\crawl\nomisuses\Java\1190DingSignUtil.java,github,java,0,
+Dsub\crawl\nomisuses\Java\1719CryptoCodec.java,github,java,0,
+Dsub\crawl\nomisuses\Java\1719SFViaEncryptionProvider.java,github,java,0,
+Dsub\crawl\nomisuses\Java\258IPacketEncryptionManager.java,github,java,0,
+Dsub\crawl\nomisuses\Java\258MixinClientConnection.java,github,java,0,
+Dsub\crawl\nomisuses\Java\258MixinServerLoginNetworkHandler.java,github,java,0,
+Dsub\crawl\nomisuses\Java\258PacketEncryptionManager.java,github,java,0,
+Dsub\crawl\nomisuses\Java\270HmacUtils.java,github,java,0,
+Dsub\crawl\nomisuses\Java\2768FingerprintManagerCompat.java,github,java,0,
+Dsub\crawl\nomisuses\Java\2768FingerprintManagerCompatApi23.java,github,java,0,
+Dsub\crawl\nomisuses\Java\285DingTalkSecretPush.java,github,java,0,
+Dsub\crawl\nomisuses\Java\7946BedrockEncryptionEncoder.java,github,java,0,
+Dsub\crawl\nomisuses\Java\7946BedrockSession.java,github,java,0,
+Dsub\crawl\nomisuses\Java\AbstractConverter.java,github,java,0,
+Dsub\crawl\nomisuses\Java\AbstractReadableInstantFieldProperty.java,github,java,0,
+Dsub\crawl\nomisuses\Java\BasicGJChronology.java,github,java,0,
+Dsub\crawl\nomisuses\Java\CachedDateTimeZone.java,github,java,0,
+Dsub\crawl\nomisuses\Java\DateMidnight.java,github,java,0,
+Dsub\crawl\nomisuses\Java\DateTime.java,github,java,0,
+Dsub\crawl\nomisuses\Java\DateTimeParserInternalParser.java,github,java,0,
+Dsub\crawl\nomisuses\Java\DateTimeZone.java,github,java,0,
+Dsub\crawl\nomisuses\Java\GJDayOfWeekDateTimeField.java,github,java,0,
+Dsub\crawl\nomisuses\Java\IllegalFieldValueException.java,github,java,0,
+Dsub\crawl\nomisuses\Java\Months.java,github,java,0,
+Dsub\crawl\nomisuses\Java\NullConverter.java,github,java,0,
+Dsub\crawl\nomisuses\Java\OffsetDateTimeField.java,github,java,0,
+Dsub\crawl\nomisuses\Java\PeriodFormat.java,github,java,0,
+Dsub\crawl\nomisuses\Java\ReadWritableInterval.java,github,java,0,
+Dsub\crawl\nomisuses\Java\UnsupportedDurationField.java,github,java,0,
+Dsub\crawl\nomisuses\Java\UTCProvider.java,github,java,0,
+Dsub\other tools\CryptoAPI-Bench\AES.java,CryptoAPI-Bench,java,1,Hardcoded key;ECB used;Insufficient key length
+Dsub\other tools\CryptoAPI-Bench\AESCBC.java,CryptoAPI-Bench,java,1,Hardcoded key;Static IV;Insufficient key length
+Dsub\other tools\CryptoAPI-Bench\AESCBCField.java,CryptoAPI-Bench,java,1,Hardcoded key;PKCS5Padding used
+Dsub\other tools\CryptoAPI-Bench\AESECBCase1.java,CryptoAPI-Bench,java,1,Hardcoded key;ECB used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoABICase1.java,CryptoAPI-Bench,java,1,DES used;ECB used;PKCS5Padding used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoABICase11.java,CryptoAPI-Bench,java,1,DES used;ECB used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoABICase5.java,CryptoAPI-Bench,java,1,DES used;ECB used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoABSCase1.java,CryptoAPI-Bench,java,1,DES used;ECB used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoBBCase5.java,CryptoAPI-Bench,java,1,IDEA used;Default mode used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoBlowfish.java,CryptoAPI-Bench,java,1,Blowfish used;Default key length;Default mode used;Default padding
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoBlowfishCase2.java,CryptoAPI-Bench,java,1,Blowfish used;Default key length;Default mode used;Default padding
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoBlowfishFieldCase1.java,CryptoAPI-Bench,java,1,Blowfish used;Default key length;Default mode used;Default padding
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoBlowfishInFieldCase1.java,CryptoAPI-Bench,java,1,Blowfish used;Default key length;Default mode used;Default padding
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoBlowfishMulC1Main.java,CryptoAPI-Bench,java,1,Blowfish used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoCase1.java,CryptoAPI-Bench,java,1,DES used;ECB used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoCase2.java,CryptoAPI-Bench,java,1,Blowfish used;Default mode used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoCase3.java,CryptoAPI-Bench,java,1,RC4 used;Default mode used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoCase4.java,CryptoAPI-Bench,java,1,RC2 used;Default mode used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoDES.java,CryptoAPI-Bench,java,1,DES used;ECB used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoDESFieldCase1.java,CryptoAPI-Bench,java,1,DES used;ECB used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoDESInFieldCase1.java,CryptoAPI-Bench,java,1,DES used;ECB used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoDESMulC1Main.java,CryptoAPI-Bench,java,1,DES used;ECB used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoIDEA.java,CryptoAPI-Bench,java,1,IDEA used;Default mode used;Default padding
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoIDEACase2.java,CryptoAPI-Bench,java,1,IDEA used;Default mode used;Default padding
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoIDEAFieldCase1.java,CryptoAPI-Bench,java,1,IDEA used;Default mode used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoIDEAInFieldCase1.java,CryptoAPI-Bench,java,1,IDEA used;Default mode used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoIDEAMulC1Main.java,CryptoAPI-Bench,java,1,IDEA used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoRC2.java,CryptoAPI-Bench,java,1,RC2 used;Default mode used;Insufficient key length
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoRC2Case2.java,CryptoAPI-Bench,java,1,RC2 used;Default mode used;Insufficient key length;Default padding
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoRC2FieldCase1.java,CryptoAPI-Bench,java,1,RC2 used;Default mode used;Insufficient key length;Default padding
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoRC2InFieldCase1.java,CryptoAPI-Bench,java,1,RC2 used;Default mode used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoRC2MulC1Main.java,CryptoAPI-Bench,java,1,RC2 used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoRC4.java,CryptoAPI-Bench,java,1,RC4 used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoRC4Case2.java,CryptoAPI-Bench,java,1,RC4 used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoRC4FieldCase1.java,CryptoAPI-Bench,java,1,RC4 used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoRC4InFieldCase1.java,CryptoAPI-Bench,java,1,RC4 used
+Dsub\other tools\CryptoAPI-Bench\BrokenCryptoRC4MulC1Main.java,CryptoAPI-Bench,java,1,RC4 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashMD2.java,CryptoAPI-Bench,java,1,MD2 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashMD2Case2.java,CryptoAPI-Bench,java,1,MD2 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashMD2Case3.java,CryptoAPI-Bench,java,1,MD2 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashMD2Field.java,CryptoAPI-Bench,java,1,MD2 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashMD2InFieldCase1.java,CryptoAPI-Bench,java,1,MD2 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashMD2MulC1Main.java,CryptoAPI-Bench,java,1,MD2 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashMD4.java,CryptoAPI-Bench,java,1,MD4 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashMD4Case2.java,CryptoAPI-Bench,java,1,MD4 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashMD4Case3.java,CryptoAPI-Bench,java,1,MD4 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashMD4Field.java,CryptoAPI-Bench,java,1,MD4 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashMD4InFieldCase1.java,CryptoAPI-Bench,java,1,MD4 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashMD4MulC1Main.java,CryptoAPI-Bench,java,1,MD4 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashMD5.java,CryptoAPI-Bench,java,1,MD5 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashMD5Case3.java,CryptoAPI-Bench,java,1,MD5 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashMD5Field.java,CryptoAPI-Bench,java,1,MD5 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashMD5InFieldCase1.java,CryptoAPI-Bench,java,1,MD5 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashMD5MulC1Main.java,CryptoAPI-Bench,java,1,MD5 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashSHA.java,CryptoAPI-Bench,java,1,SHA1 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashSHA1Case3.java,CryptoAPI-Bench,java,1,SHA1 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashSHA1Field.java,CryptoAPI-Bench,java,1,SHA1 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashSHA1InFieldCase1.java,CryptoAPI-Bench,java,1,SHA1 used
+Dsub\other tools\CryptoAPI-Bench\BrokenHashSHA1MulC1Main.java,CryptoAPI-Bench,java,1,SHA1 used
+Dsub\other tools\CryptoAPI-Bench\BrokenMacMD5.java,CryptoAPI-Bench,java,1,MD5 used
+Dsub\other tools\CryptoAPI-Bench\BrokenMacSHA1.java,CryptoAPI-Bench,java,1,SHA1 used
+Dsub\other tools\CryptoAPI-Bench\CertValidationCase1.java,CryptoAPI-Bench,java,1,No certificate validation
+Dsub\other tools\CryptoAPI-Bench\CertValidationCase2.java,CryptoAPI-Bench,java,1,No certificate validation
+Dsub\other tools\CryptoAPI-Bench\CertValidationCase3.java,CryptoAPI-Bench,java,1,No certificate validation
+Dsub\other tools\CryptoAPI-Bench\CredentialInStringAESField.java,CryptoAPI-Bench,java,1,Insecure key generation method;PKCS5Padding used;No IV in CBC;Insufficient key length
+Dsub\other tools\CryptoAPI-Bench\CredentialInStringAESInFieldCase1.java,CryptoAPI-Bench,java,1,Hardcoded key
+Dsub\other tools\CryptoAPI-Bench\CredentialInStringAESPositiveCase1.java,CryptoAPI-Bench,java,1,Insecure key generation method
+Dsub\other tools\CryptoAPI-Bench\CredentialInStringCase1.java,CryptoAPI-Bench,java,1,Insecure key generation method;PKCS5PADDING used;No IV in CBC
+Dsub\other tools\CryptoAPI-Bench\CredentialInStringCase2.java,CryptoAPI-Bench,java,1,Insecure key generation method
+Dsub\other tools\CryptoAPI-Bench\CredentialInStringMulCase1Main.java,CryptoAPI-Bench,java,1,Insecure key generation method
+Dsub\other tools\CryptoAPI-Bench\CustomHostnameVerifierExample.java,CryptoAPI-Bench,java,1,No hostname verification
+Dsub\other tools\CryptoAPI-Bench\DefaultHostnameVerifierMisuseExample.java,CryptoAPI-Bench,java,1,No hostname verification
+Dsub\other tools\CryptoAPI-Bench\DES.java,CryptoAPI-Bench,java,1,DES used;ECB mode used
+Dsub\other tools\CryptoAPI-Bench\DSA.java,CryptoAPI-Bench,java,1,Constant seed;Insufficient key length
+Dsub\other tools\CryptoAPI-Bench\DSAExample.java,CryptoAPI-Bench,java,1,Insufficient key length
+Dsub\other tools\CryptoAPI-Bench\ECBAES.java,CryptoAPI-Bench,java,1,ECB used
+Dsub\other tools\CryptoAPI-Bench\ECBAESField.java,CryptoAPI-Bench,java,1,ECB used
+Dsub\other tools\CryptoAPI-Bench\ECBAESInFieldCase1.java,CryptoAPI-Bench,java,1,ECB used
+Dsub\other tools\CryptoAPI-Bench\ECBAESMulCase1Main.java,CryptoAPI-Bench,java,1,ECB used
+Dsub\other tools\CryptoAPI-Bench\ECBAESPathCase1.java,CryptoAPI-Bench,java,1,ECB used;No iv in CBC
+Dsub\other tools\CryptoAPI-Bench\EcbInSymmCryptoCase1.java,CryptoAPI-Bench,java,1,ECB used
+Dsub\other tools\CryptoAPI-Bench\ECC.java,CryptoAPI-Bench,java,1,prime192v1 used
+Dsub\other tools\CryptoAPI-Bench\HostNameVerifierCase1.java,CryptoAPI-Bench,java,1,No hostname verification
+Dsub\other tools\CryptoAPI-Bench\HttpCase1.java,CryptoAPI-Bench,java,1,HTTP used
+Dsub\other tools\CryptoAPI-Bench\HttpCase2.java,CryptoAPI-Bench,java,1,HTTP used
+Dsub\other tools\CryptoAPI-Bench\HttpFieldCase1.java,CryptoAPI-Bench,java,1,HTTP used
+Dsub\other tools\CryptoAPI-Bench\HttpInFieldCase1.java,CryptoAPI-Bench,java,1,HTTP used
+Dsub\other tools\CryptoAPI-Bench\HttpMulCase1Main.java,CryptoAPI-Bench,java,1,HTTP used
+Dsub\other tools\CryptoAPI-Bench\HttpPathCase1.java,CryptoAPI-Bench,java,1,HTTP used
+Dsub\other tools\CryptoAPI-Bench\HttpProtocolBBCase1.java,CryptoAPI-Bench,java,1,HTTP used
+Dsub\other tools\CryptoAPI-Bench\ImproperSocketManualHostBBCase1.java,CryptoAPI-Bench,java,1,No hostname verification
+Dsub\other tools\CryptoAPI-Bench\InsecureCipherRSA1024InFieldCase1.java,CryptoAPI-Bench,java,1,Insufficient key length;No padding
+Dsub\other tools\CryptoAPI-Bench\InsecureIVGenerationExample.java,CryptoAPI-Bench,java,1,Hardcoded key;Predictable IV in CBC;PKCS5Padding used
+Dsub\other tools\CryptoAPI-Bench\InsecureRSACipherCase1.java,CryptoAPI-Bench,java,1,Insufficient key length;Default padding;Default mode
+Dsub\other tools\CryptoAPI-Bench\InsecureRSACipherCase2.java,CryptoAPI-Bench,java,1,Insufficient key length;Default padding;Default mode
+Dsub\other tools\CryptoAPI-Bench\InsecureRSAMulCase1Main.java,CryptoAPI-Bench,java,1,Insufficient key length
+Dsub\other tools\CryptoAPI-Bench\KeyExchangeWithoutEntityAuthentication.java,CryptoAPI-Bench,java,1,Lack authentication;Weak DH parameters
+Dsub\other tools\CryptoAPI-Bench\LessThan1000IterationPBEABICase.java,CryptoAPI-Bench,java,1,PBKDF iterations less than 1000
+Dsub\other tools\CryptoAPI-Bench\LessThan1000IterationPBEABICase2.java,CryptoAPI-Bench,java,1,PBKDF iterations less than 1000
+Dsub\other tools\CryptoAPI-Bench\LessThan1000IterationPBEABICase3.java,CryptoAPI-Bench,java,1,PBKDF iterations less than 1000
+Dsub\other tools\CryptoAPI-Bench\LessThan1000IterationPBEABPSCase1.java,CryptoAPI-Bench,java,1,PBKDF iterations less than 1000;Insufficient salt length
+Dsub\other tools\CryptoAPI-Bench\LessThan1000IterationPBECase1.java,CryptoAPI-Bench,java,1,PBKDF iterations less than 1000
+Dsub\other tools\CryptoAPI-Bench\LessThan1000IterationPBECase2.java,CryptoAPI-Bench,java,1,PBKDF iterations less than 1000
+Dsub\other tools\CryptoAPI-Bench\LessThan1000IterationPBEInFieldCase1.java,CryptoAPI-Bench,java,1,PBKDF iterations less than 1000
+Dsub\other tools\CryptoAPI-Bench\LessThan1000IterationPBEPositiveCase1.java,CryptoAPI-Bench,java,1,PBKDF iterations less than 1000;Insufficient salt length
+Dsub\other tools\CryptoAPI-Bench\LessThan1000PBEFieldCase1.java,CryptoAPI-Bench,java,1,PBKDF iterations less than 1000
+Dsub\other tools\CryptoAPI-Bench\LessThan1000PBEMulC1Main.java,CryptoAPI-Bench,java,1,PBKDF iterations less than 1000
+Dsub\other tools\CryptoAPI-Bench\MD5.java,CryptoAPI-Bench,java,1,MD5 used
+Dsub\other tools\CryptoAPI-Bench\MD5Example.java,CryptoAPI-Bench,java,1,MD5 used
+Dsub\other tools\CryptoAPI-Bench\MD5Example2.java,CryptoAPI-Bench,java,1,MD5 used
+Dsub\other tools\CryptoAPI-Bench\MD5Example3.java,CryptoAPI-Bench,java,1,MD5 used
+Dsub\other tools\CryptoAPI-Bench\NoSaltMisuseExample.java,CryptoAPI-Bench,java,1,No salt;Use of SHA-256 for password hashing;Hardcoded password
+Dsub\other tools\CryptoAPI-Bench\NullCipherExample.java,CryptoAPI-Bench,java,1,NullCipher used
+Dsub\other tools\CryptoAPI-Bench\PBE.java,CryptoAPI-Bench,java,1,PBKDF iterations less than 1000
+Dsub\other tools\CryptoAPI-Bench\PBEEncryptionExample.java,CryptoAPI-Bench,java,1,MD5 used;DES used;Static salt;Hardcoded password;Insufficient iteration count for key derivation
+Dsub\other tools\CryptoAPI-Bench\PBKDFUsingMD5Example.java,CryptoAPI-Bench,java,1,HmacMD5 used;Static salt;Hardcoded password;Insufficient Iteration Count
+Dsub\other tools\CryptoAPI-Bench\PredictableCryptoKeyAESPathCase1.java,CryptoAPI-Bench,java,1,Hardcoded password
+Dsub\other tools\CryptoAPI-Bench\PredictableCryptoKeyCase1.java,CryptoAPI-Bench,java,1,Hardcoded key;Insufficient key length
+Dsub\other tools\CryptoAPI-Bench\PredictableCryptoKeyCase2.java,CryptoAPI-Bench,java,1,Hardcoded key;Insufficient key length
+Dsub\other tools\CryptoAPI-Bench\PredictableCryptoKeyInFieldCase1.java,CryptoAPI-Bench,java,1,Hardcoded key;Insufficient key size
+Dsub\other tools\CryptoAPI-Bench\PredictableCryptoKeyMulCase1Main.java,CryptoAPI-Bench,java,1,Hardcoded key
+Dsub\other tools\CryptoAPI-Bench\PredictableKeyAESPositiveCase1.java,CryptoAPI-Bench,java,1,Predictable key;Insufficient key length
+Dsub\other tools\CryptoAPI-Bench\PredictableKeyCase1.java,CryptoAPI-Bench,java,1,Hardcoded key;Insufficient key length
+Dsub\other tools\CryptoAPI-Bench\PredictableKeyStoreInFieldCase1.java,CryptoAPI-Bench,java,1,Hardcoded key
+Dsub\other tools\CryptoAPI-Bench\PredictableKeyStoreKeyCase1.java,CryptoAPI-Bench,java,1,Hardcoded key
+Dsub\other tools\CryptoAPI-Bench\PredictableKeyStoreKeyCase2.java,CryptoAPI-Bench,java,1,Hardcoded key
+Dsub\other tools\CryptoAPI-Bench\PredictableKeyStoreKeyFieldCase1.java,CryptoAPI-Bench,java,1,Hardcoded key
+Dsub\other tools\CryptoAPI-Bench\PredictableKeyStoreKeyPathCase1.java,CryptoAPI-Bench,java,1,Hardcoded key
+Dsub\other tools\CryptoAPI-Bench\PredictableKeyStoreMulCase1Main.java,CryptoAPI-Bench,java,1,Hardcoded key
+Dsub\other tools\CryptoAPI-Bench\PredictableKeyStorePasswordCase1.java,CryptoAPI-Bench,java,1,Hardcoded key
+Dsub\other tools\CryptoAPI-Bench\PredictableKeyStorePositiveCase1.java,CryptoAPI-Bench,java,1,Insecure key generation method
+Dsub\other tools\CryptoAPI-Bench\PredictableKeyStorePositiveCase2.java,CryptoAPI-Bench,java,1,Predictable key
+Dsub\other tools\CryptoAPI-Bench\PredictablePBEKeyCase1.java,CryptoAPI-Bench,java,1,Hardcoded password;Insufficient PBE iteration count
+Dsub\other tools\CryptoAPI-Bench\PredictablePBEKeyFieldCase1.java,CryptoAPI-Bench,java,1,Hardcoded password;Insufficient PBEKeySpec iteration count
+Dsub\other tools\CryptoAPI-Bench\PredictablePBEKeyInFieldCase1.java,CryptoAPI-Bench,java,1,Hardcoded password
+Dsub\other tools\CryptoAPI-Bench\PredictablePBEKeyPathCase1.java,CryptoAPI-Bench,java,1,Hardcoded password
+Dsub\other tools\CryptoAPI-Bench\PredictablePBEKeyPositiveCase1.java,CryptoAPI-Bench,java,1,Insecure key generation method;Weak iteration count for PBEKeySpec;
+Dsub\other tools\CryptoAPI-Bench\PredictablePBEKeyPositiveCase2.java,CryptoAPI-Bench,java,1,Predictable key
+Dsub\other tools\CryptoAPI-Bench\PredictablePBEMulCase1Main.java,CryptoAPI-Bench,java,1,Hardcoded password
+Dsub\other tools\CryptoAPI-Bench\PredictablePBEPasswordCase1.java,CryptoAPI-Bench,java,1,Hardcoded key;Insufficient Iteration Count
+Dsub\other tools\CryptoAPI-Bench\PredictablePBEPasswordCase2.java,CryptoAPI-Bench,java,1,Hardcoded key;Insufficient Iteration Count;Insecure Password Length
+Dsub\other tools\CryptoAPI-Bench\PredictablePBEStringKeyCase1.java,CryptoAPI-Bench,java,1,Hardcoded password;Low iteration count for PBEKeySpec
+Dsub\other tools\CryptoAPI-Bench\PredictableSeedsCase1.java,CryptoAPI-Bench,java,1,Predictable seed
+Dsub\other tools\CryptoAPI-Bench\PredictableSeedsCase2.java,CryptoAPI-Bench,java,1,Predictable seed
+Dsub\other tools\CryptoAPI-Bench\PredictableSeedsCase3.java,CryptoAPI-Bench,java,1,Predictable seed
+Dsub\other tools\CryptoAPI-Bench\PredictableSeedsCase4.java,CryptoAPI-Bench,java,1,Predictable seed
+Dsub\other tools\CryptoAPI-Bench\PredictableSeedsCase5.java,CryptoAPI-Bench,java,1,Predictable seed
+Dsub\other tools\CryptoAPI-Bench\PredictableSeedsCase6.java,CryptoAPI-Bench,java,1,Predictable seed
+Dsub\other tools\CryptoAPI-Bench\PredictableSeedsFieldCase1.java,CryptoAPI-Bench,java,1,Predictable seed
+Dsub\other tools\CryptoAPI-Bench\PredictableSeedsFieldCase2.java,CryptoAPI-Bench,java,1,Predictable seed
+Dsub\other tools\CryptoAPI-Bench\PredictableSeedsInFieldCase1.java,CryptoAPI-Bench,java,1,Predictable seed
+Dsub\other tools\CryptoAPI-Bench\PredictableSeedsInFieldCase2.java,CryptoAPI-Bench,java,1,Predictable seed
+Dsub\other tools\CryptoAPI-Bench\PredictableSeedsPathCase1.java,CryptoAPI-Bench,java,1,Predictable seed
+Dsub\other tools\CryptoAPI-Bench\PredictableSeedsPathCase2.java,CryptoAPI-Bench,java,1,Predictable seed
+Dsub\other tools\CryptoAPI-Bench\PredictableSeedsPositiveCase1.java,CryptoAPI-Bench,java,1,Predictable seed
+Dsub\other tools\CryptoAPI-Bench\PredictableSeedsPositiveCase2.java,CryptoAPI-Bench,java,1,Predictable seed
+Dsub\other tools\CryptoAPI-Bench\PredictSeedsMulC1Main.java,CryptoAPI-Bench,java,1,Predictable seed
+Dsub\other tools\CryptoAPI-Bench\PredictSeedsMulC2Main.java,CryptoAPI-Bench,java,1,Predictable seed
+Dsub\other tools\CryptoAPI-Bench\RC2.java,CryptoAPI-Bench,java,1,RC2 used;Default mode;Default padding
+Dsub\other tools\CryptoAPI-Bench\RC4.java,CryptoAPI-Bench,java,1,RC4 used;Hardcoded key
+Dsub\other tools\CryptoAPI-Bench\RSA.java,CryptoAPI-Bench,java,1,Insufficient key;Default mode;Default padding
+Dsub\other tools\CryptoAPI-Bench\RSAExample.java,CryptoAPI-Bench,java,1,Insufficient key;ECB used
+Dsub\other tools\CryptoAPI-Bench\SecureRandomKeyCase1.java,CryptoAPI-Bench,java,1,Insecure key generation method;Insufficient key size
+Dsub\other tools\CryptoAPI-Bench\SetSeedMisuseExample.java,CryptoAPI-Bench,java,1,Static seed
+Dsub\other tools\CryptoAPI-Bench\SHA1.java,CryptoAPI-Bench,java,1,SHA1 used
+Dsub\other tools\CryptoAPI-Bench\ShortSaltMisuseExample.java,CryptoAPI-Bench,java,1,Short Salt
+Dsub\other tools\CryptoAPI-Bench\SSLV2Example.java,CryptoAPI-Bench,java,1,Insecure SSL/TLS version
+Dsub\other tools\CryptoAPI-Bench\SSLv3Example.java,CryptoAPI-Bench,java,1,Insecure SSL/TLS version
+Dsub\other tools\CryptoAPI-Bench\StaticInitializationVectorCase1.java,CryptoAPI-Bench,java,1,Static IV
+Dsub\other tools\CryptoAPI-Bench\StaticInitializationVectorCase2.java,CryptoAPI-Bench,java,1,Static IV
+Dsub\other tools\CryptoAPI-Bench\StaticInitializationVectorCase3.java,CryptoAPI-Bench,java,1,Static IV
+Dsub\other tools\CryptoAPI-Bench\StaticSaltsCase1.java,CryptoAPI-Bench,java,1,Static salt;Insufficient salt size;Insufficient iteration count
+Dsub\other tools\CryptoAPI-Bench\StaticSaltsCase2.java,CryptoAPI-Bench,java,1,Static salt;Insufficient salt size;Insufficient iteration count
+Dsub\other tools\CryptoAPI-Bench\StaticSaltsCase3.java,CryptoAPI-Bench,java,1,Static salt;Insufficient salt size;Insufficient iteration count
+Dsub\other tools\CryptoAPI-Bench\StaticSaltsFieldCase1.java,CryptoAPI-Bench,java,1,Static salt;Insufficient salt size;Insufficient iteration count
+Dsub\other tools\CryptoAPI-Bench\StaticSaltsInFieldCase1.java,CryptoAPI-Bench,java,1,Static salt;Insufficient salt size;Insufficient iteration count
+Dsub\other tools\CryptoAPI-Bench\StaticSaltsMulCase1Main.java,CryptoAPI-Bench,java,1,Static salt;Insufficient salt size;Insufficient iteration count
+Dsub\other tools\CryptoAPI-Bench\StaticSaltsPathCase1.java,CryptoAPI-Bench,java,1,Static salt;Insufficient salt size;Insufficient iteration count
+Dsub\other tools\CryptoAPI-Bench\StaticSaltsPBEPositiveCase1.java,CryptoAPI-Bench,java,1,Static salt;Insufficient salt size;Insufficient iteration count
+Dsub\other tools\CryptoAPI-Bench\StaticSeedMisuseExample.java,CryptoAPI-Bench,java,1,Static seed
+Dsub\other tools\CryptoAPI-Bench\StaticVectorAESCBCFieldCase1.java,CryptoAPI-Bench,java,1,Static IV;Default key length
+Dsub\other tools\CryptoAPI-Bench\StaticVectorAESInFieldCase1.java,CryptoAPI-Bench,java,1,Static IV;Default key length
+Dsub\other tools\CryptoAPI-Bench\StaticVectorMulCase1Main.java,CryptoAPI-Bench,java,1,Static IV
+Dsub\other tools\CryptoAPI-Bench\StaticVectorPathCase1.java,CryptoAPI-Bench,java,1,Predictable IV in CBC
+Dsub\other tools\CryptoAPI-Bench\StaticVectorPositiveCase1.java,CryptoAPI-Bench,java,1,Predictable IV in CBC
+Dsub\other tools\CryptoAPI-Bench\StaticVectorPositiveCase2.java,CryptoAPI-Bench,java,1,Predictable IV in CBC
+Dsub\other tools\CryptoAPI-Bench\TripleDES.java,CryptoAPI-Bench,java,1,Hardcoded key;3DES used;Default padding;Default mode;Insufficient key length
+Dsub\other tools\CryptoAPI-Bench\TrustSelfSignedCertExample.java,CryptoAPI-Bench,java,1,Self-signed certificates used;Trusts all certificate
+Dsub\other tools\CryptoAPI-Bench\UntrustedPRNGCase1.java,CryptoAPI-Bench,java,1,Insecure PRNG used;Iteration lower than 10000 in PBKDF2
+Dsub\other tools\CryptoAPI-Bench\WeakTLSExample.java,CryptoAPI-Bench,java,1,Insecure SSL/TLS version
+Dsub\other tools\MASC\BadHostName.java,cryptogo,java,1,Allow all hostname
+Dsub\other tools\MASC\BadSSL_Naive.java,cryptogo,java,1,Allow self-signed certificate;Insecure SSL context;No hostname verification;Allow all certificates
+Dsub\other tools\MASC\BlowFish.java,cryptogo,java,1,Blowfish used;NoPadding used;Default key length;Default mode
+Dsub\other tools\MASC\BlowFishSmallKey.java,cryptogo,java,1,Blowfish used;NoPadding used;Insufficient key length
+Dsub\other tools\MASC\CipherExample.java,cryptogo,java,1,DES used;Default mode used;Default padding
+Dsub\other tools\MASC\ContextOfSSL.java,cryptogo,java,1,Insecure SSL/TLS version
+Dsub\crawl\nomisuses\Python\1120packet.py,github,python,0,
+Dsub\crawl\nomisuses\Python\1281azure_kusto_driver.py,github,python,0,
+Dsub\crawl\nomisuses\Python\13775multiprocess_launcher.py,github,python,0,
+Dsub\crawl\nomisuses\Python\1780test_build.py,github,python,0,
+Dsub\crawl\nomisuses\Python\208solc_select.py,github,python,0,
+Dsub\crawl\nomisuses\Python\373cryptostore.py,github,python,0,
+Dsub\crawl\nomisuses\Python\373generate.py,github,python,0,
+Dsub\crawl\nomisuses\Python\532test_db_backend.py,github,python,0,
+Dsub\crawl\nomisuses\Python\72517config_domains.py,github,python,0,
+Dsub\crawl\nomisuses\Python\72517definitions.py,github,python,0,
+Dsub\crawl\nomisuses\Python\72517endpoints.py,github,python,0,
+Dsub\crawl\nomisuses\Python\72517test_certs.py,github,python,0,
+Dsub\crawl\nomisuses\Python\css.py,github,python,0,
+Dsub\crawl\nomisuses\Python\dammit.py,github,python,0,
+Dsub\crawl\nomisuses\Python\diagnose.py,github,python,0,
+Dsub\crawl\nomisuses\Python\element.py,github,python,0,
+Dsub\crawl\nomisuses\Python\formatter.py,github,python,0,
+Dsub\crawl\nomisuses\Python\test_builder.py,github,python,0,
+Dsub\crawl\nomisuses\Python\test_builder_registry.py,github,python,0,
+Dsub\crawl\nomisuses\Python\test_css.py,github,python,0,
+Dsub\crawl\nomisuses\Python\test_dammit.py,github,python,0,
+Dsub\crawl\nomisuses\Python\test_docs.py,github,python,0,
+Dsub\crawl\nomisuses\Python\test_element.py,github,python,0,
+Dsub\crawl\nomisuses\Python\test_formatter.py,github,python,0,
+Dsub\crawl\nomisuses\Python\test_fuzz.py,github,python,0,
+Dsub\crawl\nomisuses\Python\test_html5lib.py,github,python,0,
+Dsub\crawl\nomisuses\Python\test_htmlparser.py,github,python,0,
+Dsub\crawl\nomisuses\Python\test_lxml.py,github,python,0,
+Dsub\crawl\nomisuses\Python\test_pageelement.py,github,python,0,
+Dsub\crawl\nomisuses\Python\test_soup.py,github,python,0,
+Dsub\crawl\nomisuses\Python\test_tag.py,github,python,0,
+Dsub\crawl\nomisuses\Python\test_tree.py,github,python,0,
+Dsub\crawl\nomisuses\Python\test.py,github,python,0,
+Dsub\crawl\Py_code\1120tls.py,github,python,1,Insecure SSL/TLS version;SHA1 used;PKCS1v15 used;secp256r1 used
+Dsub\crawl\Py_code\1120utils.py,github,python,1,Insufficient key length
+Dsub\crawl\Py_code\1281domain_utils.py,github,python,1,SHA1 used
+Dsub\crawl\Py_code\146test.py,github,python,1,Hardcoded key;Hardcoded token
+Dsub\crawl\Py_code\3425crypto.py,github,python,1,DES used;ECB used
+Dsub\crawl\Py_code\3425secretsdump.py,github,python,1,DES used;RC4 used
+Dsub\crawl\Py_code\356pyopenssl.py,github,python,1,Insecure SSL/TLS version
+Dsub\crawl\Py_code\400multicast.py,github,python,1,Hardcoded key;ECB used;Insecure padding mechanism
+Dsub\crawl\Py_code\569API.py,github,python,1,Hardcoded key
+Dsub\other tools\licma\Crypto\CryptoAESCBCC1.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\Crypto\CryptoAESCBCdmc1.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\Crypto\CryptoAESCBCdmc2.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\Crypto\CryptoAESCBCdva1.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\Crypto\CryptoAESCBCdva2.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\Crypto\CryptoAESCBChc2.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\Crypto\CryptoAESCBCiva1.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\Crypto\CryptoAESCBCiva2.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\Crypto\CryptoAESCBClv1.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\Crypto\CryptoAESCBClv2.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\Crypto\CryptoAESCBCnlv1.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\Crypto\CryptoAESCBCnlv2.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\Crypto\CryptoAESCBCnmc1.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\Crypto\CryptoAESCBCnmc2.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\Crypto\CryptoAESECBC1.py,licma,python,1,ECB used
+Dsub\other tools\licma\Crypto\CryptoAESECBC2.py,licma,python,1,ECB used
+Dsub\other tools\licma\Crypto\CryptoAESECBC3.py,licma,python,1,ECB used
+Dsub\other tools\licma\Crypto\CryptoAESECBC4.py,licma,python,1,ECB used
+Dsub\other tools\licma\Crypto\CryptoAESECBC5.py,licma,python,1,ECB used
+Dsub\other tools\licma\Crypto\CryptoAESECBC6.py,licma,python,1,ECB used
+Dsub\other tools\licma\Crypto\CryptoAESECBC7.py,licma,python,1,ECB used
+Dsub\other tools\licma\Crypto\CryptoKeydmc1.py,licma,python,1,Hardcoded key;ECB used
+Dsub\other tools\licma\Crypto\CryptoKeydmc2.py,licma,python,1,Hardcoded key;ECB used
+Dsub\other tools\licma\Crypto\CryptoKeydmc3.py,licma,python,1,Hardcoded key;ECB used
+Dsub\other tools\licma\Crypto\CryptoKeydmc4.py,licma,python,1,Hardcoded key;ECB used
+Dsub\other tools\licma\Crypto\CryptoKeydva1.py,licma,python,1,Hardcoded key;ECB used
+Dsub\other tools\licma\Crypto\CryptoKeydva2.py,licma,python,1,Hardcoded key;ECB used
+Dsub\other tools\licma\Crypto\CryptoKeydva3.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\Crypto\CryptoKeydva4.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\Crypto\CryptoKeyhc1.py,licma,python,1,Hardcoded key;ECB used
+Dsub\other tools\licma\Crypto\CryptoKeyhc2.py,licma,python,1,Hardcoded key;ECB used
+Dsub\other tools\licma\Crypto\CryptoKeyhc3.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\Crypto\CryptoKeyhc4.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\Crypto\CryptoKeyiva1.py,licma,python,1,Hardcoded key;ECB used
+Dsub\other tools\licma\Crypto\CryptoKeyiva2.py,licma,python,1,Hardcoded key;ECB used
+Dsub\other tools\licma\Crypto\CryptoKeyiva3.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\Crypto\CryptoKeyiva4.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\Crypto\CryptoKeylv1.py,licma,python,1,Hardcoded key;ECB used
+Dsub\other tools\licma\Crypto\CryptoKeylv2.py,licma,python,1,Hardcoded key;ECB used
+Dsub\other tools\licma\Crypto\CryptoKeylv3.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\Crypto\CryptoKeylv4.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\Crypto\CryptoKeynlv1.py,licma,python,1,Hardcoded key;ECB used
+Dsub\other tools\licma\Crypto\CryptoKeynlv2.py,licma,python,1,Hardcoded key;ECB used
+Dsub\other tools\licma\Crypto\CryptoKeynlv3.py,licma,python,1,Hardcoded key;ECB used
+Dsub\other tools\licma\Crypto\CryptoKeynlv4.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\Crypto\CryptoKeynmc1.py,licma,python,1,Hardcoded key;ECB used
+Dsub\other tools\licma\Crypto\CryptoKeynmc2.py,licma,python,1,Hardcoded key;ECB used
+Dsub\other tools\licma\Crypto\CryptoKeynmc3.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\Crypto\CryptoKeynmc4.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\Crypto\CryptoPBE1000DMC1.py,licma,python,1,ECB used;PBKDF iterations lower than 1000;Static salt;Hardcoded password
+Dsub\other tools\licma\Crypto\CryptoPBE1000DVA1.py,licma,python,1,ECB used;PBKDF iterations lower than 1000;Static salt;Hardcoded password
+Dsub\other tools\licma\Crypto\CryptoPBE1000HC1.py,licma,python,1,ECB used;PBKDF iterations lower than 1000;Static salt;Hardcoded password
+Dsub\other tools\licma\Crypto\CryptoPBE1000IVA1.py,licma,python,1,ECB used;PBKDF iterations lower than 1000;Static salt;Hardcoded password
+Dsub\other tools\licma\Crypto\CryptoPBE1000LV1.py,licma,python,1,ECB used;PBKDF iterations lower than 1000;Static salt;Hardcoded password
+Dsub\other tools\licma\Crypto\CryptoPBE1000NLV1.py,licma,python,1,ECB used;PBKDF iterations lower than 1000;Static salt;Hardcoded password
+Dsub\other tools\licma\Crypto\CryptoPBE1000NMC1.py,licma,python,1,ECB used;PBKDF iterations lower than 1000;Static salt;Hardcoded password
+Dsub\other tools\licma\Crypto\CryptoStaticSaltDMC1.py,licma,python,1,ECB used;Static salt;Hardcoded password;Insufficient iteration count in PBKDF2
+Dsub\other tools\licma\Crypto\CryptoStaticSaltDMC2.py,licma,python,1,ECB used;Static salt;Hardcoded password;Insufficient iteration count in PBKDF2
+Dsub\other tools\licma\Crypto\CryptoStaticSaltDVA1.py,licma,python,1,ECB used;Static salt;Hardcoded password;Insufficient iteration count in PBKDF2
+Dsub\other tools\licma\Crypto\CryptoStaticSaltDVA2.py,licma,python,1,ECB used;Static salt;Hardcoded password;Insufficient iteration count in PBKDF2
+Dsub\other tools\licma\Crypto\CryptoStaticSaltHC1.py,licma,python,1,ECB used;Static salt;Hardcoded password;Insufficient iteration count in PBKDF2
+Dsub\other tools\licma\Crypto\CryptoStaticSaltHC2.py,licma,python,1,ECB used;Static salt;Hardcoded password;Insufficient iteration count in PBKDF2
+Dsub\other tools\licma\Crypto\CryptoStaticSaltIVA1.py,licma,python,1,ECB used;Static salt;Hardcoded password;Insufficient iteration count in PBKDF2
+Dsub\other tools\licma\Crypto\CryptoStaticSaltIVA2.py,licma,python,1,ECB used;Static salt;Hardcoded password;Insufficient iteration count in PBKDF2
+Dsub\other tools\licma\Crypto\CryptoStaticSaltLV1.py,licma,python,1,ECB used;Static salt;Hardcoded password;Insufficient iteration count in PBKDF2
+Dsub\other tools\licma\Crypto\CryptoStaticSaltLV2.py,licma,python,1,ECB used;Static salt;Hardcoded password;Insufficient iteration count in PBKDF2
+Dsub\other tools\licma\Crypto\CryptoStaticSaltNLV1.py,licma,python,1,ECB used;Static salt;Hardcoded password;Insufficient iteration count in PBKDF2
+Dsub\other tools\licma\Crypto\CryptoStaticSaltNLV2.py,licma,python,1,ECB used;Static salt;Hardcoded password;Insufficient iteration count in PBKDF2
+Dsub\other tools\licma\Crypto\CryptoStaticSaltNMC1.py,licma,python,1,ECB used;Static salt;Hardcoded password;Insufficient iteration count in PBKDF2
+Dsub\other tools\licma\Crypto\CryptoStaticSaltNMC2.py,licma,python,1,ECB used;Static salt;Hardcoded password;Insufficient iteration count in PBKDF2
+Dsub\other tools\licma\PyCrypto\PyCryptoAESCBCDMC1.py,licma,python,1,Static IV
+Dsub\other tools\licma\PyCrypto\PyCryptoAESCBCDMC2.py,licma,python,1,Static IV
+Dsub\other tools\licma\PyCrypto\PyCryptoAESCBCDVA1.py,licma,python,1,Static IV
+Dsub\other tools\licma\PyCrypto\PyCryptoAESCBCDVA2.py,licma,python,1,Static IV
+Dsub\other tools\licma\PyCrypto\PyCryptoAESCBCHC1.py,licma,python,1,Static IV
+Dsub\other tools\licma\PyCrypto\PyCryptoAESCBCHC2.py,licma,python,1,Static IV
+Dsub\other tools\licma\PyCrypto\PyCryptoAESCBCIVA1.py,licma,python,1,Static IV
+Dsub\other tools\licma\PyCrypto\PyCryptoAESCBCIVA2.py,licma,python,1,Static IV
+Dsub\other tools\licma\PyCrypto\PyCryptoAESCBCLV1.py,licma,python,1,Static IV
+Dsub\other tools\licma\PyCrypto\PyCryptoAESCBCLV2.py,licma,python,1,Static IV
+Dsub\other tools\licma\PyCrypto\PyCryptoAESCBCNLV1.py,licma,python,1,Static IV
+Dsub\other tools\licma\PyCrypto\PyCryptoAESCBCNLV2.py,licma,python,1,Static IV
+Dsub\other tools\licma\PyCrypto\PyCryptoAESCBCNMC1.py,licma,python,1,Static IV
+Dsub\other tools\licma\PyCrypto\PyCryptoAESCBCNMC2.py,licma,python,1,Static IV
+Dsub\other tools\licma\PyCrypto\PyCryptoAESECBDMC1.py,licma,python,1,ECB used
+Dsub\other tools\licma\PyCrypto\PyCryptoAESECBDMC2.py,licma,python,1,ECB used
+Dsub\other tools\licma\PyCrypto\PyCryptoAESECBDVA1.py,licma,python,1,ECB used
+Dsub\other tools\licma\PyCrypto\PyCryptoAESECBDVA2.py,licma,python,1,ECB used
+Dsub\other tools\licma\PyCrypto\PyCryptoAESECBHC1.py,licma,python,1,ECB used
+Dsub\other tools\licma\PyCrypto\PyCryptoAESECBHC2.py,licma,python,1,ECB used
+Dsub\other tools\licma\PyCrypto\PyCryptoAESECBIVA1.py,licma,python,1,ECB used
+Dsub\other tools\licma\PyCrypto\PyCryptoAESECBIVA2.py,licma,python,1,ECB used
+Dsub\other tools\licma\PyCrypto\PyCryptoAESECBLV1.py,licma,python,1,ECB used
+Dsub\other tools\licma\PyCrypto\PyCryptoAESECBLV2.py,licma,python,1,ECB used
+Dsub\other tools\licma\PyCrypto\PyCryptoAESECBNLV1.py,licma,python,1,ECB used
+Dsub\other tools\licma\PyCrypto\PyCryptoAESECBNLV2.py,licma,python,1,ECB used
+Dsub\other tools\licma\PyCrypto\PyCryptoAESECBNMC1.py,licma,python,1,ECB used
+Dsub\other tools\licma\PyCrypto\PyCryptoAESECBNMC2.py,licma,python,1,ECB used
+Dsub\other tools\licma\PyCrypto\PyCryptoKeyDMC1.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\PyCrypto\PyCryptoKeyDMC2.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\PyCrypto\PyCryptoKeyDVA1.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\PyCrypto\PyCryptoKeyDVA2.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\PyCrypto\PyCryptoKeyHC1.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\PyCrypto\PyCryptoKeyHC2.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\PyCrypto\PyCryptoKeyIVA1.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\PyCrypto\PyCryptoKeyIVA2.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\PyCrypto\PyCryptoKeyLV1.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\PyCrypto\PyCryptoKeyLV2.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\PyCrypto\PyCryptoKeyNLV1.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\PyCrypto\PyCryptoKeyNLV2.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\PyCrypto\PyCryptoKeyNMC1.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\PyCrypto\PyCryptoKeyNMC2.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\PyCrypto\PyCryptoPBE1000DMC1.py,licma,python,1,ECB used;PBKDF iterations lower than 1000;Static salt;Hardcoded password
+Dsub\other tools\licma\PyCrypto\PyCryptoPBE1000DVA1.py,licma,python,1,ECB used;PBKDF iterations lower than 1000;Static salt;Hardcoded password
+Dsub\other tools\licma\PyCrypto\PyCryptoPBE1000HC1.py,licma,python,1,ECB used;PBKDF iterations lower than 1000;Static salt;Hardcoded password
+Dsub\other tools\licma\PyCrypto\PyCryptoPBE1000IVA1.py,licma,python,1,ECB used;PBKDF iterations lower than 1000;Static salt;Hardcoded password
+Dsub\other tools\licma\PyCrypto\PyCryptoPBE1000LV1.py,licma,python,1,ECB used;PBKDF iterations lower than 1000;Static salt;Hardcoded password
+Dsub\other tools\licma\PyCrypto\PyCryptoPBE1000NLV1.py,licma,python,1,ECB used;PBKDF iterations lower than 1000;Static salt;Hardcoded password
+Dsub\other tools\licma\PyCrypto\PyCryptoPBE1000NMC1.py,licma,python,1,ECB used;PBKDF iterations lower than 1000;Static salt;Hardcoded password
+Dsub\other tools\licma\PyCrypto\PyCryptoStaticSaltDMC1.py,licma,python,1,ECB used;Static salt;Hardcoded password;PBKDF2 iterations lower than 10000
+Dsub\other tools\licma\PyCrypto\PyCryptoStaticSaltDMC2.py,licma,python,1,ECB used;Static salt;Hardcoded password;PBKDF2 iterations lower than 10000
+Dsub\other tools\licma\PyCrypto\PyCryptoStaticSaltDVA1.py,licma,python,1,ECB used;Static salt;Hardcoded password;PBKDF2 iterations lower than 10000
+Dsub\other tools\licma\PyCrypto\PyCryptoStaticSaltDVA2.py,licma,python,1,ECB used;Static salt;Hardcoded password;PBKDF2 iterations lower than 10000
+Dsub\other tools\licma\PyCrypto\PyCryptoStaticSaltHC1.py,licma,python,1,ECB used;Static salt;Hardcoded password;PBKDF2 iterations lower than 10000
+Dsub\other tools\licma\PyCrypto\PyCryptoStaticSaltHC2.py,licma,python,1,ECB used;Static salt;Hardcoded password;PBKDF2 iterations lower than 10000
+Dsub\other tools\licma\PyCrypto\PyCryptoStaticSaltIVA1.py,licma,python,1,ECB used;Static salt;Hardcoded password;PBKDF2 iterations lower than 10000
+Dsub\other tools\licma\PyCrypto\PyCryptoStaticSaltIVA2.py,licma,python,1,ECB used;Static salt;Hardcoded password;PBKDF2 iterations lower than 10000
+Dsub\other tools\licma\PyCrypto\PyCryptoStaticSaltLV1.py,licma,python,1,ECB used;Static salt;Hardcoded password;PBKDF2 iterations lower than 10000
+Dsub\other tools\licma\PyCrypto\PyCryptoStaticSaltLV2.py,licma,python,1,ECB used;Static salt;Hardcoded password;PBKDF2 iterations lower than 10000
+Dsub\other tools\licma\PyCrypto\PyCryptoStaticSaltNLV1.py,licma,python,1,ECB used;Static salt;Hardcoded password;PBKDF2 iterations lower than 10000
+Dsub\other tools\licma\PyCrypto\PyCryptoStaticSaltNLV2.py,licma,python,1,ECB used;Static salt;Hardcoded password;PBKDF2 iterations lower than 10000
+Dsub\other tools\licma\PyCrypto\PyCryptoStaticSaltNMC1.py,licma,python,1,ECB used;Static salt;Hardcoded password;PBKDF2 iterations lower than 10000
+Dsub\other tools\licma\PyCrypto\PyCryptoStaticSaltNMC2.py,licma,python,1,ECB used;Static salt;Hardcoded password;PBKDF2 iterations lower than 10000
+Dsub\other tools\licma\PyNaCl\PyNaClKeyDMC1.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\PyNaCl\PyNaClKeyDMC2.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\PyNaCl\PyNaClKeyDVA1.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\PyNaCl\PyNaClKeyDVA2.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\PyNaCl\PyNaClKeyHC1.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\PyNaCl\PyNaClKeyHC2.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\PyNaCl\PyNaClKeyIVA1.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\PyNaCl\PyNaClKeyIVA2.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\PyNaCl\PyNaClKeyLV1.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\PyNaCl\PyNaClKeyLV2.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\PyNaCl\PyNaClKeyNLV1.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\PyNaCl\PyNaClKeyNLV2.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\PyNaCl\PyNaClKeyNMC1.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\PyNaCl\PyNaClKeyNMC2.py,licma,python,1,Hardcoded key
+Dsub\other tools\licma\PyNaCl\PyNaClStaticSaltDMC1.py,licma,python,1,Hardcode password;Static salt
+Dsub\other tools\licma\PyNaCl\PyNaClStaticSaltDMC2.py,licma,python,1,Hardcode password;Static salt
+Dsub\other tools\licma\PyNaCl\PyNaClStaticSaltDVA1.py,licma,python,1,Hardcode password;Static salt
+Dsub\other tools\licma\PyNaCl\PyNaClStaticSaltDVA2.py,licma,python,1,Hardcode password;Static salt
+Dsub\other tools\licma\PyNaCl\PyNaClStaticSaltHC1.py,licma,python,1,Hardcode password;Static salt
+Dsub\other tools\licma\PyNaCl\PyNaClStaticSaltHC2.py,licma,python,1,Hardcode password;Static salt
+Dsub\other tools\licma\PyNaCl\PyNaClStaticSaltIVA1.py,licma,python,1,Hardcode password;Static salt
+Dsub\other tools\licma\PyNaCl\PyNaClStaticSaltIVA2.py,licma,python,1,Hardcode password;Static salt
+Dsub\other tools\licma\PyNaCl\PyNaClStaticSaltLV1.py,licma,python,1,Hardcode password;Static salt
+Dsub\other tools\licma\PyNaCl\PyNaClStaticSaltLV2.py,licma,python,1,Hardcode password;Static salt
+Dsub\other tools\licma\PyNaCl\PyNaClStaticSaltNLV1.py,licma,python,1,Hardcode password;Static salt
+Dsub\other tools\licma\PyNaCl\PyNaClStaticSaltNLV2.py,licma,python,1,Hardcode password;Static salt
+Dsub\other tools\licma\PyNaCl\PyNaClStaticSaltNMC1.py,licma,python,1,Hardcode password;Static salt
+Dsub\other tools\licma\PyNaCl\PyNaClStaticSaltNMC2.py,licma,python,1,Hardcode password;Static salt
+Dsub\other tools\licma\ucryptolib\CryptoLibAESCBCDMC1.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\ucryptolib\CryptoLibAESCBCDMC2.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\ucryptolib\CryptoLibAESCBCDVA1.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\ucryptolib\CryptoLibAESCBCDVA2.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\ucryptolib\CryptoLibAESCBCHC1.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\ucryptolib\CryptoLibAESCBCHC2.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\ucryptolib\CryptoLibAESCBCIVA1.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\ucryptolib\CryptoLibAESCBCIVA2.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\ucryptolib\CryptoLibAESCBCLV1.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\ucryptolib\CryptoLibAESCBCLV2.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\ucryptolib\CryptoLibAESCBCNLV1.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\ucryptolib\CryptoLibAESCBCNLV2.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\ucryptolib\CryptoLibAESCBCNMC1.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\ucryptolib\CryptoLibAESCBCNMC2.py,licma,python,1,Predictable IV in CBC mode
+Dsub\other tools\licma\ucryptolib\CryptoLibAESECBDMC1.py,licma,python,1,ECB used
+Dsub\other tools\licma\ucryptolib\CryptoLibAESECBDMC2.py,licma,python,1,ECB used
+Dsub\other tools\licma\ucryptolib\CryptoLibAESECBDVA1.py,licma,python,1,ECB used
+Dsub\other tools\licma\ucryptolib\CryptoLibAESECBDVA2.py,licma,python,1,ECB used
+Dsub\other tools\licma\ucryptolib\CryptoLibAESECBHC2.py,licma,python,1,ECB used
+Dsub\other tools\licma\ucryptolib\CryptoLibAESECBIVA1.py,licma,python,1,ECB used
+Dsub\other tools\licma\ucryptolib\CryptoLibAESECBIVA2.py,licma,python,1,ECB used
+Dsub\other tools\licma\ucryptolib\CryptoLibAESECBLV1.py,licma,python,1,ECB used
+Dsub\other tools\licma\ucryptolib\CryptoLibAESECBLV2.py,licma,python,1,ECB used
+Dsub\other tools\licma\ucryptolib\CryptoLibAESECBNLV1.py,licma,python,1,ECB used
+Dsub\other tools\licma\ucryptolib\CryptoLibAESECBNLV2.py,licma,python,1,ECB used
+Dsub\other tools\licma\ucryptolib\CryptoLibAESECBNMC1.py,licma,python,1,ECB used
+Dsub\other tools\licma\ucryptolib\CryptoLibAESECBNMC2.py,licma,python,1,ECB used
+Dsub\other tools\licma\ucryptolib\CryptoLibKeyDMC1.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\ucryptolib\CryptoLibKeyDMC2.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\ucryptolib\CryptoLibKeyDVA1.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\ucryptolib\CryptoLibKeyDVA2.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\ucryptolib\CryptoLibKeyHC1.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\ucryptolib\CryptoLibKeyHC2.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\ucryptolib\CryptoLibKeyIVA1.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\ucryptolib\CryptoLibKeyIVA2.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\ucryptolib\CryptoLibKeyLV1.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\ucryptolib\CryptoLibKeyLV2.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\ucryptolib\CryptoLibKeyNLV1.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\ucryptolib\CryptoLibKeyNLV2.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\ucryptolib\CryptoLibKeyNMC1.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\ucryptolib\CryptoLibKeyNMC2.py,licma,python,1,ECB used;Hardcoded key
+Dsub\other tools\licma\ucryptolib\ucryptolibAESECBHC1.py,licma,python,1,ECB used;Hardcoded key

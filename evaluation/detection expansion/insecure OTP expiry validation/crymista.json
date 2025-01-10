@@ -1,0 +1,7 @@
+{
+    "title": "Insecure OTP expiry validation",
+    "explanation": "The application's OTP expiry validation logic is flawed, allowing the creation and validation of one-time passwords (OTPs) with past expiry dates. This undermines the security principle of time-bound access, which is crucial for authentication mechanisms. Such a vulnerability could enable attackers to use expired OTPs for unauthorized access, compromising the system's authentication integrity. Implementing strict time checks and ensuring OTPs are valid only within their intended lifespan are necessary steps to mitigate this issue.",
+    "codes": [
+        "1977test_managers_otp.py"
+    ]
+}

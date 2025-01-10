@@ -1,0 +1,8 @@
+{
+    "title": "Inappropriate GCM tag length",
+    "explanation": "The misuse identified involves using a GCM tag length that does not adhere to security recommendations, specifically NIST SP 800-38D, which suggests a minimum tag length of 96 bits for general purposes. This oversight can compromise data integrity and authenticity, as the tag length is crucial for ensuring the security of the GCM encryption scheme. Ensuring the tag length meets or exceeds recommended standards is essential for maintaining the overall security posture.",
+    "codes": [
+        "SM4DecrypterPerfTest.java",
+        "SM4EncrypterPerfTest.java"
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "title": "Lack of OpenSSL initialization and memory handling best practices",
+    "explanation": "Failing to properly initialize OpenSSL or to check the return values of initialization functions can lead to vulnerabilities in cryptographic operations. Additionally, not zeroizing memory allocated for encryption purposes can expose sensitive data. Employing best practices for OpenSSL initialization and memory handling, such as using `OPENSSL_init_crypto` for initialization and `OPENSSL_cleanse` for securely wiping memory, is essential for ensuring the confidentiality and integrity of encrypted data.",
+    "codes": [
+        "589validate.c"
+    ]
+}

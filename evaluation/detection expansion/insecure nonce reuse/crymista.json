@@ -1,0 +1,9 @@
+{
+    "title": "Insecure Nonce Reuse",
+    "explanation": "This misuse, found in files such as 'PyNaClKeyDVA2.py', involves reusing nonces with the same key in symmetric encryption. Nonce reuse compromises the security of the encryption scheme, leading to potential plaintext recovery or forgery attacks. Ensuring that nonces are unique for each encryption operation with a given key is crucial for maintaining the confidentiality and integrity of encrypted data.",
+    "codes": [
+        "PyNaClKeyDVA2.py",
+        "PyNaClKeyHC1.py",
+        "PyNaClKeyHC2.py"
+    ]
+}

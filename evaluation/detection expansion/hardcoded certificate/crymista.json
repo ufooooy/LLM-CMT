@@ -1,0 +1,7 @@
+{
+    "title": "Hardcoded Certificate",
+    "explanation": "Hardcoding certificates within the application code increases the risk of compromise, as it makes the certificate static and not easily replaceable. This practice violates the principle of secure certificate management, where certificates should be stored externally and securely to facilitate updates and revocation. Hardcoded certificates can become a single point of failure, making the application vulnerable if the certificate is exposed or compromised.",
+    "codes": [
+        "707cacertinmem.c"
+    ]
+}

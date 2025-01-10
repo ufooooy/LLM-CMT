@@ -1,0 +1,12 @@
+OBJECTS
+	a: OPENSSL_init_crypto()
+  	b: OPENSSL_cleanse()
+    c: OPENSSL_add_all_digests()
+
+ORDER
+	a*b
+
+CONSTRAINTS
+
+FORBIDDEN
+    c

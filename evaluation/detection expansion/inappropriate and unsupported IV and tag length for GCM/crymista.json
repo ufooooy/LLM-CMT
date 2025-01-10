@@ -1,0 +1,7 @@
+{
+    "title": "Inappropriate and Unsupported IV and Tag Length for GCM",
+    "explanation": "This misuse involves using IV (Initialization Vector) and tag lengths in GCM (Galois/Counter Mode) encryption that do not comply with the NIST SP 800-38D guidelines. Specifically, the code tests IVs with lengths other than the recommended 96 bits and tag lengths that are either less than the minimum recommended 128 bits or are unsupported sizes. This deviation from the standard can compromise security by making the encryption more vulnerable to attacks, such as forgery, and can also degrade performance due to the need for additional hashing when IVs are not 96 bits.",
+    "codes": [
+        "57743GCMParameterSpecTest.java"
+    ]
+}

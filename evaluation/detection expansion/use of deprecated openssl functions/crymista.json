@@ -1,0 +1,7 @@
+{
+    "title": "Use of deprecated OpenSSL functions and potential memory leak in OpenSSL lock initialization",
+    "explanation": "This misuse involves the application of deprecated OpenSSL functions `CRYPTO_set_id_callback` and `CRYPTO_set_locking_callback`, which can lead to compatibility issues with newer versions of OpenSSL that no longer support these functions. Furthermore, the initialization function `init_locks` does not perform a check for successful memory allocation, which could result in a null pointer dereference. This oversight not only risks the stability of the application but also poses a security risk by potentially allowing attackers to exploit the uninitialized memory.",
+    "codes": [
+        "707threaded-ssl.c"
+    ]
+}
