@@ -1,0 +1,247 @@
+### 1. Compromising Secrecy of Data
+#### 1.1 Hardcoded Keys and Nonces
+- **Hardcoded Keys and Nonces**
+- **Hardcoded key**
+- **Hardcoded Sensitive Information Risk**
+- **Redundant Key Declaration**
+#### 1.2 Static Salt Usage
+- **Static Salt Usage**
+#### 1.3 Insufficient Salt Length
+- **Insufficient Salt Length**
+#### 1.4 Predictable Password Usage
+- **Predictable Password Usage**
+- **Insecurely Short Password Misuse**
+#### 1.5 Insecure key length
+- **Insecure key length**
+- **Unverified Key Length**
+- **Insufficient DSA Key Length**
+#### 1.6 Weak Password Usage
+- **Use of weak password**
+- **Insufficient Password Complexity**
+- **Weak Password Construction**
+- **Weaknesses in Password Handling**
+- **Insecure Password Storage**
+- **Insecure Password Comparison**
+#### 1.7 Lack of Secure Memory Handling
+- **Lack of Secure Memory Handling**
+- **Potential memory leak due to unallocated memory**
+- **Memory Allocation Error Handling**
+- **Memory Leak in Thread Initialization**
+- **Inadequate Memory Handling**
+#### 1.8 Insecure Sensitive Information Logging
+- **Insecure Sensitive Information Logging**
+- **Misleading error message**
+- **Suppressing Security Warnings Risks**
+#### 1.9 Insufficient Verification of Certificate Validity
+- **Insufficient Verification of Certificate Validity**
+- **Improper Certificate Validation**
+- **Insufficient Certificate Verification Policies**
+#### 1.10 Insufficient Key Randomness
+- **Insufficient Key Randomness**
+- **Inadequate Key Generation**
+- **Improper Key Generation Method**
+- **Insecure Use of RAND_load_file**
+#### 1.11 Potential Lack of Secure Data Deletion
+- **Potential Lack of Secure Data Deletion**
+- **Inadequate Data Sanitization**
+#### 1.12 Insecure Sensitive Information Handling
+- **Insecure Sensitive Information Handling**
+- **Sensitive Information Exposure**
+#### 1.13 Insufficient Password Complexity
+- **Insufficient Password Complexity**
+- **Weak Password Construction**
+#### 1.14 Weaknesses in Password Handling
+- **Weaknesses in Password Handling**
+- **Insecure Password Storage**
+- **Insecure Password Comparison**
+#### 1.15 Insufficient DSA Key Length
+- **Insufficient DSA Key Length**
+#### 1.16 Weak Salt Value
+- **Weak Salt Value**
+- **Weak Salt Selection**
+#### 1.17 Insecure Randomness Implementation
+- **Insecure Randomness Implementation**
+- **Biased Randomness Usage**
+- **Non-uniform Distribution Impact**
+- **Recommendation for Balanced Randomness**
+#### 1.18 Hardcoded Key Usage in Test Code
+- **Hardcoded Key Usage in Test Code**
+- **Security Risks of Static Key Usage**
+- **Recommendation for Dynamic and Secure Key Generation**
+### 2. Compromising Data Integrity
+#### 2.1 Insecure Cryptographic Algorithm
+- **Insecure Cryptographic Algorithm**
+- **Cryptographic agility concerns**
+#### 2.2 Misuse of Cryptographic Hash Functions
+- **Misuse of Cryptographic Hash Functions**
+- **Improper Hash Function Output Encoding**
+#### 2.3 Missing padding scheme for AES in CBC mode
+- **Missing padding scheme for AES in CBC mode**
+- **Missing Integrity Checks**
+#### 2.4 Misuse of Error Logs
+- **Misuse of Error Logs**
+- **Improper Use of Error Logs**
+#### 2.5 Flawed Thread State Deletion
+- **Flawed Thread State Deletion**
+- **Incomplete Thread State Cleanup**
+#### 2.6 CRC32 Usage for Predictable Generation
+- **CRC32 Usage for Predictable Generation**
+- **Predictable Value Generation Risk**
+#### 2.7 Potential uninitialized read in bio_ctrl
+- **Potential uninitialized read in bio_ctrl**
+- **This entry highlights the risk associated with a function not explicitly verifying the initialization state of the peer BIO before attempting buffer length access, which may result in accessing uninitialized memory and undefined behavior.**
+### 3. Compromising Encryption Strength
+#### 3.1 Static IV Usage
+- **Static IV Usage**
+- **Suboptimal IV Length Choice**
+#### 3.2 Insecure Cipher Mode
+- **Insecure Cipher Mode**
+- **Usage of Vulnerable Encryption Modes**
+#### 3.3 No Padding Scheme Indicated
+- **No Padding Scheme Indicated**
+#### 3.4 Insecure Encryption Algorithm
+- **Insecure Encryption Algorithm**
+#### 3.5 Weak Encryption Mode Usage
+- **Weak Encryption Mode Usage**
+- **Usage of Vulnerable Encryption Modes**
+#### 3.6 Insecure AES Key Generation
+- **Incorrect AES Key Generation Approach**
+### 4. Compromising Security Protocols
+#### 4.1 Deprecated TLS Version
+- **Deprecated TLS Version**
+- **Use of Insecure Transport Protocols**
+- **Use of insecure connection protocol**
+- **Transmission Security Vulnerabilities**
+#### 4.2 SSL Mode Disabled for Database Connection
+- **SSL Mode Disabled for Database Connection**
+- **Insecure Database Connection**
+#### 4.3 Insecure Protocol Methodology
+- **Insecure Protocol Methodology**
+- **Outdated Protocol Usage**
+### 5. Resource Management and Error Handling
+#### 5.1 Potential memory leak due to unallocated memory
+- **Potential memory leak due to unallocated memory**
+- **Memory Handling Vulnerabilities**
+- **Inadequate Memory Handling**
+#### 5.2 Insufficient error handling
+- **Insufficient error handling**
+- **Insecure error handling**
+- **Inconsistent Error Handling**
+- **Inadequate Error Reporting**
+- **Weak Error Handling Practices**
+#### 5.3 Memory Allocation Error Handling
+- **Memory Allocation Error Handling**
+#### 5.4 Memory Leak in Thread Initialization
+- **Memory Leak in Thread Initialization**
+- **Thread Memory Management Issues**
+### 6. Cryptographic Strength Weakening
+#### 6.1 Dynamic Parameter for getInstance Methods
+- **Dynamic Parameter for getInstance Methods**
+#### 6.2 Insufficient key derivation iterations
+- **Insufficient key derivation iterations**
+- **Inadequate Key Derivation**
+### 7. Logging and Configuration Risks
+#### 7.1 Inadequate Logging
+- **Insufficient Logging**
+#### 7.2 Hardcoded Configuration
+- **Hardcoded Configuration**
+- **Insecure Configuration**
+#### 7.3 Use of NullCipher for encryption
+- **Use of NullCipher for encryption**
+### 8. Miscellaneous
+#### 8.1 Token Reuse Vulnerability
+- **Token Reuse Vulnerability**
+- **Token Validation Issues**
+- **Insecure Token Management**
+- **Improper Token Handling**
+#### 8.2 Cryptographic Hash Concerns
+- **Cryptographic Hash Concerns**
+- **Weak Hash Function Usage**
+#### 8.3 Flawed Fernet Constructor Usage
+- **Flawed Fernet Constructor Usage**
+- **Incorrect Fernet Constructor Usage**
+- **Redundant Fernet Backend Specification**
+- **Improper Use of Cryptographic Backend**
+- **Backend Security Concerns**
+#### 8.4 Potential Misuse of Synchronization Primitives
+- **Potential Misuse of Synchronization Primitives**
+- **Data Race Conditions**
+#### 8.5 Insecure Seed Handling
+- **Insecure Seed Handling**
+- **Inadequate Seed Management**
+#### 8.6 Insecure Token Management
+- **Insecure Token Management**
+- **Improper Token Handling**
+- **Token Reuse Vulnerability**
+- **Token Validation Issues**
+#### 8.7 Weaknesses in Password Handling
+- **Weaknesses in Password Handling**
+- **Insecure Password Storage**
+- **Insecure Password Comparison**
+- **Insufficient Password Complexity**
+- **Weak Password Construction**
+#### 8.8 Insecure Context Handling
+- **Insecure Context Handling**
+- **Context Swapping Vulnerabilities**
+#### 8.9 Denial of Service Vulnerabilities
+- **Denial of Service Vulnerabilities**
+- **Resource Exhaustion Risks**
+#### 8.10 Inadequate Error Reporting
+- **Inadequate Error Reporting**
+- **Weak Error Handling Practices**
+#### 8.11 Insecure RSA Exponent Restriction
+- **Insecure RSA Exponent Restriction**
+- **Weak Public Exponent Usage**
+#### 8.12 Improper Use of Cryptographic Backend
+- **Improper Use of Cryptographic Backend**
+- **Backend Security Concerns**
+#### 8.13 Use of insecure connection protocol
+- **Use of insecure connection protocol**
+- **Transmission Security Vulnerabilities**
+#### 8.14 Insecure default session expiration time
+- **Insecure default session expiration time**
+- **Session Security Weaknesses**
+#### 8.15 Lack of validation for session expiration check interval
+- **Lack of validation for session expiration check interval**
+- **Incorrect Session Timer Control**
+#### 8.16 Lack of Secure Communication
+- **Lack of Secure Communication**
+- **Unencrypted Data Transmission Risks**
+#### 8.17 Missing Permission Check on File Creation
+- **Missing Permission Check on File Creation**
+- **File Permission Security Risks**
+#### 8.18 Command Injection and Insecure Sudo Usage
+- **Command Injection and Insecure Sudo Usage**
+- **Risk of Command Injection**
+- **Insecure Sudo Privilege Escalation**
+#### 8.19 Insecure SSH Configuration
+- **Insecure SSH Configuration**
+- **MITM Attack Exposure**
+#### 8.20 Weakness in SSH Cipher Algorithms
+- **Weakness in SSH Cipher Algorithms**
+- **Increased Vulnerability in Encrypted Sessions**
+#### 8.21 Insecure Charset Utilization
+- **Insecure Charset Utilization**
+- **Vulnerabilities from Improper Charset Usage**
+#### 8.22 Potentially Insecure Token Encryption with AES
+- **Potentially Insecure Token Encryption with AES**
+- **Key Management and Mode Selection Importance**
+#### 8.23 Lack of token integrity verification
+- **Lack of token integrity verification**
+- **Threats from Altered Tokens**
+- **Token Forgery Risks**
+#### 8.24 Insecure string comparison
+- **Insecure string comparison**
+- **Timing Attack Risks**
+- **Recommendation for Constant-Time Method**
+#### 8.25 Secure usage of cryptographic APIs
+- **Secure usage of cryptographic APIs**
+- **Good Practices in BLS Signature Operations**
+- **No Evident API Misuses**
+#### 8.26 Key Handling Issues
+- **Key Handling Issues**
+- **Inadequate Key Rotation**
+- **Error Handling Impact on Key Decryption**
+#### 8.27 Key and Salt Management Risks
+- **Key and Salt Management Risks**
+- **Encryption Key and Salt Vulnerabilities**
