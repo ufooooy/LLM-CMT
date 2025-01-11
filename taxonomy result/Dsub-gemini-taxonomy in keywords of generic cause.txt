@@ -1,0 +1,157 @@
+### 1. Compromising Secret Keys
+#### 1.1 Hardcoded Keys and Secrets
+- **Hardcoded Keys:**
+- **Hardcoded AES-GCM Keys and Nonces:**
+- **Static Variable for Sensitive Cryptographic Data:**
+- **Use of a Predictable Password:**
+- **Insecure Password Handling:**
+- **Hardcoded Database Credentials:**
+- **Improper Key Generation Method:**
+- **Insufficient Key Management:**
+- **Insecure KeyStore Type (JKS):**
+- **Insecure Key Length:**
+#### 1.2 Insecure Key Generation and Management
+- **Insecure Key Generation:**
+- **Insecure Key Length Specification:**
+- **Insufficient Iteration Count in Key Derivation:**
+- **Insufficient PBEKeySpec Iteration Count:**
+- **Insufficient or Static Salt Usage in Key Derivation:**
+- **Insecure Salt Management in PBE:**
+- **Dynamic Parameter Usage with Cipher.getInstance and KeyGenerator.getInstance:**
+- **Insecure Key Derivation Due to Predictable Password:**
+- **Improper Encoding of Cryptographic Keys:**
+- **Improper Key Expansion:**
+- **Redundant Key Declaration:**
+- **Insufficient Key Management Documentation:**
+### 2. Compromising Randomness
+#### 2.1 Insecure Nonce/IV Generation
+- **Hardcoded or Insecure Nonce/IV Usage:**
+- **Static Initialization Vector (IV) Used:**
+- **Insufficient IV Length:**
+- **Insecure Use of Random Numbers in Non-Blocking IO Simulation:**
+- **Insecure Random Values for Security-Critical Decisions:**
+- **Secure Random Number Generation:**
+### 3. Compromising Communication Secrecy with Intended Receiver
+#### 3.1 Insecure Algorithm and Protocol Usage
+- **Insecure TLS Configuration:**
+- **Insecure Cryptographic Algorithm (IDEA):**
+- **Insufficient Validation of Connection IDs Length:**
+- **Lack of Validation for Received Parameters:**
+- **Use of Insecure Protocol (HTTP):**
+- **Insecure Data Transmission (using sudo cp):**
+- **No Client Certificate:**
+- **Inappropriate SSL/TLS Renegotiation:**
+- **No Secure Connection Deadlines/Timeouts for TLS:**
+- **Password-based SSH Authentication:**
+- **Use of Insecure Key Exchange Algorithm:**
+### 4. Compromising Integrity through Improper Data Handling
+#### 4.1 Missing or Insufficient Error Handling
+- **Lack of Error Handling on Deletion:**
+- **Insufficient Error Handling:**
+- **Insufficient Logging:**
+- **Error Handling Leaking Sensitive Information:**
+- **Insufficient Error Handling/Cryptographic Strength:**
+#### 4.2 Misuse of Cryptographic Primitives
+- **No Cryptographic Mode of Operation Specified:**
+- **Missing Cryptographic Operation:**
+- **Misuse of Cryptographic Hash Function for Encryption:**
+- **Use of Weak Cryptographic Hash Function (SHA-1):**
+- **Misuse of ECB Mode with RSA:**
+- **Incorrect Symmetric Encryption Operation:**
+- **Lack of Integrity/Authenticity Checks:**
+- **Potential Misuse of Encryption Methods:**
+- **Use of Insecure Cipher Modes (ECB):**
+- **Insecure Padding Mechanism:**
+- **Redundant Cryptographic Operation:**
+- **Incorrect Block Size in Decryption:**
+- **Inappropriate Hash Output Length Specification:**
+- **Multiple Cryptography API Misuses:**
+- **Improper Encoding of Hash Output:**
+- **Fixed Block Size in Cryptographic Operations:**
+- **Lack of Cryptographic Agility and Potential Algorithm Parameter Misuse:**
+### 5. Compromising Client and Server Secrecy
+#### 5.1 Inadequate Plaintext Handling
+- **Inadequate Plaintext Handling:**
+- **Potential Data Alignment Issues:**
+- **Missing Encryption of Sensitive Data:**
+### 6. Compromising Secrecy of Ciphertext
+#### 6.1 Potential for Side-Channel Attacks
+- **Potential for Side-Channel Attacks:**
+- **Potential Lack of Secure Data Deletion:**
+- **Insecure Conversion of Encrypted Data:**
+### 7. Compromising Non-Repudiation
+#### 7.1 Lack of Digital Signatures or MACs
+- **Missing/Misleading Hash Algorithm Specification (Ed25519/Ed448):**
+- **Insecure IV Transmission:**
+### 8. Resource Management Issues
+#### 8.1 Memory Leaks and Resource Mismanagement
+- **Potential Memory Leaks and Resource Mismanagement:**
+- **Potential Misuse of Synchronization Primitives:**
+- **Unsafe Conversion between String and Byte Slice:**
+- **Inadequate Use of Locking Mechanisms:**
+- **Potential Integer Overflow in BIO Functions:**
+- **Potential Denial of Service in BIO Functions:**
+- **Arbitrary Memory Deallocation in BIO_free:**
+### 9. API Usage Issues
+#### 9.1 Use of Deprecated APIs
+- **Use of Deprecated API:**
+#### 9.2 Dependencies on Processor-Specific Features
+- **Dependencies on Processor-Specific Features:**
+- **Improper Backend Specification:**
+- **Indirect Use of Cryptographic Algorithm Name:**
+- **Hardcoded Encryption Mode Identifier:**
+- **Use of Default Encoding:**
+- **Use of fixed time in security-relevant context:**
+- **Misuse of Cryptography Backend:**
+### 10. Lack of Input Validation
+#### 10.1 Insufficient Input Validation
+- **Lack of Input Validation:**
+- **Insufficient Validation of Input Parameters:**
+- **Lack of Input Validation and Potential Command Injection:**
+- **Insecure File Opening Mode:**
+- **Hardcoded and Unvalidated Cleanup Logic:**
+- **Lack of Input Validation on Version:**
+- **Improper Assertion Use for Parameter Validation:**
+- **Excessive Recursion Depth Without Adequate Control:**
+- **Insecure Use of Sudo in Cmd Execution:**
+### 11. Vulnerability to Attacks
+#### 11.1 Fault Injection Attacks
+- **Lack of Mitigation Techniques Against Fault Injection Attacks:**
+#### 11.2 Hardcoded Cryptographic Algorithm
+- **Hardcoded Cryptographic Algorithm:**
+- **Implicit Security-Critical Dependency:**
+- **Session Fixation Vulnerability:**
+### 12. Certificate Handling Issues
+#### 12.1 Insufficient Certificate Validation
+- **Insufficient Public Key Validation:**
+- **Insufficient Certificate Validity Verification:**
+- **Short Certificate Validity Period:**
+- **Lack of Criticality in Certificate Extensions:**
+- **Insecure Certificate Serial Number:**
+- **Insufficient Directory Permissions and Lack of Error Handling in Directory Creation:**
+- **Lack of Certificate Revocation Checks:**
+- **Inadequate Certificate Subject Field Verification:**
+- **Lack of Cryptographic Material Validation:**
+### 13. Token Management Issues
+#### 13.1 Token Reuse Vulnerabilities
+- **Potential Token Reuse Vulnerability:**
+- **Insecure Token Handling:**
+### 14. Logging Issues
+#### 14.1 Insecure Logging Practices
+- **Insecure Logging of Sensitive Information:**
+- **Misleading error messages:**
+### 15. Password Handling Issues
+#### 15.1 Weak Password Hashing
+- **Inadequate Hash Function for Passwords:**
+- **Use of Weak Hash without Salt:**
+- **Insecure Cookie Handling:**
+### 16. Context-Dependent Issues
+#### 16.1 Insufficient Information for Analysis
+- **No Explicit Cryptographic API Misuse Identified (Context-Dependent):**
+- **Insecure Warning Suppression:**
+- **Potential SQL Injection (Requires Further Analysis):**
+- **No Explicit Cryptographic API Misuses Identified (Requires Further Analysis):**
+- **Potentially Insecure Canonicalization:**
+- **Lack of Secure Serialization:**
+- **Insufficient Pointer Validation:**
+- **Static Data Flag Manipulation:**

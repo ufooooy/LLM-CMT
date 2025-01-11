@@ -1,0 +1,62 @@
+### 1. Compromising Secret Keys
+#### 1.1 Improper Key Generation and Management
+- **Weak Key and Nonce Generation**
+- **Insufficient Cryptographic Key Length**
+- **Hardcoded Cryptographic Secrets**
+- **Insufficient Key Length Validation**
+- **Weak RSA Key Size and Padding**
+- **Insecure Private Key Storage**
+#### 1.2 Inadequate Key Derivation Practices
+- **Insufficient Iteration Count in Key Derivation**
+- **Insecure Salt Usage in Cryptographic Operations**
+- **Insecure Key Derivation**
+- **Missing Cryptographic Protections**
+#### 1.3 Poor Password Practices
+- **Weak Password Usage**
+- **Insecure KeyStore and Sensitive Information Handling**
+#### 1.4 Improper Authentication Protocol Configuration
+- **Improper PSK and SRP Configuration**
+### 2. Compromising Secrecy of Cipher Text
+#### 2.1 Insecure Encryption Modes and Practices
+- **Insecure ECB Mode in AES Encryption**
+- **Improper Initialization Vector (IV) Usage**
+- **Hardcoded AES-GCM Keys and Nonces**
+- **Nonce Reuse in Cryptographic Operations**
+- **Hardcoded encryption mode identifier**
+- **Indirect Cryptographic Mode Configuration**
+#### 2.2 Use of Weak or Outdated Algorithms
+- **Use of Outdated or Weak Cryptographic Algorithms**
+- **Misuse of Cryptographic Hash Functions**
+- **Use of Deprecated/Weak Cryptographic Algorithms**
+- **Non-Cryptographic Hash Function Misuse**
+### 3. Compromising Randomness
+- **Insufficient Randomness and Deprecated Cryptographic Operations
+- **Insecure seeding of random number generator
+- **Insecure prime number generation and validation
+### 4. Compromising Integrity through Improper Checksum Use
+- **Lack of Authentication and Integrity Checks
+- **Insecure String Comparison and Output Encoding
+### 5. Compromising Non-Repudiation
+- **Cryptographic Signature Implementation Limitations
+### 6. Compromising Client and Server Secrecy
+#### 6.1 Insecure Data Handling
+- **Inadequate Memory Management for Sensitive Data**
+- **Insecure Logging of Cryptographic Information**
+- **Memory Allocation and Pointer Handling Vulnerabilities**
+- **Inadequate Buffer Size and Input Validation**
+#### 6.2 Configuration and Error Handling Issues
+- **Configuration and Error Handling Vulnerabilities**
+- **Poor Cryptographic Operation Error Handling**
+- **OpenSSL API Misuse and Deprecation**
+### 7. Compromising Communication Secrecy with Intended Receiver
+- **Certificate and Key Management Vulnerabilities
+- **Insecure Certificate Validation
+- **Insecure Network Communication Protocols
+- **Using TLS 1.0
+### 8. General Cryptographic Misuses
+- **Improper Cryptographic API Usage
+- **Misuse of default_backend() function
+### 9. System and File Operation Security
+- **Various security issues in file and system operations
+### 10. Session Management
+- **Inadequate Session Management

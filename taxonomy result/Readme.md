@@ -1,5 +1,6 @@
 # Taxonomy Results
 
+We display taxonomy examples derived from candidate LLMs on datasets Dsub and Dl. 
 For a more interactive and accessible presentation of the taxonomy results, we've developed an HTML-based web interface. This allows users to explore the results in a more dynamic and user-friendly manner. To ensure ease of use and consistency across different environments, we've containerized our application using Docker.
 
 
