@@ -1,0 +1,2335 @@
+[
+    {
+        "instances": [
+            22499,
+            22500
+        ],
+        "title": "Hardcoded Keys and Nonces",
+        "explanation": "Hardcoding keys and nonces for cryptographic operations is a security risk. These values should be securely generated to ensure the confidentiality and integrity of the data they protect."
+    },
+    {
+        "instances": [
+            22504,
+            22505,
+            22506
+        ],
+        "title": "Static Salt Usage",
+        "explanation": "Using a static salt in cryptographic operations, such as in PBKDF2, is insecure. Each use of PBKDF2 should employ a unique salt to ensure that the resulting derived keys are unique and to defend against certain types of attacks."
+    },
+    {
+        "instances": [
+            22509,
+            22510
+        ],
+        "title": "Insufficient Salt Length and Iteration Count",
+        "explanation": "The salt length and iteration count used in cryptographic operations, such as PBKDF2, are insufficient. A salt length of at least 128 bits (16 bytes) and an iteration count of at least 10000 are recommended to ensure security against brute-force attacks."
+    },
+    {
+        "instances": [
+            22511
+        ],
+        "title": "Insecure Cryptographic Algorithm",
+        "explanation": "The use of IDEA (International Data Encryption Algorithm) is no longer considered secure due to its 64-bit block size which is vulnerable to birthday attacks and other cryptographic weaknesses."
+    },
+    {
+        "instances": [
+            22512,
+            22513
+        ],
+        "title": "Insecure Cipher and KeyGenerator Usage",
+        "explanation": "Using Cipher.getInstance and KeyGenerator.getInstance with dynamic parameters can lead to unpredictable behaviors and potentially weaken the cryptographic strength if the value is not properly validated or if it inadvertently gets set to a weak algorithm or mode."
+    },
+    {
+        "instances": [
+            22514
+        ],
+        "title": "Static Variable Used for Sensitive Data",
+        "explanation": "Using static variables for sensitive cryptographic parameters can expose the data to unwanted access across different instances of the class or even different threads, compromising the security of the cryptographic operations."
+    },
+    {
+        "instances": [
+            22516,
+            22517,
+            22518
+        ],
+        "title": "Insecure Password Handling and Key Derivation",
+        "explanation": "Using hardcoded or easily guessable passwords for key derivation decreases the security of the derived key. Secure key derivation requires using strong, unpredictable passwords."
+    },
+    {
+        "instances": [
+            22519,
+            22520
+        ],
+        "title": "Hardcoded Keys and Nonces",
+        "explanation": "Hardcoding keys and nonces for cryptographic operations is a security risk. These values should be securely generated to ensure the confidentiality and integrity of the data they protect."
+    },
+    {
+        "instances": [
+            22523,
+            22524
+        ],
+        "title": "Insecure Key Generation and Handling",
+        "explanation": "The key is generated from a string of insufficient complexity and directly passed as bytes. This approach can lead to weak keys that are susceptible to brute-force attacks. Best practices suggest using a cryptographically secure pseudorandom number generator to generate keys."
+    },
+    {
+        "instances": [
+            22527
+        ],
+        "title": "Use of Weak Cryptographic Hash Function",
+        "explanation": "The use of SHA-1 as a cryptographic hash function is considered weak and vulnerable to collision attacks, which undermines the system's security integrity. Modern applications should use stronger hashing mechanisms such as SHA-256 or SHA-3 to ensure data integrity."
+    },
+    {
+        "instances": [
+            22528
+        ],
+        "title": "Misuse of Cryptographic Hash Function for Encryption",
+        "explanation": "Hash functions are not encryption functions and do not provide confidentiality, integrity assurance, or authenticity on their own in this context. Encryption requires the use of cipher algorithms such as AES."
+    },
+    {
+        "instances": [
+            22529
+        ],
+        "title": "Hardcoded Cryptographic Algorithm",
+        "explanation": "The cryptographic algorithm (SHA-1) is hardcoded in the 'crypto' field of the CryptoHash1 class. This practice limits the flexibility to change algorithms without modifying the source code and does not support adapting to future, potentially more secure algorithms."
+    },
+    {
+        "instances": [
+            22531,
+            22532
+        ],
+        "title": "Insecure Key Derivation and Handling",
+        "explanation": "Using hardcoded or easily guessable passwords for key derivation decreases the security of the derived key. Secure key derivation requires using strong, unpredictable passwords. Additionally, the specified key length might be insufficient for some contexts or cryptographic algorithms."
+    },
+    {
+        "instances": [
+            22533
+        ],
+        "title": "Static Initialization Vector (IV) Used",
+        "explanation": "Using a static IV in CBC mode can compromise the security of the encryption scheme by making the cipher text predictable under certain conditions. The IV should be randomly generated and unique for every encryption operation."
+    },
+    {
+        "instances": [
+            22534
+        ],
+        "title": "Potential Key Management Issue",
+        "explanation": "The absence of key management or validation mechanisms in the provided code may lead to the use of weak or inadequate keys for encryption. Proper key management practices should ensure keys are of a sufficient length and randomly generated."
+    },
+    {
+        "instances": [
+            22535
+        ],
+        "title": "Insecure Nonce Usage",
+        "explanation": "Using a fixed nonce with symmetric encryption can compromise the security of the encryption scheme by making it vulnerable to various attacks, such as replay attacks. Nonces should be unique for each encryption operation to ensure the confidentiality and integrity of encrypted data."
+    },
+    {
+        "instances": [
+            22540
+        ],
+        "title": "Insecure Salt in Cryptographic Operation",
+        "explanation": "Using a static salt for cryptographic operations does not offer the intended security benefits of a salt, such as preventing pre-computation attacks like rainbow table attacks. Salts should be unique and unpredictable for each instance in which they are used, ideally randomly generated."
+    },
+    {
+        "instances": [
+            22541
+        ],
+        "title": "Insufficient Iteration Count in PBKDF",
+        "explanation": "An iteration count of 1020 is potentially insufficient to ensure security against brute-force attacks, depending on the specific algorithm and use case. The iteration count in PBKDF should be as high as possible without severely degrading performance, usually in the order of tens or hundreds of thousands, to increase the cost of brute-force attacks."
+    },
+    {
+        "instances": [
+            22542
+        ],
+        "title": "Potential for Side-channel Attacks",
+        "explanation": "Use of table lookups in encryption and decryption can lead to timing attacks if not properly mitigated, revealing information about the encryption keys."
+    },
+    {
+        "instances": [
+            22545
+        ],
+        "title": "Lack of Mitigation Techniques against Fault Injection Attacks",
+        "explanation": "There are no explicit countermeasures against fault injection attacks which could potentially alter the execution flow or data being processed, compromising the security."
+    },
+    {
+        "instances": [
+            22546,
+            22550
+        ],
+        "title": "Static Salt Usage in Key Derivation",
+        "explanation": "Using a static salt in key derivation diminishes the security by not providing unique salts for each derivation operation, making it more vulnerable to dictionary and rainbow table attacks. Salts should be unique and randomly generated for each operation to improve security."
+    },
+    {
+        "instances": [
+            22547,
+            22548,
+            22549
+        ],
+        "title": "Hardcoded Cryptographic Key and Nonce",
+        "explanation": "Hardcoding keys and nonces for cryptographic operations is a security risk. These values should be securely generated to ensure the confidentiality and integrity of the data they protect."
+    },
+    {
+        "instances": [
+            22552,
+            22553,
+            22559,
+            22565,
+            22570,
+            22581,
+            22593,
+            22607
+        ],
+        "title": "Use of ECB mode for AES encryption",
+        "explanation": "ECB mode is considered insecure for use in cryptographic protocols because it does not provide serious message confidentiality. Identical plaintext blocks are encrypted into identical ciphertext blocks, which can leak information about the plaintext."
+    },
+    {
+        "instances": [
+            22557
+        ],
+        "title": "Missing padding scheme",
+        "explanation": "AES in CBC mode requires the input data length to be a multiple of the block size. If the data is not a multiple of the block size, it should be padded, and the absence of a padding scheme can lead to errors or security vulnerabilities."
+    },
+    {
+        "instances": [
+            22558
+        ],
+        "title": "Deprecated TLS version",
+        "explanation": "Using a deprecated TLS version can make the application vulnerable to known security vulnerabilities."
+    },
+    {
+        "instances": [
+            22560
+        ],
+        "title": "Hardcoded encryption mode in nested method call",
+        "explanation": "Hardcoding the encryption mode in a nested method call limits the flexibility and security of the function, making it more prone to misconfigurations and reuse in contexts where more secure modes are necessary."
+    },
+    {
+        "instances": [
+            22562
+        ],
+        "title": "Usage of ECB mode for RSA encryption",
+        "explanation": "Using ECB mode for RSA encryption can be misleading and should be avoided to prevent potential confusion or misuse in symmetric encryption scenarios."
+    },
+    {
+        "instances": [
+            22563
+        ],
+        "title": "Risky exception handling strategy",
+        "explanation": "Throwing generic exceptions can make it difficult to pinpoint and handle specific security issues."
+    },
+    {
+        "instances": [
+            22572
+        ],
+        "title": "Lack of secure key management",
+        "explanation": "Not implementing secure key management practices can make the application vulnerable to key-related attacks."
+    },
+    {
+        "instances": [
+            22573
+        ],
+        "title": "Insecure usage of OPENSSL_assert",
+        "explanation": "Using OPENSSL_assert for error handling can lead to crashes and denial of service."
+    },
+    {
+        "instances": [
+            22574
+        ],
+        "title": "Insufficient input validation",
+        "explanation": "Not validating input data can lead to undefined behavior or cryptographic errors."
+    },
+    {
+        "instances": [
+            22577,
+            22587
+        ],
+        "title": "Improper error handling",
+        "explanation": "Not handling errors properly can lead to crashes, denial of service, or security vulnerabilities."
+    },
+    {
+        "instances": [
+            22578,
+            22588
+        ],
+        "title": "Potential memory leak",
+        "explanation": "Not freeing allocated memory can lead to memory leaks and security vulnerabilities."
+    },
+    {
+        "instances": [
+            22580
+        ],
+        "title": "Insufficient password length",
+        "explanation": "Using a short password can make it vulnerable to brute-force attacks."
+    },
+    {
+        "instances": [
+            22586
+        ],
+        "title": "Deprecated API usage",
+        "explanation": "Using deprecated APIs can make the application vulnerable to security vulnerabilities."
+    },
+    {
+        "instances": [
+            22589
+        ],
+        "title": "Insecure password length",
+        "explanation": "Using a short password can make it vulnerable to brute-force attacks."
+    },
+    {
+        "instances": [
+            22590
+        ],
+        "title": "Insufficient iteration count",
+        "explanation": "Using a low iteration count can make the application vulnerable to brute-force attacks."
+    },
+    {
+        "instances": [
+            22597
+        ],
+        "title": "Insecure memory allocation for cryptographic objects",
+        "explanation": "Not validating memory allocation for cryptographic objects can lead to security vulnerabilities."
+    },
+    {
+        "instances": [
+            22598
+        ],
+        "title": "Improper validation of ASN.1 object length",
+        "explanation": "Not validating ASN.1 object length can lead to security vulnerabilities."
+    },
+    {
+        "instances": [
+            22599
+        ],
+        "title": "Insufficient error handling",
+        "explanation": "Not handling errors properly can lead to security vulnerabilities."
+    },
+    {
+        "instances": [
+            22600
+        ],
+        "title": "Use of depreciated or unsafe functions",
+        "explanation": "Using depreciated or unsafe functions can lead to security vulnerabilities."
+    },
+    {
+        "instances": [
+            22601
+        ],
+        "title": "Mismanagement of dynamic memory",
+        "explanation": "Not managing dynamic memory properly can lead to security vulnerabilities."
+    },
+    {
+        "instances": [
+            22602
+        ],
+        "title": "Improper OID validation",
+        "explanation": "Not validating OIDs properly can lead to security vulnerabilities."
+    },
+    {
+        "instances": [
+            22610,
+            22628,
+            22640,
+            22651,
+            22658
+        ],
+        "title": "Insecure Cipher Mode",
+        "explanation": "Using insecure cipher modes like ECB can leak information about the plaintext. It is recommended to use a more secure mode like CBC, CFB, OFB, or GCM."
+    },
+    {
+        "instances": [
+            22617,
+            22645
+        ],
+        "title": "Lack of Integrity or Authenticity Checks",
+        "explanation": "Not performing integrity or authenticity checks can lead to security vulnerabilities. Data should be verified for integrity and authenticity before use."
+    },
+    {
+        "instances": [
+            22620,
+            22650
+        ],
+        "title": "Insufficient Logging or Insecure Error Messages",
+        "explanation": "Insufficient logging or insecure error messages can compromise security. Logs should be sufficient and error messages should not reveal sensitive information."
+    },
+    {
+        "instances": [
+            22623
+        ],
+        "title": "Use of NullCipher",
+        "explanation": "Using NullCipher can compromise security. NullCipher should not be used for encryption."
+    },
+    {
+        "instances": [
+            22634
+        ],
+        "title": "Incorrect Symmetric Encryption Operation",
+        "explanation": "Incorrect symmetric encryption operations can compromise security. Symmetric encryption operations should be properly performed."
+    },
+    {
+        "instances": [
+            22636
+        ],
+        "title": "Insufficient Entropy in Nonce",
+        "explanation": "Insufficient entropy in nonces can compromise security. Nonces should be unpredictable and unique for each encryption operation."
+    },
+    {
+        "instances": [
+            22639
+        ],
+        "title": "Hardcoded Algorithm Dependency",
+        "explanation": "Hardcoding algorithm dependencies can compromise security. Algorithm dependencies should be flexible and not hardcoded."
+    },
+    {
+        "instances": [
+            22643
+        ],
+        "title": "Insufficient Public Key Validation",
+        "explanation": "Insufficient public key validation can compromise security. Public keys should be properly validated before use."
+    },
+    {
+        "instances": [
+            22652
+        ],
+        "title": "Insufficient Salt Size",
+        "explanation": "Using insufficient salt sizes can compromise security. Salts should be of sufficient size to ensure cryptographic strength."
+    },
+    {
+        "instances": [
+            22656
+        ],
+        "title": "Use of Weak or Default Password for KeyStore",
+        "explanation": "Using weak or default passwords for KeyStore can compromise security. Strong, unpredictable passwords should be used for KeyStore."
+    },
+    {
+        "instances": [
+            22661
+        ],
+        "title": "Potential Misuse of Encryption Methods without Context",
+        "explanation": "Using encryption methods without context can compromise security. Encryption methods should be used with proper context and secure parameters."
+    },
+    {
+        "instances": [
+            22667,
+            22674,
+            22690,
+            22706
+        ],
+        "title": "Insecure Cryptographic Algorithm or Mode",
+        "explanation": "Using insecure cryptographic algorithms or modes, such as ECB mode or DES, can compromise the confidentiality and integrity of encrypted data."
+    },
+    {
+        "instances": [
+            22686,
+            22687,
+            22688,
+            22689,
+            22692
+        ],
+        "title": "Insecure Protocol or Network Communication",
+        "explanation": "Using insecure protocols or network communication practices, such as HTTP instead of HTTPS, can compromise the confidentiality and integrity of data in transit."
+    },
+    {
+        "instances": [
+            22698,
+            22699,
+            22700,
+            22702,
+            22703
+        ],
+        "title": "Insecure Logging or Error Reporting",
+        "explanation": "Insecure logging or error reporting practices, such as logging sensitive information or using static error messages, can compromise the security of sensitive information."
+    },
+    {
+        "instances": [
+            22704,
+            22705
+        ],
+        "title": "External Interaction or Misuse",
+        "explanation": "External interaction or misuse of cryptographic operations, such as dependent on external configurations or logging mechanisms, can compromise the security of sensitive information."
+    },
+    {
+        "instances": [
+            22717
+        ],
+        "title": "Insufficient Key Size",
+        "explanation": "The RSA key size of 2048 bits is used, which is considered secure but may not be sufficient for future cryptographic advances."
+    },
+    {
+        "instances": [
+            22718,
+            22736,
+            22762,
+            22763,
+            22767
+        ],
+        "title": "Insecure Initialization Vector (IV)",
+        "explanation": "A hardcoded or static IV is used, which can compromise the security of the encryption scheme."
+    },
+    {
+        "instances": [
+            22721,
+            22732
+        ],
+        "title": "Lack of Authentication and Integrity Verification",
+        "explanation": "The implementation does not include mechanisms for message authentication or integrity verification, making it susceptible to certain attacks."
+    },
+    {
+        "instances": [
+            22727
+        ],
+        "title": "Salt Generation Length May Be Insufficient",
+        "explanation": "The salt generation length may be insufficient, which can provide better protection against certain types of attacks by increasing the entropy."
+    },
+    {
+        "instances": [
+            22729
+        ],
+        "title": "Inadequate Key Size",
+        "explanation": "The key size is not explicitly stated, but Ed25519 keys are typically 256 bits long, which is considered secure."
+    },
+    {
+        "instances": [
+            22739
+        ],
+        "title": "Insecure Key Usage",
+        "explanation": "A hard-coded key is used, which compromises security by making it easier for an attacker to obtain the key."
+    },
+    {
+        "instances": [
+            22748
+        ],
+        "title": "Insecure Salt for PBKDF2",
+        "explanation": "A static, hard-coded salt is used for PBKDF2, which does not provide security against rainbow table attacks."
+    },
+    {
+        "instances": [
+            22754
+        ],
+        "title": "Insufficient Verification of Certificate Validity",
+        "explanation": "The code does not check for the certificate's validity based on the current date and time, only the expiration date is checked, which can lead to the acceptance of expired certificates."
+    },
+    {
+        "instances": [
+            22756
+        ],
+        "title": "Improper Key Generation",
+        "explanation": "KeyGenerator.getInstance is initialized with a cryptographic algorithm instead of a key specification string, which can lead to misuse."
+    },
+    {
+        "instances": [
+            22758
+        ],
+        "title": "Insecure PBKDF2 Iteration Count",
+        "explanation": "The iteration count for PBKDF2 is set to 600,000, which may be considered very high for current standards and can cause unnecessary processing delays."
+    },
+    {
+        "instances": [
+            22760
+        ],
+        "title": "Hardcoded Credentials for Database",
+        "explanation": "The database connection is initialized with credentials formatted directly into the connection string, which can lead to exposure of sensitive information."
+    },
+    {
+        "instances": [
+            22761
+        ],
+        "title": "SSL Mode Disabled for Database Connection",
+        "explanation": "The connection to the PostgreSQL database is made with SSL mode disabled, which exposes the database connection to risks of man-in-the-middle (MITM) attacks."
+    },
+    {
+        "instances": [
+            22773
+        ],
+        "title": "Use of Short, Simple Password",
+        "explanation": "The password used for key derivation is short and simple, reducing the security of the derived key due to the ease of guessing or brute-forcing the password."
+    },
+    {
+        "instances": [
+            22789
+        ],
+        "title": "Use of Weak Cryptographic Algorithm",
+        "explanation": "The PBEWithMD5AndDES algorithm is used for encryption, which combines MD5 (a weak hash algorithm) and DES (a weak encryption algorithm with a key size of only 56 bits)."
+    },
+    {
+        "instances": [
+            22793
+        ],
+        "title": "Insecure Logging of Sensitive Information",
+        "explanation": "Logging the 'token' in Authenticate method may expose sensitive information in log files."
+    },
+    {
+        "instances": [
+            22794
+        ],
+        "title": "Potential Token Reuse Vulnerability",
+        "explanation": "The system seems to reuse tokens for users upon login without validating token expiration or implementing token invalidation."
+    },
+    {
+        "instances": [
+            22804
+        ],
+        "title": "Use of Static Nonce in Encryption",
+        "explanation": "The use of a static nonce (number used once) for encryption with the SecretBox class can compromise the confidentiality of the encrypted messages."
+    },
+    {
+        "instances": [
+            22809
+        ],
+        "title": "Usage of SHA-1 Hash Function",
+        "explanation": "The SHA-1 hash function is no longer considered secure for ongoing use."
+    },
+    {
+        "instances": [
+            22813
+        ],
+        "title": "Insufficient Salt and Nonce Size",
+        "explanation": "While the nonce size matches the required size for XSalsa20 (24 bytes), the static nature compromises its security."
+    },
+    {
+        "instances": [
+            22817
+        ],
+        "title": "Improper Use of Fernet Constructor",
+        "explanation": "The Fernet constructor is incorrectly instantiated with an explicit backend argument."
+    },
+    {
+        "instances": [
+            22821
+        ],
+        "title": "Insufficient IV Length",
+        "explanation": "The initialization vector (IV) length should match the block size of the cipher being used."
+    },
+    {
+        "instances": [
+            22824
+        ],
+        "title": "Missing Key Length Validation",
+        "explanation": "The code does not validate the length of the encryption key, which can lead to weak encryption."
+    },
+    {
+        "instances": [
+            22828
+        ],
+        "title": "Insufficient Key Length Specification",
+        "explanation": "The effective number of bits is set to 0 in the RC2_set_key function, which defaults to a weak encryption level."
+    },
+    {
+        "instances": [
+            22832
+        ],
+        "title": "Missing Initialization Vector (IV)",
+        "explanation": "Although irrelevant for ECB mode specifically, it's a general security best practice when using block ciphers to utilize an IV for modes that require it."
+    },
+    {
+        "instances": [
+            22833
+        ],
+        "title": "Insecure Seed Handling",
+        "explanation": "Using a string for the wallet seed and directly converting it to bytes may lead to insecure seed handling."
+    },
+    {
+        "instances": [
+            22834
+        ],
+        "title": "Potential Misuse of Synchronization Primitives",
+        "explanation": "The use of a read lock (RUnlock) without a corresponding write lock (Lock) for modifying operations could lead to data race conditions or inconsistencies."
+    },
+    {
+        "instances": [
+            22835
+        ],
+        "title": "Lack of Cryptographic Strength Validation",
+        "explanation": "There is no explicit validation of the cryptographic strength of the derived ECDSA private keys."
+    },
+    {
+        "instances": [
+            22839
+        ],
+        "title": "Insecure Key Length",
+        "explanation": "The hardcoded key is 16 bytes (128 bits) long, which is the minimum length recommended for AES, but using longer keys (256 bits) is recommended for higher security requirements."
+    },
+    {
+        "instances": [
+            22843
+        ],
+        "title": "getAcceptedIssuers Returns Null",
+        "explanation": "getAcceptedIssuers method returns null, which could lead to unexpected behavior since this method should return a list of trusted certificate authorities."
+    },
+    {
+        "instances": [
+            22844
+        ],
+        "title": "Insecure SSL Context Initialization",
+        "explanation": "SSLContext is initialized with TrustAllManager, which accepts all certificates without validation, making the application vulnerable to man-in-the-middle attacks."
+    },
+    {
+        "instances": [
+            22851
+        ],
+        "title": "Hardcoded Command with Potential Command Injection",
+        "explanation": "Using fmt.Sprintf to construct a command with user-supplied or variable data can lead to command injection if the inputs are not properly sanitized."
+    },
+    {
+        "instances": [
+            22857
+        ],
+        "title": "Insufficient Password Complexity",
+        "explanation": "The hardcoded password is of low complexity and does not meet the minimum requirements for entropy in secure applications."
+    },
+    {
+        "instances": [
+            22867
+        ],
+        "title": "Weak Encryption Key",
+        "explanation": "The key used for encryption is derived from a static, hard-coded string, which represents a weak encryption key practice."
+    },
+    {
+        "instances": [
+            22869
+        ],
+        "title": "Insufficient Number of PBKDF2 Iterations",
+        "explanation": "The number of iterations used with PBKDF2 is insufficient for modern security standards."
+    },
+    {
+        "instances": [
+            22870
+        ],
+        "title": "Use of a Fixed IV in CBC Mode",
+        "explanation": "Using a fixed IV for AES encryption in CBC mode is insecure, as it undermines the security provided by CBC mode."
+    },
+    {
+        "instances": [
+            22876,
+            22922
+        ],
+        "title": "Insufficient or Redundant Backend Specification",
+        "explanation": "Specifying a backend for cryptography is unnecessary in some cases and might limit the library's capability to optimize or automatically select the most appropriate backend. Additionally, not specifying a cryptographic backend explicitly can lead to insecure cryptographic operations."
+    },
+    {
+        "instances": [
+            22883
+        ],
+        "title": "File Handling Without Validation",
+        "explanation": "The code opens a file and reads its content without validating the input or handling potential errors robustly, which could lead to reading arbitrary files if the application runs with sufficient privileges."
+    },
+    {
+        "instances": [
+            22886
+        ],
+        "title": "Inadequate Length of the Salt",
+        "explanation": "The salt used for key derivation should be at least 128 bits (16 bytes) long to ensure cryptographic strength against brute-force attacks."
+    },
+    {
+        "instances": [
+            22887,
+            22900,
+            22995
+        ],
+        "title": "Use of ECB Mode for AES Encryption",
+        "explanation": "The AES block cipher in ECB mode is used for encryption, which is insecure for data that spans more than one block. ECB mode encrypts identical plaintext blocks into identical ciphertext blocks, making it vulnerable to pattern analysis and not recommended for use in cryptographic protocols."
+    },
+    {
+        "instances": [
+            22890
+        ],
+        "title": "Inappropriate MAC Algorithm Key",
+        "explanation": "The use of an AES key with HmacSHA1 is inappropriate. HMAC requires a key of the same type as its algorithm, suggesting a secure hash algorithm key should be used instead of an encryption key."
+    },
+    {
+        "instances": [
+            22898
+        ],
+        "title": "Improper Key Generation Algorithm",
+        "explanation": "The key generation algorithm 'AES' is used for generating a key for 'HmacMD5'. It's considered a misuse because the key type should match the algorithm type."
+    },
+    {
+        "instances": [
+            22911
+        ],
+        "title": "Insecure Password Handling",
+        "explanation": "Passwords are handled in plaintext and possibly only hashed with MD5 before storage or comparison, which is insecure."
+    },
+    {
+        "instances": [
+            22912
+        ],
+        "title": "Weak Cryptographic Operation",
+        "explanation": "Direct use of RSA for decryption without specifying padding or using secure padding modes like OAEP in some instances."
+    },
+    {
+        "instances": [
+            22913
+        ],
+        "title": "Lack of Secret Management",
+        "explanation": "Encryption keys or other secrets are likely hardcoded or not securely managed, as indicated by references to consts.RsaPrivateKeyFile."
+    },
+    {
+        "instances": [
+            22914
+        ],
+        "title": "Insecure Token Handling",
+        "explanation": "Token-based authentication is implemented but there’s no explicit secure attribute setting or protection against CSRF."
+    },
+    {
+        "instances": [
+            22927
+        ],
+        "title": "Potential for Denial of Service in async_get_pool_job",
+        "explanation": "The async_get_pool_job function limits the pool size but does not provide a mechanism to handle exhaustion correctly, potentially leading to denial of service if the system relies on these jobs for processing critical tasks."
+    },
+    {
+        "instances": [
+            22932,
+            22933
+        ],
+        "title": "Weak Hash Function Usage",
+        "explanation": "CRC32 is used for generating a unique port number or in another context, which could lead to predictability concerns and lacks collision resistance or unpredictability."
+    },
+    {
+        "instances": [
+            22947
+        ],
+        "title": "Insecure HostKeyCallback Configuration",
+        "explanation": "The ssh.ClientConfig is configured to use ssh.InsecureIgnoreHostKey(), making it vulnerable to Man-In-The-Middle (MITM) attacks."
+    },
+    {
+        "instances": [
+            22950
+        ],
+        "title": "Use of Static Key Material",
+        "explanation": "Using static or hard-coded keys in a cryptographic algorithm can lead to security vulnerabilities, such as exposing the key in the application binary."
+    },
+    {
+        "instances": [
+            22955
+        ],
+        "title": "Use of Insecure Character Encoding",
+        "explanation": "The code may permit the use of insecure or non-canonicalized character encodings that can potentially lead to security vulnerabilities."
+    },
+    {
+        "instances": [
+            22956
+        ],
+        "title": "Length Parameter Misuse",
+        "explanation": "The destination buffer length is improperly validated, potentially leading to buffer overflows or other memory corruption issues."
+    },
+    {
+        "instances": [
+            22959
+        ],
+        "title": "Use of Potentially Weak String Types",
+        "explanation": "Allowing the creation of certain ASN.1 string types without ensuring they meet the security requirements can lead to security weaknesses."
+    },
+    {
+        "instances": [
+            22967
+        ],
+        "title": "Insecure Elliptic Curve",
+        "explanation": "The curve Prime192v1 is known to be weaker than what is recommended for secure applications. Elliptic curves with a field size of at least 256 bits are recommended."
+    },
+    {
+        "instances": [
+            22970
+        ],
+        "title": "Redundant Cryptographic Operation",
+        "explanation": "The public key is retrieved twice consecutively without any modification to the key in between, which is an unnecessary operation that could lead to confusion or potential misuse."
+    },
+    {
+        "instances": [
+            22973
+        ],
+        "title": "Insecure Memory Allocation Functions",
+        "explanation": "The usage of OPENSSL_zalloc may not be secure depending on the implementation of the OpenSSL version, potentially leading to information leakage or introducing vulnerabilities."
+    },
+    {
+        "instances": [
+            22975
+        ],
+        "title": "Lack of Error Handling for DSO Dynamic Loading",
+        "explanation": "There is no explicit error handling or reporting if DSO_bind_func fails to bind any of the ZLIB functions, which can lead to null pointer dereferences."
+    },
+    {
+        "instances": [
+            22977
+        ],
+        "title": "Inflate and Deflate Stream End Without Error Checking",
+        "explanation": "InflateEnd and deflateEnd are called without checking their return values, which can report important errors that should be handled or logged."
+    },
+    {
+        "instances": [
+            22983
+        ],
+        "title": "Inappropriate Key Length",
+        "explanation": "The key length specified for the Blowfish encryption algorithm is 256 bits, which is not necessary and may lead to inefficiency and unnecessary resource usage."
+    },
+    {
+        "instances": [
+            22984
+        ],
+        "title": "Weak encryption mode",
+        "explanation": "Using weak encryption modes, such as Blowfish in CFB mode with an 8-bit feedback size, can lead to weak encryption for certain types of data and usage patterns."
+    },
+    {
+        "instances": [
+            22986
+        ],
+        "title": "Insecure conversion of encrypted data",
+        "explanation": "Converting encrypted data directly to a string using standard encoding schemes, such as UTF-8, can lead to data corruption or loss of information."
+    },
+    {
+        "instances": [
+            22991
+        ],
+        "title": "Insecure protocol method",
+        "explanation": "Limiting the protocol to a specific version, such as TLS 1.2, without allowing for negotiation to the best available version can reduce security."
+    },
+    {
+        "instances": [
+            22993
+        ],
+        "title": "Insecure revocation date formatting",
+        "explanation": "Formatting revocation dates without proper validation can lead to incorrect or insecure revocation dates."
+    },
+    {
+        "instances": [
+            22995
+        ],
+        "title": "Insecure nonce reuse",
+        "explanation": "Reusing nonces can compromise the confidentiality of encrypted messages."
+    },
+    {
+        "instances": [
+            23007
+        ],
+        "title": "Insecure file opening mode",
+        "explanation": "Opening files in text mode instead of binary mode can lead to incorrect processing of binary data, potentially compromising cryptographic security."
+    },
+    {
+        "instances": [
+            23010
+        ],
+        "title": "Potential file handling vulnerabilities",
+        "explanation": "Failing to ensure safe handling of file pointers can lead to undefined behavior and potential security vulnerabilities."
+    },
+    {
+        "instances": [
+            23020
+        ],
+        "title": "Potential memory leak",
+        "explanation": "Failing to free allocated memory can lead to memory leaks and potential security vulnerabilities."
+    },
+    {
+        "instances": [
+            23037,
+            23063
+        ],
+        "title": "Insecure Data Transmission",
+        "explanation": "The implementation potentially exposes sensitive data to the risk of interception by third parties during transmission to remote servers. It is recommended to use secure channels such as HTTPS to protect against Man-In-The-Middle (MITM) attacks."
+    },
+    {
+        "instances": [
+            23039,
+            23072
+        ],
+        "title": "Use of Insecure Cryptographic Hash Functions",
+        "explanation": "The code uses insecure cryptographic hash functions such as MD5 and RC4, which are vulnerable to collision attacks and other security issues. It is recommended to use more secure hash functions such as SHA-256 or SHA-3."
+    },
+    {
+        "instances": [
+            23056,
+            23092
+        ],
+        "title": "Missing or Insecure Initialization Vector (IV)",
+        "explanation": "The code uses a missing or insecure IV, which can lead to various security issues. It is recommended to use a secure and unique IV for each encryption operation."
+    },
+    {
+        "instances": [
+            23057
+        ],
+        "title": "Use of Default Charset",
+        "explanation": "The code uses the default charset, which can lead to inconsistencies and potential data loss or manipulation across different platforms or locales. It is recommended to explicitly specify a charset, such as UTF-8, to ensure consistency."
+    },
+    {
+        "instances": [
+            23077
+        ],
+        "title": "Potential Blocking on Shared Resource without Timeout",
+        "explanation": "The code has a potential blocking issue on a shared resource without a timeout, which can lead to deadlocks or performance issues. It is recommended to use timeouts and proper synchronization mechanisms to avoid blocking issues."
+    },
+    {
+        "instances": [
+            23079
+        ],
+        "title": "Insufficient Validation of `num` for Negative Values",
+        "explanation": "The code has insufficient validation of `num` for negative values, which can lead to undefined behavior or security issues. It is recommended to properly validate `num` to ensure it is non-negative."
+    },
+    {
+        "instances": [
+            23083
+        ],
+        "title": "Loading Keystore from an Insecure URL",
+        "explanation": "The code loads a keystore from an insecure URL, which can lead to man-in-the-middle attacks or other security issues. It is recommended to load the keystore from a secure and trusted location."
+    },
+    {
+        "instances": [
+            23094,
+            23095
+        ],
+        "title": "X509TrustManager Misconfiguration",
+        "explanation": "The X509TrustManager is misconfigured, allowing for insecure certificate validation and potentially leading to man-in-the-middle attacks."
+    },
+    {
+        "instances": [
+            23096,
+            23097,
+            23098,
+            23099
+        ],
+        "title": "OpenSSL Misuses",
+        "explanation": "Various OpenSSL misuses, including the use of deprecated functions, inadequate error handling, and missing return value checks, can compromise the security of cryptographic operations."
+    },
+    {
+        "instances": [
+            23122
+        ],
+        "title": "Usage of ECB Mode",
+        "explanation": "The use of ECB mode can compromise the security of AES encryption."
+    },
+    {
+        "instances": [
+            23123
+        ],
+        "title": "Insecure Cryptographic Mode as a Global Variable",
+        "explanation": "The use of insecure cryptographic modes as global variables can compromise the security of cryptographic operations."
+    },
+    {
+        "instances": [
+            23126
+        ],
+        "title": "Use of RSA with 1024-bit Keys",
+        "explanation": "The use of RSA with 1024-bit keys is considered insecure."
+    },
+    {
+        "instances": [
+            23133,
+            23134
+        ],
+        "title": "Insecure AES Encryption and Key Generation",
+        "explanation": "The use of insecure AES encryption modes and inadequate key generation practices can compromise the security of encrypted data."
+    },
+    {
+        "instances": [
+            23135
+        ],
+        "title": "Insufficient RAND_poll Usage",
+        "explanation": "The insufficient use of RAND_poll can compromise the security of cryptographic operations."
+    },
+    {
+        "instances": [
+            23138
+        ],
+        "title": "No Entropy Source Verification",
+        "explanation": "The absence of entropy source verification can compromise the security of cryptographic operations."
+    },
+    {
+        "instances": [
+            23145
+        ],
+        "title": "Insecure Handling of Timestamps",
+        "explanation": "The insecure handling of timestamps can compromise the security of cryptographic operations."
+    },
+    {
+        "instances": [
+            23146
+        ],
+        "title": "Insecure TLS Configuration",
+        "explanation": "The insecure configuration of TLS can compromise the security of cryptographic operations."
+    },
+    {
+        "instances": [
+            23149,
+            23157,
+            23162,
+            23182
+        ],
+        "title": "Insufficient Key Size or Generation",
+        "explanation": "The key size or generation process is insufficient, which can lead to brute-force attacks or compromised security."
+    },
+    {
+        "instances": [
+            23155
+        ],
+        "title": "Insufficient Information to Determine Cryptographic API Misuses",
+        "explanation": "There is insufficient information to determine the cryptographic API misuses accurately."
+    },
+    {
+        "instances": [
+            23159
+        ],
+        "title": "Unspecified Cipher Algorithm",
+        "explanation": "The unspecified cipher algorithm can lead to variability in security, as the default algorithm may not be consistently secure across different platforms."
+    },
+    {
+        "instances": [
+            23165,
+            23184
+        ],
+        "title": "Insecure TLS Configuration",
+        "explanation": "The insecure TLS configuration can lead to security vulnerabilities, such as man-in-the-middle attacks."
+    },
+    {
+        "instances": [
+            23203
+        ],
+        "title": "Use of DES Encryption Algorithm",
+        "explanation": "The use of the DES encryption algorithm can lead to security vulnerabilities, as it is considered insecure due to its short key length."
+    },
+    {
+        "instances": [
+            23211
+        ],
+        "title": "Static salt usage",
+        "explanation": "Using a static salt can undermine the security of cryptographic functions."
+    },
+    {
+        "instances": [
+            23213
+        ],
+        "title": "Insufficient prime number validation",
+        "explanation": "Not validating prime numbers properly can affect the strength of cryptographic operations."
+    },
+    {
+        "instances": [
+            23214
+        ],
+        "title": "Lack of error handling",
+        "explanation": "Not checking the return value of cryptographic operations can lead to unhandled errors."
+    },
+    {
+        "instances": [
+            23216
+        ],
+        "title": "Insecure restrictions on e value",
+        "explanation": "Not restricting the e value properly can lead to weak public exponents."
+    },
+    {
+        "instances": [
+            23244
+        ],
+        "title": "Insecure Certificate Serial Number",
+        "explanation": "Using a static certificate serial number can violate best practices and make the certificate vulnerable to attacks."
+    },
+    {
+        "instances": [
+            23245
+        ],
+        "title": "Certificate Validity Period Too Long",
+        "explanation": "Specifying a certificate validity period that is too long can make the certificate less secure."
+    },
+    {
+        "instances": [
+            23246
+        ],
+        "title": "Insufficient Directory Permissions",
+        "explanation": "Not setting directory permissions properly can expose the certificate to unauthorized access."
+    },
+    {
+        "instances": [
+            23247
+        ],
+        "title": "Lack of Error Handling after os.Mkdir",
+        "explanation": "Not checking the error returned by os.Mkdir can lead to unhandled errors."
+    },
+    {
+        "instances": [
+            23265
+        ],
+        "title": "Use of a weak seed for cryptographic operations",
+        "explanation": "Using a static, short, or predictable seed for cryptographic operations can severely undermine the security of cryptographic algorithms."
+    },
+    {
+        "instances": [
+            23268,
+            23279,
+            23290,
+            23294,
+            23306
+        ],
+        "title": "Use of ECB mode for AES encryption",
+        "explanation": "ECB mode is considered insecure for use in cryptographic protocols because it does not provide serious message confidentiality."
+    },
+    {
+        "instances": [
+            23273
+        ],
+        "title": "Indirect use of cryptographic algorithm name",
+        "explanation": "The cryptographic algorithm specified indirectly through converting a char array to String may lead to unexpected behavior or misuse."
+    },
+    {
+        "instances": [
+            23298
+        ],
+        "title": "Password hashing without salt",
+        "explanation": "Hashing a password without using a salt makes it susceptible to dictionary attacks and rainbow table attacks."
+    },
+    {
+        "instances": [
+            23299
+        ],
+        "title": "Inadequate hash function for passwords",
+        "explanation": "While SHA-256 is considered a secure cryptographic hash function, it is not the best practice for password hashing due to its speed."
+    },
+    {
+        "instances": [
+            23302
+        ],
+        "title": "Use of Weak Hash Without Salt",
+        "explanation": "The CheckFile function uses SHA-256 and SHA-512 for checksum verification without salting."
+    },
+    {
+        "instances": [
+            23310
+        ],
+        "title": "Insecure Session Expiration",
+        "explanation": "The default session expiration time may not be adequate for sensitive applications, potentially allowing session hijacking attacks."
+    },
+    {
+        "instances": [
+            23311
+        ],
+        "title": "Insufficient Logging",
+        "explanation": "The application's logging configuration does not include cryptographic operations, hindering the detection of malicious activities."
+    },
+    {
+        "instances": [
+            23312
+        ],
+        "title": "Lack of Session Expiration Validation",
+        "explanation": "The application does not validate the session expiration check interval, potentially leading to sessions not being expired in a timely manner."
+    },
+    {
+        "instances": [
+            23316
+        ],
+        "title": "Inadequate Handling of Cryptographic Seeds",
+        "explanation": "The application sets a public random seed without ensuring its cryptographic strength or unpredictability."
+    },
+    {
+        "instances": [
+            23317,
+            23318,
+            23329,
+            23332,
+            23341,
+            23348,
+            23349,
+            23352
+        ],
+        "title": "Insecure Initialization Vector (IV) Handling",
+        "explanation": "The application uses a static or predictable IV, potentially compromising the security of encrypted messages."
+    },
+    {
+        "instances": [
+            23322
+        ],
+        "title": "Insufficient Padding Oracle Mitigation",
+        "explanation": "The application does not implement mitigation strategies against padding oracle attacks."
+    },
+    {
+        "instances": [
+            23324,
+            23343
+        ],
+        "title": "Weak Password",
+        "explanation": "The application uses a weak password for key derivation, making it susceptible to brute-force attacks."
+    },
+    {
+        "instances": [
+            23342
+        ],
+        "title": "Short Salt",
+        "explanation": "The application uses a short salt value for key derivation, making it less effective against attacks."
+    },
+    {
+        "instances": [
+            23347
+        ],
+        "title": "Key Length May Be Insufficient",
+        "explanation": "The application specifies a key length that may be insufficient for the encryption algorithm used."
+    },
+    {
+        "instances": [
+            23350
+        ],
+        "title": "Incorrect Block Size in Decryption",
+        "explanation": "The application uses an incorrect block size for decryption, potentially leading to incorrect decryption behavior."
+    },
+    {
+        "instances": [
+            23354
+        ],
+        "title": "Insecure Encryption Key",
+        "explanation": "The application uses an insecure encryption key, making it susceptible to brute-force attacks."
+    },
+    {
+        "instances": [
+            23356
+        ],
+        "title": "Redundant Key Declaration",
+        "explanation": "The application declares redundant keys, potentially indicating unnecessary code duplication."
+    },
+    {
+        "instances": [
+            23363,
+            23397,
+            23408
+        ],
+        "title": "Hardcoded sensitive information",
+        "explanation": "Hardcoding sensitive information, such as encryption keys, can expose them to unauthorized access and compromise the security of the system."
+    },
+    {
+        "instances": [
+            23364
+        ],
+        "title": "Misleading error message",
+        "explanation": "A misleading error message can mislead debugging efforts and make it difficult to identify the root cause of the issue."
+    },
+    {
+        "instances": [
+            23371
+        ],
+        "title": "Session Tickets Key Rotation",
+        "explanation": "The rotation of session tickets encryption key based on time can lead to the use of weak keys if not rotated appropriately."
+    },
+    {
+        "instances": [
+            23372
+        ],
+        "title": "TLS Client Authentication Misconfiguration",
+        "explanation": "The misconfiguration of TLS client authentication can make the system vulnerable to unauthorized access."
+    },
+    {
+        "instances": [
+            23373
+        ],
+        "title": "Session Resumption Misconfiguration",
+        "explanation": "The misconfiguration of session resumption can make the system vulnerable to attacks and compromise the security of the data."
+    },
+    {
+        "instances": [
+            23374
+        ],
+        "title": "Unbounded Client Session Cache Size",
+        "explanation": "The unbounded client session cache size can lead to excessive memory use and compromise the performance of the system."
+    },
+    {
+        "instances": [
+            23380
+        ],
+        "title": "Potential lack of error checking for BIO_read/BIO_write",
+        "explanation": "The potential lack of error checking for BIO_read/BIO_write can lead to unexpected behavior and compromise the security of the system."
+    },
+    {
+        "instances": [
+            23381
+        ],
+        "title": "Hard-coded encryption chunk size",
+        "explanation": "The hard-coded encryption chunk size can lead to inefficient memory use or buffer overflows."
+    },
+    {
+        "instances": [
+            23382
+        ],
+        "title": "Potential exposure of sensitive encryption data",
+        "explanation": "The potential exposure of sensitive encryption data can compromise the security of the system."
+    },
+    {
+        "instances": [
+            23388
+        ],
+        "title": "Fixed Time Implementation in Cryptographic Context",
+        "explanation": "The fixed time implementation in cryptographic context can lead to predictable output in cryptographic operations and compromise the security of the system."
+    },
+    {
+        "instances": [
+            23399
+        ],
+        "title": "Insecure Protocol",
+        "explanation": "The use of an insecure protocol can make the system vulnerable to man-in-the-middle attacks or other threat vectors."
+    },
+    {
+        "instances": [
+            23404
+        ],
+        "title": "Insufficient salt length",
+        "explanation": "The insufficient salt length can make the system vulnerable to rainbow table attacks or other threat vectors."
+    },
+    {
+        "instances": [
+            23405
+        ],
+        "title": "Misleading comment about salt size",
+        "explanation": "The misleading comment about salt size can lead to confusion and compromise the security of the system."
+    },
+    {
+        "instances": [
+            23422
+        ],
+        "title": "Insecure Warning Suppression",
+        "explanation": "Suppressing security-related warnings can hide potential vulnerabilities and should be avoided."
+    },
+    {
+        "instances": [
+            23439
+        ],
+        "title": "Use of Static Nonces",
+        "explanation": "Using static nonces can compromise the security of cryptographic operations."
+    },
+    {
+        "instances": [
+            23466
+        ],
+        "title": "Memory Not Zeroized",
+        "explanation": "Failing to zeroize memory can compromise the security of sensitive data."
+    },
+    {
+        "instances": [
+            23467
+        ],
+        "title": "Lack of Certificate Revocation Checks",
+        "explanation": "Failing to check certificate revocation can compromise the security of TLS connections."
+    },
+    {
+        "instances": [
+            23468
+        ],
+        "title": "Inadequate Verification for Certificate Subject Fields",
+        "explanation": "Failing to verify certificate subject fields can compromise the security of TLS connections."
+    },
+    {
+        "instances": [
+            23473
+        ],
+        "title": "Short, simple password and salt",
+        "explanation": "The password and salt used in this code are both '12345678', which are too short and simple for cryptographic security purposes."
+    },
+    {
+        "instances": [
+            23476
+        ],
+        "title": "Potential buffer overflow",
+        "explanation": "The encoding functions i2d and ASN1_item_i2d write to a buffer whose length is not explicitly checked."
+    },
+    {
+        "instances": [
+            23478
+        ],
+        "title": "Use of insecure random number generator for key generation",
+        "explanation": "Secure key generation requires the use of a cryptographically secure pseudorandom number generator (CSPRNG)."
+    },
+    {
+        "instances": [
+            23479,
+            23516
+        ],
+        "title": "Hard-coded cryptographic key",
+        "explanation": "Hard-coding keys in source code is insecure because the key is stored in plaintext and could easily be extracted by an attacker with access to the source code."
+    },
+    {
+        "instances": [
+            23485
+        ],
+        "title": "Inappropriate hash output length specification",
+        "explanation": "Specifying a hash output length that is not supported by the algorithm might either have no effect or lead to errors."
+    },
+    {
+        "instances": [
+            23491
+        ],
+        "title": "Use of hardcoded values",
+        "explanation": "The code uses hardcoded file name suffixes and directory separators which might not be portable or secure across different platforms or configurations."
+    },
+    {
+        "instances": [
+            23500,
+            23501,
+            23502
+        ],
+        "title": "Hardcoded IV used for CBC mode encryption",
+        "explanation": "Using a hardcoded initialization vector (IV) for CBC mode encryption can compromise security because it makes certain types of attacks, like replay attacks, more feasible."
+    },
+    {
+        "instances": [
+            23511
+        ],
+        "title": "Use of weak or deprecated cryptographic algorithm",
+        "explanation": "The IDEA algorithm, specified for encryption, is considered to have insufficient security for contemporary use."
+    },
+    {
+        "instances": [
+            23514
+        ],
+        "title": "Use of default encoding",
+        "explanation": "Calling getBytes() without specifying a character set could lead to unexpected behavior in environments with different default character sets."
+    },
+    {
+        "instances": [
+            23518
+        ],
+        "title": "Improper error handling for memory allocation failures",
+        "explanation": "The functions BN_bn2hex, BN_bn2dec, BN_hex2bn, and BN_dec2bn contain points where memory is allocated using OPENSSL_malloc, and while there is an initial check for if the allocation returns NULL, subsequent operations do not consistently handle or propagate the error correctly."
+    },
+    {
+        "instances": [
+            23528,
+            23542,
+            23561
+        ],
+        "title": "Use of weak or insecure password",
+        "explanation": "The use of a weak, hard-coded, or insecure password lowers the security of the cryptographic process. Passwords should be strong, unpredictable, and secret."
+    },
+    {
+        "instances": [
+            23534
+        ],
+        "title": "No secure random for key generation",
+        "explanation": "The KeyGenerator does not explicitly specify the use of a SecureRandom instance. Using default random may not provide sufficient randomness for secure key generation."
+    },
+    {
+        "instances": [
+            23556
+        ],
+        "title": "Insecure DSA key size",
+        "explanation": "The DSA key size of 1024 bits is considered insecure. According to NIST SP 800-57 Pt1 Rev 5, the minimum recommended size for DSA is 2048 bits for security beyond 2010."
+    },
+    {
+        "instances": [
+            23587
+        ],
+        "title": "Session Fixation Vulnerability",
+        "explanation": "Creating a new session without verifying if the request already includes a session ID can expose the application to session fixation attacks."
+    },
+    {
+        "instances": [
+            23588
+        ],
+        "title": "Correct Usage of HttpOnly Flag",
+        "explanation": "Setting the HttpOnly flag to true on cookies enhances security by preventing client-side scripts from accessing the data."
+    },
+    {
+        "instances": [
+            23589
+        ],
+        "title": "No Explicit Secure Flag for Cookies",
+        "explanation": "Setting the Secure flag on cookies is recommended to prevent them from being sent over unencrypted connections."
+    },
+    {
+        "instances": [
+            23599
+        ],
+        "title": "Potentially Insecure Memory Handling for Keys and Sensitive Data",
+        "explanation": "Not explicitly clearing cryptographic keys and sensitive data from memory can leave it accessible in memory dumps or upon deallocation."
+    },
+    {
+        "instances": [
+            23608
+        ],
+        "title": "Incorrect Buffer Size in for Loop for Encrypted Data Output",
+        "explanation": "Using sizeof(cipher) does not correctly determine the length of the encrypted data buffer, leading to improper handling and potential output errors."
+    },
+    {
+        "instances": [
+            23609
+        ],
+        "title": "Improper Error Handling",
+        "explanation": "Not checking for errors after cryptographic operations can lead to unnoticed failures of cryptographic operations."
+    },
+    {
+        "instances": [
+            23618
+        ],
+        "title": "Insufficient Number of Iterations",
+        "explanation": "Using a low number of iterations can make it susceptible to brute-force attacks."
+    },
+    {
+        "instances": [
+            23624
+        ],
+        "title": "Potential Integer Overflow in Length Encoding",
+        "explanation": "Processing and encoding 'mlen' into the nonce can lead to integer overflow for large values of 'mlen', resulting in incorrect nonce formation and cryptographic weaknesses."
+    },
+    {
+        "instances": [
+            23625
+        ],
+        "title": "Inadequate Handling of AAD Length",
+        "explanation": "Handling of the 'alen' parameter can lead to integer overflows in certain conditions, affecting the integrity of the AAD processing and leading to cryptographic vulnerabilities."
+    },
+    {
+        "instances": [
+            23629
+        ],
+        "title": "Incorrect Tag Length Validation",
+        "explanation": "Not enforcing the expected range of tag lengths can lead to the creation of tags with incorrect lengths, weakening the integrity protection."
+    },
+    {
+        "instances": [
+            23630
+        ],
+        "title": "Use of Insecure SSL/TLS Version",
+        "explanation": "Using SSLv3 can lead to security breaches due to vulnerabilities like POODLE."
+    },
+    {
+        "instances": [
+            23631
+        ],
+        "title": "Use of Predictable Salt",
+        "explanation": "Using a predictable salt can make it susceptible to dictionary attacks."
+    },
+    {
+        "instances": [
+            23632
+        ],
+        "title": "Insufficient Iteration Count",
+        "explanation": "Using a low iteration count can make it susceptible to brute-force attacks."
+    },
+    {
+        "instances": [
+            23633
+        ],
+        "title": "Incorrect Conversion of Char Array to Byte Array",
+        "explanation": "Not converting a char array to a byte array correctly can lead to an invalid salt being used in the cryptographic operation."
+    },
+    {
+        "instances": [
+            23640
+        ],
+        "title": "Use of insecure hash function (SHA-1)",
+        "explanation": "The use of SHA-1 has been considered insecure for many applications since significant vulnerabilities were found."
+    },
+    {
+        "instances": [
+            23647,
+            23652,
+            23655,
+            23661,
+            23664,
+            23689
+        ],
+        "title": "Use of insecure encryption mode (ECB)",
+        "explanation": "Using ECB mode for encryption is insecure because identical plaintext blocks are encrypted into identical ciphertext blocks."
+    },
+    {
+        "instances": [
+            23650
+        ],
+        "title": "Lack of proper encryption for sensitive data transmission",
+        "explanation": "The password is only hashed with MD5 and concatenated to the URL for transmission, which does not ensure confidentiality or integrity of the password."
+    },
+    {
+        "instances": [
+            23662
+        ],
+        "title": "Insecure password policy",
+        "explanation": "The password and salt used for key derivation are too simple and predictable."
+    },
+    {
+        "instances": [
+            23668
+        ],
+        "title": "Insufficient logging configuration",
+        "explanation": "Logging configuration is insufficient for tracking security-related events or issues effectively."
+    },
+    {
+        "instances": [
+            23670
+        ],
+        "title": "Hardcoded cleanup logic",
+        "explanation": "The cleanup logic deletes data based on hardcoded paths derived from user input without validating or sanitizing the paths."
+    },
+    {
+        "instances": [
+            23674
+        ],
+        "title": "Inappropriate block cipher mode for data integrity or authenticity",
+        "explanation": "The AES CBC mode used in the code provides confidentiality but does not provide integrity or authenticity checks."
+    },
+    {
+        "instances": [
+            23691
+        ],
+        "title": "Insecure Hashing Algorithm",
+        "explanation": "The use of keccak hashing algorithm without specifying the desired security level explicitly may lead to weaker security properties."
+    },
+    {
+        "instances": [
+            23692
+        ],
+        "title": "Insecure Permission Assignment",
+        "explanation": "Setting file permissions to 775 allows write access to the group and others, potentially compromising the integrity of the solc binary."
+    },
+    {
+        "instances": [
+            23695,
+            23697
+        ],
+        "title": "Use of ECB Mode for AES Encryption",
+        "explanation": "AES encryption in ECB mode is vulnerable to various attacks such as pattern analysis and should not be used for securing sensitive data."
+    },
+    {
+        "instances": [
+            23699
+        ],
+        "title": "Insufficient Key Length",
+        "explanation": "The key used corresponds to an 128-bit key, which may not be sufficient for all security requirements."
+    },
+    {
+        "instances": [
+            23700
+        ],
+        "title": "Insufficient Error Handling",
+        "explanation": "The functions p_example6_local_variable2 and decrypt_aes_ecb do not implement any form of error handling, potentially leading to unhandled exceptions or errors."
+    },
+    {
+        "instances": [
+            23701,
+            23709
+        ],
+        "title": "Use of Non-Random IV for CBC Mode",
+        "explanation": "Using a fixed string as IV does not adhere to the principle of using unpredictable and unique IVs for each encryption session."
+    },
+    {
+        "instances": [
+            23702
+        ],
+        "title": "Insecure Usage of Random Number Generator",
+        "explanation": "The GenerateToken function uses crypto/rand for generating random numbers, which is a secure choice for cryptographic purposes."
+    },
+    {
+        "instances": [
+            23703
+        ],
+        "title": "Hash Function without Cryptographic Context",
+        "explanation": "The Hash function accurately utilizes sha256, which is a cryptographic hash function suitable for most cryptographic purposes."
+    },
+    {
+        "instances": [
+            23706,
+            23708
+        ],
+        "title": "Insufficient IV Length",
+        "explanation": "The initialization vector (IV) length should match the block size of the cipher algorithm."
+    },
+    {
+        "instances": [
+            23711
+        ],
+        "title": "Inappropriate Renegotiation Triggering",
+        "explanation": "Triggering renegotiation manually inside the ssl_read and ssl_write functions without proper checks might introduce several security vulnerabilities."
+    },
+    {
+        "instances": [
+            23712
+        ],
+        "title": "Potential Misuse of SSL_clear",
+        "explanation": "Calling SSL_clear to reset SSL session state might not be safe under certain conditions."
+    },
+    {
+        "instances": [
+            23721
+        ],
+        "title": "Lack of Secure Timestamp",
+        "explanation": "The class uses a manually generated 'X-Sdk-Date' header based on the current date and time for signing requests, potentially allowing replay attacks."
+    },
+    {
+        "instances": [
+            23732
+        ],
+        "title": "No Use of Secure Connection Deadlines or Timeouts for TLS Connections",
+        "explanation": "There's no evidence of similar timeouts or deadlines being enforced for the TLS-wrapped connections, potentially leaving some connections hanging indefinitely."
+    },
+    {
+        "instances": [
+            23737
+        ],
+        "title": "Use of Non-Standard DH Group",
+        "explanation": "The use of custom Diffie-Hellman parameters could potentially introduce vulnerabilities or interoperability issues."
+    },
+    {
+        "instances": [
+            23739
+        ],
+        "title": "Insufficient Key Generation Method",
+        "explanation": "The method generateUUID does not guarantee cryptographic strength for keys because UUIDs are not designed to be secure or unpredictable."
+    },
+    {
+        "instances": [
+            23744
+        ],
+        "title": "Hardcoded Key",
+        "explanation": "Cryptographic keys should be managed securely to ensure the confidentiality and integrity of encrypted data."
+    },
+    {
+        "instances": [
+            23750
+        ],
+        "title": "Short validity period of TLS certificates",
+        "explanation": "The TLS certificates have a very short validity period, which can cause operational issues and frequent renewal overhead."
+    },
+    {
+        "instances": [
+            23751,
+            23759,
+            23771
+        ],
+        "title": "Weak or insufficient key length",
+        "explanation": "The key length is insufficient or weak, making it vulnerable to brute-force attacks or other security issues."
+    },
+    {
+        "instances": [
+            23754
+        ],
+        "title": "Key not securely randomized",
+        "explanation": "The key is not securely randomized, making it predictable or susceptible to brute-force attacks."
+    },
+    {
+        "instances": [
+            23768,
+            23781,
+            23784
+        ],
+        "title": "Usage of static or predictable seed in SecureRandom",
+        "explanation": "Using a static or predictable seed with SecureRandom compromises the randomness and security due to predictability."
+    },
+    {
+        "instances": [
+            23769,
+            23770
+        ],
+        "title": "Insecure or predictable cryptographic key",
+        "explanation": "The cryptographic key is hard-coded or predictable, making it vulnerable to various attacks."
+    },
+    {
+        "instances": [
+            23772
+        ],
+        "title": "Usage of a hard-coded salt value",
+        "explanation": "Using a hard-coded salt value in cryptographic operations reduces the effectiveness of the salt."
+    },
+    {
+        "instances": [
+            23787
+        ],
+        "title": "Hardcoded Issue in Token",
+        "explanation": "The issuer is hardcoded in the JWT token creation process, which could be problematic in different deployment environments or if the service changes its domain."
+    },
+    {
+        "instances": [
+            23793
+        ],
+        "title": "Insecure or undefined behavior due to reliance on undefined macro behavior",
+        "explanation": "The behavior of aes_block_t's alignment and the use of load_block and store_block macros depend on processor architecture and compiler-specific constructs, which might result in insecure or undefined behavior on other architectures or with different compilers."
+    },
+    {
+        "instances": [
+            23801
+        ],
+        "title": "Excessive recursion depth without adequate control",
+        "explanation": "The function asn1_parse2 allows a recursion depth up to ASN1_PARSE_MAXDEPTH (128), which might be excessively deep for certain stack sizes or specific applications, leading to potential stack overflow issues."
+    },
+    {
+        "instances": [
+            23807,
+            23843,
+            23846,
+            23849
+        ],
+        "title": "Static Salt Usage",
+        "explanation": "Using a static salt in cryptographic operations, which compromises security by making it easier for attackers to precompute lookup tables."
+    },
+    {
+        "instances": [
+            23831
+        ],
+        "title": "Insecure KeyStore Type",
+        "explanation": "Using an insecure KeyStore type, which can have security vulnerabilities and is considered obsolete."
+    },
+    {
+        "instances": [
+            23840
+        ],
+        "title": "Potential Misuse of Symmetric Key Encoding",
+        "explanation": "Using a symmetric key encoding that may not meet the library's requirements, which can lead to subtle security vulnerabilities."
+    },
+    {
+        "instances": [
+            23858,
+            23867,
+            23875,
+            23890,
+            23891
+        ],
+        "title": "Insecure Initialization Vector (IV) Usage",
+        "explanation": "The IV used is either static, predictable, or hardcoded, compromising the security of the cryptographic operation."
+    },
+    {
+        "instances": [
+            23866
+        ],
+        "title": "Output of Hash Function Not Properly Encoded",
+        "explanation": "The output of the hash function is not properly encoded, making it vulnerable to attacks."
+    },
+    {
+        "instances": [
+            23868
+        ],
+        "title": "Insecure use of RAND_load_file with potentially unlimited file size",
+        "explanation": "The use of RAND_load_file with a potentially unlimited file size can lead to excessive memory use and Denial-of-Service attacks."
+    },
+    {
+        "instances": [
+            23887
+        ],
+        "title": "Hardcoded key length assumption in error message",
+        "explanation": "The error message implies that only 16-byte (128-bit) AES keys are valid, potentially misleading developers about the compatibility and security of using longer keys."
+    },
+    {
+        "instances": [
+            23907
+        ],
+        "title": "Insecure key length for Fernet",
+        "explanation": "The key used for Fernet encryption should be 32 bytes after decoding from base64 format, which corresponds to 256 bits."
+    },
+    {
+        "instances": [
+            23911,
+            23936
+        ],
+        "title": "Insufficient Key Length",
+        "explanation": "Using short keys or passwords can significantly compromise security, making it vulnerable to brute-force attacks."
+    },
+    {
+        "instances": [
+            23912,
+            23916,
+            23931
+        ],
+        "title": "Insufficient Iteration Count",
+        "explanation": "Low iteration counts for key derivation functions or password-based encryption schemes can weaken security, making it more susceptible to brute-force attacks."
+    },
+    {
+        "instances": [
+            23930
+        ],
+        "title": "Inadequate Key Size Specification",
+        "explanation": "Not specifying a secure key size for cryptographic operations can lead to the use of weak keys, compromising security."
+    },
+    {
+        "instances": [
+            23944
+        ],
+        "title": "Unspecified Cryptography Backend",
+        "explanation": "Specifying a backend when it's not required can limit the library's ability to choose the most secure backend based on the environment, potentially affecting performance and compatibility."
+    },
+    {
+        "instances": [
+            23961
+        ],
+        "title": "Insufficient Key Size",
+        "explanation": "Using initial key sizes less than the recommended minimum can make the cryptographic strength insufficient, even if padded to a secure size later."
+    },
+    {
+        "instances": [
+            23976
+        ],
+        "title": "Inconsistent Nonce Usage",
+        "explanation": "Using different nonces for encryption and decryption can lead to decryption errors or security vulnerabilities."
+    },
+    {
+        "instances": [
+            23978,
+            23979
+        ],
+        "title": "Weak Encryption Algorithms",
+        "explanation": "Using weak encryption algorithms such as RC2 or Blowfish can compromise the security of the application."
+    },
+    {
+        "instances": [
+            23993
+        ],
+        "title": "Insecure Memory Practices for Cryptographic Keys",
+        "explanation": "Failing to securely zero out cryptographic keys from memory can lead to key leaks."
+    },
+    {
+        "instances": [
+            24000
+        ],
+        "title": "Implicit Trust in Input Lengths Derived from Untrusted Sources",
+        "explanation": "Trusting input lengths derived from untrusted sources can lead to buffer overflows or logic errors."
+    },
+    {
+        "instances": [
+            24002
+        ],
+        "title": "Unchecked Return Value of OPENSSL_init_crypto",
+        "explanation": "Failing to check the return value of OPENSSL_init_crypto can lead to undefined behavior in subsequent cryptographic operations."
+    },
+    {
+        "instances": [
+            24006
+        ],
+        "title": "Use of Insecure Protocol Version",
+        "explanation": "Using insecure protocol versions can introduce vulnerabilities."
+    },
+    {
+        "instances": [
+            24008
+        ],
+        "title": "Insufficient Key Size Check",
+        "explanation": "Failing to check key sizes can lead to insufficient key lengths, compromising the security of cryptographic operations."
+    },
+    {
+        "instances": [
+            24022,
+            24027,
+            24042,
+            24051
+        ],
+        "title": "Hardcoded Cryptographic Keys",
+        "explanation": "Hardcoding cryptographic keys in the source code is insecure because it makes the encryption static and easily accessible to an adversary if the source code is compromised."
+    },
+    {
+        "instances": [
+            24038
+        ],
+        "title": "Use of Weak Hash Function (MD5)",
+        "explanation": "Using the MD5 hash function is considered weak and cryptographically broken."
+    },
+    {
+        "instances": [
+            24046,
+            24070
+        ],
+        "title": "Hardcoded Cryptographic Algorithm",
+        "explanation": "Hardcoding the cryptographic algorithm can limit the flexibility and security of the cryptographic operation."
+    },
+    {
+        "instances": [
+            24053
+        ],
+        "title": "Insecure Randomness",
+        "explanation": "Using 'RAND_bytes' for generating a digest initialization vector may not provide cryptographically secure random values if OpenSSL is not properly initialized."
+    },
+    {
+        "instances": [
+            24054
+        ],
+        "title": "Endianness Assumption in Digest Initialization",
+        "explanation": "Assuming the machine's endianness when preparing the digest's initialization data can lead to inconsistencies or predictable digests across different architectures."
+    },
+    {
+        "instances": [
+            24063
+        ],
+        "title": "Weak SSH Cipher Algorithms",
+        "explanation": "Using weak SSH cipher algorithms can make encrypted sessions susceptible to decryption and attacks."
+    },
+    {
+        "instances": [
+            24064
+        ],
+        "title": "Password-based Authentication",
+        "explanation": "Using password-based authentication over SSH can expose the connection to brute-force attacks."
+    },
+    {
+        "instances": [
+            24067
+        ],
+        "title": "Insecure Use of Sudo in Cmd Execution",
+        "explanation": "Prepending 'sudo' to commands executed via SSH can escalate privileges inappropriately."
+    },
+    {
+        "instances": [
+            24080
+        ],
+        "title": "Insecure Comparison of Cryptographic Strings",
+        "explanation": "The comparison of cryptographic strings is done using a standard equality operator, which can make it vulnerable to timing attacks."
+    },
+    {
+        "instances": [
+            24089,
+            24102
+        ],
+        "title": "Insecure Memory Management",
+        "explanation": "Failing to properly clear sensitive data from memory can expose it to unauthorized access and compromise the security of the system."
+    },
+    {
+        "instances": [
+            24105
+        ],
+        "title": "Use of SHA-1 Algorithm",
+        "explanation": "Using the SHA-1 algorithm can compromise the security of the system due to its vulnerability to collision attacks."
+    },
+    {
+        "instances": [
+            24109
+        ],
+        "title": "Hardcoded Plaintext",
+        "explanation": "Hardcoding plaintext values can compromise the security of the system, especially if used as keys or sensitive data."
+    },
+    {
+        "instances": [
+            24111
+        ],
+        "title": "Zero Padding Can Lead to Padding Oracle Attacks",
+        "explanation": "Using zero padding can make the encryption scheme vulnerable to padding oracle attacks."
+    },
+    {
+        "instances": [
+            24132,
+            24169
+        ],
+        "title": "Insufficient randomness and predictable seeds",
+        "explanation": "The use of insufficient randomness and predictable seeds can lead to security vulnerabilities, such as predictable nonces and compromised encryption keys."
+    },
+    {
+        "instances": [
+            24137,
+            24142,
+            24159
+        ],
+        "title": "Hardcoded and static keys",
+        "explanation": "Using hardcoded and static keys can lead to security vulnerabilities, such as key disclosure and compromised security."
+    },
+    {
+        "instances": [
+            24143,
+            24153
+        ],
+        "title": "Weak key transformation logic and RC4 usage",
+        "explanation": "Using weak key transformation logic and RC4 can lead to security vulnerabilities, such as weak encryption and compromised security."
+    },
+    {
+        "instances": [
+            24144,
+            24180
+        ],
+        "title": "No cryptographic salt and insecure RNG",
+        "explanation": "Failing to use a cryptographic salt and insecure RNG can lead to security vulnerabilities, such as weak encryption and compromised security."
+    },
+    {
+        "instances": [
+            24146,
+            24157
+        ],
+        "title": "Static and predictable IVs",
+        "explanation": "Using static and predictable IVs can lead to security vulnerabilities, such as weak encryption and compromised security."
+    },
+    {
+        "instances": [
+            24148,
+            24168
+        ],
+        "title": "ECB mode and insecure encryption algorithms",
+        "explanation": "Using ECB mode and insecure encryption algorithms can lead to security vulnerabilities, such as weak encryption and compromised security."
+    },
+    {
+        "instances": [
+            24149
+        ],
+        "title": "Unsafe usage of reflect and unsafe package",
+        "explanation": "Using reflect and unsafe packages in an unsafe manner can lead to security vulnerabilities, such as arbitrary memory manipulation and compromised security."
+    },
+    {
+        "instances": [
+            24150
+        ],
+        "title": "Insecure handling of digest normalization",
+        "explanation": "Failing to properly handle digest normalization can lead to security vulnerabilities, such as SQL injection attacks and compromised security."
+    },
+    {
+        "instances": [
+            24151
+        ],
+        "title": "Insufficient validation of SQL tokens",
+        "explanation": "Failing to properly validate SQL tokens can lead to security vulnerabilities, such as SQL injection attacks and compromised security."
+    },
+    {
+        "instances": [
+            24163
+        ],
+        "title": "Hardcoded JWT token expiration",
+        "explanation": "Hardcoding JWT token expiration can lead to security vulnerabilities, such as compromised security and token forgery."
+    },
+    {
+        "instances": [
+            24177
+        ],
+        "title": "Potential for incorrect or insecure parameter assignment in X509_ALGOR_set0",
+        "explanation": "Failing to properly assign parameters in X509_ALGOR_set0 can lead to security vulnerabilities, such as compromised security and incorrect processing of X.509 algorithms."
+    },
+    {
+        "instances": [
+            24186
+        ],
+        "title": "Insufficient Iteration Count",
+        "explanation": "Using an insufficient iteration count can lead to security vulnerabilities, such as weak encryption and compromised security."
+    },
+    {
+        "instances": [
+            24187,
+            24190,
+            24195,
+            24204
+        ],
+        "title": "Use of ECB Mode",
+        "explanation": "The use of ECB (Electronic Code Book) mode for AES encryption is insecure for data of more than one block in length, as it does not provide serious message confidentiality because patterns present in the plaintext are preserved through encryption."
+    },
+    {
+        "instances": [
+            24205,
+            24220,
+            24223,
+            24229,
+            24242
+        ],
+        "title": "Hardcoded Cryptographic Key",
+        "explanation": "Using hard-coded cryptographic keys can compromise security, making the encryption predictable and susceptible to breach."
+    },
+    {
+        "instances": [
+            24217
+        ],
+        "title": "Unspecified RSA Padding Scheme",
+        "explanation": "The Cipher.getInstance(\"RSA\") call uses the default RSA padding scheme, which varies between implementations, and it's recommended to explicitly specify a secure padding scheme."
+    },
+    {
+        "instances": [
+            24224
+        ],
+        "title": "Use of Weak Encryption Algorithm",
+        "explanation": "IDEA is used as the encryption algorithm, which is considered weak due to its 64-bit block size and known theoretical vulnerabilities."
+    },
+    {
+        "instances": [
+            24234
+        ],
+        "title": "Use of Potentially Insecure Cryptographic Algorithms",
+        "explanation": "The snippet lacks explicit specification of cryptographic algorithms, raising concerns over the use of potentially insecure or deprecated algorithms."
+    },
+    {
+        "instances": [
+            24243,
+            24259,
+            24277
+        ],
+        "title": "Weak or Insufficient Key Length",
+        "explanation": "The cryptographic key used is weak or of insufficient length, making it vulnerable to brute-force attacks or compromising the security of the encryption scheme."
+    },
+    {
+        "instances": [
+            24250,
+            24263,
+            24275
+        ],
+        "title": "Insufficient Iteration Count or Password Length",
+        "explanation": "The iteration count or password length is insufficient, making it easier for attackers to perform brute-force or dictionary attacks."
+    },
+    {
+        "instances": [
+            24255
+        ],
+        "title": "Use of Weak Hash Function (MD5)",
+        "explanation": "Using a weak hash function like MD5 can compromise data integrity and lead to security vulnerabilities like signature forgery."
+    },
+    {
+        "instances": [
+            24256,
+            24290
+        ],
+        "title": "Predictable or Weak Random Number Generation",
+        "explanation": "Using a predictable or weak random number generator can compromise the security of cryptographic operations."
+    },
+    {
+        "instances": [
+            24264
+        ],
+        "title": "Insecure Parameter Transmission",
+        "explanation": "Transmitting sensitive parameters like salt and passwords in plaintext can expose them to unauthorized access."
+    },
+    {
+        "instances": [
+            24265
+        ],
+        "title": "Insufficient Iteration Count",
+        "explanation": "Using an insufficient iteration count for password-based encryption can compromise the security of the encrypted data."
+    },
+    {
+        "instances": [
+            24267
+        ],
+        "title": "Static Field for Sensitive Data",
+        "explanation": "Using a static field for sensitive data can lead to leakage of sensitive information across different instances of the class or in a multi-threaded environment."
+    },
+    {
+        "instances": [
+            24269
+        ],
+        "title": "Weak TLS Configuration",
+        "explanation": "Using a weak TLS configuration can compromise the security of communications, making them vulnerable to attacks."
+    },
+    {
+        "instances": [
+            24273
+        ],
+        "title": "Insecure Handling of Private Key",
+        "explanation": "Loading a private key directly from a PEM file without securing the file's access permissions can expose the key to unauthorized access."
+    },
+    {
+        "instances": [
+            24281
+        ],
+        "title": "Inadequate Key Management",
+        "explanation": "Not addressing key management, storage, and protection can risk exposure of the encryption key."
+    },
+    {
+        "instances": [
+            24288
+        ],
+        "title": "Static Data Flag Manipulation",
+        "explanation": "Manipulating static data flags can introduce risks, especially if BIGNUM structures are not correctly handled."
+    },
+    {
+        "instances": [
+            24292
+        ],
+        "title": "Memory Leak Potential",
+        "explanation": "Not ensuring proper deallocation of memory in all error paths can lead to memory leaks."
+    },
+    {
+        "instances": [
+            24355
+        ],
+        "title": "Potential uninitialized read in bio_ctrl",
+        "explanation": "The bio_ctrl function does not explicitly check if the peer BIO has been initialized before attempting to access its buffer length."
+    },
+    {
+        "instances": [
+            24356
+        ],
+        "title": "Implicit trust between BIO pairs",
+        "explanation": "The bio_make_pair function implicitly trusts the other BIO without validating its state or ensuring it is a suitable match."
+    },
+    {
+        "instances": [
+            24383
+        ],
+        "title": "Insufficient password hashing strength",
+        "explanation": "The bcrypt hashing algorithm is used with its default cost parameter, which might not provide sufficient security against brute-force attacks."
+    },
+    {
+        "instances": [
+            24385
+        ],
+        "title": "Use of deprecated OpenSSL API",
+        "explanation": "The code snippet uses deprecated OpenSSL APIs, which might not receive security updates and could contain vulnerabilities that compromise the security of cryptographic operations."
+    }
+]

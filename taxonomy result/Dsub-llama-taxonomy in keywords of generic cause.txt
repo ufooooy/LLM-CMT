@@ -1,0 +1,308 @@
+### 1. Compromising Secret Keys
+#### 1.1 Insecure Key Generation and Handling
+- **Unspecified Cryptography Backend**
+- **Insufficient Key Size**
+- **Hardcoded Cryptographic Keys**
+- **Use of weak or insecure password**
+- **No secure random for key generation**
+- **Insecure DSA key size**
+- **Hardcoded Keys and Nonces**
+- **Insecure Key Generation and Handling**
+- **Insecure Password Handling and Key Derivation**
+- **Static Salt Usage in Key Derivation**
+- **Hardcoded Cryptographic Key and Nonce**
+- **Use of Weak or Default Password for KeyStore**
+- **Insufficient Key Size**
+- **Inadequate Key Size**
+- **Improper Key Generation**
+- **Insecure Key Usage**
+- **Insufficient Key Length Specification**
+- **Insecure Key Length**
+- **Weak Encryption Key**
+- **Lack of Secret Management**
+- **Use of Static Key Material**
+- **Loading Keystore from an Insecure URL**
+- **Insufficient Key Size or Generation**
+- **Insecure Encryption Key**
+- **Redundant Key Declaration**
+- **Hardcoded sensitive information**
+- **Hard-coded cryptographic key**
+- **Use of insecure random number generator for key generation**
+- **Insecure password policy**
+- **Insufficient Key Generation Method**
+- **Hardcoded Key**
+- **Weak or insufficient key length**
+- **Key not securely randomized**
+- **Insecure or predictable cryptographic key**
+- **Hardcoded Plaintext**
+- **Hardcoded Cryptographic Key**
+- **Inadequate Key Management**
+- **Insecure Handling of Private Key**
+#### 1.2 Insecure Key Derivation and Handling
+- **Inconsistent Nonce Usage**
+- **Insufficient Number of Iterations**
+- **Insufficient Iteration Count**
+- **Insecure Key Derivation and Handling**
+- **Lack of secure key management**
+- **Hardcoded Algorithm Dependency**
+- **Use of Short, Simple Password**
+- **Inadequate Length of the Salt**
+- **Improper Key Generation Algorithm**
+- **Insufficient RAND_poll Usage**
+- **No Entropy Source Verification**
+- **Weak Password**
+- **Short Salt**
+- **Key Length May Be Insufficient**
+- **Short, simple password and salt**
+- **Insufficient Iteration Count**
+- **Inadequate Key Size Specification**
+- **Insufficient Iteration Count**
+- **Insufficient Iteration Count or Password Length**
+### 2. Compromising Randomness
+#### 2.1 Insecure Nonce and Salt Usage
+- **Insecure Randomness**
+- **Use of Predictable Salt**
+- **Incorrect Conversion of Char Array to Byte Array**
+- **Static Salt Usage**
+- **Insecure Salt in Cryptographic Operation**
+- **Insecure Nonce Usage**
+- **Insufficient Entropy in Nonce**
+- **Insufficient Salt Size**
+- **Salt Generation Length May Be Insufficient**
+- **Insufficient Salt and Nonce Size**
+- **Use of Static Nonce in Encryption**
+- **Insecure Seed Handling**
+- **Insecure nonce reuse**
+- **Use of a weak seed for cryptographic operations**
+- **Inadequate Handling of Cryptographic Seeds**
+- **Use of Static Nonces**
+- **Insufficient IV Length**
+- **Use of Non-Random IV for CBC Mode**
+- **Usage of static or predictable seed in SecureRandom**
+- **Static Salt Usage**
+- **Insufficient randomness and predictable seeds**
+- **No cryptographic salt and insecure RNG**
+- **Predictable or Weak Random Number Generation**
+#### 2.2 Insufficient Salt Length and Iteration Count
+- **Insufficient Salt Length and Iteration Count**
+- **Insufficient Iteration Count in PBKDF**
+- **Insufficient iteration count**
+- **Insecure PBKDF2 Iteration Count**
+- **Insufficient Number of PBKDF2 Iterations**
+- **Insufficient salt length**
+### 3. Compromising Secrecy of Cipher Text
+#### 3.1 Insecure Cryptographic Algorithm Usage
+- **Weak Encryption Algorithms**
+- **Use of Weak Hash Function (MD5)**
+- **Use of SHA-1 Algorithm**
+- **Weak SSH Cipher Algorithms**
+- **Use of insecure hash function (SHA-1)**
+- **Use of insecure encryption mode (ECB)**
+- **Insecure Cryptographic Algorithm**
+- **Insecure Cipher and KeyGenerator Usage**
+- **Use of ECB mode for AES encryption**
+- **Usage of ECB mode for RSA encryption**
+- **Insecure Cipher Mode**
+- **Insecure Cryptographic Algorithm or Mode**
+- **Use of Weak Cryptographic Algorithm**
+- **Usage of SHA-1 Hash Function**
+- **Use of ECB Mode for AES Encryption**
+- **Weak Cryptographic Operation**
+- **Weak encryption mode**
+- **Usage of ECB Mode**
+- **Insecure AES Encryption and Key Generation**
+- **Use of RSA with 1024-bit Keys**
+- **Use of DES Encryption Algorithm**
+- **Unspecified Cipher Algorithm**
+- **Incorrect Block Size in Decryption**
+- **Use of weak or deprecated cryptographic algorithm**
+- **Inappropriate block cipher mode for data integrity or authenticity**
+- **Use of ECB Mode for AES Encryption**
+- **Insecure Hashing Algorithm**
+- **ECB mode and insecure encryption algorithms**
+- **Use of ECB Mode**
+- **Use of Weak Encryption Algorithm**
+- **Use of Weak Hash Function (MD5)**
+#### 3.2 Insecure Hash Function Usage
+- **Hardcoded Cryptographic Algorithm**
+- **Use of insecure hash function (SHA-1)**
+- **Use of Weak Cryptographic Hash Function**
+- **Misuse of Cryptographic Hash Function for Encryption**
+- **Inappropriate MAC Algorithm Key**
+- **Weak Hash Function Usage**
+- **Use of Insecure Cryptographic Hash Functions**
+- **Password hashing without salt**
+- **Inadequate hash function for passwords**
+- **Use of Weak Hash Without Salt**
+- **Inappropriate hash output length specification**
+- **Hash Function without Cryptographic Context**
+- **Output of Hash Function Not Properly Encoded**
+- **Insufficient password hashing strength**
+### 4. Compromising Client and Server Secrecy
+#### 4.1 Insecure Data Handling
+- **Insecure Memory Practices for Cryptographic Keys**
+- **Insecure Memory Management**
+- **Potentially Insecure Memory Handling for Keys and Sensitive Data**
+- **Lack of proper encryption for sensitive data transmission**
+- **Static Variable Used for Sensitive Data**
+- **Insecure memory allocation for cryptographic objects**
+- **Potential memory leak**
+- **Mismanagement of dynamic memory**
+- **Insecure Logging of Sensitive Information**
+- **File Handling Without Validation**
+- **Insecure Memory Allocation Functions**
+- **Potential file handling vulnerabilities**
+- **Insecure file opening mode**
+- **Insufficient Directory Permissions**
+- **Insufficient Logging**
+- **Misleading error message**
+- **Memory Not Zeroized**
+- **Potential buffer overflow**
+- **Insufficient logging configuration**
+- **Hardcoded cleanup logic**
+- **Insecure Parameter Transmission**
+- **Static Field for Sensitive Data**
+#### 4.2 Side-channel Attacks
+- **Insecure Comparison of Cryptographic Strings**
+- **Session Fixation Vulnerability**
+- **Potential for Side-channel Attacks**
+- **Fixed Time Implementation in Cryptographic Context**
+### 5. Compromising Communication Secrecy with Intended Receiver
+#### 5.1 Insecure Initialization Vector (IV) Usage
+- **Endianness Assumption in Digest Initialization**
+- **Incorrect Buffer Size in for Loop for Encrypted Data Output**
+- **Static Initialization Vector (IV) Used**
+- **Missing padding scheme**
+- **Insecure Initialization Vector (IV)**
+- **Insufficient IV Length**
+- **Missing Initialization Vector (IV)**
+- **Use of a Fixed IV in CBC Mode**
+- **Missing or Insecure Initialization Vector (IV)**
+- **Insecure Initialization Vector (IV) Handling**
+- **Hardcoded IV used for CBC mode encryption**
+- **Use of Non-Random IV for CBC Mode**
+- **Insecure Initialization Vector (IV) Usage**
+- **Static and predictable IVs**
+### 6. Compromising Integrity through Improper Checksum Use
+#### 6.1 Lack of Mitigation Techniques
+- **Implicit Trust in Input Lengths Derived from Untrusted Sources**
+- **Unchecked Return Value of OPENSSL_init_crypto**
+- **Improper Error Handling**
+- **Potential Integer Overflow in Length Encoding**
+- **Inadequate Handling of AAD Length**
+- **Incorrect Tag Length Validation**
+- **Lack of Mitigation Techniques against Fault Injection Attacks**
+- **Improper error handling**
+- **Insufficient error handling**
+- **Lack of Integrity or Authenticity Checks**
+- **Lack of Authentication and Integrity Verification**
+- **Lack of Error Handling for DSO Dynamic Loading**
+- **X509TrustManager Misconfiguration**
+- **Lack of error handling**
+- **Lack of Error Handling after os.Mkdir**
+- **Insufficient Padding Oracle Mitigation**
+- **Potential lack of error checking for BIO_read/BIO_write**
+- **Improper error handling for memory allocation failures**
+- **Insufficient Error Handling**
+### 7. Compromising Non-Repudiation
+#### 7.1 Insecure Algorithm and Key Management
+- **Use of Insecure Protocol Version**
+- **Insufficient Key Size Check**
+- **Use of Insecure SSL/TLS Version**
+- **Hardcoded Cryptographic Algorithm**
+- **Potential Key Management Issue**
+- **Deprecated API usage**
+- **Deprecated TLS version**
+- **Lack of Cryptographic Strength Validation**
+- **Insecure protocol method**
+- **Insecure Handling of Timestamps**
+- **Insecure TLS Configuration**
+- **TLS Client Authentication Misconfiguration**
+- **Session Resumption Misconfiguration**
+- **Insecure Protocol**
+- **Lack of Secure Timestamp**
+- **No Use of Secure Connection Deadlines or Timeouts for TLS Connections**
+- **Use of Non-Standard DH Group**
+- **Short validity period of TLS certificates**
+- **Weak TLS Configuration**
+#### 7.2 Insecure Password Handling
+- **Insufficient password length**
+- **Insecure password length**
+- **Insufficient Password Complexity**
+- **Insecure Password Handling**
+- **Insecure password policy**
+### 8. Compromising Security through Improper Exception Handling
+#### 8.1 Risky Exception Handling Strategy
+- **Insecure Use of Sudo in Cmd Execution**
+- **Improper Error Handling**
+- **Risky exception handling strategy**
+- **Insecure usage of OPENSSL_assert**
+- **Insecure Logging or Error Reporting**
+- **Inflate and Deflate Stream End Without Error Checking**
+- **OpenSSL Misuses**
+- **Insecure Warning Suppression**
+- **Insufficient Error Handling**
+### 9. Compromising Security through Insufficient Input Validation
+#### 9.1 Insufficient Input Validation
+- **Password-based Authentication**
+- **No Explicit Secure Flag for Cookies**
+- **Insufficient input validation**
+- **Improper validation of ASN.1 object length**
+- **Improper OID validation**
+- **Insufficient Public Key Validation**
+- **Missing Key Length Validation**
+- **getAcceptedIssuers Returns Null**
+- **Length Parameter Misuse**
+- **Use of Potentially Weak String Types**
+- **Insufficient Validation of `num` for Negative Values**
+- **Insufficient prime number validation**
+- **Insecure restrictions on e value**
+- **Use of hardcoded values**
+- **Insecure Permission Assignment**
+- **Insufficient validation of SQL tokens**
+- **Potential for incorrect or insecure parameter assignment in X509_ALGOR_set0**
+### 10. Compromising Security through External Interaction or Misuse
+#### 10.1 External Interaction or Misuse
+- **Insecure Use of SSH**
+- **Correct Usage of HttpOnly Flag**
+- **External Interaction or Misuse**
+- **Potential Misuse of Encryption Methods without Context**
+- **Insecure Protocol or Network Communication**
+- **SSL Mode Disabled for Database Connection**
+- **Hardcoded Credentials for Database**
+- **Potential Token Reuse Vulnerability**
+- **Improper Use of Fernet Constructor**
+- **Insecure SSL Context Initialization**
+- **Hardcoded Command with Potential Command Injection**
+- **Insufficient or Redundant Backend Specification**
+- **Potential Misuse of Synchronization Primitives**
+- **Insecure HostKeyCallback Configuration**
+- **Insecure Token Handling**
+- **Insecure conversion of encrypted data**
+- **Insecure revocation date formatting**
+- **Insecure Data Transmission**
+- **Potential Blocking on Shared Resource without Timeout**
+- **Insecure Certificate Serial Number**
+- **Certificate Validity Period Too Long**
+- **Indirect use of cryptographic algorithm name**
+- **Session Tickets Key Rotation**
+- **Unbounded Client Session Cache Size**
+- **Hard-coded encryption chunk size**
+- **Lack of Certificate Revocation Checks**
+- **Inadequate Verification for Certificate Subject Fields**
+- **Potential exposure of sensitive encryption data**
+- **Insecure Usage of Random Number Generator**
+- **Potential Misuse of SSL_clear**
+- **Inappropriate Renegotiation Triggering**
+- **Hardcoded Issue in Token**
+- **Insecure or undefined behavior due to reliance on undefined macro behavior**
+- **Excessive recursion depth without adequate control**
+- **Insecure KeyStore Type**
+- **Potential Misuse of Symmetric Key Encoding**
+- **Insecure use of RAND_load_file with potentially unlimited file size**
+- **Hardcoded key length assumption in error message**
+- **Insecure key length for Fernet**
+- **Hardcoded JWT token expiration**
+- **Unsafe usage of reflect and unsafe package**
+- **Insecure handling of digest normalization**
+- **Use of deprecated OpenSSL API**
