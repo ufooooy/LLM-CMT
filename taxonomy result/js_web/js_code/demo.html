@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CryMisTa Taxonomy Results Dashboard</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/themes/default/style.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        #layout {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #jstree {
+            width: 35%;
+            overflow: auto;
+            border-right: 2px solid #888;
+            height: 100%;
+        }
+        #fileContent {
+            flex-grow: 1;
+            overflow: auto;
+            padding: 10px;
+            height: 100%;
+        }
+        #resizer {
+            background-color: #ddd;
+            width: 5px;
+            cursor: ew-resize;
+            height: 100%;
+        }
+        #header {
+            background-color: #ffffff; /* Set to match jstree background color */
+            border: 2px solid #ccc; /* Changed border width to 2px */
+            padding: 10px;
+            text-align: center;
+        }
+        #uploadButton, #displayButton, #uploadMisuseButton, #downloadButton {
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            margin: 5px;
+            padding: 5px 10px;
+        }
+        .highlight {
+            background-color: #9ACD32;
+            padding: 5px;
+            border-radius: 5px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>CryMisTa Taxonomy Results Dashboard</h1>
+        <input type="file" id="fileUpload" name="fileUpload" accept=".txt" style="display: none;" required>
+        <input type="file" id="misuseFileUpload" name="misuseFileUpload" accept=".json" style="display: none;" required>
+        <button id="uploadButton">Select and Upload Txonomy Result(TXT)</button>
+        <button id="uploadMisuseButton">Select and Upload Misuses List(JSON)</button>
+        <button id="displayButton">Display</button>
+        <button id="downloadButton">Download</button>
+        <div id="uploadStatus"></div>
+    </div>
+    <div id="layout">
+        <div id="jstree"></div>
+        <div id="resizer"></div>
+        <pre id="fileContent"></pre>
+    </div>
+    <script>
+        $(document).ready(function () {
+            let uploadedFileContent;
+
+            $("#uploadButton").click(function () {
+                $("#fileUpload").trigger('click');
+            });
+
+            $("#fileUpload").on('change', function () {
+                if (!this.files.length) {
+                    $('#uploadStatus').html('<p style="color: red;">Select a file before uploading.</p>');
+                    return;
+                }
+
+                let fileData = new FormData();
+                fileData.append("fileUpload", this.files[0]);
+
+                $.ajax({
+                    url: 'http://localhost:8000/upload',
+                    type: 'POST',
+                    data: fileData,
+                    processData: false,
+                    contentType: false,
+                    success: function () {
+                        $('#uploadStatus').html('<p style="color: green;">File successfully uploaded.</p>');
+
+                        // let reader = new FileReader();
+                        // reader.onload = function (event) {
+                        //     uploadedFileContent = event.target.result;
+                        //     $('#fileContent').text(uploadedFileContent);
+                        // };
+                        // reader.readAsText($("#fileUpload")[0].files[0]);
+                    },
+                    error: function () {
+                        $('#uploadStatus').html('<p style="color: red;">Upload failed, retry.</p>');
+                    }
+                });
+            });
+
+            $("#uploadMisuseButton").click(function () {
+                $("#misuseFileUpload").trigger('click');
+            });
+
+            $("#misuseFileUpload").on('change', function () {
+                if (!this.files.length) {
+                    $('#uploadStatus').html('<p style="color: red;">Select a file before uploading.</p>');
+                    return;
+                }
+
+                let fileData = new FormData();
+                fileData.append("misuseFileUpload", this.files[0]);
+
+                $.ajax({
+                    url: 'http://localhost:8000/upload2',
+                    type: 'POST',
+                    data: fileData,
+                    processData: false,
+                    contentType: false,
+                    success: function () {
+                        $('#uploadStatus').html('<p style="color: green;">Misuses file successfully uploaded.</p>');
+                    },
+                    error: function () {
+                        $('#uploadStatus').html('<p style="color: red;">Misuses file upload failed, retry.</p>');
+                    }
+                });
+            });
+
+
+            $("#displayButton").click(function () {
+                $.ajax({
+                    url: 'http://localhost:8000/display',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (fileContentJson) {
+                        // 销毁旧的 jstree 实例并清空内容
+                        $('#jstree').jstree('destroy');
+                        $('#jstree').empty();
+
+                        // 初始化新的 jstree
+                        $('#jstree').jstree({
+                            'core': {
+                                'data': fileContentJson
+                            },
+                            "types": {
+                                "default": {
+                                    "icon": "glyphicon glyphicon-tree-conifer"
+                                },
+                                "leaf": {
+                                    "icon": "glyphicon glyphicon-leaf"
+                                }
+                            },
+                            "plugins": ["types"]
+                        }).on('loaded.jstree', function (event, data) {
+                            $('#jstree').jstree().open_all();
+                            $('#jstree').css('overflow', 'auto');
+
+                            // 解绑旧事件后绑定新事件
+                            $('#jstree').off('select_node.jstree').on('select_node.jstree', function (e, data) {
+                                $('.highlight').removeClass('highlight');
+
+                                if (data && data.selected && data.selected.length) {
+                                    let selectedNodeText = data.instance.get_node(data.selected[0]).text;
+
+                                    $('#fileContent').find('h1, h2, li').each(function () {
+                                        if ($(this).text().indexOf(selectedNodeText) !== -1) {
+                                            $(this).addClass('highlight');
+
+                                            $('#fileContent').animate({
+                                                scrollTop: $('.highlight').offset().top - $('#fileContent').offset().top + $('#fileContent').scrollTop()
+                                            }, 'slow');
+
+                                            return false;
+                                        }
+                                    });
+                                }
+                            });
+                        });
+
+                        const createHtmlList = function (json) {
+                            if (!json || typeof json !== "object") return "";
+
+                            let html = "";
+
+                            for (let node in json) {
+                                if (node === 'children') {
+                                    if (json[node][0] && 'explanations' in json[node][0]) {
+                                        html += "<ul>";
+                                    }
+                                    if (Array.isArray(json[node])) {
+                                        for (let i = 0; i < json[node].length; i++) {
+                                            html += `${createHtmlList(json[node][i])}`;
+                                        }
+                                    }
+                                    if (json[node][0] && 'explanations' in json[node][0]) {
+                                        html += "</ul>";
+                                    }
+                                }
+                                if (node === 'text') {
+                                    if (json[node] === 'root') {
+                                        html += `<h1 style="font-size: 24px; font-weight:bold; text-align: center;">${json[node]}</h1>`;
+                                    } else if (/^\d/.test(json[node])) {
+                                        html += `<h2 style="font-size: 18px; font-weight: bold;">${json[node]}</h2>`;
+                                    } else {
+                                        html += `<li><strong>${json[node]}</strong></li>`;
+                                    }
+                                }
+                                if (node === 'explanations') {
+                                    for (let j = 0; j < json[node].length; j++) {
+                                        if (j === 0) {
+                                            html += `<p>Explanation: ${json[node][j]}</p>`;
+                                        } else {
+                                            html += `<p>Explanation${j + 1}: ${json[node][j]}</p>`;
+                                        }
+                                    }
+                                }
+                            }
+
+                            return html;
+                        };
+
+                        let htmlContent = createHtmlList(fileContentJson);
+                        $('#fileContent').html(htmlContent);
+
+                        // Save the state to sessionStorage
+                        sessionStorage.setItem('displayed', 'true');
+                    },
+                    error: function () {
+                        $('#fileContent').html('<p style="color: red;">Error: Failed to display file content.</p>');
+                    }
+                });
+            });
+
+            // Check if the display button was previously clicked
+            if (sessionStorage.getItem('displayed') === 'true') {
+                $("#displayButton").trigger('click');
+            }
+
+            let isResizing = false, lastDownX = 0;
+
+            $('#resizer').on('mousedown', function (e) {
+                isResizing = true;
+                lastDownX = e.clientX;
+                e.preventDefault();
+            });
+
+            $(document).on('mousemove', function (e) {
+                if (!isResizing) return;
+
+                let offsetRight = $('#layout').width() - (e.clientX - $('#layout').offset().left);
+
+                $('#jstree').css('width', e.clientX - $('#layout').offset().left);
+                $('#fileContent').css('width', offsetRight);
+            }).on('mouseup', function () {
+                isResizing = false;
+            });
+
+            let isExporting = false;
+
+            $("#downloadButton").click(function () {
+                isExporting = true;
+                let htmlContent = document.getElementById("fileContent").innerHTML;
+
+                // Debug information to ensure htmlContent is correct
+                // console.log('HTML Content to be sent:', htmlContent);
+
+                $.ajax({
+                    url: 'http://localhost:8000/export',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ htmlContent: htmlContent }),
+                    success: function (response) {
+                        let downloadUrl = response.downloadUrl;
+                        window.location.href = downloadUrl;
+                        $('#uploadStatus').html('<p style="color: green;">File downloaded successfully</p>');
+                        isExporting = false;
+                    },
+                    error: function () {
+                        $('#uploadStatus').html('<p style="color: red;">Failed to download file.</p>');
+                        isExporting = false;
+                    }
+                });
+            });
+
+            // 在页面关闭或刷新时处理逻辑
+            $(window).on('beforeunload', function (e) {
+                var entries = window.performance.getEntriesByType('navigation');
+                if (entries.length > 0 && entries[0].type === 'reload') {
+                    // 页面刷新
+                    // 不做任何事情
+                } else {
+                    // 否则返回首页面
+                    sessionStorage.clear();
+                    window.location.href = 'http://localhost:8000'; // 替换为你的首页 URL
+                }
+            });
+        });
+    </script>
+</body>
+</html>

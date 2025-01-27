@@ -1,0 +1,8 @@
+{
+  "type": "module",
+  "dependencies": {
+    "express": "^4.21.2",
+    "express-fileupload": "^1.5.1",
+    "html-docx-js-typescript": "^0.1.5"
+  }
+}

@@ -49,14 +49,14 @@
 - **Poor Cryptographic Operation Error Handling**
 - **OpenSSL API Misuse and Deprecation**
 ### 7. Compromising Communication Secrecy with Intended Receiver
-- **Certificate and Key Management Vulnerabilities
-- **Insecure Certificate Validation
-- **Insecure Network Communication Protocols
-- **Using TLS 1.0
+- **Certificate and Key Management Vulnerabilities**
+- **Insecure Certificate Validation**
+- **Insecure Network Communication Protocols**
+- **Using TLS 1.0**
 ### 8. General Cryptographic Misuses
-- **Improper Cryptographic API Usage
-- **Misuse of default_backend() function
+- **Improper Cryptographic API Usage**
+- **Misuse of default_backend() function**
 ### 9. System and File Operation Security
-- **Various security issues in file and system operations
+- **Various security issues in file and system operations**
 ### 10. Session Management
-- **Inadequate Session Management
+- **Inadequate Session Management**

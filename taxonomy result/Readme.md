@@ -8,24 +8,28 @@ For a more interactive and accessible presentation of the taxonomy results, we'v
 
 To run the web interface, follow these steps:
 
-1. Unzip jscode_image.zip:
+1. Build the Docker image:
    ```
-   unzip jscode_image.zip
-   ```
-
-2. Load the Docker image:
-   ```
-   docker load -i .\jscode_image.tar
+   docker build -t js_web .
    ```
 
-3. Run the Docker container:
+2. Run the Docker container:
    ```
-   docker run -it -p 1234:1234 --name=jscode jscode_image
+   docker run -p 8000:8000 js_web
    ```
 
-4. Access the web interface:
-   Open your web browser and navigate to `http://[Your-IP-Address]:1234`
+4. Access the web:
+   Open your web browser and navigate to `http://localhost:8000`
 
 ## Preview
+Select and upload the taxonomy result file provided by CryMisTa in txt format.
+![1](./figs/1_upload_taxonomy_result.png)
 
-![Preview](./preview.png)
+Select and upload the corresponding Misuse list for this taxonomy result file.
+![2](./figs/2_upload_misuse_list.png)
+
+Click the "Display" button.
+![3](./figs/3_display.png)
+
+The "Download" button provides the functionality to convert the displayed results into a Word format file.
+![4](./figs/4_export_doc.png)

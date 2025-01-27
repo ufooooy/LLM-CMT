@@ -44,23 +44,23 @@
 - **Cryptographic Implementation Errors**
 - **Generic Programming Mistakes in Cryptographic Implementations**
 ### 3. Compromising Integrity and Authentication Measures
-- **Lack of Authentication and Integrity Measures
-- **Certificate Management and Usage Concerns
-- **Certificate Trust Manager Misconfigurations
-- **Insufficient SQL Processing Security
+- **Lack of Authentication and Integrity Measures**
+- **Certificate Management and Usage Concerns**
+- **Certificate Trust Manager Misconfigurations**
+- **Insufficient SQL Processing Security**
 ### 4. Compromising Randomness and Predictability
-- **Insecure randomness and OID Validation
-- **Insecure or Predictable Value Generation
-- **Lack of Constant-Time Comparison
+- **Insecure randomness and OID Validation**
+- **Insecure or Predictable Value Generation**
+- **Lack of Constant-Time Comparison**
 ### 5. Miscellaneous Issues
-- **Miscellaneous Issues
-- **Miscellaneous Insecure Practices
-- **Insecure Data Handling and Conversion
-- **Insecure Data Transmission
-- **Insecure Cryptographic Data Handling
-- **Miscellaneous Concerns
-- **Potential for buffer overflow in cryptographic operations
-- **Potential integer overflow in ASN.1 parsing
-- **Inadequate error handling in ASN.1 function operations
-- **Secure Cryptographic Practices
-- **Insecure SSH Client Configuration
+- **Miscellaneous Issues**
+- **Miscellaneous Insecure Practices**
+- **Insecure Data Handling and Conversion**
+- **Insecure Data Transmission**
+- **Insecure Cryptographic Data Handling**
+- **Miscellaneous Concerns**
+- **Potential for buffer overflow in cryptographic operations**
+- **Potential integer overflow in ASN.1 parsing**
+- **Inadequate error handling in ASN.1 function operations**
+- **Secure Cryptographic Practices**
+- **Insecure SSH Client Configuration**
