@@ -8,35 +8,55 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        #header {
+            background-color: #ffffff;
+            border: 2px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
         #layout {
             display: flex;
-            width: 100%;
-            height: 100vh;
+            flex: 1;
             overflow: hidden;
         }
-        #jstree {
+        #leftPanel {
+            display: flex;
+            flex-direction: column;
             width: 35%;
-            overflow: auto;
             border-right: 2px solid #888;
-            height: 100%;
+        }
+        #jstree {
+            flex: 1;
+            overflow: auto;
+        }
+        #infoPanel, #fileContent {
+            padding: 10px;
+        }
+        #infoPanel {
+            border-top: 2px solid #888;
         }
         #fileContent {
-            flex-grow: 1;
+            flex: 1;
             overflow: auto;
             padding: 10px;
-            height: 100%;
         }
-        #resizer {
+        #verticalResizer {
+            background-color: #ddd;
+            height: 5px;
+            cursor: ns-resize;
+        }
+        #horizontalResizer {
             background-color: #ddd;
             width: 5px;
             cursor: ew-resize;
             height: 100%;
-        }
-        #header {
-            background-color: #ffffff; /* Set to match jstree background color */
-            border: 2px solid #ccc; /* Changed border width to 2px */
-            padding: 10px;
-            text-align: center;
         }
         #uploadButton, #displayButton, #uploadMisuseButton, #downloadButton {
             background-color: #f8f9fa;
@@ -64,8 +84,16 @@
         <div id="uploadStatus"></div>
     </div>
     <div id="layout">
-        <div id="jstree"></div>
-        <div id="resizer"></div>
+        <div id="leftPanel">
+            <div id="jstree"></div>
+            <div id="verticalResizer"></div>
+            <div id="infoPanel">
+                <p>Number of leaf nodes: <span id="leafCount">0</span></p>
+                <!-- <p>Number of top-level nodes: <span id="topLevelCount">0</span></p> -->
+                <!-- Dynamic level count will be added here -->
+            </div>
+        </div>
+        <div id="horizontalResizer"></div>
         <pre id="fileContent"></pre>
     </div>
     <script>
@@ -93,13 +121,6 @@
                     contentType: false,
                     success: function () {
                         $('#uploadStatus').html('<p style="color: green;">File successfully uploaded.</p>');
-
-                        // let reader = new FileReader();
-                        // reader.onload = function (event) {
-                        //     uploadedFileContent = event.target.result;
-                        //     $('#fileContent').text(uploadedFileContent);
-                        // };
-                        // reader.readAsText($("#fileUpload")[0].files[0]);
                     },
                     error: function () {
                         $('#uploadStatus').html('<p style="color: red;">Upload failed, retry.</p>');
@@ -135,7 +156,6 @@
                 });
             });
 
-
             $("#displayButton").click(function () {
                 $.ajax({
                     url: 'http://localhost:8000/display',
@@ -163,6 +183,48 @@
                         }).on('loaded.jstree', function (event, data) {
                             $('#jstree').jstree().open_all();
                             $('#jstree').css('overflow', 'auto');
+
+                            // 计算叶子节点、顶级节点和各级别节点数量
+                            let leafCount = 0;
+                            // let topLevelCount = 0;
+                            let nodeLevelCounts = {}; // Holds counts for each level of nodes
+
+                            data.instance.get_json('#', { flat: true }).forEach(function (node) {
+                                if (node.icon === "glyphicon glyphicon-leaf") {
+                                    leafCount++;
+                                }
+                                // if (node.parent === '#') {
+                                //     topLevelCount++;
+                                // }
+
+                                // Calculate levels for dynamic counting
+                                let level = 0;
+                                let currentNode = node;
+                                while (currentNode.parent !== '#') {
+                                    level++;
+                                    currentNode = data.instance.get_node(currentNode.parent);
+                                }
+
+                                if (!nodeLevelCounts[level]) {
+                                    nodeLevelCounts[level] = 0;
+                                }
+                                nodeLevelCounts[level]++;
+                            });
+
+                            $('#leafCount').text(leafCount);
+                            // $('#topLevelCount').text(topLevelCount);
+
+                            // Clear existing level counts
+                            $('#infoPanel p.dynamic-level').remove();
+
+                            // Add counts for each level dynamically
+                            for (let level in nodeLevelCounts) {
+                                if (level > Math.min(...Object.keys(nodeLevelCounts)) && level < Math.max(...Object.keys(nodeLevelCounts))) {
+                                    $('#infoPanel').append(
+                                        `<p class="dynamic-level">Number of level ${level} nodes: <span id="levelCount${level}">${nodeLevelCounts[level]}</span></p>`
+                                    );
+                                }
+                            }
 
                             // 解绑旧事件后绑定新事件
                             $('#jstree').off('select_node.jstree').on('select_node.jstree', function (e, data) {
@@ -206,12 +268,15 @@
                                     }
                                 }
                                 if (node === 'text') {
-                                    if (json[node] === 'root') {
-                                        html += `<h1 style="font-size: 24px; font-weight:bold; text-align: center;">${json[node]}</h1>`;
-                                    } else if (/^\d/.test(json[node])) {
-                                        html += `<h2 style="font-size: 18px; font-weight: bold;">${json[node]}</h2>`;
+                                    text = json[node];
+                                }
+                                if (node === 'level') {
+                                    if (json[node] === 0) {
+                                        html += `<h1 style="font-size: 24px; font-weight:bold; text-align: center;">${text}</h1>`;
+                                    } else if (json[node] === -1) {
+                                        html += `<li><strong>${text}</strong></li>`;
                                     } else {
-                                        html += `<li><strong>${json[node]}</strong></li>`;
+                                        html += `<h2 style="font-size: 18px; font-weight: bold;">${text}</h2>`;
                                     }
                                 }
                                 if (node === 'explanations') {
@@ -245,23 +310,37 @@
                 $("#displayButton").trigger('click');
             }
 
-            let isResizing = false, lastDownX = 0;
+            let isResizingHorizontally = false, lastDownX = 0;
+            let isResizingVertically = false, lastDownY = 0;
 
-            $('#resizer').on('mousedown', function (e) {
-                isResizing = true;
+            $('#horizontalResizer').on('mousedown', function (e) {
+                isResizingHorizontally = true;
                 lastDownX = e.clientX;
                 e.preventDefault();
             });
 
+            $('#verticalResizer').on('mousedown', function (e) {
+                isResizingVertically = true;
+                lastDownY = e.clientY;
+                e.preventDefault();
+            });
+
             $(document).on('mousemove', function (e) {
-                if (!isResizing) return;
+                if (isResizingHorizontally) {
+                    let offsetRight = $('#layout').width() - (e.clientX - $('#layout').offset().left);
 
-                let offsetRight = $('#layout').width() - (e.clientX - $('#layout').offset().left);
+                    $('#leftPanel').css('width', e.clientX - $('#layout').offset().left);
+                    $('#fileContent').css('width', offsetRight);
+                } 
+                if (isResizingVertically) {
+                    let offsetBottom = $('#leftPanel').height() - (e.clientY - $('#leftPanel').offset().top);
 
-                $('#jstree').css('width', e.clientX - $('#layout').offset().left);
-                $('#fileContent').css('width', offsetRight);
+                    $('#jstree').css('height', e.clientY - $('#leftPanel').offset().top);
+                    $('#infoPanel').css('height', offsetBottom);
+                }
             }).on('mouseup', function () {
-                isResizing = false;
+                isResizingHorizontally = false;
+                isResizingVertically = false;
             });
 
             let isExporting = false;
@@ -269,9 +348,6 @@
             $("#downloadButton").click(function () {
                 isExporting = true;
                 let htmlContent = document.getElementById("fileContent").innerHTML;
-
-                // Debug information to ensure htmlContent is correct
-                // console.log('HTML Content to be sent:', htmlContent);
 
                 $.ajax({
                     url: 'http://localhost:8000/export',
@@ -291,7 +367,6 @@
                 });
             });
 
-            // 在页面关闭或刷新时处理逻辑
             $(window).on('beforeunload', function (e) {
                 var entries = window.performance.getEntriesByType('navigation');
                 if (entries.length > 0 && entries[0].type === 'reload') {

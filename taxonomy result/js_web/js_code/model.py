@@ -11,6 +11,9 @@ class Node:
     def add_child(self, node):
         if self.children is not None:
             self.children.append(node)
+    
+    def set_title(self, title):
+        self.title = title
 
     def to_dict(self):
         if self.children is None:
@@ -35,15 +38,18 @@ def parse_taxonomy(taxonomy, num=3, generic_node_re=r'(#+)\s*(.*)', index_re=r'[
             num_hashes = len(generic_match.group(1))
             level = (num_hashes - num) + 1
 
-            new_node = Node(title, level)
-
-            if parent_stack[-1].level < level:
-                parent_stack.append(new_node)
+            if level == 0:
+                root.set_title(title)
             else:
-                while parent_stack and parent_stack[-1].level >= level:
-                    child = parent_stack.pop()
-                    parent_stack[-1].add_child(child)
-                parent_stack.append(new_node)
+                new_node = Node(title, level)
+
+                if parent_stack[-1].level < level:
+                    parent_stack.append(new_node)
+                else:
+                    while parent_stack and parent_stack[-1].level >= level:
+                        child = parent_stack.pop()
+                        parent_stack[-1].add_child(child)
+                    parent_stack.append(new_node)
         # else:
         #     return None
     while len(parent_stack) > 1:
