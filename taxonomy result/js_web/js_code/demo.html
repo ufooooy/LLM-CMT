@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/themes/default/style.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.11/jstree.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             display: flex;
@@ -70,6 +71,11 @@
             border-radius: 5px;
             color: black;
         }
+        .chart-container {
+            position: relative;
+            height: 200px;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -88,7 +94,11 @@
             <div id="jstree"></div>
             <div id="verticalResizer"></div>
             <div id="infoPanel">
-                <p>Number of leaf nodes: <span id="leafCount">0</span></p>
+                <p>Model: <input type="text" id="modelName" placeholder="Enter model name"></p>
+                <div class="chart-container">
+                    <canvas id="nodesChart"></canvas>
+                </div>
+                <!-- <p>Number of leaf nodes: <span id="leafCount">0</span></p> -->
                 <!-- <p>Number of top-level nodes: <span id="topLevelCount">0</span></p> -->
                 <!-- Dynamic level count will be added here -->
             </div>
@@ -186,16 +196,12 @@
 
                             // 计算叶子节点、顶级节点和各级别节点数量
                             let leafCount = 0;
-                            // let topLevelCount = 0;
                             let nodeLevelCounts = {}; // Holds counts for each level of nodes
 
                             data.instance.get_json('#', { flat: true }).forEach(function (node) {
                                 if (node.icon === "glyphicon glyphicon-leaf") {
                                     leafCount++;
                                 }
-                                // if (node.parent === '#') {
-                                //     topLevelCount++;
-                                // }
 
                                 // Calculate levels for dynamic counting
                                 let level = 0;
@@ -211,22 +217,45 @@
                                 nodeLevelCounts[level]++;
                             });
 
-                            $('#leafCount').text(leafCount);
-                            // $('#topLevelCount').text(topLevelCount);
+                            let sortedLevels = Object.keys(nodeLevelCounts).map(Number).sort((a, b) => a - b);
 
                             // Clear existing level counts
                             $('#infoPanel p.dynamic-level').remove();
 
                             // Add counts for each level dynamically
-                            for (let level in nodeLevelCounts) {
-                                if (level > Math.min(...Object.keys(nodeLevelCounts)) && level < Math.max(...Object.keys(nodeLevelCounts))) {
-                                    $('#infoPanel').append(
-                                        `<p class="dynamic-level">Number of level ${level} nodes: <span id="levelCount${level}">${nodeLevelCounts[level]}</span></p>`
-                                    );
-                                }
+                            for (let level of sortedLevels) {
+                                $('#infoPanel').append(
+                                    `<p class="dynamic-level">Number of level ${level} nodes: <span id="levelCount${level}">${nodeLevelCounts[level]}</span></p>`
+                                );
                             }
+                            $('#infoPanel').append(
+                                `<p>Number of leaf nodes: <span id="leafCount">${leafCount}</span></p>`
+                            );
 
-                            // 解绑旧事件后绑定新事件
+                            // 绘制柱状图
+                            let ctx = document.getElementById('nodesChart').getContext('2d');
+                            new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: [...sortedLevels.map(level => `Level ${level}`), 'Leaf Nodes'],
+                                    datasets: [{
+                                        label: '# of Nodes',
+                                        data: [...sortedLevels.map(level => nodeLevelCounts[level]), leafCount],
+                                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                                        borderColor: 'rgba(75, 192, 192, 1)',
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            });
+
+                            // 解绑旧事件后绑定新事件 
                             $('#jstree').off('select_node.jstree').on('select_node.jstree', function (e, data) {
                                 $('.highlight').removeClass('highlight');
 
@@ -298,6 +327,17 @@
 
                         // Save the state to sessionStorage
                         sessionStorage.setItem('displayed', 'true');
+
+                        // Debugging statement to ensure fileContentJson parsing result
+                        // console.log("Parsed fileContentJson:", fileContentJson);
+
+                        // Update modelName input field
+                        let modelName = fileContentJson.model || '';
+                        if (modelName) {
+                            $('#modelName').val(modelName);
+                        } else {
+                            $('#modelName').attr('placeholder', 'Enter model name');
+                        }
                     },
                     error: function () {
                         $('#fileContent').html('<p style="color: red;">Error: Failed to display file content.</p>');

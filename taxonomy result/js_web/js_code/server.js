@@ -147,7 +147,8 @@ app.get('/display', async (req, res) => {
                 let resultNode = {
                     text: node.title,
                     id: node.title,
-                    level: node.level
+                    level: node.level,
+                    model: node.model
                 };
                 if (node.children) {
                     resultNode.children = node.children.map(child => transformNode(child, misuses));

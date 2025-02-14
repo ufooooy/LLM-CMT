@@ -3,27 +3,32 @@ import re
 import json
 
 class Node:
-    def __init__(self, title, level):
+    def __init__(self, title, level, model=None):
         self.title = title
         self.level = level  # 0: root; 1-n: non-leaf; -1: leaf
+        self.model = model
         self.children = [] if self.level != -1 else None
 
     def add_child(self, node):
         if self.children is not None:
             self.children.append(node)
-    
+    def set_model(self, model):
+        self.model = model
     def set_title(self, title):
         self.title = title
-
     def to_dict(self):
-        if self.children is None:
-            return {'title': self.title, 'level': self.level}
-        else:
-            return {'title': self.title, 'level': self.level, 'children': [child.to_dict() for child in self.children]}
+        node_dict = {'title': self.title, 'level': self.level}
+        if self.model is not None:
+            node_dict['model'] = self.model
+        if self.children is not None:
+            node_dict['children'] = [child.to_dict() for child in self.children]
+        return node_dict
+    
 
 def parse_taxonomy(taxonomy, num=3, generic_node_re=r'(#+)\s*(.*)', index_re=r'[\d\.]+', leaf_re=r'- \*\*(.*?)\*\*'):  # amended regular expression
     taxonomy_lines = [line for line in taxonomy.split('\n')]
     root = Node('root', 0)
+    root.set_model('unknown')
     parent_stack = [root]
     for line in taxonomy_lines:
         generic_match = re.match(re.compile(generic_node_re), line)
@@ -38,7 +43,9 @@ def parse_taxonomy(taxonomy, num=3, generic_node_re=r'(#+)\s*(.*)', index_re=r'[
             num_hashes = len(generic_match.group(1))
             level = (num_hashes - num) + 1
 
-            if level == 0:
+            if level == -1:
+                root.set_model(title)
+            elif level == 0:
                 root.set_title(title)
             else:
                 new_node = Node(title, level)
