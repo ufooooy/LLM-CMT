@@ -94,7 +94,7 @@
             <div id="jstree"></div>
             <div id="verticalResizer"></div>
             <div id="infoPanel">
-                <p>Model: <input type="text" id="modelName" placeholder="Enter model name"></p>
+                <p id="modelContainer" style="display: none;">Model: <input type="text" id="modelName" placeholder="Enter model name"></p>
                 <div class="chart-container">
                     <canvas id="nodesChart"></canvas>
                 </div>
@@ -224,9 +224,11 @@
 
                             // Add counts for each level dynamically
                             for (let level of sortedLevels) {
-                                $('#infoPanel').append(
-                                    `<p class="dynamic-level">Number of level ${level} nodes: <span id="levelCount${level}">${nodeLevelCounts[level]}</span></p>`
-                                );
+                                if (level !== 0 && level !== sortedLevels[sortedLevels.length - 1]) {
+                                    $('#infoPanel').append(
+                                        `<p class="dynamic-level">Number of level ${level} nodes: <span id="levelCount${level}">${nodeLevelCounts[level]}</span></p>`
+                                    );
+                                }
                             }
                             $('#infoPanel').append(
                                 `<p>Number of leaf nodes: <span id="leafCount">${leafCount}</span></p>`
@@ -237,10 +239,10 @@
                             new Chart(ctx, {
                                 type: 'bar',
                                 data: {
-                                    labels: [...sortedLevels.map(level => `Level ${level}`), 'Leaf Nodes'],
+                                    labels: [...sortedLevels.filter(level => level !== 0 && level !== sortedLevels[sortedLevels.length - 1]).map(level => `Level ${level}`), 'Leaf Nodes'],
                                     datasets: [{
                                         label: '# of Nodes',
-                                        data: [...sortedLevels.map(level => nodeLevelCounts[level]), leafCount],
+                                        data: [...sortedLevels.filter(level => level !== 0 && level !== sortedLevels[sortedLevels.length - 1]).map(level => nodeLevelCounts[level]), leafCount],
                                         backgroundColor: 'rgba(75, 192, 192, 0.5)',
                                         borderColor: 'rgba(75, 192, 192, 1)',
                                         borderWidth: 1
@@ -333,6 +335,7 @@
 
                         // Update modelName input field
                         let modelName = fileContentJson.model || '';
+                        $('#modelContainer').show();
                         if (modelName) {
                             $('#modelName').val(modelName);
                         } else {
