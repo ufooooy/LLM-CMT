@@ -1,0 +1,23 @@
+
+    #### identify a collection
+    #### target: deepseek.csv
+    #### run time: 2025-02-20 11:20:30
+    #### log file: log/identify-2025-02-20 112030.txt
+    #### result file: result/identify-2025-02-20 112030.json
+    
+17611 query has been sent, 1308 tokens have been received
+3832 query has been sent, 957 tokens have been received
+6966 query has been sent, 1994 tokens have been received
+1396 query has been sent, 793 tokens have been received
+4711 query has been sent, 1464 tokens have been received
+7716 query has been sent, 1058 tokens have been received
+6649 query has been sent, 1445 tokens have been received
+9322 query has been sent, 1508 tokens have been received
+2348 query has been sent, 700 tokens have been received
+2194 query has been sent, 722 tokens have been received
+2195 query has been sent, 929 tokens have been received
+2727 query has been sent, 1358 tokens have been received
+5081 query has been sent, 2380 tokens have been received
+4929 query has been sent, 1690 tokens have been received
+Three consecutive files have resulted in errors. Please check the error records.
+#### 20 files processed, 27 misuses found, 0 errors

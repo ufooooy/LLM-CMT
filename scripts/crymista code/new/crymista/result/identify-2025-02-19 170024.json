@@ -1,0 +1,8 @@
+[
+    {
+        "abstract": "Insecure input validation using assert statements",
+        "detail": "The code uses assert() to validate input pointers and the 'enc' parameter. Assert statements are removed in release builds (when NDEBUG is defined), leading to insufficient input validation. Cryptographic functions should implement proper runtime error checks instead of relying on debug-only assertions, as invalid inputs could cause undefined behavior or vulnerabilities in production environments.",
+        "location": "Lines with assert(in && out && key); and assert((AES_ENCRYPT == enc) || (AES_DECRYPT == enc));",
+        "code": "Dsub\\crawl\\C_code\\189aes_ecb.c"
+    }
+]

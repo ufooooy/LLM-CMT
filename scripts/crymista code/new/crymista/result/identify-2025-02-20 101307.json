@@ -1,0 +1,44 @@
+[
+    {
+        "abstract": "Insecure use of BiIGE mode which is vulnerable to chosen-plaintext attacks",
+        "detail": "The AES_bi_ige_encrypt function implements the BiIGE (bidirectional IGE) mode, which is known to be insecure and vulnerable to chosen-plaintext attacks as documented in CVE-2007-3108. This mode was removed from OpenSSL in later versions due to its vulnerabilities.",
+        "location": "void AES_bi_ige_encrypt(const unsigned char *in, unsigned char *out,",
+        "code": "Dsub\\crawl\\C_code\\189aes_ige.c"
+    },
+    {
+        "abstract": "Use of Blowfish in CFB mode with 64-bit block size",
+        "detail": "The code uses the Blowfish cipher in CFB-64 mode, which has a 64-bit block size. According to NIST guidelines and modern cryptographic standards, ciphers with 64-bit block sizes (like Blowfish and DES) are vulnerable to birthday attacks in modes such as CBC, CFB, or OFB when processing large amounts of data. These ciphers are deprecated for such uses, and AES (with a 128-bit block size) is recommended instead.",
+        "location": "Entire BF_cfb64_encrypt function implementation",
+        "code": "Dsub\\crawl\\C_code\\189bf_cfb64.c"
+    },
+    {
+        "abstract": "Insecure use of ECB mode for encryption",
+        "detail": "The code uses the Electronic Codebook (ECB) mode for Blowfish encryption, which is insecure because it does not provide semantic security. ECB mode encrypts identical plaintext blocks into identical ciphertext blocks, allowing patterns to be discerned. This violates recommendations from standards such as NIST SP 800-38A, which advise using secure modes like CBC or GCM for confidentiality.",
+        "location": "Function BF_ecb_encrypt defined in line 24",
+        "code": "Dsub\\crawl\\C_code\\189bf_ecb.c"
+    },
+    {
+        "abstract": "No cryptographic API misuses",
+        "detail": "The code correctly uses RAND_priv_bytes for generating random numbers, checks its return value, and applies it in a non-cryptographic context (simulating non-blocking I/O behavior). The entropy reduction via bitwise masking (n & 0x07) is contextually acceptable for testing purposes and does not violate cryptographic standards.",
+        "location": "",
+        "code": "Dsub\\crawl\\C_code\\189bf_nbio.c"
+    },
+    {
+        "abstract": "Insecure cleanup of sensitive data",
+        "detail": "The code uses simple assignments to zeroize sensitive variables (t, v0, v1, ti[0], ti[1]), which may be optimized out by the compiler, leaving sensitive data in memory. Secure cryptographic implementations should use explicit_bzero or memset_s to ensure secure erasure of sensitive data.",
+        "location": "t = v0 = v1 = ti[0] = ti[1] = 0;",
+        "code": "Dsub\\crawl\\C_code\\189bf_ofb64.c"
+    },
+    {
+        "abstract": "Use of a deprecated cipher with insecure block size",
+        "detail": "Blowfish (64-bit block size) is used in OFB mode, which is considered insecure by modern standards (e.g., NIST guidelines) due to vulnerabilities like birthday attacks after ~2^32 blocks. While this is an algorithm choice, the API misuse lies in employing a deprecated cipher without enforcing mitigations.",
+        "location": "void BF_ofb64_encrypt(...)",
+        "code": "Dsub\\crawl\\C_code\\189bf_ofb64.c"
+    },
+    {
+        "abstract": "Insecure key length handling in Blowfish key setup",
+        "detail": "The code truncates the input key to a maximum length of (BF_ROUNDS + 2) * 4 = 72 bytes (576 bits). However, the Blowfish algorithm specification defines a maximum key length of 448 bits (56 bytes). Using keys longer than 448 bits is not supported by the algorithm and may lead to vulnerabilities, as the extra key material is not properly utilized. This violates cryptographic best practices and algorithm specifications.",
+        "location": "Line 23: if (len > ((BF_ROUNDS + 2) * 4)) len = (BF_ROUNDS + 2) * 4;",
+        "code": "Dsub\\crawl\\C_code\\189bf_skey.c"
+    }
+]

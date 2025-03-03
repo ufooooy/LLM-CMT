@@ -1,0 +1,164 @@
+[
+    {
+        "abstract": "Use of insecure MD5 hash algorithm in micalg parameter",
+        "detail": "The code includes MD5 as a valid digest algorithm for generating the micalg parameter in S/MIME messages. MD5 is considered cryptographically broken and unsuitable for further use in digital signatures or integrity checks, as per NIST SP 800-131A and various CVEs (e.g., CVE-2008-5077). This can lead to vulnerabilities in message authenticity and integrity.",
+        "location": "Line with case NID_md5 in asn1_write_micalg function",
+        "code": "Dsub\\crawl\\C_code\\189asn_mime.c"
+    },
+    {
+        "abstract": "Insecure handling of CBC mode padding",
+        "detail": "The BF_cbc_encrypt function does not implement proper padding for data that is not a multiple of the block size. The code uses n2ln and l2nn to handle residual bytes without applying a standard padding scheme (e.g., PKCS#7), which is required for secure CBC mode operation. This can lead to decryption errors or vulnerabilities such as padding oracle attacks if the decryption process does not properly validate or remove padding.",
+        "location": "Lines handling 'l != -8' in BF_cbc_encrypt function",
+        "code": "Dsub\\crawl\\C_code\\189bf_enc.c"
+    },
+    {
+        "abstract": "No cryptographic API misuses",
+        "detail": "The code correctly initializes and manages the EVP_CIPHER_CTX, handles encryption/decryption operations with proper error checking, and securely frees resources. It adheres to OpenSSL practices for cipher context handling, including resetting and duplication. No specific cryptographic API misuse according to standards like CWE or CVE is identified.",
+        "location": "",
+        "code": "Dsub\\crawl\\C_code\\189bio_enc.c"
+    },
+    {
+        "abstract": "Use of deprecated function BN_generate_prime",
+        "detail": "The function BN_generate_prime is deprecated in OpenSSL and may use insecure or outdated methods for prime generation. Applications should use BN_generate_prime_ex instead, which provides enhanced security and parameters.",
+        "location": "BIGNUM *BN_generate_prime(BIGNUM *ret, int bits, int safe, ...)",
+        "code": "Dsub\\crawl\\C_code\\189bn_depr.c"
+    },
+    {
+        "abstract": "Use of deprecated function BN_is_prime",
+        "detail": "The function BN_is_prime is deprecated and relies on old-style callbacks (BN_GENCB_set_old). Modern implementations should use BN_is_prime_ex with the updated BN_GENCB structure to ensure proper security checks.",
+        "location": "int BN_is_prime(const BIGNUM *a, int checks, ...)",
+        "code": "Dsub\\crawl\\C_code\\189bn_depr.c"
+    },
+    {
+        "abstract": "Use of deprecated function BN_is_prime_fasttest",
+        "detail": "The function BN_is_prime_fasttest is deprecated and uses outdated callback mechanisms. It should be replaced with BN_is_prime_fasttest_ex to align with current cryptographic best practices and avoid potential vulnerabilities.",
+        "location": "int BN_is_prime_fasttest(const BIGNUM *a, int checks, ...)",
+        "code": "Dsub\\crawl\\C_code\\189bn_depr.c"
+    },
+    {
+        "abstract": "Use of deprecated SSLv3 protocol",
+        "detail": "SSLv3 is deprecated and insecure due to vulnerabilities like POODLE. Applications should avoid using SSLv3 and instead use TLS 1.2 or higher as per RFC 7568.",
+        "location": "case OPT_SSL3:",
+        "code": "Dsub\\crawl\\C_code\\189ciphers.c"
+    },
+    {
+        "abstract": "Use of deprecated TLS 1.0 protocol",
+        "detail": "TLS 1.0 is deprecated (RFC 8996) and has known vulnerabilities like BEAST. It should be disabled in favor of TLS 1.2 or higher.",
+        "location": "case OPT_TLS1:",
+        "code": "Dsub\\crawl\\C_code\\189ciphers.c"
+    },
+    {
+        "abstract": "Use of deprecated TLS 1.1 protocol",
+        "detail": "TLS 1.1 is deprecated (RFC 8996) and lacks modern cryptographic features. TLS 1.2 or higher should be enforced.",
+        "location": "case OPT_TLS1_1:",
+        "code": "Dsub\\crawl\\C_code\\189ciphers.c"
+    },
+    {
+        "abstract": "Use of insecure DES cipher",
+        "detail": "DES (Data Encryption Standard) is considered insecure due to its short key length (56 bits), making it vulnerable to brute-force attacks. NIST deprecated DES in 2005 (SP 800-67 Rev2). The code adds multiple DES variants (e.g., EVP_des_cbc(), EVP_des_ede3_cfb()), which are insecure.",
+        "location": "Lines adding DES ciphers (e.g., EVP_des_cbc(), EVP_des_ede3_cbc())",
+        "code": "Dsub\\crawl\\C_code\\189c_allc.c"
+    },
+    {
+        "abstract": "Use of RC4 cipher",
+        "detail": "RC4 is a stream cipher with known vulnerabilities (e.g., biases in its keystream). It is prohibited by RFC 7465 and deprecated in TLS. The code adds EVP_rc4() and EVP_rc4_40(), which are insecure.",
+        "location": "Lines containing EVP_rc4() and EVP_rc4_40()",
+        "code": "Dsub\\crawl\\C_code\\189c_allc.c"
+    },
+    {
+        "abstract": "Use of RC2 with weak key size",
+        "detail": "RC2 with 40-bit keys (EVP_rc2_40_cbc()) is insecure due to insufficient key length. Even 64-bit RC2 is considered weak. NIST and modern standards disallow RC2 for sensitive data.",
+        "location": "Line adding EVP_rc2_40_cbc()",
+        "code": "Dsub\\crawl\\C_code\\189c_allc.c"
+    },
+    {
+        "abstract": "Use of Blowfish cipher",
+        "detail": "Blowfish (EVP_bf_*()) uses a 64-bit block size, which is insecure for large data volumes under the Sweet32 attack (CVE-2016-2183). It is not recommended by modern cryptographic standards.",
+        "location": "Lines adding Blowfish ciphers (e.g., EVP_bf_cbc())",
+        "code": "Dsub\\crawl\\C_code\\189c_allc.c"
+    },
+    {
+        "abstract": "Use of MD5-based HMAC with RC4",
+        "detail": "MD5 is a broken hash function (CVE-2004-2761), and its use in HMAC with RC4 (EVP_rc4_hmac_md5()) is discouraged. While HMAC-MD5 is not as vulnerable as plain MD5, it is still not recommended for new systems.",
+        "location": "Line adding EVP_rc4_hmac_md5()",
+        "code": "Dsub\\crawl\\C_code\\189c_allc.c"
+    },
+    {
+        "abstract": "Incorrect IV size for ChaCha20 cipher",
+        "detail": "The code uses a 16-byte IV (N2N_CC20_IVEC_SIZE) for ChaCha20, but OpenSSL's EVP_chacha20() expects a 12-byte nonce. This mismatch can lead to incorrect encryption/decryption, buffer overreads, or undefined behavior. According to OpenSSL's documentation and RFC 7539, ChaCha20 requires a 12-byte nonce.",
+        "location": "Line where N2N_CC20_IVEC_SIZE is defined (16) and lines using enc_ivec/dec_ivec (e.g., in transop_encode_cc20 and transop_decode_cc20 functions).",
+        "code": "Dsub\\crawl\\C_code\\438transform_cc20.c"
+    },
+    {
+        "abstract": "Potential use of non-cryptographic PRNG for IV generation",
+        "detail": "The IV is generated using n2n_rand(), which may not be a cryptographically secure pseudorandom number generator (CSPRNG). ChaCha20 requires unique and unpredictable IVs. Using a non-CSPRNG can lead to IV reuse, compromising confidentiality. NIST SP 800-90A recommends using approved CSPRNGs for cryptographic IVs.",
+        "location": "Line in set_cc20_iv function where n2n_rand() is called.",
+        "code": "Dsub\\crawl\\C_code\\438transform_cc20.c"
+    },
+    {
+        "abstract": "No cryptographic API misuses",
+        "detail": "The code snippet is part of a fuzzer for ASN.1 parsing and does not exhibit cryptographic API misuses. Deprecated functions are explicitly allowed via OPENSSL_SUPPRESS_DEPRECATED and conditional compilation, which is acceptable in a testing context. Memory management and error handling are appropriately addressed, and sensitive data is not exposed due to the use of BIO_s_null().",
+        "location": "",
+        "code": "Dsub\\crawl\\C_code\\510asn1_afl.c"
+    },
+    {
+        "abstract": "Incorrect modulus sign in BN_mod_exp and BN_mod_exp_simple calls",
+        "detail": "The code uses BN_set_negative(b3, s3) which allows the modulus (b3) to be negative. However, OpenSSL's BN_mod_exp and BN_mod_exp_simple require the modulus to be a positive integer. Using a negative modulus can lead to undefined behavior and incorrect cryptographic computations. According to OpenSSL documentation, the modulus must be positive for these functions to operate correctly.",
+        "location": "Lines where BN_mod_exp and BN_mod_exp_simple are called (exact line numbers not provided, but look for BN_mod_exp(b4, b1, b2, b3, ctx) and BN_mod_exp_simple(b5, b1, b2, b3, ctx))",
+        "code": "Dsub\\crawl\\C_code\\510bignum_afl.c"
+    },
+    {
+        "abstract": "Insecure TLS protocol version configuration allowing SSLv3",
+        "detail": "The code sets the minimum protocol version to 0 (SSL_set_min_proto_version(client, 0)), which allows SSLv3 and all newer versions. SSLv3 is deprecated and insecure due to vulnerabilities like POODLE. According to RFC 7568, SSLv3 must not be used. Applications should set a minimum version of TLS1.2 or higher.",
+        "location": "SSL_set_min_proto_version(client, 0)",
+        "code": "Dsub\\crawl\\C_code\\510client_afl.c"
+    },
+    {
+        "abstract": "Use of insecure NULL cipher suites and lowered security level",
+        "detail": "The cipher list includes 'eNULL' (NULL encryption ciphers) and sets @SECLEVEL=0, which disables security restrictions. NULL ciphers provide no encryption and SECLEVEL=0 allows weak algorithms (e.g., 64-bit ciphers). This violates best practices in NIST SP 800-52 and OpenSSL's security guidelines, which recommend using strong ciphers and maintaining appropriate security levels.",
+        "location": "SSL_set_cipher_list(client, \"ALL:eNULL:@SECLEVEL=0\")",
+        "code": "Dsub\\crawl\\C_code\\510client_afl.c"
+    },
+    {
+        "abstract": "Insecure protocol version configuration allowing legacy SSL/TLS protocols",
+        "detail": "The code sets the minimum protocol version to 0 (SSL_set_min_proto_version(client, 0)), which allows insecure legacy protocols like SSLv3 and TLS 1.0. These protocols have known vulnerabilities (e.g., CVE-2014-3566, CVE-2011-3389) and are deprecated by standards such as RFC 8996 and NIST SP 800-52 Rev. 2, which mandate TLS 1.2 or higher.",
+        "location": "SSL_set_min_proto_version(client, 0)",
+        "code": "Dsub\\crawl\\C_code\\510client_sydr.c"
+    },
+    {
+        "abstract": "Insecure cipher suite configuration with weak ciphers and reduced security level",
+        "detail": "The cipher list 'ALL:eNULL:@SECLEVEL=0' enables NULL ciphers (eNULL) and lowers the security level to 0, disabling important security checks. NULL ciphers provide no encryption, violating best practices (e.g., RFC 7465). The SECLEVEL=0 setting weakens key lengths and other parameters, contradicting OpenSSL's security guidelines and standards like NIST SP 800-175B.",
+        "location": "SSL_set_cipher_list(client, \"ALL:eNULL:@SECLEVEL=0\")",
+        "code": "Dsub\\crawl\\C_code\\510client_sydr.c"
+    },
+    {
+        "abstract": "Insecure certificate hash algorithm allowed (SHA-1)",
+        "detail": "The code sets opt->verify_hash to NULL, which allows the use of SHA-1 hashes. SHA-1 is considered cryptographically broken and deprecated by standards such as NIST. This can lead to accepting certificates with insecure signatures, making the system vulnerable to collision attacks.",
+        "location": "Line where 'opt->verify_hash = NULL;' is set in init_session_opt function.",
+        "code": "Dsub\\crawl\\C_code\\510fuzz_verify_cert.c"
+    },
+    {
+        "abstract": "Certificate revocation status not checked",
+        "detail": "The code sets opt->crl_file to NULL, disabling Certificate Revocation List (CRL) checks. Failing to verify revocation status can allow revoked certificates to be accepted, violating security best practices (e.g., CWE-299). Proper revocation checking via CRL or OCSP is essential to ensure certificate validity.",
+        "location": "Line where 'opt->crl_file = NULL;' is set in init_session_opt function.",
+        "code": "Dsub\\crawl\\C_code\\510fuzz_verify_cert.c"
+    },
+    {
+        "abstract": "Use of insecure MD5 hash function",
+        "detail": "The code uses MD5, which is considered cryptographically broken and unsuitable for further use according to NIST SP 800-131A. MD5 is vulnerable to collision attacks and should not be used in security contexts.",
+        "location": "pg_cryptohash_init function, case PG_MD5",
+        "code": "Dsub\\crawl\\C_code\\57048cryptohash_openssl.c"
+    },
+    {
+        "abstract": "Use of insecure SHA-1 hash function",
+        "detail": "The code uses SHA-1, which is deprecated for most cryptographic uses due to practical collision attacks as per NIST guidelines. SHA-1 should be replaced with stronger alternatives like SHA-256 or SHA-3.",
+        "location": "pg_cryptohash_init function, case PG_SHA1",
+        "code": "Dsub\\crawl\\C_code\\57048cryptohash_openssl.c"
+    },
+    {
+        "abstract": "Use of weak hash algorithms (MD5, SHA-1) in HMAC",
+        "detail": "The code supports HMAC with MD5 and SHA-1, which are considered cryptographically weak and deprecated by current standards such as NIST SP 800-131A. These algorithms are vulnerable to collision attacks and should not be used in new systems. The HMAC implementation should prefer stronger algorithms like SHA-256 or SHA-3.",
+        "location": "Lines where HMAC_Init_ex is called with EVP_md5() and EVP_sha1() in pg_hmac_init function.",
+        "code": "Dsub\\crawl\\C_code\\57048hmac_openssl.c"
+    }
+]

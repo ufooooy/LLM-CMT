@@ -1,0 +1,8 @@
+
+    #### identify a collection
+    #### target: deepseek.csv
+    #### run time: 2025-02-19 17:00:24
+    #### log file: log/identify-2025-02-19 170024.txt
+    #### result file: result/identify-2025-02-19 170024.json
+    
+712 query has been sent, 871 tokens have been received

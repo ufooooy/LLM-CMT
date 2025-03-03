@@ -1,0 +1,26 @@
+import base64
+from cryptography.hazmat.backends import default_backend
+from cryptography.fernet import Fernet
+
+g_backend = default_backend()
+g_key = b"1234567812345678"
+g_plaintext = b"abcdefghijklmnop"
+g_key_fernet = base64.urlsafe_b64encode(b"12345678123456781234567812345678")
+
+def p_example11_nested_local_variable3(data):
+    key1 = base64.urlsafe_b64encode(b"12345678123456781234567812345678")
+    key2 = key1
+    key3 = key2
+
+    fernet = Fernet(key3)
+    cipher_text = fernet.encrypt(data)
+    return cipher_text
+
+def decrypt_fernet(key, data):
+    fernet = Fernet(key)
+    plaintext = fernet.decrypt(data)
+    return plaintext
+
+if __name__ == '__main__':
+    print("cryptography -> p_example11_nested_local_variable3:",
+          decrypt_fernet(g_key_fernet, p_example11_nested_local_variable3(g_plaintext)) == g_plaintext)
