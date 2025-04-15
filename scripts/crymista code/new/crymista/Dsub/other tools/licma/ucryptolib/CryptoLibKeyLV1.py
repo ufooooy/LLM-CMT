@@ -1,7 +1,0 @@
-from ucryptolib import aes, MODE_ECB, MODE_CBC
-
-def p_example3_local_variable1(data):
-    key = b"1234567812345678"
-    cipher = aes(key, MODE_ECB)
-    cipher_text = cipher.encrypt(data)
-    return cipher_text

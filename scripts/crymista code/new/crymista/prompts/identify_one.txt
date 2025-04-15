@@ -1,9 +1,0 @@
-You will be given a code snippet: ${file_name}, and your task is to identify cryptographic API misuses in this code snippet according to the requirements. 
-In this task, cryptographic API misuses are defined as security breaches or weaknesses caused by insecure implementation or incorrect usage of cryptographic APIs. 
-Other requirements include:
-1) Your identification should align with relevant international or national standards, best practice guidelines, CVE vulnerability databases or other official information as much as possible.  
-2) You should ensure that each identified misuse is atomic, formatted according to the following JSON structure for results: ```json[{"abstract":"","detail":"","location":""}]```, where one cryptographic API misuse is represented by the 'abstract', 'detail', and 'location' fields. The 'abstract' field summarizes the misuse briefly, 'detail' provides detailed information, and 'location' specifies the line of code where the misuse occurs.
-3) If the code snippet is implemented securely, i.e., contains no cryptographic API misuses, the misuse abstract should be summarized as "No cryptographic API misuses", such as ```json[{"abstract":"No cryptographic API misuses","detail":"","location":""}]```.
-4) You should start with ```json and end with ``` so that after we receive your response, we can use the regular expression pattern=r'```json(.*?)```' to extract the result.
-The content of the code(${file_content}) is as follows:  
-${file_content}

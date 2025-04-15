@@ -1,9 +1,0 @@
-
-    #### identify a collection
-    #### target: deepseek.csv
-    #### run time: 2025-02-20 14:04:11
-    #### log file: log/identify-2025-02-20 140411.txt
-    #### result file: result/identify-2025-02-20 140411.json
-    
-Three consecutive files have resulted in errors. Please check the error records.
-#### 2 files processed, 0 misuses found, 0 errors
