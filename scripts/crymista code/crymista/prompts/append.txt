@@ -1,0 +1,14 @@
+
+You will receive a preliminary cryptography API misuse taxonomy and a JSON list of specific cryptographic API misuses.
+Each entry in the JSON list has a 'title' field that represents a summary of the cryptographic API misuse, while the 'explanation' provides a detailed description.
+And, this taxonomy is constructed by referring to a set of terms that summarize the key causes of cryptographic API misuses.
+The taxonomy is built around a set of terms that summarize the generic causes of cryptographic API misuses, which are: ${terms}.
+Your task is to integrate these misuses into the existing taxonomy to make a more comprehensive one based on the understanding of their 'title' and 'explanation'. 
+Follow the below instructions to accomplish this:
+1) Modification: You can add cases to existing categories, subcategories or new branches or adjust the categories of the original taxonomy system so that the taxonomy integrating new cases is more reasonable and scientific.
+2) Formatting: Output the new part in the format consistently with the original taxonomy structure. Begin and end the taxonomy with "```". Use "###" along with numbers (for example, "1.", "2.") for main categories, "####" along with numbers (for example, "1.1", "1.2") for subcategories. List specific misuse cases with a dash, starting with the misuse title in bold, followed by a detailed explanation.
+Your updated taxonomy should be well-structured and clear, with each category and subcategory description highlighting the shared themes or issues in the misuses they contain.
+The content of the preliminary cryptography API misuse taxonomy is as follows:  
+${taxonomy}
+The content of the cryptographic API misuses JSON list is as follows:  
+${json_content}

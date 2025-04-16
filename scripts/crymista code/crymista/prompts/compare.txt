@@ -1,0 +1,8 @@
+You will receive two cryptographic API misuses in JSON format. 
+Each misuse includes a "title" for a brief description and an "explanation" summarizing the causes, effects, or specific conditions. 
+Your task is to determine if both cases essentially refer to the same cryptographic API misuse based on a thorough understanding of the "title" and "explanation". 
+If they do, answer "YES"; otherwise, answer "NO".
+The content of the first cryptographic API misuse is as follows:
+${misuse1}
+The content of the second cryptographic API misuse is as follow:
+${misuse2} 

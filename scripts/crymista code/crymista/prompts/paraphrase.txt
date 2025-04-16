@@ -1,0 +1,7 @@
+You will receive a JSON list of cryptographic API misuses. 
+Each entry represents a misuse with "abstract" as a brief description, "detail" as a detailed description, and "codes" as the list of code files where the misuse is found.
+Although these misuses are expressed differently, they share the same meaning in terms of cryptographic API misuse. 
+You need to summarize these misuses into one and export the result in the following format: json[{"title":"","explanation":""}], 
+where "title" is a brief summary title and "explanation" is a detailed explanation of the summarized misuse.
+The content of the cryptographic API misuses JSON list is as follows:  
+${json_content}

@@ -1,0 +1,8 @@
+You will receive two cryptographic API misuses in JSON format. 
+Each misuse includes a "title" for a brief description and an "explanation" summarizing the causes, effects, or specific conditions. 
+Although there are two cases, they essentially refer to the same cryptographic API misuse in terms of meaning.
+Since that, your task is to summarize the two cryptographic API misuses into one based on their "title" and "explanation", and output in the following format: ```json[{"title":"", "explanation":""}]```
+The content of the first cryptographic API misuse is as follows:
+${misuse1}
+The content of the second cryptographic API misuse is as follow:
+${misuse2} 

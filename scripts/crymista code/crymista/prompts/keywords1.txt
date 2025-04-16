@@ -1,0 +1,1 @@
+Compromising Client and Server Secrecy, Compromising Secrecy of Cipher Text, Compromising Randomness, Compromising Secret Keys, Compromising Integrity through Improper Checksum Use, Compromising Non-Repudiation, Compromising Communication Secrecy with Intended Receiver.

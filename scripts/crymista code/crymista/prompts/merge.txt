@@ -1,0 +1,10 @@
+You will receive a JSON list containing cryptographic API misuses. 
+Each entry represents a misuse with "instance_id" is its identity in this list, "abstract" as a brief description, and "detail" as a detailed description.
+You should summarize this cryptographic API misuse list and export the result based on the following requirements:
+1) You are required to merge entries that are expressed differently but share the same meaning in terms of cryptographic API misuse. 
+Summarize them into one based on their "abstract" and "detail" fields, and output the result in the following format: ```json[{"instances":[instance_id1, instance_id2], "title":"", "explanation":""}, ...]```,
+where each dictionary element represents misuses of the same meaning, with "title" as a brief summary and "explanation" as a detailed explanation, and the "instances" field lists their identities.
+Don't forget to start with "```json" and end with "```".
+2) You can briefly describe the merger you made and explain the reasons for the classification.
+The content of the cryptographic API misuses JSON list is as follows:  
+${json_content}

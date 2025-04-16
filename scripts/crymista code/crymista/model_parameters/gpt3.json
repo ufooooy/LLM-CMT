@@ -1,0 +1,10 @@
+{
+    "model": "gpt-4-turbo-preview",
+    "key": "sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "base_url": "https://api.openai.com/v1",
+    "max_tokens": 4096,
+    "temperature": 0,
+    "top_p": 1,
+    "frequency_penalty": 0,
+    "presence_penalty": 0
+}

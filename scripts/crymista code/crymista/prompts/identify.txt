@@ -1,0 +1,18 @@
+You will be given ${n} code snippets: ${code_name}
+You need to identify all cryptographic API misuses in these snippets, 
+and export the causes of these misuses, 
+according to the security properties they breach and/or other cryptography principles they violate, 
+based on the following requirements:
+(1) Decide cryptographic API misuses based on relevant international or national standards, guidelines, recommendations, CVE vulnerabilities, and other official information, to the extent possible.
+(2) You should export all the identified misuses as a list of JSON objects in the format of ```json[{"abstract":"","codes":["",],"detail":""},]```, 
+where each JSON object describes one cryptographic API misuse, 
+its "abstract" field is a brief description of the misuse, 
+"files" is the list of code files in which the misuse is identified, 
+and "detail" is the detailed description of the misuse.
+(3) Each cryptographic API misuse must be documented as a separate JSON object to maintain the atomicity of misuses. 
+This means that if multiple misuses are identified within a single code snippet or across the provided code snippets,
+each misuse should be represented by its own JSON object. This approach ensures that the causes, breached security properties, and violated cryptography principles of each misuse are clearly and independently documented, 
+facilitating a more granular analysis and understanding of the misuses.
+(4) If no cryptographic API misuse is identified within a given code
+snippet, classify the code as "no cryptographic API misuse". 
+The content of the codes is ${codes_content}
