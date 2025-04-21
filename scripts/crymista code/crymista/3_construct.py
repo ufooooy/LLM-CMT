@@ -12,7 +12,7 @@ def new_colnums(classify_csv, colnum_name):
 if __name__ == '__main__':
     model = 'model_parameters/deepseek.json'
     classify_csv = 'classify_deepseek.csv'
-    # set_append(model, classify_csv)
+    set_append(model, classify_csv)
 
     # 为classify_csv添加一列Result TXT记录taxonomy结果
     new_colnums(classify_csv, 'Result TXT')
